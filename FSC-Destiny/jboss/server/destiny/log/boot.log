@@ -1,0 +1,15 @@
+10:47:15,215 INFO  [Server] Starting JBoss (MX MicroKernel)...
+10:47:15,215 INFO  [Server] Release ID: JBoss [Trinity] 4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=201002081550)
+10:47:15,215 INFO  [Server] Home Dir: C:\dockerimages\dockerdestiny\FSC-Destiny\jboss
+10:47:15,216 INFO  [Server] Home URL: file:/C:/dockerimages/dockerdestiny/FSC-Destiny/jboss/
+10:47:15,216 INFO  [Server] Patch URL: null
+10:47:15,216 INFO  [Server] Server Name: destiny
+10:47:15,216 INFO  [Server] Server Home Dir: C:\dockerimages\dockerdestiny\FSC-Destiny\jboss\server\destiny
+10:47:15,216 INFO  [Server] Server Home URL: file:/C:/dockerimages/dockerdestiny/FSC-Destiny/jboss/server/destiny/
+10:47:15,216 INFO  [Server] Server Log Dir: C:\dockerimages\dockerdestiny\FSC-Destiny\jboss\server\destiny\log
+10:47:15,216 INFO  [Server] Server Temp Dir: C:\dockerimages\dockerdestiny\FSC-Destiny\jboss\server\destiny\tmp
+10:47:15,216 INFO  [Server] Root Deployment Filename: jboss-service.xml
+10:47:15,637 INFO  [ServerInfo] Java version: 1.7.0_45,Oracle Corporation
+10:47:15,637 INFO  [ServerInfo] Java VM: Java HotSpot(TM) 64-Bit Server VM 24.45-b08,Oracle Corporation
+10:47:15,637 INFO  [ServerInfo] OS-System: Windows Server 2012 6.2,amd64
+10:47:16,063 INFO  [Server] Core system initialized

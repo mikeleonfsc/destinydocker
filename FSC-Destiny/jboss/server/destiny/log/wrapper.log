@@ -1,0 +1,5 @@
+STATUS | wrapper  | 2016/12/31 10:47:18 | CTRL-C trapped.  Shutting down.
+STATUS | wrapper  | 2016/12/31 10:47:18 | CTRL-C trapped.  Forcing immediate shutdown.
+STATUS | wrapper  | 2016/12/31 10:47:18 | CTRL-C trapped.  Forcing immediate shutdown.
+ERROR  | wrapper  | 2016/12/31 10:47:18 | JVM did not exit on request, terminated
+STATUS | wrapper  | 2016/12/31 10:47:19 | <-- Wrapper Stopped
