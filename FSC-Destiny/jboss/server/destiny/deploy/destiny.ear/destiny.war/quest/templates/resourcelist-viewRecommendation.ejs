@@ -1,0 +1,53 @@
+/* resourcelist-viewRecommendation.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"recommendationViewModuleInner\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4 id=\"recommendationViewModuleHeader\" class=\"genericModuleTL\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListController_recommendation"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ResourceListController_BUTTON_RECOMMENDATION_VIEW_CANCEL, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("resourceListController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("            <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("                <div class=\"genericModuleContent\">\n");
+                ___ViewO.push("                    <div id=\"recommendationLoading\"></div>\n");
+                ___ViewO.push("                    <div id=\"addRecommendationMain\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListController_CLASS_MODAL_DIALOG_SHRINKY_TO_HIDE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                        <p class=\"viewRecommendationTitle\">\n");
+                ___ViewO.push("                        \t");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListController_titleAuthor", "<span id=\"" + ResourceListController_DIV_RECOMMENDATION_VIEW_TITLE + "\"></span>", "<span class=\"viewRecommendationTitleAuthor\">", "<em><span id=\"" + ResourceListController_DIV_RECOMMENDATION_VIEW_AUTHOR + "\"></span></em>", "</span>"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                        </p>\n");
+                ___ViewO.push("                        <p class=\"viewRecommender\">\n");
+                ___ViewO.push("                            ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListController_recommendedOn", "<em>", "<span id=\"" + ResourceListController_DIV_RECOMMENDATION_VIEW_DATE + "\" class=\"viewRecommendedDate\"></span>", "</em>"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                        </p>\n");
+                ___ViewO.push("                        <p class=\"viewRecommendationSummary\">\n");
+                ___ViewO.push("                        \t");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListController_recommenderWrote", "<em>", "<span id=\"" + ResourceListController_DIV_RECOMMENDATION_VIEW_FROM_PATRON + "\"></span>", "</em>", "<span id=\"" + ResourceListController_DIV_RECOMMENDATION_VIEW_COMMENTS + "\"></span>"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                        </p>                       \n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

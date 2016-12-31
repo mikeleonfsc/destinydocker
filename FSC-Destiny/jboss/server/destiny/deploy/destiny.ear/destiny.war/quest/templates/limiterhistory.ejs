@@ -1,0 +1,80 @@
+/* limiterhistory.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_TR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_TL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("      <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_BL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_BR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("          <ul id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_NAV)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("             <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_NARROWING_HISTORY_NAV_PREVIOUS)));
+                ___ViewO.push("\" \n");
+                ___ViewO.push("                title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limiterhistory_SeePreviousNarrowingEntries"))));
+                ___ViewO.push("\"><a href=\"#\" \n");
+                ___ViewO.push("                id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_NARROWING_HISTORY_NAV_PREVIOUS)));
+                ___ViewO.push("\"\n");
+                ___ViewO.push("                class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_NARROWING_HISTORY_FIRST_LEVEL)));
+                ___ViewO.push("\" \n");
+                ___ViewO.push("                onclick=\"return false;\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limiterController_previousFilters"))));
+                ___ViewO.push("</a>\n");
+                ___ViewO.push("\t              <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_PREVIOUS_DROP_DOWN)));
+                ___ViewO.push("\"  style=\"display:none\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_HOVER)));
+                ___ViewO.push("\"> \n");
+                ___ViewO.push("\t\t              <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_PREVIOUS_TR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t              <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_PREVIOUS_TL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_PREVIOUS_BL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t                  <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_PREVIOUS_BR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t                  <ul id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_HISTORY_NAV_PREVIOUS_ALL)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("\t\t                  </ul>\n");
+                ___ViewO.push("\t\t                  </div>\n");
+                ___ViewO.push("\t\t                </div>\n");
+                ___ViewO.push("\t\t              </div>\n");
+                ___ViewO.push("\t\t              </div>\n");
+                ___ViewO.push("\t              </div>\n");
+                ___ViewO.push("              </li>\n");
+                ___ViewO.push("          </ul>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("      </div> <!-- end #narrowHistoryBL -->\n");
+                ___ViewO.push("    </div> <!-- end #narrowHistoryTL -->\n");
+                ___ViewO.push("</div> <!-- end #narrowHistoryTR -->\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_HISTORY_HOLDING_TANK)));
+                ___ViewO.push("\" style=\"display: none\"></div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

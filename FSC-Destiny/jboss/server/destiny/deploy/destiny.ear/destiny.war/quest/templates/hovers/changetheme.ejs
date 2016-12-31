@@ -1,0 +1,50 @@
+/* changetheme.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_DIV_CHANGE_THEME_WINDOW)));
+                ___ViewO.push("\" style=\"display:none; position:absolute; right:-35px;\">\n");
+                ___ViewO.push("    <h3 class=\"changeThemeHeader\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("themesValueList_themes"))));
+                ___ViewO.push("</h3>\n");
+                ___ViewO.push("    <div class=\"changeThemeWindowInner\">\n");
+                ___ViewO.push("    ");
+                for (i = 0; i < themes.length; i++) {
+                    var themeClass;
+                    if (themes[i].cssFolder == currentThemeName) {
+                        themeClass = "themeDisplaySelected";
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <div id=\"theme_");
+                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                    ___ViewO.push("\" class=\"themeDisplay themeClass\">\n");
+                    ___ViewO.push("            <div class=\"themeFolder\" style=\"display:none\">");
+                    ___ViewO.push((EJS.Scanner.to_text(themes[i].cssFolder)));
+                    ___ViewO.push("</div>            \n");
+                    ___ViewO.push("            <img src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(themes[i].snapShotImageURL)));
+                    ___ViewO.push("\" />                \n");
+                    ___ViewO.push("            <div class=\"themeDescription\">\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(themes[i].label)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div class=\"changeThemeSpecialModule\"><em> </em></div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

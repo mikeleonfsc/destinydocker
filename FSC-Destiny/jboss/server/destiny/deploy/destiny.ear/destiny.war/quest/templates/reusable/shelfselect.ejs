@@ -1,0 +1,83 @@
+/* shelfselect.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                var shelf1Class = "";
+                var shelf2Class = "";
+                var shelf3Class = "";
+                var selectedShelfStr = MessageHelper.format("shelfSelectTemplate_selectAShelf");
+                var shelfNames = [MessageHelper.format("shelfSelectTemplate_haveRead"), MessageHelper.format("shelfSelectTemplate_nowReading"), MessageHelper.format("shelfSelectTemplate_wantToRead")];
+                switch (selectedShelf) {
+                  case eval(ShelfSelectTemplate_SHELF_HAVE_READ):
+                    shelf1Class = "selected";
+                    selectedShelfStr = shelfNames[0];
+                    break;
+                  case eval(ShelfSelectTemplate_SHELF_NOW_READING):
+                    shelf2Class = "selected";
+                    selectedShelfStr = shelfNames[1];
+                    break;
+                  case eval(ShelfSelectTemplate_SHELF_WANT_TO_READ):
+                    shelf3Class = "selected";
+                    selectedShelfStr = shelfNames[2];
+                    break;
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_CONTROL)));
+                ___ViewO.push("\" bibID=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_CONTROL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_HEADER)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_HEADER)));
+                ___ViewO.push("\"><a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_SELECT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_SELECT)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(selectedShelfStr)));
+                ___ViewO.push("<em></em></a></div>\n");
+                ___ViewO.push("    <ul style=\"display:none\" id=\"\" class=\"\">\n");
+                ___ViewO.push("        <li id=\"\" shelfNumber=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_SHELF_HAVE_READ)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_OPTION)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(shelf1Class)));
+                ___ViewO.push("\"><a href=\"#\" id=\"\" onclick=\"return false;\" class=\"\"><em>");
+                ___ViewO.push((EJS.Scanner.to_text(shelfNames[0])));
+                ___ViewO.push("</em></a></li>\n");
+                ___ViewO.push("        <li id=\"\" shelfNumber=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_SHELF_NOW_READING)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_OPTION)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(shelf2Class)));
+                ___ViewO.push("\"><a href=\"#\" id=\"\" onclick=\"return false;\" class=\"\"><em>");
+                ___ViewO.push((EJS.Scanner.to_text(shelfNames[1])));
+                ___ViewO.push("</em></a></li>\n");
+                ___ViewO.push("        <li id=\"\" shelfNumber=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_SHELF_WANT_TO_READ)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfSelectTemplate_CLASS_HOVER_SHELF_OPTION)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(shelf3Class)));
+                ___ViewO.push("\"><a href=\"#\" id=\"\" onclick=\"return false;\" class=\"\"><em>");
+                ___ViewO.push((EJS.Scanner.to_text(shelfNames[2])));
+                ___ViewO.push("</em></a></li>\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id: jboss-service.xml,v 1.1 2010/02/08 19:10:43 rlancast Exp $ -->
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  A minimal JBoss Server Configuration                                 -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<server>
+
+   <!-- Load all jars from the JBOSS_DIST/server/<config>/lib directory. This
+     can be restricted to specific jars by specifying them in the archives
+     attribute.
+    -->
+  <classpath codebase="../destiny/lib" archives="*"/>
+   <classpath codebase="../../../fsc/client/lib" archives="*"/>
+
+   <!-- ==================================================================== -->
+   <!-- Log4j Initialization                                                 -->
+   <!-- ==================================================================== -->
+   <mbean code="org.jboss.logging.Log4jService"
+      name="jboss.system:type=Log4jService,service=Logging">
+      <attribute name="ConfigurationURL">resource:jboss-log4j.xml</attribute>
+   </mbean>
+
+
+   <!-- ==================================================================== -->
+   <!-- Deployment Scanning                                                  -->
+   <!-- ==================================================================== -->
+
+   <!-- An mbean for hot deployment/undeployment of archives.
+   -->
+   <mbean code="org.jboss.deployment.scanner.URLDeploymentScanner"
+      name="jboss.deployment:type=DeploymentScanner,flavor=URL">
+
+      <!-- Uncomment (and comment/remove version below) to enable usage of the
+        DeploymentCache
+      <depends optional-attribute-name="Deployer">jboss.deployment:type=DeploymentCache</depends>
+      -->
+      <depends optional-attribute-name="Deployer">jboss.system:service=MainDeployer</depends>
+
+      <!-- The URLComparator can be used to specify a deployment ordering
+           for deployments found in a scanned directory.  The class specified
+           must be an implementation of java.util.Comparator, it must be able
+           to compare two URL objects, and it must have a no-arg constructor.
+           Two deployment comparators are shipped with JBoss:
+             - org.jboss.deployment.DeploymentSorter
+               Sorts by file extension, as follows:
+                 "sar", "service.xml", "rar", "jar", "war", "wsr", "ear", "zip",
+                 "*"
+             - org.jboss.deployment.scanner.PrefixDeploymentSorter
+               If the name portion of the url begins with 1 or more digits, those
+               digits are converted to an int (ignoring leading zeroes), and
+               files are deployed in that order.  Files that do not start with
+               any digits will be deployed first, and they will be sorted by
+               extension as above with DeploymentSorter.
+      -->
+      <attribute name="URLComparator">org.jboss.deployment.DeploymentSorter</attribute>
+
+      <!--
+      <attribute name="URLComparator">org.jboss.deployment.scanner.PrefixDeploymentSorter</attribute>
+      -->
+
+      <!-- The FilterInstance specifies a URLLister.URLFilter for scanned
+           directories. This DeploymentFilter is initialized with the given
+           prefixes, suffixes and matches that define which URLs should be
+           ignored.
+      -->
+      <attribute name="FilterInstance"
+         attributeClass="org.jboss.deployment.scanner.DeploymentFilter"
+         serialDataType="javaBean">
+         <!-- Files starting with theses strings are ignored -->
+         <property name="prefixes">#,%,\,,.,_$</property>
+         <!-- Files ending with theses strings are ignored -->
+         <property name="suffixes">#,$,%,~,\,v,.BAK,.bak,.old,.orig,.tmp,.rej,.sh</property>
+         <!-- Files matching with theses strings are ignored -->
+         <property name="matches">.make.state,.nse_depinfo,CVS,CVS.admin,RCS,RCSLOG,SCCS,TAGS,core,tags</property>
+      </attribute>
+
+      <!-- Frequency in milliseconds to rescan the URLs for changes -->
+      <attribute name="ScanPeriod">5000</attribute>
+
+      <!-- A flag to disable the scans -->
+      <attribute name="ScanEnabled">true</attribute>
+
+      <!-- URLs are comma separated and resolve relative to the server home URL
+         unless the given path is absolute. If the URL ends in "/" it is
+         considered a collection and scanned, otherwise it is simply deployed;
+         this follows RFC2518 convention and allows discrimination between
+         collections and directories that are simply unpacked archives.
+
+         URLs may be local (file:) or remote (http:). Scanning is supported
+         for remote URLs but unpacked deployment units are not.
+
+         Example URLs:
+            deploy/
+                 scans ${jboss.server.url}/deploy/, which is local or remote
+                 depending on the URL used to boot the server
+            ${jboss.server.home}/deploy/
+                 scans ${jboss.server.home)/deploy, which is always local
+            file:/var/opt/myapp.ear
+                 deploy myapp.ear from a local location
+            file:/var/opt/apps/
+                 scans the specified directory
+            http://www.test.com/netboot/myapp.ear
+                 deploys myapp.ear from a remote location
+            http://www.test.com/netboot/apps/
+                 scans the specified WebDAV location
+       -->
+      <attribute name="URLs">
+         deploy/
+      </attribute>
+
+      <!-- Indicates if the scanner should recursively scan directories that
+      contain no "." in their names. This can be used to group applications
+      and services that must be deployed and that have the same
+      logical function in the same directory i.e.
+        deploy/JMX/
+        deploy/JMS/
+        ...
+      -->
+      <attribute name="RecursiveSearch">True</attribute>
+
+   </mbean>
+   
+   <!-- ==================================================================== -->
+   <!-- Thread Pool                                                          -->
+   <!-- ==================================================================== -->
+
+   <!-- A Thread pool service -->
+   <mbean code="org.jboss.util.threadpool.BasicThreadPool"
+      name="jboss.system:service=ThreadPool">
+      <attribute name="Name">JBoss System Threads</attribute>
+      <attribute name="ThreadGroupName">System Threads</attribute>
+      <!-- How long a thread will live without any tasks in MS -->
+      <attribute name="KeepAliveTime">60000</attribute>
+      <!-- The max number of threads in the pool -->
+      <attribute name="MaximumPoolSize">10</attribute>
+      <!-- The max number of tasks before the queue is full -->
+      <attribute name="MaximumQueueSize">1000</attribute>
+      <!-- The behavior of the pool when a task is added and the queue is full.
+      abort - a RuntimeException is thrown
+      run - the calling thread executes the task
+      wait - the calling thread blocks until the queue has room
+      discard - the task is silently discarded without being run
+      discardOldest - check to see if a task is about to complete and enque
+         the new task if possible, else run the task in the calling thread
+      -->
+      <attribute name="BlockingMode">run</attribute>
+   </mbean>
+
+   <!-- ==================================================================== -->
+   <!-- JNDI                                                                 -->
+   <!-- ==================================================================== -->
+   
+   <!-- A simple mbean wrapper around the jndi Naming object. This
+   only handles an in memory instance. The NamingService uses this
+   as the JNDI store and exposes it remotely.
+   -->
+   <mbean code="org.jnp.server.NamingBeanImpl"
+      name="jboss:service=NamingBeanImpl"
+      xmbean-dd="resource:xmdesc/NamingBean-xmbean.xml">
+   </mbean>
+   
+   <mbean code="org.jboss.naming.NamingService"
+      name="jboss:service=Naming"
+      xmbean-dd="resource:xmdesc/NamingService-xmbean.xml">
+      <!-- The call by value mode. true if all lookups are unmarshalled using
+         the caller's TCL, false if in VM lookups return the value by reference.
+      -->
+      <attribute name="CallByValue">false</attribute>
+      <!-- The listening port for the bootstrap JNP service. Set this to -1
+         to run the NamingService without the JNP invoker listening port.
+      -->
+      <attribute name="Port">${KEYWORD_JNDI_PORT}</attribute>
+      <!-- The bootstrap JNP server bind address. This also sets the default
+         RMI service bind address. Empty == all addresses
+      -->
+      <attribute name="BindAddress">${jboss.bind.address}</attribute>
+      <!-- The port of the RMI naming service, 0 == anonymous -->
+      <attribute name="RmiPort"></attribute>
+      <!-- The RMI service bind address. Empty == all addresses
+      -->
+      <attribute name="RmiBindAddress">${jboss.bind.address}</attribute>
+      <!-- The thread pool service used to control the bootstrap lookups -->
+      <depends optional-attribute-name="LookupPool"
+         proxy-type="attribute">jboss.system:service=ThreadPool</depends>
+      <!-- An example of using the unifed invoker as the transport.
+         <depends optional-attribute-name="InvokerProxyFactory"
+         proxy-type="attribute">jboss:service=proxyFactory,type=unified,target=Naming</depends>
+      -->
+      <depends optional-attribute-name="Naming"
+         proxy-type="attribute">jboss:service=NamingBeanImpl</depends>
+   </mbean>
+   
+   
+   <!-- JBoss Transactions JTA -->
+   <mbean code="com.arjuna.ats.jbossatx.jta.TransactionManagerService"
+      name="jboss:service=TransactionManager">
+      <attribute name="TransactionTimeout">300</attribute>
+      <attribute name="ObjectStoreDir">${jboss.server.data.dir}/tx-object-store</attribute>
+   </mbean>
+
+   <!-- RMI/JRMP invoker -->
+   <mbean code="org.jboss.invocation.jrmp.server.JRMPInvoker"
+      name="jboss:service=invoker,type=jrmp">
+      <attribute name="RMIObjectPort">${KEYWORD_RMI_OBJECT_PORT}</attribute>
+      <attribute name="ServerAddress">${jboss.bind.address}</attribute>
+      <!--
+      <attribute name="RMIClientSocketFactory">custom</attribute>
+      <attribute name="RMIServerSocketFactory">custom</attribute>
+      <attribute name="RMIServerSocketAddr">custom</attribute>
+      <attribute name="SecurityDomain">ssl-domain-name</attribute>
+      -->
+      <depends>jboss:service=TransactionManager</depends>
+   </mbean>
+   
+   <mbean code="com.follett.fsc.lucenehelper.RemoteLuceneService"
+      name="Destiny:service=Lucene">
+    <constructor>
+      <arg type="java.lang.String" value="marc,patron" />
+    </constructor>
+   </mbean>
+   
+   <mbean code="com.follett.fsc.jbosshelper.performance.PerfMon4JService"
+         name="com.follett.fsc.jbosshelper.performance:service=PerfMon4JService">
+      <attribute name="FileName">..\..\fsc\bin\keyword.perfmonconfig.xml</attribute>
+      <attribute name="ReloadSeconds">60</attribute>
+   </mbean>
+   
+
+
+</server>

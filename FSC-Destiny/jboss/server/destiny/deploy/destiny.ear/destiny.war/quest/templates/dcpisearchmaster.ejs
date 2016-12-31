@@ -1,0 +1,75 @@
+/* dcpisearchmaster.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_MAIN_CENTER)));
+                ___ViewO.push("\" class=\"searchTypeDCPI\">\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULTS_HEADER_WARNING)));
+                ___ViewO.push("\" style=\"display: none\"></div>\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULTS_HEADER_OUTER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULTS_HEADER_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULTS_HEADER_PAGING)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t        <ul id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_UL_RESULTS_PAGING_BUTTONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_LINK_RESULTS_PREV)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t                <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_LINK_SEARCH_RESULTS_PREV_PAGE)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(labels.previousResults)));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(labels.previousResults)));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("\t            </li>\n");
+                ___ViewO.push("\t            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_LINK_RESULTS_NEXT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t                <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_LINK_SEARCH_RESULTS_NEXT_PAGE)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(labels.nextResults)));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(labels.nextResults)));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("\t            </li>\n");
+                ___ViewO.push("\t        </ul>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    \n");
+                ___ViewO.push("\t    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULTS_HEADER_X_OF_Y)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("\t</div>  \n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("\t\n");
+                ___ViewO.push("\t<div class=\"searchResultsPageWrapper\">\n");
+                ___ViewO.push("\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_DCPI_SEARCH_RESULTS)));
+                ___ViewO.push("\" class=\"searchResultsPage\"></div>\n");
+                ___ViewO.push("\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULTS_LOADING)));
+                ___ViewO.push("\" style=\"display: none\">\n");
+                ___ViewO.push("\t\t\t<img src=\"/images/icons/general/spacer.gif\" class=\"loading\">\n");
+                ___ViewO.push("\t\t</div>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

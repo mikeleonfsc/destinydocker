@@ -1,0 +1,31 @@
+/* autosuggest.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<ul>\n");
+                for (i = 0; i < results.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t<li id=\"suggestionIndex_");
+                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                    ___ViewO.push("\"><span class=\"suggestionText\">");
+                    ___ViewO.push((EJS.Scanner.to_text(results[i].term)));
+                    ___ViewO.push("</span> <span class=\"suggestionCount\">(");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchBoxController_results", results[i].count))));
+                    ___ViewO.push(")</span></li>\n");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</ul>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

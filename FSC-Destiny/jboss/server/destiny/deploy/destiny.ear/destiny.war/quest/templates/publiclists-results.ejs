@@ -1,0 +1,57 @@
+/* publiclists-results.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (results.length > 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("<ul expectedSize=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(results.length)));
+                    ___ViewO.push("\">\n");
+                    for (var i = 0; i < results.length; i++) {
+                        var obj = results[i];
+                        ___ViewO.push("\n");
+                        ___ViewO.push("<li class=\"publicListRow\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(rowPrefix)));
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" listID=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(obj.listID)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t<div class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_PUBLIC_LIST_SEARCH_ITEM_DIV)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t    <a href=\"#\" onclick=\"return false;\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_PUBLIC_LIST_ANCHOR)));
+                        ___ViewO.push("\"><span id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(coverPrefix)));
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_PUBLIC_LISTS_ITEM)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t        ");
+                        ___ViewO.push((EJS.Scanner.to_text(obj.name)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t    </span></a>\n");
+                        ___ViewO.push("\t</div>\n");
+                        ___ViewO.push("</li>\n");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("</ul>\n");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t<ul expectedSize=\"0\"><li id='");
+                    ___ViewO.push((EJS.Scanner.to_text(PublicListsController_LI_PUBLIC_LISTS_NO_LIST_MESSAGE)));
+                    ___ViewO.push("'>");
+                    ___ViewO.push((EJS.Scanner.to_text(noListsMessage)));
+                    ___ViewO.push("</li></ul>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

@@ -1,0 +1,145 @@
+/* myquest-friend.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(rowPrefix + auditID)));
+                ___ViewO.push("\" class=\"myQuestItem myQuestFriendsItem\" rowID=\"");
+                ___ViewO.push((EJS.Scanner.to_text(userID)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_AVATAR_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <div id=\"\" class=\"myQuestAvatar\">\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestAvatarTemplate", {pictureURL:pictureURL, avatarSize:50}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN2)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <p id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_FRIENDS_FULL_NAME)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        \t");
+                if (audit) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        \t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_xRequestedYouAsAFriendInMyQuest", "<span class=\"myQuestPatronName\">" + displayName + "</span>", "<span class=\"myQuestPrefixSuffixText\">", "</span>"))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \t\t");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        \t<span class=\"myQuestPatronName\">");
+                    ___ViewO.push((EJS.Scanner.to_text(displayName)));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("    \t\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("        ");
+                if (siteName) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <p id=\"\" class=\"myQuestFriendsSchoolName\">");
+                    ___ViewO.push((EJS.Scanner.to_text(siteName)));
+                    ___ViewO.push("</p>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN3)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"\" class=\"myQuestControlWrapper\" >\n");
+                ___ViewO.push("    ");
+                if (type == MyQuestController_TYPE_SEARCH) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <p id=\"\" class=\"myQuestControls\">\n");
+                    ___ViewO.push("                <em id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_YES_LABEL)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_send"))));
+                    ___ViewO.push("</em>\n");
+                    ___ViewO.push("                <em id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_CONTROL_ACCEPT)));
+                    ___ViewO.push("\"></em>\n");
+                    ___ViewO.push("            </p>\n");
+                    ___ViewO.push("    ");
+                } else {
+                    if (type == MyQuestController_TYPE_FRIEND) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            <p id=\"\" class=\"myQuestControls\">\n");
+                        ___ViewO.push("                <em id=\"\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_NO_LABEL)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_remove"))));
+                        ___ViewO.push("</em>\n");
+                        ___ViewO.push("                <em id=\"\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_CONTROL_DECLINE)));
+                        ___ViewO.push("\"></em>\n");
+                        ___ViewO.push("            </p>\n");
+                        ___ViewO.push("    ");
+                    } else {
+                        if (type == MyQuestController_TYPE_INCOMING_REQUEST) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("            <p id=\"\" class=\"myQuestControls\">\n");
+                            ___ViewO.push("                <em id=\"\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_YES_LABEL)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_accept"))));
+                            ___ViewO.push("</em>\n");
+                            ___ViewO.push("                <em id=\"\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_CONTROL_ACCEPT)));
+                            ___ViewO.push("\"></em>\n");
+                            ___ViewO.push("            </p>\n");
+                            ___ViewO.push("            <p id=\"\" class=\"myQuestControls\">\n");
+                            ___ViewO.push("                <em id=\"\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_NO_LABEL)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_decline"))));
+                            ___ViewO.push("</em>\n");
+                            ___ViewO.push("                <em id=\"\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_CONTROL_DECLINE)));
+                            ___ViewO.push("\"></em>\n");
+                            ___ViewO.push("            </p>\n");
+                            ___ViewO.push("    ");
+                        } else {
+                            if (type == MyQuestController_TYPE_OUTGOING_REQUEST) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("            <p id=\"\" class=\"myQuestControls\">\n");
+                                ___ViewO.push("                <em id=\"\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_NO_LABEL)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_cancel"))));
+                                ___ViewO.push("</em>\n");
+                                ___ViewO.push("                <em id=\"\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_CONTROL_DECLINE)));
+                                ___ViewO.push("\"></em>\n");
+                                ___ViewO.push("            </p>\n");
+                                ___ViewO.push("    ");
+                            }
+                        }
+                    }
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

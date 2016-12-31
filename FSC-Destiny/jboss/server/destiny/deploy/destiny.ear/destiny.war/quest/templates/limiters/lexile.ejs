@@ -1,0 +1,76 @@
+/* lexile.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_LEXILE)));
+                ___ViewO.push("\" class=\"sliderLimiter\">\n");
+                ___ViewO.push("    <div id =\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_COUNT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_titles", "<span>", "</span>", "<span id=\"" + LimiterController_DIV_TOTAL_COUNT + "\">" + totalCount + "</span>"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    ");
+                if (codeRange && codeRange.length > 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <div class=\"sliderTitle\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LIMITER_CONTROL_LEXILE_CODE)));
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_TITLE)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_code"))));
+                    ___ViewO.push("</div> \n");
+                    ___ViewO.push("        <div>\n");
+                    ___ViewO.push("        \t<select id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LIMITER_CONTROL_LEXILE_CODE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("        \t\t");
+                    for (var i = 0; i < codeRange.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("        \t\t\t<option value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(codeRange[i].code)));
+                        ___ViewO.push(".");
+                        ___ViewO.push((EJS.Scanner.to_text(codeRange[i].count)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(codeRange[i].displayable)));
+                        ___ViewO.push("</option>\n");
+                        ___ViewO.push("        \t\t");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        \t</select>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    ");
+                if (measureRange) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("LimiterSliderTemplate", {sliderData:measureRange, id:LimiterController_LIMITER_CONTROL_LEXILE_MEASURE, title:MessageHelper.format("questLimiters_measure")}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div>\n");
+                ___ViewO.push("   <input type=\"button\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_BUTTON_APPLY_LIMITER)));
+                ___ViewO.push("\"\n");
+                ___ViewO.push("\tvalue=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_apply"))));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_APPLY_LIMITER_BUTTON)));
+                ___ViewO.push("\"/>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

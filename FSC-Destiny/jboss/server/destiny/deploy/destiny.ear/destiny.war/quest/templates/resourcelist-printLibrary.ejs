@@ -1,0 +1,63 @@
+/* resourcelist-printLibrary.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<input id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_OPTION_RESOURCE_LIST_PRINT_GENERAL)));
+                ___ViewO.push("\" \n");
+                ___ViewO.push("\tname=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_RADIO_RESOURCE_LIST_PRINT)));
+                ___ViewO.push("\" type=\"radio\" \n");
+                ___ViewO.push("\tvalue=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_OPTION_RESOURCE_LIST_PRINT_GENERAL)));
+                ___ViewO.push("\" checked=\"checked\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_bibliographyList"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_GENERAL_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_GENERAL_SORT_BY)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_CLASS_RESOURCE_LIST_PRINT_COLUMN_2)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_sortBy"))));
+                ___ViewO.push(" \n");
+                ___ViewO.push("        <select id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_SELECT_RESOURCE_LIST_PRINT_GENERAL_SORT_BY)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <option selected=\"selected\" value=\"18\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_callNumberAuthor"))));
+                ___ViewO.push("</option>\n");
+                ___ViewO.push("            <option value=\"2\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_authorTitle"))));
+                ___ViewO.push("</option>\n");
+                ___ViewO.push("            <option value=\"1\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_titleAuthor"))));
+                ___ViewO.push("</option>\n");
+                ___ViewO.push("        </select>                        \n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_GENERAL_SHOW_NOTES)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_CLASS_RESOURCE_LIST_PRINT_COLUMN_2)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <input type=\"checkbox\" checked id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_INPUT_RESOURCE_LIST_PRINT_GENERAL_SHOW_NOTES)));
+                ___ViewO.push("\" value=\"true\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_showNotes"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

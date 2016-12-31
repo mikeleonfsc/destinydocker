@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var a=Registry.lookup("WishController.WishDialog");if(this.data.errors&&this.data.errors.length>0){a.populateErrors(this.data.errors)}else{a.animateClose(this.data.thanks)}},registerEvents:function(){}});

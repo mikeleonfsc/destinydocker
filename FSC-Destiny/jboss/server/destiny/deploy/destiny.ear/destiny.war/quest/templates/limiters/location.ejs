@@ -1,0 +1,143 @@
+/* location.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_LOCATION)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t");
+                var rowCount = 0;
+                ___ViewO.push("\n");
+                ___ViewO.push("\t");
+                var openUL = false;
+                ___ViewO.push("\n");
+                ___ViewO.push("    <ul>\n");
+                ___ViewO.push("    \t");
+                for (i = 0; i < pageData.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \t\t");
+                    rowCount++;
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \t\t");
+                    if (pageData[i].value.siteID) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t\t\t");
+                        if (pageNumber > 0 && i == 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t    \t\t\t<li id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(rowCount)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(pageData[i].value.siteTypeDisplayable)));
+                            ___ViewO.push("</li>\n");
+                            ___ViewO.push("\t    \t\t\t");
+                            rowCount++;
+                            ___ViewO.push("\n");
+                            ___ViewO.push("    \t\t\t");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t\t\t<li id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(rowCount)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                \t<a href=\"#\" onclick=\"return false;\">");
+                        ___ViewO.push((EJS.Scanner.to_text(pageData[i].value.siteNameDisplayable)));
+                        ___ViewO.push(" (");
+                        ___ViewO.push((EJS.Scanner.to_text(pageData[i].count)));
+                        ___ViewO.push(")</a>\n");
+                        ___ViewO.push("                </li>\n");
+                        ___ViewO.push("    \t\t");
+                    } else {
+                        if (i < (pageData.length - 1)) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("    \t\t\t");
+                            if (openUL) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("    \t\t\t\t\t</ul>\n");
+                                ___ViewO.push("    \t\t\t\t</li>\n");
+                                ___ViewO.push("    \t\t\t\t");
+                                openUL = false;
+                                ___ViewO.push("\n");
+                                ___ViewO.push("    \t\t\t");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("    \t\t\t<li id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(rowCount)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(pageData[i].value.siteTypeDisplayable)));
+                            ___ViewO.push("</li>\n");
+                            ___ViewO.push("                <li>\n");
+                            ___ViewO.push("                    <ul id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(LimiterController_LOCATION_SITE_TYPE_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(pageData[i].value.siteTypeID)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                ");
+                            openUL = true;
+                            ___ViewO.push("\n");
+                            ___ViewO.push("    \t\t");
+                        }
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \t\t");
+                    if (i == pageData.length - 1) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            \t\t</ul>\n");
+                        ___ViewO.push("            \t</li>\n");
+                        ___ViewO.push("        \t");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("    <br/><br/>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <hr/>\n");
+                ___ViewO.push("    <span id=\"prevNextButtonRowSpan\">\n");
+                ___ViewO.push("        <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS_PREV)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_LIMITER_CONTROLS_PREV)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_previousLocations"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_previousLocations"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questLimiters_previous"), id:"previousImage", styleClass:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        \t</a>\n");
+                ___ViewO.push("        </span>\n");
+                ___ViewO.push("        <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS_NEXT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_LIMITER_CONTROLS_NEXT)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_moreLocations"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_moreLocations"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questLimiters_next"), id:"nextImage", styleClass:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        \t</a>\n");
+                ___ViewO.push("        </span>\n");
+                ___ViewO.push("    </span>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

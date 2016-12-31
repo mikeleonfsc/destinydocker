@@ -1,0 +1,67 @@
+/* limiterhover.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_HOVER_WINDOW)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<div id=\"narrowFilterModuleTR\">\n");
+                ___ViewO.push("        <h4 id=\"narrowFilterModuleTL\">");
+                ___ViewO.push((EJS.Scanner.to_text(title)));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("\t        ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questLimiters_closeThisFilterModule"), id:LimiterController_LIMITER_CLOSE, styleClass:""}))));
+                ___ViewO.push("         \n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("        <div id=\"narrowFilterModuleBL\">\n");
+                ___ViewO.push("            <div id=\"narrowFilterModuleBR\">\n");
+                ___ViewO.push("                ");
+                if (window.isRTL) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"narrowFilterModuleArrowRight\"></div>\n");
+                    ___ViewO.push("                ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"narrowFilterModuleArrowLeft\"></div>\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTENTS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTENTS)));
+                ___ViewO.push("Inner\">\n");
+                ___ViewO.push("\t                \t");
+                if (readyToDisplay) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t                \t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(new EJS({url:templateURL}).render(this))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t                \t");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t                \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questLimiters_loading"), id:"", styleClass:"loading"}))));
+                    ___ViewO.push("         \n");
+                    ___ViewO.push("\t                \t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("                \t</div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

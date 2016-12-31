@@ -1,0 +1,32 @@
+/* myquestavatar.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (!pictureURL || pictureURL == "/imagestore/patrons/") {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:"", id:"", styleClass:"defaultAvatarImage" + avatarSize + " defaultAvatarImage avatarImage"}))));
+                    ___ViewO.push("           \n");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t<img src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(pictureURL)));
+                    ___ViewO.push("\" name=\"\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_AVATAR_IMAGE)));
+                    ___ViewO.push(" avatarImage");
+                    ___ViewO.push((EJS.Scanner.to_text(avatarSize)));
+                    ___ViewO.push("\" border=\"0\">\n");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("<img src=\"/images/icons/general/spacer.gif\" id=\"\" class=\"blocker\" alt=\"\" title=\"\" width=\"0\" height=\"0\">");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

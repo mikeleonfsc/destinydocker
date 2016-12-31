@@ -1,0 +1,88 @@
+/* myquestmenu.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_MYQUEST_LEFT_MENU_OPTIONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <h3 class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_BOXTOP)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_myQuest"))));
+                ___ViewO.push("</h3>\n");
+                ___ViewO.push("    <ul id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_MYQUEST_LEFT_MENU_UL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_UPDATES)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_updates"))));
+                ___ViewO.push("<span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_SPAN_MYQUEST_LEFT_UPDATE_COUNT)));
+                ___ViewO.push("\" class=\"count\">");
+                ___ViewO.push((EJS.Scanner.to_text(updateCount)));
+                ___ViewO.push("</span></a></li>\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_SHELF_HAVE_READ)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_shelfHaveRead"))));
+                ___ViewO.push("</a></li>\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_SHELF_NOW_READING)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_shelfNowReading"))));
+                ___ViewO.push("</a></li>\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_SHELF_WANT_TO_READ)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_shelfWantToRead"))));
+                ___ViewO.push("</a></li>\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_INBOX)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_inbox"))));
+                ___ViewO.push("<span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_SPAN_MYQUEST_LEFT_INBOX_COUNT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_LEFT_COUNT)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(inboxCount)));
+                ___ViewO.push("</span></a></li>\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_FRIENDS)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_friends"))));
+                ___ViewO.push("</a></li>\n");
+                ___ViewO.push("        <li id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MENUITEM)));
+                ___ViewO.push("\"><a class=\"\" href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LINK_MYQUEST_LEFT_PREFERENCES)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_preferences"))));
+                ___ViewO.push("</a></li>\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

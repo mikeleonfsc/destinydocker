@@ -1,0 +1,77 @@
+/* myquest-commentbox.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"commentSection");
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\" style=\"display: none;\" class=\"commentSectionWrapper\" index=\"");
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("<ul class=\"myQuestCommentsWrapper myQuestCommentsControl\" style=\"display: none;\">    \n");
+                ___ViewO.push("    <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_LI_MY_QUEST_ADD_COMMENT_BOX_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\" class=\"myQuestAddCommentWrapper activatedControl\" index=\"");
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        ");
+                if (canComment) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            ");
+                    if (!approvalNotRequired) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                <div class=\"warning\" style=\"padding-bottom:10px\">Comments require approval before posting.</div>\n");
+                        ___ViewO.push("            ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <div class=\"myQuestAvatarWrapper\">\n");
+                    ___ViewO.push("                <div class=\"myQuestAvatar\">\n");
+                    ___ViewO.push("                    <div>\n");
+                    ___ViewO.push("                    \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestAvatarTemplate", {pictureURL:myPictureURL, avatarSize:25}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    </div>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <textarea id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_TEXTAREA_MY_QUEST_ADD_COMMENT_BOX_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                    ___ViewO.push("\" index=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MY_QUEST_ADD_COMMENT_BOX)));
+                    ___ViewO.push("\" title=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_addAComment"))));
+                    ___ViewO.push("\" value=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_addACommentHere"))));
+                    ___ViewO.push("\" ></textarea>\n");
+                    ___ViewO.push("            <div value=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                    ___ViewO.push("\" class=\"myQuestTextButtonWrapper myQuestAddCommentButton\">\n");
+                    ___ViewO.push("                <a class=\"myQuestTextButton icon iconSendComment\" href=\"#\" onclick=\"return false;\">\n");
+                    ___ViewO.push("                    <span class=\"myQuestTextButtonInner\">\n");
+                    ___ViewO.push("                        <span class=\"myQuestTextButtonInnerText\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_comment"))));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("                    </span>\n");
+                    ___ViewO.push("                </a>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <p class=\"myQuestAddCommentCharCounter\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_chactersLeft", "<span class=\"myQuestAddCommentCharValue\">", "</span>"))));
+                    ___ViewO.push("</p>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </li>\n");
+                ___ViewO.push("</ul>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

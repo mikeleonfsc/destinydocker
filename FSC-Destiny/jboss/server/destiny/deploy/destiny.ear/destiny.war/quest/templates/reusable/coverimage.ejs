@@ -1,0 +1,216 @@
+/* coverimage.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_COVER_IMAGE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_CLASS_COVER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    ");
+                if (!options.hideAvailabilityOverlay && record.availabilityClass) {
+                    ___ViewO.push("    \n");
+                    ___ViewO.push("    \t<div class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_CLASS_RESULT_STATUS)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(record.availabilityClass)));
+                    ___ViewO.push("\" id=\"copyStatus_");
+                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(record.availabilityImageString)));
+                    ___ViewO.push("</div>            \n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("    ");
+                var canAddToShelf = "";
+                if (!record.digitalMediaRecord && record.canAddToMyQuestShelf) {
+                    canAddToShelf = "canAddToShelf";
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_TITLE_IMAGE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" hoverKey=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.hoverKey)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(canAddToShelf)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    \t");
+                var styleClass = "resultCoverImage";
+                if (!options.hideLinkToTitleDetails) {
+                    styleClass += " draggableBook titleDetailLink";
+                }
+                var extraClass = "";
+                if (record.titlePeekImageURL && record.titlePeekImageURL.endsWith("spacer.gif")) {
+                    if (record.digitalMediaProviderName) {
+                        extraClass = " " + CoverImageTemplate_DEFAULT_DCPI_IMAGE_CLASS;
+                    } else {
+                        if (options.showTextbookDefaultImage) {
+                            extraClass = " " + CoverImageTemplate_DEFAULT_TEXTBOOK_IMAGE_CLASS;
+                        } else {
+                            extraClass = " " + CoverImageTemplate_DEFAULT_TITLE_IMAGE_CLASS;
+                        }
+                    }
+                }
+                styleClass = styleClass + extraClass;
+                ___ViewO.push("\n");
+                ___ViewO.push("    \t");
+                if (record.dcpiPassthroughImage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            ");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("InnerCoverImageTemplate", {url:record.dcpiPassthroughImage, styleClass:styleClass, defaultImageClass:CoverImageTemplate_DEFAULT_TITLE_IMAGE_CLASS, id:currentID}))));
+                    ___ViewO.push("    \t\n");
+                    ___ViewO.push("    \t");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("InnerCoverImageTemplate", {url:record.titlePeekImageURL, styleClass:styleClass, defaultImageClass:CoverImageTemplate_DEFAULT_TITLE_IMAGE_CLASS, id:currentID}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t    ");
+                }
+                ___ViewO.push("       \t\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    ");
+                if (!options.shelf) {
+                    ___ViewO.push("   \n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_COVER_BADGE_IMAGE_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_CLASS_RESULT_MEDIA_BADGE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("        \t<img alt=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(record.bibTypeDescription)));
+                    ___ViewO.push("\" title=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(record.bibTypeDescription)));
+                    ___ViewO.push("\" height=\"16\" border=\"0\" width=\"20\" src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(record.miniBibTypeIconURL)));
+                    ___ViewO.push("\" />\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("        ");
+                    if (options.renderRecommendationIfAllowed) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            ");
+                        if ((options.canRecommendTitlesToOtherUsers || options.canQuestUseBookClub) && (!record.follettEBookTitleDetailsURL || record.shelfBib)) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_TITLE_REMOVE)));
+                            currentID;
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_CLASS_TITLE_REMOVE_IMAGE)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                    <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_RECOMMEND_TITLE)));
+                            ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                    \t");
+                            ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_sendRecommendation"), styleClass:CoverImageTemplate_CLASS_CONTROL + " " + CoverImageTemplate_CLASS_RECOMMEND_TITLE, id:CoverImageTemplate_DIV_RECOMMEND_TITLE_IMAGE + currentID}))));
+                            ___ViewO.push("                        \n");
+                            ___ViewO.push("                    </div>\n");
+                            ___ViewO.push("                </div>\n");
+                            ___ViewO.push("            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                    if (options.renderXNextToImage) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            ");
+                        if (record.holdID && (record.holdIsReady || !record.canDeleteHolds)) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("            ");
+                        } else {
+                            ___ViewO.push("            \n");
+                            ___ViewO.push("                <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_TITLE_REMOVE)));
+                            ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_CLASS_TITLE_REMOVE_IMAGE)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                    \n");
+                            ___ViewO.push("                    ");
+                            if (record.recommendationID) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("    \t            \t");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_deleteThisRecommendation"), styleClass:CoverImageTemplate_CLASS_CONTROL + " " + CoverImageTemplate_CLASS_TITLE_REMOVE + " " + CoverImageTemplate_CLASS_RECOMMENDATION_REMOVE_TRIGGER, id:CoverImageTemplate_DIV_TITLE_REMOVE_IMAGE + currentID}))));
+                                ___ViewO.push("  \n");
+                                ___ViewO.push("                    ");
+                            } else {
+                                if (record.holdID) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        ");
+                                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_delete"), styleClass:CoverImageTemplate_CLASS_CONTROL + " " + CoverImageTemplate_CLASS_TITLE_REMOVE + " " + CoverImageTemplate_CLASS_TITLE_REMOVE_TRIGGER, id:CoverImageTemplate_DIV_TITLE_REMOVE_IMAGE + currentID}))));
+                                    ___ViewO.push("  \n");
+                                    ___ViewO.push("                    ");
+                                } else {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("    \t                ");
+                                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_removeFromList"), styleClass:CoverImageTemplate_CLASS_CONTROL + " " + CoverImageTemplate_CLASS_TITLE_REMOVE + " " + CoverImageTemplate_CLASS_TITLE_REMOVE_TRIGGER, id:CoverImageTemplate_DIV_TITLE_REMOVE_IMAGE + currentID}))));
+                                    ___ViewO.push("  \n");
+                                    ___ViewO.push("                    ");
+                                }
+                            }
+                            ___ViewO.push("                \n");
+                            ___ViewO.push("                    ");
+                            if (options.renderCitationIconNextToImage && !window.isI18N) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                        ");
+                                if (record.bibType == 2 || record.bibType == 3 || record.bibType == 4 || record.bibType == 5 || record.bibType == 6 || record.bibType == 8 || record.bibType == 9 || record.bibType == 11 || record.bibType == 14 || record.bibType == 16) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                            <div id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_RESOURCE_LIST_CITATION_EDIT)));
+                                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                    ___ViewO.push("\">\n");
+                                    ___ViewO.push("                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_editCitation"), styleClass:CoverImageTemplate_CLASS_CONTROL + " " + CoverImageTemplate_CLASS_RESOURCE_LIST_CITATION_EDIT, id:CoverImageTemplate_BUTTON_RESOURCE_LIST_CITATION_EDIT + currentID}))));
+                                    ___ViewO.push("  \n");
+                                    ___ViewO.push("                            </div>\n");
+                                    ___ViewO.push("                        ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                    ");
+                            if (record.hasRecommendationComment) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                        <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(CoverImageTemplate_DIV_RESOURCE_LIST_RECOMMENDATION_VIEW)));
+                                ___ViewO.push((EJS.Scanner.to_text(record.recommendationID)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                        \t");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_clickForComments"), styleClass:CoverImageTemplate_CLASS_CONTROL + " " + CoverImageTemplate_CLASS_RESOURCE_LIST_RECOMMENDATION_VIEW + " " + CoverImageTemplate_CLASS_RESOURCE_LIST_RECOMMENDATION_TRIGGER, id:CoverImageTemplate_BUTTON_RESOURCE_LIST_RECOMMENDATION_VIEW + record.recommendationID}))));
+                                ___ViewO.push("  \n");
+                                ___ViewO.push("                        </div>\n");
+                                ___ViewO.push("                    ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                </div>\n");
+                            ___ViewO.push("            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

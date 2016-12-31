@@ -1,0 +1,46 @@
+/* minicomment.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<li class=\"myQuestAddedCommentWrapper\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_MINI_COMMENT_LI_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(commentID)));
+                ___ViewO.push("\" commentID=\"");
+                ___ViewO.push((EJS.Scanner.to_text(commentID)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div class=\"myQuestAvatarWrapper\">\n");
+                ___ViewO.push("        <div class=\"myQuestAvatar\" id=\"\">\n");
+                ___ViewO.push("\t        <div onmouseout=\"\" onmouseover=\"\" onmousedown=\"\" id=\"\"> \n");
+                ___ViewO.push("\t        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestAvatarTemplate", {pictureURL:pictureURL, avatarSize:25}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t        </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    ");
+                if (!isHidden && isApproved) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <p class=\"myQuestFriendsFullName\">");
+                    ___ViewO.push((EJS.Scanner.to_text(patronName)));
+                    ___ViewO.push("</p>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    <p class=\"myQuestCommentQuote\" id=\"\">\n");
+                ___ViewO.push("        ");
+                ___ViewO.push((EJS.Scanner.to_text(commentData)));
+                ___ViewO.push("<img class=\"myQuestBeginQuoteIcon\" src=\"/images/icons/general/spacer.gif\"></img><img class=\"myQuestEndQuoteIcon\" src=\"/images/icons/general/spacer.gif\"></img>\n");
+                ___ViewO.push("    </p>\n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("</li>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

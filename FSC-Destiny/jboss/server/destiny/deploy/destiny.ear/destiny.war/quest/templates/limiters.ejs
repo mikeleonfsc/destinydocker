@@ -1,0 +1,68 @@
+/* limiters.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_LIMITERS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <h3 class=\"boxtop\">\n");
+                ___ViewO.push("       ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_narrowYourSearch"))));
+                ___ViewO.push(" \n");
+                ___ViewO.push("    </h3>\n");
+                ___ViewO.push("    <ul id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_UL_NARROW_FILTER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    ");
+                if (Object.isArray(limiterMenu) && limiterMenu.length > 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t    \t");
+                    for (i = 0; i < limiterMenu.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t    \t\t");
+                        var limiter = limiterMenu[i];
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t            <li id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(limiter.id)));
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_ACTIVATOR)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_LIMITER_MENU_ITEM)));
+                        ___ViewO.push("\" hoverKey=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(limiter.id)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t                <a href=\"#\" onclick=\"return false;\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(limiter.id)));
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_LIMITER_ID)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t                \t");
+                        ___ViewO.push((EJS.Scanner.to_text(limiter.displayableName)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t    \t\t\t</a>\n");
+                        ___ViewO.push("\t            </li>\n");
+                        ___ViewO.push("            ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t        <li class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_LIMITER_MENU_ITEM)));
+                    ___ViewO.push(" limiterMessage\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_searchResultsCannotBeNarrowed"))));
+                    ___ViewO.push("</li>\n");
+                    ___ViewO.push("\t    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

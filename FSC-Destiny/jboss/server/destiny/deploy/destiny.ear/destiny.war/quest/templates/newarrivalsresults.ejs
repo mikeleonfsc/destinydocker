@@ -1,0 +1,56 @@
+/* newarrivalsresults.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                var coverPrefix = NewArrivalsController_SPAN_NEW_ARRIVALS_ITEM_PREFIX;
+                var datePrefix = NewArrivalsController_SPAN_NEW_ARRIVALS_ITEM_DATE_PREFIX;
+                var hoverPrefix = NewArrivalsController_DIV_NEW_ARRIVALS_HOVER_PARENT_PREFIX;
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_DIV_NEW_ARRIVALS_LOADED)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    ");
+                for (var i = 0; i < recList.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(hoverPrefix + i)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_CLASS_TITLE_DETAIL_SUGGESTION)));
+                    ___ViewO.push("\" style=\"position: relative;\">\n");
+                    ___ViewO.push("            <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(coverPrefix + (i + (pageNumber * 5)))));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_CLASS_NEW_ARRIVALS_ITEM + " " + NewArrivalsController_CLASS_TITLE_DETAIL_LINK)));
+                    ___ViewO.push("\" hoverKey=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(recList[i].hoverKey)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(recList[i].shortTitle)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </span>\n");
+                    ___ViewO.push("            <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(datePrefix + (i + (pageNumber * 5)))));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_CLASS_NEW_ARRIVALS_DATE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(recList[i].createdDate)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </span>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

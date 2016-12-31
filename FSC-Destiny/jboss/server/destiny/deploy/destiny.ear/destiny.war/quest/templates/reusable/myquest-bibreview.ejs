@@ -1,0 +1,115 @@
+/* myquest-bibreview.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_ID_BIB_REVIEW_ITEM)));
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\" class=\"myQuestItem myQuestUpdatesItem\">\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_AVATAR_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <div id=\"\" class=\"myQuestAvatar\">\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestAvatarTemplate", {pictureURL:pictureURL, avatarSize:50}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN2)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <p id=\"\" class=\"myQuestUpdatesAction\">\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_xReviewedYAndRatedIt", "<span class=\"" + MyQuestController_CLASS_FRIENDS_FULL_NAME + "\">" + displayName + "</span>", "<a id=\"titleDetailLink_" + auditID + "\" href=\"#\" onClick=\"return false;\" class=\"titleDetailLink\">" + title + "</a>"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:rating, starType:MyQuestController_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                ___ViewO.push("            \n");
+                ___ViewO.push("            </p>\n");
+                ___ViewO.push("            ");
+                if (comments) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <p id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_REVIEW_QUOTE)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(comments)));
+                    ___ViewO.push("<img class=\"myQuestBeginQuoteIcon\" src=\"/images/icons/general/spacer.gif\"></img><img class=\"myQuestEndQuoteIcon\" src=\"/images/icons/general/spacer.gif\"></img></p>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            \n");
+                ___ViewO.push("            <p id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_UPDATES_TOOLBAR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            ");
+                if (canComment) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <a href=\"#\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_ADD_A_COMMENT)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_addAComment"))));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            ");
+                if (conversationID && !allCommentsHidden) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (canComment) {
+                        ___ViewO.push(" | ");
+                    }
+                    ___ViewO.push("<a href=\"#\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_VIEW_ALL_COMMENT)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_viewComments"))));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("                | <a href=\"#\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_REPORT_ABUSE)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_reportAbuse"))));
+                    ___ViewO.push("</a>            \n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestCommentBoxTemplate", {auditID:auditID, myPictureURL:myPictureURL, displayName:displayName, canComment:canComment, approvalNotRequired:approvalNotRequired}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN3)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"myQuestItemRemove\" style=\"display:none\">\n");
+                ___ViewO.push("        <p> </p>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"recordID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"shelfNumber\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(shelfNumber)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"auditID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"conversationID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(conversationID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

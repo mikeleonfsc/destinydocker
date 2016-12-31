@@ -1,0 +1,115 @@
+/* wperecord.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_SEARCH_RESULT_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_SEARCHRESULT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_COVER_IMAGE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_COVER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_TITLE_IMAGE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" hoverKey=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.hoverKey)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <a href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.element.buildForwardFromResult)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_LINK_TITLE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" target=\"_blank\">\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("InnerCoverImageTemplate", {url:record.titlePeekImageURL, defaultImageClass:record.defaultImageClass, styleClass:WPERecordTemplate_CLASS_COVERIMAGE + " draggableBook", id:currentID}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("            </a>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("        ");
+                if (options.renderXNextToImage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_TITLE_REMOVE)));
+                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_TITLE_REMOVE_IMAGE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:"Remove from list", styleClass:WPERecordTemplate_CLASS_CONTROL + " " + WPERecordTemplate_CLASS_TITLE_REMOVE + " " + WPERecordTemplate_CLASS_TITLE_REMOVE_TRIGGER, id:WPERecordTemplate_DIV_TITLE_REMOVE_IMAGE + currentID}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (options.renderCitationIconNextToImage) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_RESOURCE_LIST_CITATION_EDIT)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t                    ");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:"Edit Citation", styleClass:WPERecordTemplate_CLASS_CONTROL + " " + WPERecordTemplate_CLASS_RESOURCE_LIST_CITATION_EDIT, id:WPERecordTemplate_BUTTON_RESOURCE_LIST_CITATION_EDIT + currentID}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_TITLE_INFO_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_TITLEINFO)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("        <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_TITLE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_SEARCH_RESULT_TITLE)));
+                ___ViewO.push("\"><a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_LINK_SEARCH_RESULT_TITLE)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.element.buildForwardFromResult)));
+                ___ViewO.push("\" target=\"_blank\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_SEARCH_RESULT_TITLE_LINK)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(record.element.title)));
+                ___ViewO.push("</a></p>\n");
+                ___ViewO.push("        <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_DIV_AUTHOR_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(WPERecordTemplate_CLASS_SEARCH_RESULT_AUTHOR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        ");
+                if (record.firstTopic) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        \tTopic: ");
+                    ___ViewO.push((EJS.Scanner.to_text(record.firstTopic)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

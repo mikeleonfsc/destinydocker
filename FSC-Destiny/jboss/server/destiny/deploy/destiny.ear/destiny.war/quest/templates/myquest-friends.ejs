@@ -1,0 +1,71 @@
+/* myquest-friends.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<h2 id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestFriendsController_ID_MYQUEST_FRIENDS_HEADER)));
+                ___ViewO.push("\"><span><em>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_myQuestFriends"))));
+                ___ViewO.push("</em></span></h2>\n");
+                ___ViewO.push("<h3 id=\"myQuestFriendsHeaderSearch\" class=\"myQuestSubHeader\"><span class=\"\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_searchForFriends"))));
+                ___ViewO.push("</span></h3>\n");
+                ___ViewO.push("<div id=\"myQuestSearch\">\n");
+                ___ViewO.push("    <div id=\"myQuestSearchInner\">\n");
+                ___ViewO.push("        <div id=\"myQuestInputWrapper\">\n");
+                ___ViewO.push("            <div id=\"myQuestInputInnerWrapper\">\n");
+                ___ViewO.push("                <input type=\"text\" size=\"40\" id=\"myQuestFindFriendInput\" class=\"myQuestFindFriendInput\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_searchForFriendsByName"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:MyQuestFriendsController_IMG_FIND_FRIEND_CLEAR_SEARCH, styleClass:MyQuestFriendsController_IMG_FIND_FRIEND_CLEAR_SEARCH, altText:MessageHelper.format("myQuestFriendsController_clearAll")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:MyQuestFriendsController_IMG_FIND_FRIEND_SEARCH_IN_PROGRESS, styleClass:"", altText:MessageHelper.format("myQuestFriendsController_searchInProgress")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <img id=\"myQuestSubmitSearch\" src=\"/images/icons/general/spacer.gif\" alt=\"Enter\" title=\"Enter\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"myQuestFindFriendResults\">\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<h3 id=\"myQuestFriendsHeaderRequests\" class=\"myQuestSubHeader\"><span class=\"\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_incomingFriendRequests", "<span id=\"" + MyQuestFriendsController_SPAN_INCOMING_FRIENDS_COUNT + "\" class=\"myQuestCount\">" + incomingFriendsCount + "</span>"))));
+                ___ViewO.push("</span></h3>\n");
+                ___ViewO.push("<div id=\"myQuestFriendsHeaderRequestsResults\">\n");
+                ___ViewO.push("\t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestShelfListTemplate", {data:incomingFriends}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<h3 id=\"myQuestFriendsHeaderSentRequests\" class=\"myQuestSubHeader\"><span class=\"\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_outgoingFriendRequests", "<span id=\"" + MyQuestFriendsController_SPAN_OUTGOING_FRIENDS_COUNT + "\" class=\"myQuestCount\">" + outgoingFriendsCount + "</span>"))));
+                ___ViewO.push("</span></h3>\n");
+                ___ViewO.push("<div id=\"myQuestFriendsHeaderSentRequestsResults\">\n");
+                ___ViewO.push("\t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestShelfListTemplate", {data:outgoingFriends}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<h3 id=\"myQuestFriendsHeaderMyFriends\" class=\"myQuestSubHeader\"><span class=\"\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestFriendsController_myFriends", "<span id=\"" + MyQuestFriendsController_SPAN_FRIENDS_COUNT + "\" class=\"myQuestCount\">" + friendCount + "</span>"))));
+                ___ViewO.push("</span></h3>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestFriendsController_ID_MYQUEST_FRIENDS_HEADER_RESULTS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestShelfListTemplate", {data:friends}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

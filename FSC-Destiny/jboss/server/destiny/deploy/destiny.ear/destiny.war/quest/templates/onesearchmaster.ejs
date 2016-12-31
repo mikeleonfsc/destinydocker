@@ -1,0 +1,37 @@
+/* onesearchmaster.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_MAIN)));
+                ___ViewO.push("\" style=\"display:none;\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_SEARCH_TYPE_ONE_SEARCH)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_WARNING)));
+                ___ViewO.push("\" style=\"display: none\"></div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DB_COUNTS)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DB_HITS)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DB_PROGRESS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("oneSearchController_loading"), styleClass:"loading", id:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

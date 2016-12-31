@@ -1,0 +1,51 @@
+/* advancedsearch.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"advSearchOptionsModule\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4 class=\"genericModuleTL\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("advancedSearchDataValue_advancedSearch"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\"><img id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(AdvancedSearchController_BUTTON_ADVANCED_SEARCH_CLOSE)));
+                ___ViewO.push("\" class=\"moduleCloseButtonImage\" src=\"/images/icons/general/spacer.gif\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("advancedSearchDataValue_close"))));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("advancedSearchDataValue_close"))));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("            <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("                <div id=\"\" class=\"genericModuleContent\">\n");
+                ___ViewO.push("                    <div id=\"advSearch-SectionWrapper\" class=\"\" title=\"\">\n");
+                ___ViewO.push("                        <div id=\"advSearch-SectionHeader\" class=\"\" title=\"\">\n");
+                ___ViewO.push("                            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(AdvancedSearchController_DIV_ADVANCED_SEARCH_QUERY)));
+                ___ViewO.push("\" class=\"\" title=\"\">\n");
+                ___ViewO.push("                                 \n");
+                ___ViewO.push("                            </div>\n");
+                ___ViewO.push("                            <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(AdvancedSearchController_BUTTON_ADVANCED_SEARCH_GO)));
+                ___ViewO.push("\" class=\"\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("advancedSearchDataValue_enter"))));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("advancedSearchDataValue_enter"))));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\"></a>\n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

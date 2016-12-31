@@ -1,0 +1,81 @@
+/* onesearchhover.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(hoverKey)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<div id=\"titleHoverModuleInner\">\n");
+                ___ViewO.push("\t    <div id=\"titleHoverHeader\">\n");
+                ___ViewO.push("\t        <h4>");
+                ___ViewO.push((EJS.Scanner.to_text(labels.quickDetailsTitle)));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("\t        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t            <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_LINK_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("\t\t            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:"Close", styleClass:"", id:"hoverCloseButtonImage"}))));
+                ___ViewO.push("    \n");
+                ___ViewO.push("\t    \t\t</a>\n");
+                ___ViewO.push("\t\t\t</div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    \n");
+                ___ViewO.push("\t    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_LEFT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_TITLE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_TITLE)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("\t        \t<a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_WPE_ANCHOR)));
+                ___ViewO.push("\" href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(url)));
+                ___ViewO.push("\" target=\"_blank\">\n");
+                ___ViewO.push("\t         \t\t");
+                ___ViewO.push((EJS.Scanner.to_text(title)));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t            </a>\n");
+                ___ViewO.push("\t \t\t</div>\n");
+                ___ViewO.push("\t \t\t");
+                ___ViewO.push((EJS.Scanner.to_text(labels.quickDetailsDatabase)));
+                ___ViewO.push(": <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_AUTHOR)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_AUTHOR)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(databaseSearch)));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_BOTTOM)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_SUMMARY)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(summaryDivClass)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    \t\t<p>");
+                ___ViewO.push((EJS.Scanner.to_text(synopsis)));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("    \t\t</div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t</div>     \n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

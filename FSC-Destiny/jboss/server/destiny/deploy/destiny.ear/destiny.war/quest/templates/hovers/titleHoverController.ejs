@@ -1,0 +1,341 @@
+/* titleHoverController.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(hoverKey)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    ");
+                var itemID;
+                var type;
+                if (digitalMediaRecord) {
+                    if (bibID) {
+                        itemID = bibID;
+                        type = "dcpiBibID";
+                    } else {
+                        itemID = dcpiRecordGUID;
+                        type = "dcpiRecordGUID";
+                    }
+                } else {
+                    itemID = bibID;
+                    type = "bibID";
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"titleHoverModuleInner\" itemID=\"");
+                ___ViewO.push((EJS.Scanner.to_text(itemID)));
+                ___ViewO.push("\" type=\"");
+                ___ViewO.push((EJS.Scanner.to_text(type)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"titleHoverHeader\">\n");
+                ___ViewO.push("            <h4>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_QuickDetails"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_LINK_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("                    ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"hoverCloseButtonImage", styleClass:"", altText:MessageHelper.format("hoverMasterController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                </a>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        \n");
+                ___ViewO.push("         <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_LEFT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("             <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_TITLE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_TITLE)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(shortTitle)));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("             ");
+                if (digitalMediaRecord && !follettEBookTitleDetailsURL) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_AUTHOR)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_AUTHOR)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(publisher)));
+                    ___ViewO.push("</div>             \n");
+                    ___ViewO.push("             ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_AUTHOR)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_AUTHOR)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(shortAuthor)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("             ");
+                if (!shelfBib) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_REVIEWS)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_REVIEWS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    ");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:averageRating, starType:ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST, hideOnZero:true}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("             ");
+                if (safariURL && safariDisplay) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_SAFARI_MONTAGE_LINK)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(safariURL)));
+                    ___ViewO.push("\" target=\"_blank\" >");
+                    ___ViewO.push((EJS.Scanner.to_text(safariDisplay)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </a></div>\n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("           \n");
+                ___ViewO.push("             ");
+                if ((hoverHighLevelAvailabilityLocalStatusString || hoverHighLevelAvailabilityOffSiteStatusString) && !follettEBookTitleDetailsURL && !shelfBib && !resoldShelfBib) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                 <div id=\"titleHoverAvailabilityGroup\">\n");
+                    ___ViewO.push("                     <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_AVAILABILITY_LOCAL)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_AVAILABILITY_LOCAL)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(hoverHighLevelAvailabilityLocalStatusString)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("                     <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_AVAILABILITY_OFFSITE)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_AVAILABILITY_OFFSITE)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(hoverHighLevelAvailabilityOffSiteStatusString)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("                 </div>            \n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("             <div id=\"titleHoverReadingProgramGroup\">\n");
+                ___ViewO.push("                 ");
+                if (digitalMediaRecord && !follettEBookTitleDetailsURL) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                     <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_GRADE_LEVEL)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_GRADE_LEVEL)));
+                    ___ViewO.push("\">");
+                    if (interestGradeLevel) {
+                        ___ViewO.push(" ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_GradeLevel012", "<span class=\"titleHoverBold\">", "</span>", interestGradeLevel))));
+                        ___ViewO.push(" ");
+                    }
+                    ___ViewO.push(" </div>\n");
+                    ___ViewO.push("                 ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("                 <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_QUIZ_INFO)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_QUIZ_INFO)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("QuizInfoTemplate", {quizzes:quizInfo}))));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("                 <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_LEXILE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_LEXILE)));
+                ___ViewO.push("\">");
+                if (lexileInfo && !lexileInfo.empty()) {
+                    ___ViewO.push("<span class=\"titleHoverBold\">Lexile: </span>");
+                    ___ViewO.push((EJS.Scanner.to_text(lexileInfo)));
+                    ___ViewO.push(" ");
+                }
+                ___ViewO.push(" </div>\n");
+                ___ViewO.push("                 <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_FP)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_FP)));
+                ___ViewO.push("\">");
+                if (fountasPinnell && !fountasPinnell.empty()) {
+                    ___ViewO.push("<span class=\"titleHoverBold\">Fountas and Pinnell: </span>");
+                    ___ViewO.push((EJS.Scanner.to_text(fountasPinnell)));
+                    ___ViewO.push(" ");
+                }
+                ___ViewO.push(" </div>\n");
+                ___ViewO.push("             </div>         \n");
+                ___ViewO.push("             <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_YEAR)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_YEAR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("               ");
+                if (pubyear) {
+                    ___ViewO.push("<span class=\"titleHoverBold\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_Year"))));
+                    ___ViewO.push("&nbsp;</span>");
+                    ___ViewO.push((EJS.Scanner.to_text(pubyear)));
+                    ___ViewO.push("&nbsp;");
+                }
+                if (extent) {
+                    if (!pubyear || pubyear.empty()) {
+                        ___ViewO.push("<span class=\"titleHoverBold\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_Length"))));
+                        ___ViewO.push("&nbsp;</span>");
+                    }
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_Extent", extent))));
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("             </div>\n");
+                ___ViewO.push("             <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_PROVIDER_NAME)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_PROVIDER_NAME)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("               ");
+                if (providerName) {
+                    ___ViewO.push("<br><span class=\"titleHoverBold\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_Provider"))));
+                    ___ViewO.push("&nbsp;</span>");
+                    ___ViewO.push((EJS.Scanner.to_text(providerName)));
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("             </div>\n");
+                ___ViewO.push("         </div>\n");
+                ___ViewO.push("         <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_RIGHT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("             <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_CALL_NUMBER)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_CALL_NUMBER)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(callNumber)));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("             <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_MATERIAL_TYPE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_MATERIAL_TYPE)));
+                ___ViewO.push("\"><img src=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibTypeIconURL)));
+                ___ViewO.push("\" width=\"50\" height=\"50\" border=\"0\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibTypeDescription)));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibTypeDescription)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("             \n");
+                ___ViewO.push("             ");
+                if (canAddToMyQuestShelf) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ShelfSelectTemplate", {selectedShelf:shelfNumber, bibID:bibID}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("             \n");
+                ___ViewO.push("             ");
+                if (!resourceList && canAddToBooklist) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    var inBooklistDisplay = "";
+                    var addToBooklistDisplay = "";
+                    if (inUsersBookList) {
+                        addToBooklistDisplay = "display: none";
+                    } else {
+                        inBooklistDisplay = "display: none";
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                 <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BooklistSelectController_SELECT_LIST_CONTAINER)));
+                    ___ViewO.push("\"></div>\n");
+                    ___ViewO.push("                 <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_IN_BOOKLIST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_IN_BOOKLIST)));
+                    ___ViewO.push("\" style=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(inBooklistDisplay)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                     <span>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_InThisList"))));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("                 </div>\n");
+                    ___ViewO.push("                 <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_ADD_TO_BOOKLIST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_ADDTO_BOOKLIST)));
+                    ___ViewO.push("\" style=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(addToBooklistDisplay)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                     <input type=\"button\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_TO_LIST)));
+                    ___ViewO.push("\" value=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_AddToThisList"))));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADD_TO_LIST)));
+                    ___ViewO.push("\"/>\n");
+                    ___ViewO.push("                 </div>\n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("         </div>\n");
+                ___ViewO.push("         <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_BOTTOM)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("             ");
+                var summaryDivClass = HoverMasterController_CLASS_HOVER_SUMMARY;
+                if (!summary) {
+                    summaryDivClass = "";
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_SUMMARY)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(summaryDivClass)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                if (follettEBookTitleDetailsURL == null || shelfBib || resoldShelfBib) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    <p>");
+                    ___ViewO.push((EJS.Scanner.to_text(summary)));
+                    ___ViewO.push(" <a href=\"#\" onclick=\"return false;\" class=\"control ");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_MORE)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_TITLE_DETAIL_LINK)));
+                    ___ViewO.push("\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_LINK_TITLE_HOVER_MORE_PREFIX)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleHoverController_More"))));
+                    ___ViewO.push("</a></p>\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>     \n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

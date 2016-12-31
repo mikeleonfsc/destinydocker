@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<aop>
+   <interceptor class="com.follett.fsc.jbosshelper.ejb3.UserContextEJB3MethodInterceptor" scope="PER_VM"/>
+   <interceptor class="com.follett.fsc.jbosshelper.ejb3.PreUpdateEJB3MethodInterceptor" scope="PER_VM"/>	
+
+    <bind pointcut="execution(!static public * $instanceof{com.follett.fsc.common.consortium.ContextAware}->*(..))">
+       <interceptor-ref name="com.follett.fsc.jbosshelper.ejb3.UserContextEJB3MethodInterceptor"/>
+    </bind>
+	
+    <bind pointcut="execution(* *->@javax.persistence.PreUpdate(..))">
+       <interceptor-ref name="com.follett.fsc.jbosshelper.ejb3.PreUpdateEJB3MethodInterceptor"/>
+    </bind>
+	
+</aop>

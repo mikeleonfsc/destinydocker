@@ -1,0 +1,115 @@
+/* top10results.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    ");
+                if (top10CallNumRange) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <p id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(Top10Controller_ID_CALL_NUM_RANGE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            ");
+                    ___ViewO.push((EJS.Scanner.to_text(top10CallNumRange)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        </p>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_LEFT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_ITEMS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t");
+                for (i = 0; i < 10; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t");
+                    if (records[i]) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t\t\t<div title=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(records[i].shortTitle)));
+                        ___ViewO.push("\" value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(Top10Controller_CLASS_TOP10_ITEM)));
+                        ___ViewO.push("\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(Top10Controller_CLASS_TOP10_ITEM)));
+                        ___ViewO.push("_");
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\"></div>\n");
+                        ___ViewO.push("\t\t\t\t");
+                    } else {
+                        ___ViewO.push("\t\t\t\t\t\n");
+                        ___ViewO.push("\t\t\t\t\t<div  value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(Top10Controller_CLASS_TOP10_ITEM)));
+                        ___ViewO.push(" ");
+                        ___ViewO.push((EJS.Scanner.to_text(Top10Controller_CLASS_TOP10_ITEM_INACTIVE)));
+                        ___ViewO.push("\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(Top10Controller_CLASS_TOP10_ITEM)));
+                        ___ViewO.push("_");
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\"></div>\n");
+                        ___ViewO.push("\t\t\t\t");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t</div>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_RIGHT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_RIGHT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_LOADED)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t");
+                var display = "";
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t");
+                for (i = 0; i < records.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t    ");
+                    if (i > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t    \t");
+                        display = "display:none";
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t<div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_COVER_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                    ___ViewO.push("\" style=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(display)));
+                    ___ViewO.push("\" >\n");
+                    ___ViewO.push("\t\t\t\t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("HitListRecordTemplate", {record:records[i], currentID:i, options:options}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t</div>\n");
+                    ___ViewO.push("\t\t\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t</div>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

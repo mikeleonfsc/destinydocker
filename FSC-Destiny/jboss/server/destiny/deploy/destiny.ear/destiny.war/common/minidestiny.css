@@ -1,0 +1,57 @@
+	html, body {
+		font-family: tahoma, "frutiger linotype";
+	}
+    p {
+		padding: 0; margin-top: 0px;
+    }
+    ul {
+        margin-top: 0; margin-bottom: 0; margin-left: 12px; padding-left: 12px;
+    }
+    li {
+    	margin-top: 2px; margin-bottom: 2px;
+    }
+    a  {
+        color: #0000CC;
+    }
+    a:visited  {
+        color: #0000CC;
+    }
+    a:active  {
+        color: #0000CC;
+    }
+    .ColRow	{
+        font-size: 0.8em;
+    }
+    .ColRowBold	{
+        font-size: 0.8em; font-weight: bold;
+    }
+    .Error {
+        font-weight: bold; font-size: 0.8em;
+	}    
+	.FormLabel {
+        font-weight: bold; font-size: 0.8em; line-height: 1.5;
+    }
+    .Instruction {
+        font-size: 0.6em;
+    }
+    .InverseSmallColHeading {
+        font-weight: bold; font-size: 0.6em; line-height: 1.5; color: White;
+    }
+    .PageFooter {
+        font-size: 7pt; line-height: 1.5; text-decoration: none; color: White;
+    }
+    .SectionHeader {
+   		font-weight: bold; font-size: 12pt; color: #006666; background-color: #FFFFFF;
+    }
+	.SmallColHeading {
+        font-weight: bold; font-size: 0.6em;
+    }
+    .SmallColRow {
+        font-size: 0.6em;
+    }
+    .TableHeading2 {
+        font-weight: bold; font-size: 0.8em; color: #006666;
+    }
+    .MediumColHeading {
+        font-weight: bold; font-size: 0.7em;
+    }      

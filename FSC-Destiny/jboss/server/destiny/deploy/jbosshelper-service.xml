@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<server>
+  <mbean code="com.follett.fsc.jbosshelper.BulkCacheInvalidator" 
+         name="com.follett.fsc.jbosshelper:service=BulkCacheInvalidator">
+  </mbean>
+
+  <mbean code="com.follett.fsc.jbosshelper.transaction.TransactionTimeoutOverride" 
+         name="com.follett.fsc.jbosshelper.transaction:service=TransactionTimeoutOverride">
+      <attribute name="FileName">..\..\fsc\bin\transactiontimeouts.properties</attribute>
+      <attribute name="ClassPrefix">com.follett.fsc</attribute>
+  </mbean>
+</server>

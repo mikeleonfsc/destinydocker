@@ -1,0 +1,76 @@
+/* visualsearch.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"visualSearchOuter\" class=\"\">\n");
+                ___ViewO.push("    <a href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(visualSearchLink)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_LINK_VISUAL_SEARCH_ROOT_NODE)));
+                ___ViewO.push("\" class=\"\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_visualSearchHome"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_visualSearchHome"))));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("    <div id=\"visualSearchInner\" class=\"\">\n");
+                ___ViewO.push("        <h1 id=\"visualSearchLocationMain\" class=\"\">\n");
+                ___ViewO.push("            <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_SPAN_VISUAL_SEARCH_HEADING)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_visualSearchHome"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("        </h1>\n");
+                ___ViewO.push("        <div id=\"vsPreviousButtonContainer\" class=\"\" style=\"display:none;\"><a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_LINK_VISUAL_SEARCH_PREV)));
+                ___ViewO.push("\" class=\"\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_previous"))));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_previous"))));
+                ___ViewO.push("\"><span></span></a>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_previous"))));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("        <div id=\"vsNextButtonContainer\" class=\"\" style=\"display:none;\"><a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_LINK_VISUAL_SEARCH_NEXT)));
+                ___ViewO.push("\" class=\"\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_next"))));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_next"))));
+                ___ViewO.push("\"><span></span></a>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_next"))));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("        \n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_ROW)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_RESULTS_LOADING)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("\t\t        <img src=\"/images/icons/general/spacer.gif\" class=\"loading\" />\n");
+                ___ViewO.push("\t\t    </div>\n");
+                ___ViewO.push("\t        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_CONTENT)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_PAGING_MAIN)));
+                ___ViewO.push("\" class=\"\"></div>\n");
+                ___ViewO.push("        \n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"visualSearchHistoryWrapper\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_HIST_DRAWER)));
+                ___ViewO.push("\" class=\"\"></div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

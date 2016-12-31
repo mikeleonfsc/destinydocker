@@ -1,0 +1,106 @@
+/* searchmaster.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_MAIN_CENTER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_HEADER_WARNING)));
+                ___ViewO.push("\" style=\"display: none\"></div>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_HEADER_OUTER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_HEADER_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_HEADER_PAGING)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <ul id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_UL_RESULTS_PAGING_BUTTONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_RESULTS_PREV)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_SEARCH_RESULTS_PREV_PAGE)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_previousResults"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_previousResults"))));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("            </li>\n");
+                ___ViewO.push("            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_RESULTS_NEXT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_SEARCH_RESULTS_NEXT_PAGE)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_nextResults"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_nextResults"))));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("            </li>\n");
+                ___ViewO.push("        </ul>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_HEADER_X_OF_Y)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_HEADER_SORT)));
+                ___ViewO.push("\" style=\"display: none\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_sortedBy"))));
+                ___ViewO.push(" \n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_SORT_RELEVANCE)));
+                ___ViewO.push("\" style=\"display: none\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_relevance"))));
+                ___ViewO.push("</a><span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_SORT_RELEVANCE)));
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_SUFFIX_UNLINKED_CONTROL)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_relevance"))));
+                ___ViewO.push("</span> |\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_SORT_TITLE)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_title"))));
+                ___ViewO.push("</a><span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_LINK_SORT_TITLE)));
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_SUFFIX_UNLINKED_CONTROL)));
+                ___ViewO.push("\" style=\"display: none\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchController_title"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>  \n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_CACHE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_CLASS_SEARCH_RESULTS_PAGE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_CACHE_INNER)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_LOADING)));
+                ___ViewO.push("\" style=\"display: none\">\n");
+                ___ViewO.push("\t\t<img src=\"/images/icons/general/spacer.gif\" class=\"loading\">\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

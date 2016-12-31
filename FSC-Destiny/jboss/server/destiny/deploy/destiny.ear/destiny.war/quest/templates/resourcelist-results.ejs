@@ -1,0 +1,49 @@
+/* resourcelist-results.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListController_DIV_PAGE + pageNumber)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(searchTypeWrapperClass)));
+                ___ViewO.push("\">\n");
+                var currentID = 0;
+                if (hitList && Object.isArray(hitList.records) && hitList.records.length > 0) {
+                    for (i = 0; i < hitList.records.length; i++) {
+                        if (hitList.records[i].type == ResourceListController_RESOURCE_LIST_TYPE_ONE_SEARCH) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t\t");
+                            ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("OneSearchRecordTemplate", {record:hitList.records[i], currentID:"rl_" + currentID, options:hitList.options}))));
+                            ___ViewO.push("\n");
+                        } else {
+                            ___ViewO.push("\t\t\n");
+                            ___ViewO.push("\t\t  ");
+                            ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("HitListRecordTemplate", {record:hitList.records[i], currentID:"rl_" + currentID, options:hitList.options}))));
+                            ___ViewO.push("\n");
+                        }
+                        currentID++;
+                    }
+                } else {
+                    if (wpeHitList && Object.isArray(wpeHitList.records) && wpeHitList.records.length > 0) {
+                        for (i = 0; i < wpeHitList.records.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t");
+                            ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("WPERecordTemplate", {record:wpeHitList.records[i], currentID:"rl_" + currentID, options:wpeHitList.options}))));
+                            ___ViewO.push("\n");
+                            currentID++;
+                        }
+                    }
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

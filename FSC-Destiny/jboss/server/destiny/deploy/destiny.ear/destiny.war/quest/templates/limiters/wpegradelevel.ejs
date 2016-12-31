@@ -1,0 +1,35 @@
+/* wpegradelevel.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_GRADE_LEVEL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <ul>\n");
+                ___ViewO.push("    \t");
+                for (i = 0; i < pageData.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX + i)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <a href=\"#\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(pageData[i].value.stringDesc)));
+                    ___ViewO.push(" (");
+                    ___ViewO.push((EJS.Scanner.to_text(pageData[i].count)));
+                    ___ViewO.push(")</a>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

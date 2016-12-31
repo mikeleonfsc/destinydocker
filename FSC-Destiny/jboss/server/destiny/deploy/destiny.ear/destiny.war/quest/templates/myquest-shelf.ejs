@@ -1,0 +1,26 @@
+/* myquest-shelf.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<h2 id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestShelfController_ID_MYQUEST_SHELF_HEADER)));
+                ___ViewO.push("\"><span><em>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestShelfController_shelf", name))));
+                ___ViewO.push("</em></span></h2>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestShelfController_DIV_MYQUEST_SHELVES_HEADER_RESULTS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestShelfListTemplate", {data:data}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

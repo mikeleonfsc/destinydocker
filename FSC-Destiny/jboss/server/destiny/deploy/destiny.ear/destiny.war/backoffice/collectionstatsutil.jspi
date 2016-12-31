@@ -1,0 +1,60 @@
+<%!
+    String getReportCell(String range, Long count, Long percent, boolean thisRowIsDewey,
+                         boolean isTemporaryRow, boolean enableLink) {
+        StringBuffer work = new StringBuffer();
+
+        String firstValueClass = null;
+        String secondValueClass = null;
+
+//        if ("Total:".equals(value)) {
+//            firstValueClass = "<span class=\"SmallColRow\">";
+//            secondValueClass = "<span class=\"ColRow\">";
+//        } else {
+            firstValueClass = "<span class=\"ColRow\">";
+            secondValueClass = "<span class=\"SmallColRow\">";
+//        }
+
+//        // create the link UNLESS printer friendly, or if either value (number, pct) is non-zero
+//        boolean createTheLink = (enableLink && !getPrint() && !"0".equals(value) && !"0".equals(secondValue) );
+
+//         // if temp row, ONLY create the link on the copy total column
+//        if ( isTemporaryRow && !CallNumCircReportSpecs.HASH_TOTAL_COLLECTION.equals(reportColumn)) {
+//            createTheLink = false;
+//        }
+
+        String formattedPercent = "0.00%";
+        if (percent != null) {
+            formattedPercent = StringHelper.convertPercentToReportString(percent.longValue() / 100.0);
+        }
+
+        StringBuffer linkData = new StringBuffer();       // add the cell data
+        // add the cell data
+        linkData.append(firstValueClass);
+        linkData.append(count);
+        linkData.append("</span>");
+        linkData.append("&nbsp;");
+        linkData.append(secondValueClass);
+        linkData.append("[");
+        linkData.append(formattedPercent);
+        linkData.append("]");
+        linkData.append("</span>");
+
+//        HttpSession session = request.getSession();
+//        SessionStoreProxy store = SessionStoreProxy.getSessionStore( session, request );
+
+//        // do the math spanky
+//        if (createTheLink) {
+//            work.append( HTTPHelper.buildHREFTag(getDetailLink(reportColumn, range, thisRowIsDewey),
+//                getDetailHintText(reportColumn, range),
+//                linkData.toString(),
+//                store.getPermissions(),
+//                Permissions.BACK_OFFICE_GENERATE_REPORTS,
+//                true, // always show text
+//                request, response ));
+//        } else {
+            work.append(linkData.toString());
+//        }
+
+        return work.toString();
+    }
+%>

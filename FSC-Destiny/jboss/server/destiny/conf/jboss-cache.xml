@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+   <server>
+     <classpath codebase="./lib/jboss" archives="jboss-cache-jdk50.jar, jgroups.jar" />
+   
+     <!--  ====================================================================  -->
+     <!--  Defines TreeCache configuration                                       -->
+     <!--  ====================================================================  -->
+     <mbean code="org.jboss.cache.TreeCache" name="jboss.cache:service=TreeCache">
+       <depends>jboss:service=Naming</depends>
+       <depends>jboss:service=TransactionManager</depends>
+   
+   
+       <!-- Configure the TransactionManager -->
+       <attribute name="TransactionManagerLookupClass">
+          org.jboss.cache.GenericTransactionManagerLookup
+       </attribute>
+   
+   <!-- 
+   Node locking scheme : PESSIMISTIC (default) OPTIMISTIC -->
+   <attribute name="NodeLockingScheme">PESSIMISTIC</attribute>
+   
+       <!--
+               Node locking isolation level : 
+                                    SERIALIZABLE
+                                    REPEATABLE_READ (default)
+                                    READ_COMMITTED
+                                    READ_UNCOMMITTED
+                                    NONE
+   
+   (ignored if NodeLockingScheme is OPTIMISTIC)
+       -->
+       <attribute name="IsolationLevel">NONE</attribute>
+   
+       <!-- Lock parent before doing node additions/removes -->
+       <attribute name="LockParentForChildInsertRemove">true</attribute>
+   
+       <!--     Valid modes are LOCAL
+                                REPL_ASYNC
+                                REPL_SYNC
+                                INVALIDATION_ASYNC
+                                INVALIDATION_SYNC
+       -->
+       <attribute name="CacheMode">LOCAL</attribute>
+       
+       <!--  Whether each interceptor should have an mbean
+           registered to capture and display its statistics.  -->
+       <attribute name="UseInterceptorMbeans">true</attribute>
+   
+       <!-- Name of cluster. Needs to be the same for all TreeCache nodes in a
+       cluster, in order to find each other -->
+       <attribute name="ClusterName">JBoss-Cache-Cluster</attribute>
+   
+   
+       <!--    The max amount of time (in milliseconds) we wait until the
+               initial state (ie. the contents of the cache) are retrieved from
+               existing members in a clustered environment
+       -->
+       <attribute name="InitialStateRetrievalTimeout">5000</attribute>
+   
+       <!--    Number of milliseconds to wait until all responses for a
+               synchronous call have been received.
+       -->
+       <attribute name="SyncReplTimeout">10000</attribute>
+       <!--  Max number of milliseconds to wait for a lock acquisition -->
+       <attribute name="LockAcquisitionTimeout">15000</attribute>
+       <attribute name="EvictionPolicyClass">org.jboss.cache.eviction.LRUPolicy</attribute>
+       <attribute name="EvictionPolicyConfig">
+         <config>
+          <attribute name="wakeUpIntervalSeconds">5</attribute>
+          <region name="/_default_">
+            <attribute name="maxNodes">100</attribute>
+            <attribute name="timeToLiveSeconds">10</attribute>
+            <attribute name="maxAgeSeconds">30</attribute>
+          </region>
+         </config>
+       </attribute>
+       
+       </mbean>
+   </server>     

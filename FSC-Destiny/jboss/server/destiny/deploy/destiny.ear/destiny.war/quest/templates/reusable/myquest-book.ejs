@@ -1,0 +1,244 @@
+/* myquest-book.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_ITEM)));
+                ___ViewO.push("_");
+                ___ViewO.push((EJS.Scanner.to_text(index)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_ITEM)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN1)));
+                ___ViewO.push("\" hoverKey=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestShelfController_HOVER_KEY_PREFIX + index)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_COVER_WRAPPER + index)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_COVER_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <div class=\"resultCover\">\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                ");
+                var coverImageClass = MyQuestController_CLASS_COVERIMAGE + " draggableBook " + MyQuestController_CLASS_TITLE_DETAIL_LINK;
+                var defaultImageClass75 = (digitalMediaProviderName) ? "defaultDCPIImage75" : "defaultTitleImage75";
+                var defaultImageClass = (digitalMediaProviderName) ? CoverImageTemplate_DEFAULT_DCPI_IMAGE_CLASS : MyQuestController_DEFAULT_TITLE_IMAGE_CLASS;
+                if (imageURL && !imageURL.empty()) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        <img border=\"0\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(defaultImageClass75)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(coverImageClass)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_COVER_IMAGE_CLASS_FOR_SHELF)));
+                    ___ViewO.push("\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_COVER_WRAPPER + index)));
+                    ___ViewO.push("\" name=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_COVER_WRAPPER + index)));
+                    ___ViewO.push("\" src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(imageURL)));
+                    ___ViewO.push("\"/>\n");
+                    ___ViewO.push("                ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        <img border=\"0\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(defaultImageClass75)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(coverImageClass)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(defaultImageClass)));
+                    ___ViewO.push("\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_COVER_WRAPPER + index)));
+                    ___ViewO.push("\" name=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_COVER_WRAPPER + index)));
+                    ___ViewO.push("\" src=\"/images/icons/general/spacer.gif\"/>\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN2)));
+                ___ViewO.push("\">    \t\n");
+                ___ViewO.push("    ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ShelfSelectTemplate", {selectedShelf:shelfNumber, bibID:bibID}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("\t    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_TITLE_INFO_PREFIX)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_TITLE_INFO)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t        <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_TITLE_PREFIX)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_SEARCH_RESULTS_TITLE)));
+                ___ViewO.push("\"><a href=\"#\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_ID_TITLE_DETAIL_LINK_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(bibID)));
+                ___ViewO.push("\" onclick=\"return false;\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_SEARCH_RESULTS_TITLE_LINK + " " + MyQuestController_CLASS_TITLE_DETAIL_LINK)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(title)));
+                ___ViewO.push("</a></p>\n");
+                ___ViewO.push("\t        ");
+                if (!author.empty()) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t        <p id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_AUTHOR_PREFIX)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_SEARCH_RESULTS_AUTHOR)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(author)));
+                    ___ViewO.push("</p>\n");
+                    ___ViewO.push("\t        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\n");
+                ___ViewO.push("\t        ");
+                if (pubyear) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t            <p id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_SEARCH_RESULTS_PUB_YEAR)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_year", "<em class=\"" + MyQuestController_CLASS_LABEL + "\">", "</em>", pubyear))));
+                    ___ViewO.push(" <span id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_SEARCH_RESULTS_PAGES_LENGTH)));
+                    ___ViewO.push("\">");
+                    if (extent) {
+                        ___ViewO.push("(");
+                        ___ViewO.push((EJS.Scanner.to_text(extent)));
+                        ___ViewO.push(")");
+                    }
+                    ___ViewO.push("</span></p>\n");
+                    ___ViewO.push("\t        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    ");
+                if (!shelfBib && !temporary && (((canReviewTitle || myRating > 0) && localSiteBib) || averageRating > 0)) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t    <div id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_TITLE_MY_RATING_WRAPPER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t        <p id=\"\" class=\"\">\n");
+                    ___ViewO.push("\t            ");
+                    if ((canReviewTitle || myRating > 0) && localSiteBib) {
+                        if (myRating > 0 && myRatingApproved) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t                    <em class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_LABEL)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_myRating"))));
+                            ___ViewO.push("</em> ");
+                            ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:myRating, starType:MyQuestController_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                        } else {
+                            if (myRating > 0 && !myRatingApproved) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("\t                    <em class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_LABEL)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_pendingApproval"))));
+                                ___ViewO.push("</em>\n");
+                                ___ViewO.push("\t            ");
+                            } else {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("\t                    <em class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_LABEL)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_myRating"))));
+                                ___ViewO.push("</em> <span id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_ID_TITLE_DETAILS_ADD_REVIEW)));
+                                ___ViewO.push("_");
+                                ___ViewO.push((EJS.Scanner.to_text(index)));
+                                ___ViewO.push("\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_TITLE_DETAILS_ADD_REVIEW)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:myRating, starType:MyQuestController_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                                ___ViewO.push("</span>\n");
+                                ___ViewO.push("\t            ");
+                            }
+                        }
+                    }
+                    if (averageRating > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t                (<a id=\"averageRating_");
+                        ___ViewO.push((EJS.Scanner.to_text(index)));
+                        ___ViewO.push("\" href=\"#\" onclick=\"return false;\" class=\"titleDetailLink reviewLink\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestShelfController_averageRating", averageRating))));
+                        ___ViewO.push("</a>)\n");
+                        ___ViewO.push("\t            ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t        </p>\n");
+                    ___ViewO.push("\t    </div>\n");
+                    ___ViewO.push("\t    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t    ");
+                if (canRecommendTitle) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t    <div id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_TITLE_RECOMMEND_WRAPPER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t        <p id=\"\" class=\"\"><a href=\"#\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_BUTTON_SHELF_LIST_ADD_RECOMMENDATION)));
+                    ___ViewO.push("\" value=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(bibID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_SHELF_LIST_ADD_RECOMMENDATION)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_recommend"))));
+                    ___ViewO.push("</a></p>\n");
+                    ___ViewO.push("\t    </div>\n");
+                    ___ViewO.push("\t    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_ID_MYQUEST_SHELF_ITEM_REMOVE)));
+                ___ViewO.push((EJS.Scanner.to_text(index)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_SHELF_ITEM_REMOVE)));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_removeFromShelf"))));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_removeFromShelf"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    <p/>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"recordID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"shelfNumber\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(shelfNumber)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"currentID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(index)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"bibTypeIconURL\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(miniBibTypeIconURL)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"bibTypeDescription\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibTypeDescription)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

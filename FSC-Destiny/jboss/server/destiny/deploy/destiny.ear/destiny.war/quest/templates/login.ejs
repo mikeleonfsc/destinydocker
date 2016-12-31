@@ -1,0 +1,111 @@
+/* login.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"loginDialogTriggerer\" style=\"display: none\"></div>\n");
+                ___ViewO.push("<div id=\"loginDialogTriggererForCreateAccount\" style=\"display: none\"></div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_DIV_LOGIN_MODULE_INNER)));
+                ___ViewO.push("\" style=\"display: none\">\n");
+                ___ViewO.push("  <h4 id=\"loginModuleHeader\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("loginController_loginToDestinyQuest"))));
+                ___ViewO.push(" \n");
+                ___ViewO.push("  \t<a href=\"#\" onclick=\"return false;\">");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:LoginController_ACTION_CANCEL, styleClass:"", altText:MessageHelper.format("loginController_closeLoginModule")}))));
+                ___ViewO.push("</a>\n");
+                ___ViewO.push("  </h4>\n");
+                ___ViewO.push("  <div id=\"loginModuleBL\">\n");
+                ___ViewO.push("    <div id=\"loginModuleBR\">\n");
+                ___ViewO.push("\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_DIV_LOGIN_FORM)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_CLASS_LOGIN_DEFAULT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_DIV_LOGIN_TAB)));
+                ___ViewO.push("\" style=\"display:none;\">\n");
+                ___ViewO.push("\t\t\t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_DIV_LOGIN_TAB_NAV)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t\t  <ul class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_UL_LOGIN_TAB_LIST)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t\t  \t");
+                var loginTabActive = "";
+                var createAccountTabActive = "tabActive";
+                if (login || forgotPassword) {
+                    var loginTabActive = "tabActive";
+                    var createAccountTabActive = "";
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t\t    <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_LI_LOGIN_TAB)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_CLASS_TAB)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(loginTabActive)));
+                ___ViewO.push("\"><a href=\"#\" onclick=\"return false;\"><span>");
+                ___ViewO.push((EJS.Scanner.to_text(loginLabel)));
+                ___ViewO.push("</span></a></li>\n");
+                ___ViewO.push("\t\t\t\t    ");
+                if (userCanCreateLogin) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t    \t<li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_LI_CREATE_NEW_ACCOUNT_TAB)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_CLASS_TAB)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(createAccountTabActive)));
+                    ___ViewO.push("\"><a href=\"#\" onclick=\"return false;\"><span>");
+                    ___ViewO.push((EJS.Scanner.to_text(createNewAccountLabel)));
+                    ___ViewO.push("</span></a></li>\n");
+                    ___ViewO.push("\t\t\t\t    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t\t  </ul>\n");
+                ___ViewO.push("\t\t\t\t</div>\n");
+                ___ViewO.push("\t\t\t\t");
+                if (login) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t\t<div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_LI_LOGIN_TAB + BaseLoginController_DIV_TITLE_DETAIL_TAB_CONTENT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_CLASS_TAB_CONTENT)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t\t\t\t\t    ");
+                    ___ViewO.push((EJS.Scanner.to_text(new EJS({url:loginWrapperTemplateURL}).render({requiredInfoLabel:requiredInfoLabel}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t\t</div>\n");
+                    ___ViewO.push("\t\t\t\t");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t\t<div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_LI_CREATE_NEW_ACCOUNT_TAB + BaseLoginController_DIV_TITLE_DETAIL_TAB_CONTENT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BaseLoginController_CLASS_TAB_CONTENT)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t\t\t\t\t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(new EJS({url:createAccountTemplateURL}).render({requiredInfoLabel:requiredInfoLabel}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t\t</div>\n");
+                    ___ViewO.push("\t\t\t\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t\t\n");
+                ___ViewO.push("\t\t\t</div>\n");
+                ___ViewO.push("\t\t</div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("  </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

@@ -1,0 +1,213 @@
+<Server>
+
+  <!--APR library loader. Documentation at /docs/apr.html -->
+  <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
+  <!--Initialize Jasper prior to webapps are loaded. Documentation at /docs/jasper-howto.html -->
+  <Listener className="org.apache.catalina.core.JasperListener" />
+
+   <!-- Use a custom version of StandardService that allows the
+   connectors to be started independent of the normal lifecycle
+   start to allow web apps to be deployed before starting the
+   connectors.
+   -->
+   <Service name="jboss.web">
+
+    <!-- A "Connector" represents an endpoint by which requests are received
+         and responses are returned. Documentation at :
+         Java HTTP Connector: /docs/config/http.html (blocking & non-blocking)
+         Java AJP  Connector: /docs/config/ajp.html
+         APR (HTTP/AJP) Connector: /docs/apr.html
+         Define a non-SSL HTTP/1.1 Connector on port 8080
+    -->
+    <Executor name="httpThreadPool" className="${EXECUTOR_CLASS_NAME}" namePrefix="HTTP-" maxThreads="${MAX_PROCESSES}" minSpareThreads="${MIN_SPARE_PROCESSES}" maxIdleTime="${IDLE_HTTP_THREAD_REMOVE_MILLIS}"/>
+    <Connector protocol="${HTTP_PROTOCOL}" port="${TOMCAT_PORT}" address="${jboss.bind.address}" executor="httpThreadPool"
+         enableLookups="false" redirectPort="${SECURE_TOMCAT_PORT}" acceptCount="${SECURE_ACCEPT_COUNT}"
+         URIEncoding= "UTF-8" connectionTimeout="${TOMCAT_HTTP_CONNECTION_TIMEOUT}" disableUploadTimeout="${TOMCAT_HTTP_DISABLE_UPLOAD_TIMEOUT}" maxPostSize="${MAX_POST_SIZE}"
+         compression="${TOMCAT_COMPRESSION}" noCompressionUserAgents="${TOMCAT_NO_COMPRESSION_USER_AGENTS}"
+         maxKeepAliveRequests="${HTTP_MAX_KEEP_ALIVE_REQUESTS}" keepAliveTimeout="${HTTP_KEEP_ALIVE_TIMEOUT_MILLIS}"
+         compressableMimeType="${TOMCAT_COMPRESSABLE_MIME_TYPE}" debug="0"/>
+
+
+   <!-- SSL/TLS Connector configuration using the admin devl guide keystore
+      <Connector port="${SECURE_TOMCAT_PORT}" address="${jboss.bind.address}"
+           maxThreads="${SECURE_MAX_PROCESSES}" minSpareThreads="${SECURE_MIN_PROCESSES}" maxSpareThreads="${SECURE_MAX_SPARE_THREADS}"
+           scheme="https" secure="true" clientAuth="false"
+           keystoreFile="${KEYSTORE_PATH}"
+           keystorePass="${KEYSTORE_PASSWORD}" sslProtocol = "TLS" URIEncoding= "UTF-8" debug="0"/>
+    -->
+
+    <Executor name="httpsThreadPool" className="${EXECUTOR_CLASS_NAME}" namePrefix="HTTPS-" maxThreads="${SECURE_MAX_PROCESSES}" minSpareThreads="${SECURE_MIN_SPARE_PROCESSES}" maxIdleTime="${IDLE_HTTPS_THREAD_REMOVE_MILLIS}"/>
+	<Connector protocol="${HTTPS_PROTOCOL}"
+                        port="${SECURE_TOMCAT_PORT}"
+			SSLEnabled="true"
+			executor="httpsThreadPool"
+			scheme="https"
+			secure="true"
+			clientAuth="false"
+			address="${jboss.bind.address}"
+			keystoreFile="${KEYSTORE_PATH}"
+			keystorePass="${KEYSTORE_PASSWORD}"
+			
+			sslProtocols="TLSv1,TLSv1.1,TLSv1.2"
+                        maxKeepAliveRequests="${HTTPS_MAX_KEEP_ALIVE_REQUESTS}"
+                        keepAliveTimeout="${HTTPS_KEEP_ALIVE_TIMEOUT_MILLIS}"
+			URIEncoding= "UTF-8"
+			debug="0"
+	/>
+
+    <Connector protocol="${HTTPS_PROTOCOL}"
+      port="${DESTINYAUTHAPI_PORT}"
+      SSLEnabled="true"
+      executor="httpsThreadPool"
+      scheme="https"
+      secure="true"
+      clientAuth="false"
+      address="${jboss.bind.address}"
+      keystoreFile="deploy/destiny.ear/META-INF/destinyauthapi.keystore"
+      keystorePass="makeitso"
+      sslProtocols="TLS"
+      maxKeepAliveRequests="${HTTPS_MAX_KEEP_ALIVE_REQUESTS}"
+      keepAliveTimeout="${HTTPS_KEEP_ALIVE_TIMEOUT_MILLIS}"
+      URIEncoding= "UTF-8"
+      debug="0"
+    />
+
+
+    <!-- A AJP 1.3 Connector on port 8009 -->
+    <Executor name="ajpThreadPool" namePrefix="AJP-" maxThreads="${MAX_AJP_PROCESSES}" minSpareThreads="${MIN_AJP_SPARE_PROCESSES}" maxIdleTime="${IDLE_AJP_THREAD_REMOVE_MILLIS}"/>
+      <Connector port="${TOMCAT_AJP_PORT}" address="${jboss.bind.address}" executor="ajpThreadPool"
+         enableLookups="false" redirectPort="${TOMCAT_AJP_SECURE_PORT}" debug="0"
+         protocol="AJP/1.3"  URIEncoding= "UTF-8"/>
+
+      <Engine name="jboss.web" defaultHost="localhost">
+
+         <!-- The JAAS based authentication and authorization realm implementation
+         that is compatible with the jboss 3.2.x realm implementation.
+         - certificatePrincipal : the class name of the
+         org.jboss.security.auth.certs.CertificatePrincipal impl
+         used for mapping X509[] cert chains to a Princpal.
+         - allRolesMode : how to handle an auth-constraint with a role-name=*,
+         one of strict, authOnly, strictAuthOnly
+           + strict = Use the strict servlet spec interpretation which requires
+           that the user have one of the web-app/security-role/role-name
+           + authOnly = Allow any authenticated user
+           + strictAuthOnly = Allow any authenticated user only if there are no
+           web-app/security-roles
+         -->
+         <Realm className="org.jboss.web.tomcat.security.JBossSecurityMgrRealm"
+            certificatePrincipal="org.jboss.security.auth.certs.SubjectDNMapping"
+            allRolesMode="authOnly"
+            />
+         <!-- A subclass of JBossSecurityMgrRealm that uses the authentication
+         behavior of JBossSecurityMgrRealm, but overrides the authorization
+         checks to use JACC permissions with the current java.security.Policy
+         to determine authorized access.
+         - allRolesMode : how to handle an auth-constraint with a role-name=*,
+         one of strict, authOnly, strictAuthOnly
+           + strict = Use the strict servlet spec interpretation which requires
+           that the user have one of the web-app/security-role/role-name
+           + authOnly = Allow any authenticated user
+           + strictAuthOnly = Allow any authenticated user only if there are no
+           web-app/security-roles
+         <Realm className="org.jboss.web.tomcat.security.JaccAuthorizationRealm"
+            certificatePrincipal="org.jboss.security.auth.certs.SubjectDNMapping"
+            allRolesMode="authOnly"
+            />
+         -->
+
+        <Host name="localhost"
+           autoDeploy="false" deployOnStartup="false" deployXML="false"
+           configClass="org.jboss.web.tomcat.security.config.JBossContextConfig"
+           >
+
+            <!-- Uncomment to enable request dumper. This Valve "logs interesting 
+                 contents from the specified Request (before processing) and the 
+                 corresponding Response (after processing). It is especially useful 
+                 in debugging problems related to headers and cookies."
+            -->
+            <!--
+            <Valve className="org.apache.catalina.valves.RequestDumperValve" />
+            -->
+ 
+            <!-- Access logger -->
+            <!--
+            <Valve className="org.apache.catalina.valves.AccessLogValve"
+                prefix="localhost_access_log." suffix=".log"
+                pattern="common" directory="${jboss.server.log.dir}" 
+                resolveHosts="false" />
+            -->
+
+
+
+
+			<Logger className="org.jboss.web.tomcat.Log4jLogger"
+            verbosityLevel="WARNING"
+            category="org.jboss.web.localhost.Engine"/>
+            <!-- Uncomment to enable single sign-on across web apps
+                deployed to this host. Does not provide SSO across a cluster.     
+            
+                If this valve is used, do not use the JBoss ClusteredSingleSignOn 
+                valve shown below. 
+                
+                A new configuration attribute is available beginning with
+                release 4.0.4:
+                
+                cookieDomain  configures the domain to which the SSO cookie
+                              will be scoped (i.e. the set of hosts to
+                              which the cookie will be presented).  By default
+                              the cookie is scoped to "/", meaning the host
+                              that presented it.  Set cookieDomain to a
+                              wider domain (e.g. "xyz.com") to allow an SSO
+                              to span more than one hostname.
+             -->
+            <!--
+            <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+            -->
+
+            <!-- Uncomment to enable single sign-on across web apps
+               deployed to this host AND to all other hosts in the cluster.
+            
+               If this valve is used, do not use the standard Tomcat SingleSignOn
+               valve shown above.
+            
+               Valve uses a JBossCache instance to support SSO credential 
+               caching and replication across the cluster.  The JBossCache 
+               instance must be configured separately.  By default, the valve 
+               shares a JBossCache with the service that supports HttpSession 
+               replication.  See the "jboss-web-cluster-service.xml" file in the 
+               server/all/deploy directory for cache configuration details.
+            
+               Besides the attributes supported by the standard Tomcat
+               SingleSignOn valve (see the Tomcat docs), this version also 
+               supports the following attributes:
+            
+               cookieDomain   see above
+            
+               treeCacheName  JMX ObjectName of the JBossCache MBean used to 
+                              support credential caching and replication across
+                              the cluster. If not set, the default value is 
+                              "jboss.cache:service=TomcatClusteringCache", the 
+                              standard ObjectName of the JBossCache MBean used 
+                              to support session replication.
+            -->
+            <!--
+            <Valve className="org.jboss.web.tomcat.service.sso.ClusteredSingleSignOn" />
+            -->
+         
+            <!-- Check for unclosed connections and transaction terminated checks
+                 in servlets/jsps.
+                 
+                 Important: The dependency on the CachedConnectionManager
+                 in META-INF/jboss-service.xml must be uncommented, too
+            -->
+            <Valve className="org.jboss.web.tomcat.service.jca.CachedConnectionValve"
+                cachedConnectionManagerObjectName="jboss.jca:service=CachedConnectionManager"
+                transactionManagerObjectName="jboss:service=TransactionManager" />
+
+         </Host>
+
+      </Engine>
+
+   </Service>
+
+</Server>

@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){window.ajaxTracker.abortAllRequests();var a=Registry.lookup("CreateAccountController.CreateAccountDialog");if(this.data.redirect){window.location=this.data.redirect}else{if(this.data.errors){a.handleError(this.data)}else{a.handlePageChange(this.data);a.clearErrors()}}}});

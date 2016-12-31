@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var a=Registry.lookup("BooklistWidgetController.Load");if(a&&Object.isFunction(a.updateTitleCounts)){a.updateTitleCounts(this.data.defaultBookListCount);a.updateListName(this.data.defaultBookListName)}},registerEvents:function(){}});

@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>destiny-app-parent</artifactId>
+    <groupId>com.follett.fsc.destiny</groupId>
+    <version>14.5.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>destiny-war</artifactId>
+  <packaging>war</packaging>
+
+  <properties>
+    <stagingPath>target/staging</stagingPath>
+    <stagingDirectory>${project.basedir}/${stagingPath}</stagingDirectory>
+    <CACHEVERSION>?cachevers=${LOCALE_HELPER_IMAGE_VERSION}</CACHEVERSION>
+    <!--if you pass in -DjspFileBaseName=somejspbasename
+		only that file will be compiled, otherwise all jsp's are compiled.-->
+    <jspFileBaseName>*</jspFileBaseName>
+    <jspFileName>${jspFileBaseName}.jsp</jspFileName>
+    <jspJavaName>${jspFileBaseName}_jsp.java</jspJavaName>
+    <jspClassName>${jspFileBaseName}_jsp.class</jspClassName>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.follett.fsc</groupId>
+      <artifactId>ejs-precompile</artifactId>
+    </dependency>
+  </dependencies>
+
+  <!-- no profile, always run -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <outputDirectory>${project.build.directory}</outputDirectory>
+          <warName>destiny</warName>
+          <webResources>
+            <resource>
+              <directory>${stagingDirectory}</directory>
+            </resource>
+          </webResources>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <webXml>${stagingDirectory}/WEB-INF/web.xml</webXml>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!--
+	PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE
+	PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE
+		Developers - Please try to keep this documentation up to date - it is VERY helpful
+	PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE
+	PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE PLEASE
+
+	Following is the list of Maven Lifecycles Phases
+	Within each lifecycle phase is the list (in build order) of execution ids
+	===================================================================
+	pre-clean
+	clean
+	post-clean
+	validate
+	initialize
+	generate-sources
+	process-sources
+		concat quest css files [buildmode=full]
+	generate-resources
+		unpack jqueryui [buildmode=full]
+		unpack firebug [buildmode=full]
+		unpack scriptaculous [buildmode=full]
+		copy ejs jars for precompile quest [buildmode=full]
+		unpack-ejs [buildmode=full]
+	process-resources
+		copy webcontent to staging folder [buildmode=full]
+		copy destinyAllViews to staging folder with filtering [buildmode=full]
+		copy jqueryui, scriptaculous, and ejs [buildmode=full]
+		copy firebug [buildmode=full]
+		compress all js files, no concat [buildmode=full]
+		compress destinyAllViews css files, no concat [buildmode=full]
+		compress quest css files, no concat [buildmode=full]
+		rename quest minified theme css files [buildmode=full]
+		concat quest js files [buildmode=full]
+		Precompile Quest EJS templates [buildmode=full]
+	compile
+		compile jsp files [profile=compile-jsp]
+	process-classes
+		copy jsp java and class file(s) [profile=compile-jsp]
+		copy jsp source file(s) [profile=compile-jsp]
+	generate-test-sources
+	process-test-sources
+	generate-test-resources
+	process-test-resources
+	test-compile
+	process-test-classes
+	test
+	prepare-package
+		build MD5 checksum files for js, css, and ejs, also firebug html and png files [buildmode=full]
+	package
+	pre-integration-test
+	integration-test
+	post-integration-test
+	verify
+	install
+	deploy
+	pre-site
+	site
+	post-site
+	site-deploy
+	-->
+  <profiles>
+
+    <!-- run this to deploy only jsp -->
+    <!--ANY CHANGES TO THIS MUST BE DONE IN THE PROFILE BELOW (future story: have this step only one time) -->
+    <!--
+		<profile>
+			<id>jsp</id>
+			<activation>
+				<property>
+					<name>buildmode</name>
+					<value>jsponly</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy webcontent to staging folder******</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<echo message="jsp profile ******************" />
+									<outputDirectory>${stagingDirectory}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${project.parent.basedir}/destiny-webcontent</directory>
+											<excludes>
+												<exclude>**/*.MD5</exclude>
+												<exclude>**/*_compressed.*</exclude>
+												<exclude>**/.project</exclude>
+												<exclude>**/.gitignore</exclude>
+												<exclude>**/.settings/*</exclude>
+												<exclude>**/pom.xml</exclude>
+												We pull the Quest css and js files directly from the webcontent 
+													project and concat them below. Don't want to have to clean them up later, 
+													so omit them now
+												<exclude>/quest/*.js</exclude>
+												<exclude>/quest/css/**/*.css</exclude>
+												<exclude>/WEB-INF/languages/**</exclude>
+											</excludes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+-->
+    <profile>
+      <id>ejs</id>
+      <activation>
+        <property>
+          <name>buildmode</name>
+          <value>full</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack jqueryui</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <echo message="full profile ******************" />
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com.follett.thirdparty.jquery-ui</groupId>
+                      <artifactId>com.jqueryui.jquery-ui</artifactId>
+                      <version>1.8.14</version>
+                      <type>zip</type>
+                      <overWrite>true</overWrite>
+                      <outputDirectory>${project.basedir}/target</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+              <execution>
+                <id>unpack firebug</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com.follett.thirdparty.firebug_archive</groupId>
+                      <artifactId>com.github.firebug_archive</artifactId>
+                      <version>1.0.5</version>
+                      <type>zip</type>
+                      <overWrite>true</overWrite>
+                      <outputDirectory>${project.basedir}/target</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+              <execution>
+                <id>unpack scriptaculous</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com.follett.thirdparty.scriptaculous</groupId>
+                      <artifactId>us.aculo.script.scriptaculous_archive</artifactId>
+                      <version>1.9.0</version>
+                      <type>zip</type>
+                      <overWrite>true</overWrite>
+                      <outputDirectory>${project.basedir}/target</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy ejs jars for precompile quest</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <stripVersion>true</stripVersion>
+                  <outputDirectory>${project.basedir}/target/ejs</outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>unpack-ejs</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>ejs</groupId>
+                      <artifactId>ejs</artifactId>
+                      <version>1.0-FSC-1</version>
+                      <type>zip</type>
+                      <classifier>js</classifier>
+                      <outputDirectory>${project.basedir}/target/ejs</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                  <overWrite>true</overWrite>
+                  <stripVersion>true</stripVersion>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>copy-jsp-to-staging</id>
+      <activation>
+        <property>
+          <name>buildmode</name>
+          <value>full</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy webcontent to staging folder</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${stagingDirectory}</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.parent.basedir}/destiny-webcontent</directory>
+                      <excludes>
+                        <exclude>**/*.MD5</exclude>
+                        <exclude>**/*_compressed.*</exclude>
+                        <exclude>**/.project</exclude>
+                        <exclude>**/.gitignore</exclude>
+                        <exclude>**/.settings/*</exclude>
+                        <exclude>**/pom.xml</exclude>
+                        <exclude>**/target/</exclude>
+                        <!--We pull the Quest css and js files directly from the webcontent 
+													project and concat them below. Don't want to have to clean them up later, 
+													so omit them now -->
+                        <exclude>/quest/*.js</exclude>
+                        <exclude>/quest/css/**/*.css</exclude>
+                        <exclude>/WEB-INF/languages/**</exclude>
+                      </excludes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>compress</id>
+      <activation>
+        <property>
+          <name>buildmode</name>
+          <value>full</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy destinyAllViews to staging folder with filtering</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${stagingDirectory}/common</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.parent.basedir}/destiny-webcontent/common/</directory>
+                      <filtering>true</filtering>
+                      <includes>
+                        <include>destinyAllViews_en.css</include>
+                        <include>destinyAllViews_ar.css</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy jqueryui, scriptaculous, and ejs</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${stagingDirectory}/common</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.basedir}/target/jquery-ui-1.8.14/development-bundle/ui</directory>
+                      <includes>
+                        <include>jquery-ui-1.8.14.custom.js</include>
+                      </includes>
+                    </resource>
+                    <resource>
+                      <directory>${project.basedir}/target/jquery-ui-1.8.14/development-bundle</directory>
+                      <includes>
+                        <include>jquery-1.5.1.js</include>
+                      </includes>
+                    </resource>
+                    <resource>
+                      <directory>${project.basedir}/target/scriptaculous-js-1.9.0/src</directory>
+                      <includes>
+                        <include>*.js</include>
+                      </includes>
+                    </resource>
+                    <resource>
+                      <directory>${project.basedir}/target/scriptaculous-js-1.9.0/lib</directory>
+                      <includes>
+                        <include>*.js</include>
+                      </includes>
+                    </resource>
+                    <resource>
+                      <directory>${project.basedir}/target/ejs/target/js</directory>
+                      <includes>
+                        <include>*.js</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy firebug</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${stagingDirectory}/common/firebug</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.basedir}/target/firebug-1.0.5</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>net.alchim31.maven</groupId>
+            <artifactId>yuicompressor-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compress all js files, no concat</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>compress</goal>
+                </goals>
+                <configuration>
+                  <nosuffix>false</nosuffix>
+                  <suffix>_compressed</suffix>
+                  <jswarn>false</jswarn>
+                  <!--JRA / RT - some day no one will want to see these statistics:
+									<statistics>false</statistics>
+									-->
+                  <linebreakpos>${COMPRESS_JS_CHARACTERS_PER_LINE}</linebreakpos>
+                  <sourceDirectory>${stagingDirectory}/</sourceDirectory>
+                  <outputDirectory>${stagingDirectory}/</outputDirectory>
+                  <includes>
+                    <include>**/*.js</include>
+                  </includes>
+                  <excludes>
+                    <exclude>**/*_compressed.js</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>compress destinyAllViews css files, no concat</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>compress</goal>
+                </goals>
+                <configuration>
+                  <nosuffix>true</nosuffix>
+                  <linebreakpos>${COMPRESS_JS_CHARACTERS_PER_LINE}</linebreakpos>
+                  <sourceDirectory>${stagingDirectory}/common</sourceDirectory>
+                  <outputDirectory>${stagingDirectory}/common</outputDirectory>
+                  <includes>
+                    <include>**/destinyAllViews*.css</include>
+                  </includes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>com.samaxes.maven</groupId>
+            <artifactId>minify-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compress quest css files, no concat</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>minify</goal>
+                </goals>
+                <configuration>
+                  <skipMerge>true</skipMerge>
+                  <nosuffix>false</nosuffix>
+                  <yuiLineBreak>${COMPRESS_JS_CHARACTERS_PER_LINE}</yuiLineBreak>
+                  <webappSourceDir>${basedir}</webappSourceDir>
+                  <cssSourceDir>/${stagingPath}/quest/css</cssSourceDir>
+                  <webappTargetDir>${basedir}</webappTargetDir>
+                  <cssSourceIncludes>
+                    <cssSourceInclude>**/*.css</cssSourceInclude>
+                  </cssSourceIncludes>
+                  <cssSourceExcludes>
+                    <cssSourceExclude>**/*.min.css</cssSourceExclude>
+                  </cssSourceExcludes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>com.coderplus.maven.plugins</groupId>
+            <artifactId>copy-rename-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>rename quest minified theme css files</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>rename</goal>
+                </goals>
+                <configuration>
+                  <fileSets>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/en/bluemaze/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/en/bluemaze/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/en/moltenmetal/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/en/moltenmetal/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/en/ocean/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/en/ocean/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/en/space/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/en/space/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/en/treasuremap/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/en/treasuremap/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/ar/bluemaze/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/ar/bluemaze/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/ar/moltenmetal/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/ar/moltenmetal/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/ar/ocean/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/ar/ocean/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/ar/space/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/ar/space/theme.css</destinationFile>
+                    </fileSet>
+                    <fileSet>
+                      <sourceFile>${stagingDirectory}/quest/css/ar/treasuremap/theme_raw.min.css</sourceFile>
+                      <destinationFile>${stagingDirectory}/quest/css/ar/treasuremap/theme.css</destinationFile>
+                    </fileSet>
+                  </fileSets>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>antrun-precompileEJS-concat-MD5</id>
+      <activation>
+        <property>
+          <name>buildmode</name>
+          <value>full</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>concat quest js files</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <concat destfile="./target/staging/quest/quest2.js" force="yes">
+                      <fileset dir="../destiny-webcontent/quest/">
+                        <include name="*.js" />
+                      </fileset>
+                    </concat>
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>Precompile Quest EJS templates</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target name="precompile-ejs">
+                    <echo message="Precompiling EJS templates..." />
+                    <path id="precompileCP">
+                      <pathelement location="${project.build.directory}/ejs/ejs-precompile.jar" />
+                      <pathelement location="${project.build.directory}/ejs/js.jar" />
+                    </path>
+                    <taskdef classname="com.follett.fsc.ejsprecompile.Precompiler" classpathref="precompileCP" name="ejs-precompile" />
+                    <ejs-precompile ejsLib="${project.build.directory}/ejs/target/js/ejs.js" outputDir="${project.build.directory}/staging/quest/templates">
+                      <fileset dir="${project.build.directory}/staging/quest/templates" includes="**/*.ejs" />
+                    </ejs-precompile>
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>concat quest css files</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <!-- en themes -->
+                    <echo message="**** Concating theme bluemaze ****" />
+                    <concat destfile="./target/staging/quest/css/en/bluemaze/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/base2">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/bluemaze">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating theme ocean ****" />
+                    <concat destfile="./target/staging/quest/css/en/ocean/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/base3">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/ocean">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating theme moltenmetal ****" />
+                    <concat destfile="./target/staging/quest/css/en/moltenmetal/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/base4">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/moltenmetal">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating theme space ****" />
+                    <concat destfile="./target/staging/quest/css/en/space/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/base4">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/space">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating theme treasuremap ****" />
+                    <concat destfile="./target/staging/quest/css/en/treasuremap/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/base4">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en/treasuremap">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/en">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <!-- ar themes -->
+                    <echo message="**** Concating Arabic theme bluemaze ****" />
+                    <concat destfile="./target/staging/quest/css/ar/bluemaze/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/base2">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/bluemaze">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating Arabic theme ocean ****" />
+                    <concat destfile="./target/staging/quest/css/ar/ocean/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/base3">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/ocean">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating Arabic theme moltenmetal ****" />
+                    <concat destfile="./target/staging/quest/css/ar/moltenmetal/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/base4">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/moltenmetal">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating Arabic theme space ****" />
+                    <concat destfile="./target/staging/quest/css/ar/space/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/base4">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/space">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                    <echo message="**** Concating Arabic theme treasuremap ****" />
+                    <concat destfile="./target/staging/quest/css/ar/treasuremap/theme_raw.css" fixlastline="yes" force="no">
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="reset.css" />
+                        <file name="template_interior_layout.css" />
+                        <file name="template_interior_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/base4">
+                        <file name="base_modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar/treasuremap">
+                        <file name="layout.css" />
+                        <file name="modules.css" />
+                      </filelist>
+                      <filelist dir="../destiny-webcontent/quest/css/ar">
+                        <file name="FIXES_floats_and_haslayout.css" />
+                      </filelist>
+                    </concat>
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>build MD5 checksum files for js, css, and ejs, also firebug html and png files</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <checksum forceOverwrite="yes">
+                      <fileset dir="./target/staging/" excludes="**/*.MD5" includes="**/*.css,**/*.js,**/*.ejs" />
+                      <fileset dir="./target/staging/common/firebug/" excludes="**/*.MD5" includes="**/*.png,**/*.html" />
+                    </checksum>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>jsp_eclipse_compile_set_jspdeploypath</id>
+      <activation>
+        <property>
+          <name>inEclipse</name>
+        </property>
+      </activation>
+      <properties>
+        <!--to set the jsp deploy path, web.xml path, and source path as follows pass the following in the mvn command:
+				-DinEclipse
+				-->
+        <inputWebXmlPath>${project.parent.basedir}/destiny-webcontent/WEB-INF/web.xml</inputWebXmlPath>
+        <!--when inEclipse we need to process the edited jsp's in the webcontent project-->
+        <sourceDirectoryPath>${project.parent.basedir}/destiny-webcontent</sourceDirectoryPath>
+        <skipCopyJspSourceFile>false</skipCopyJspSourceFile>
+        <jspSourceDeployPath>${destiny.server.deploy.path}/FSC-Destiny/jboss/server/destiny/deploy/destiny.ear/destiny.war</jspSourceDeployPath>
+        <!--don't need to copy the compiled java and class jsp's to deploy when inEclipse-->
+        <skipCopyJspJavaClassFile>true</skipCopyJspJavaClassFile>
+        <jspJavaClassDeployPath>${project.build.directory}/tmpjsp</jspJavaClassDeployPath>
+      </properties>
+    </profile>
+    <profile>
+      <id>jsp_release_compile_set_jspdeploypath</id>
+      <activation>
+        <property>
+          <name>!inEclipse</name>
+        </property>
+      </activation>
+      <properties>
+        <!--to set the jsp deploy path, web.xml path, and source path as follows DO NOT pass "-DinEclipse" in the mvn command:
+				-DinEclipse
+				-->
+        <inputWebXmlPath>${stagingDirectory}/WEB-INF/web.xml</inputWebXmlPath>
+        <sourceDirectoryPath>${stagingDirectory}</sourceDirectoryPath>
+        <!--don't need to copy the original jsp's to deploy when NOT inEclipse-->
+        <skipCopyJspSourceFile>true</skipCopyJspSourceFile>
+        <jspSourceDeployPath>${project.build.directory}/tmpjsp</jspSourceDeployPath>
+        <skipCopyJspJavaClassFile>false</skipCopyJspJavaClassFile>
+        <jspJavaClassDeployPath>${project.parent.basedir}/../destiny-deploy/FSC-Destiny/jboss/server/destiny/work/jboss.web/localhost/_/org/apache/jsp</jspJavaClassDeployPath>
+      </properties>
+    </profile>
+    <!--
+		This profile/plugin is used to compile jsp files for developers working in Eclipse and for the build/release process.
+		Examples:
+		
+		compile a single jsp and update "G:\deploy\...destiny.war\" for Eclipse development changes.
+			mvn process-classes -DinEclipse -DjspFileBaseName=somejspbasename -Pcompile-jsp
+		
+		compile all jsp files and update "G:\deploy...destiny.war\" for Eclipse development changes.
+			mvn process-classes -DinEclipse -Pcompile-jsp
+		
+		compile a single jsp and update "G:\projects\destiny\destiny-deploy" for release purposes
+			mvn process-classes -DjspFileBaseName=somejspbasename -Pcompile-jsp
+		
+		compile all jsp files and update "G:\projects\destiny\destiny-deploy" for release purposes
+			mvn process-classes -Pcompile-jsp		
+		-->
+    <profile>
+      <id>compile-jsp</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo.jspc</groupId>
+            <artifactId>jspc-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile jsp files</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+                <!--NOTE: in parent pom <version>1.6.2</version> will cause an error:
+								[ERROR] Failed to execute goal org.codehaus.mojo.jspc:jspc-maven-plugin:2.0-alpha-3:compile (compile jsp files) on project destiny-war: 
+								Execution compile jsp files of goal org.codehaus.mojo.jspc:jspc-maven-plugin:2.0-alpha-3:
+								compile failed: An API incompatibility was encountered while executing org.codehaus.mojo.jspc:jspc-maven-plugin:2.0-alpha-3:compile: 
+								java.lang.NoSuchMethodError: org.apache.tools.ant.helper.AntXMLContext.setCurrentTargets(Ljava/util/Map;)
+								-->
+                <version>1.6.5</version>
+              </dependency>
+              <dependency>
+                <groupId>com.follett.fsc.destiny</groupId>
+                <artifactId>destiny-client</artifactId>
+                <version>${project.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>com.follett.fss.destiny.tools.dub</groupId>
+                <artifactId>file.jbosshelper.jar</artifactId>
+                <version>1.15</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-core</artifactId>
+                <version>1.3.8-FSC-1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-el</artifactId>
+                <version>1.3.8-FSC-1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-extras</artifactId>
+                <version>1.3.8-FSC-1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-faces</artifactId>
+                <version>1.3.8-FSC-1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.struts</groupId>
+                <artifactId>struts-taglib</artifactId>
+                <version>1.3.8-FSC-1</version>
+              </dependency>
+              <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-impl</artifactId>
+                <version>1.2.1</version>
+              </dependency>
+              <!-- The versions for these dependencies should live in the parent
+							but they can't, removing versions here causes this plugin to error	-->
+              <dependency>
+                <groupId>org.codehaus.mojo.jspc</groupId>
+                <artifactId>jspc-compiler-tomcat6</artifactId>
+                <version>2.0-alpha-3</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <trimSpaces>false</trimSpaces>
+              <inputWebXml>${inputWebXmlPath}</inputWebXml>
+              <packageName>org.apache.jsp</packageName>
+              <!--source and target need to be 1.5 java version with jspc-compiler-tomcat6
+							otherwise warnings or errors will be thrown-->
+              <source>1.5</source>
+              <target>1.5</target>
+              <sources>
+                <directory>${sourceDirectoryPath}</directory>
+                <includes>
+                  <!--if you pass in -DjspFileBaseName=somejspbasename on the maven command line
+									only that file will be compiled, otherwise all jsp's are compiled.-->
+                  <include>**/${jspFileName}</include>
+                </includes>
+              </sources>
+              <showSuccess>false</showSuccess>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy jsp java and class file(s)</id>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <skip>${skipCopyJspJavaClassFile}</skip>
+                  <outputDirectory>${jspJavaClassDeployPath}</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${project.build.directory}/jsp-source/org/apache/jsp</directory>
+                      <includes>
+                        <include>**/${jspJavaName}</include>
+                        <include>**/${jspClassName}</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>copy jsp source file(s)</id>
+                <phase>process-classes</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <skip>${skipCopyJspSourceFile}</skip>
+                  <outputDirectory>${jspSourceDeployPath}</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${sourceDirectoryPath}</directory>
+                      <includes>
+                        <include>**/${jspFileName}</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

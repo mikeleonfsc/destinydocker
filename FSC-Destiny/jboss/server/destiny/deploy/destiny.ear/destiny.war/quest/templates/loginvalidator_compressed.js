@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){window.ajaxTracker.abortAllRequests();if(this.data.redirect){window.location=this.data.redirect}else{var a=Registry.lookup("LoginController.LoginDialog");a.handleError(this.data)}},registerEvents:function(){}});

@@ -1,0 +1,288 @@
+/* menubar.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_DIV_MENU_BAR)));
+                ___ViewO.push("\" class=\"\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_DIV_MENU_BAR_AUX)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_LIST_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <ul id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_LIST)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            ");
+                if (showFollettShelfLink && follettShelfURL) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_FOLLETT_SHELF)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_FOLLETT_SHELF)));
+                    ___ViewO.push("\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(follettShelfURL)));
+                    ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\" target=\"_blank\">\n");
+                    ___ViewO.push("                    <span><em>Follett Shelf</em></span></a>\n");
+                    ___ViewO.push("                </li>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_LOGIN)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_FIRST)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                ___ViewO.push("\">                                       \n");
+                ___ViewO.push("                ");
+                if (userLoggedIn) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    <a href=\"/common/servlet/logout.do?");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_PARAM_QUEST_MODE)));
+                    ___ViewO.push("=true\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LINK_LOGOUT)));
+                    ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\"><span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_logout"))));
+                    ___ViewO.push("</em></span></a>                                        \n");
+                    ___ViewO.push("                ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    <a href=\"#\" onclick=\"return false;\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LINK_LOGIN)));
+                    ___ViewO.push("\"><span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_login"))));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </li>\n");
+                ___ViewO.push("            ");
+                if (userCanCreateLogin && !userLoggedIn) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_CREATE_ACCOUNT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <a href=\"#\" onclick=\"return false;\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LINK_CREATE_ACCOUNT)));
+                    ___ViewO.push("\"><span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_createAccount"))));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                </li>                                        \n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            ");
+                if (showExitLink) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_EXIT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_EXIT_DESTINY_QUEST)));
+                    ___ViewO.push("\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(exitURL)));
+                    ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\">\n");
+                    ___ViewO.push("                    <span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_exit"))));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                </li>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("            ");
+                if (!window.isI18N) {
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("            \t");
+                    if (!changeThemesDisabled) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <li id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_THEME)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                        ___ViewO.push(" ");
+                        ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_IMAGE_ITEM)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        <a href=\"#\" hoverKey=\"themesHover\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_CHANGE_THEME)));
+                        ___ViewO.push("\"\n");
+                        ___ViewO.push("                            onclick=\"return false;\">\n");
+                        ___ViewO.push("                            <span><em>&nbsp;</em></span>\n");
+                        ___ViewO.push("                        </a>\n");
+                        ___ViewO.push("                        <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MenuBarController_DIV_CHANGE_THEME_OUTER)));
+                        ___ViewO.push("\"></div>\n");
+                        ___ViewO.push("                    </li>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_HELP)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_LAST)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_IMAGE_ITEM)));
+                    ___ViewO.push(" \">\n");
+                    ___ViewO.push("                    <a id=\"questHelp\" class=\"\" href=\"#\"><span><em>&nbsp;</em></span></a>\n");
+                    ___ViewO.push("                </li>\n");
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("            ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_ENGLISH)));
+                    ___ViewO.push("\" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_FIRST)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_LANGUAGE_ENGLISH)));
+                    ___ViewO.push("\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(httpRootURL + "&language=en")));
+                    ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\">\n");
+                    ___ViewO.push("                    <span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ENGLISH)));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                </li> \n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_ARABIC)));
+                    ___ViewO.push("\" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_LAST)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_LANGUAGE_ARABIC)));
+                    ___ViewO.push("\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(httpRootURL + "&language=ar")));
+                    ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\">\n");
+                    ___ViewO.push("                    <span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ARABIC)));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                </li>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </ul> \n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_DIV_MENU_BAR_PRIMARY)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_LIST_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <ul id=\"\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_LIST)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_HOME)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_FIRST)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                ___ViewO.push("\"><a id=\"\" class=\"\" href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(httpRootURL)));
+                ___ViewO.push("&viewMode=");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_VIEW_MODE_WIDGET)));
+                ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\"><span><em>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_questHome"))));
+                ___ViewO.push("</em></span></a></li>\n");
+                ___ViewO.push("            ");
+                if (userLoggedIn && showMyQuestLink) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_MYQUEST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LINK_MYQUEST)));
+                    ___ViewO.push("\" class=\"\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(httpRootURL)));
+                    ___ViewO.push("&viewMode=");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_VIEW_MODE_BOOK_CLUB)));
+                    ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\"><span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_myQuest"))));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                </li>\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("            ");
+                if (showMyInfoLink) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_MYINFO)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_VIEW_MY_INFO)));
+                    ___ViewO.push("\" onclick=\"return false;\" href=\"#\"><span><em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("menuBarController_myInfo"))));
+                    ___ViewO.push("</em></span></a>\n");
+                    ___ViewO.push("                </li>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_SEARCH_ADVANCED)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            \t<a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_ADVANCED_SEARCH_LINK)));
+                ___ViewO.push("\" onclick=\"return false;\" href=\"#\"><span><em>");
+                ___ViewO.push((EJS.Scanner.to_text(links.advancedSearch)));
+                ___ViewO.push("</em></span></a>\n");
+                ___ViewO.push("        \t</li>\n");
+                ___ViewO.push("            ");
+                if (showVisualSearchToggle) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_LI_MENU_SEARCH_VISUAL)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_CLASS_MENU_ITEM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            \t<a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_ANCHOR_TOGGLE_VISUAL_SEARCH)));
+                    ___ViewO.push("\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(httpRootURL)));
+                    ___ViewO.push("&viewMode=");
+                    ___ViewO.push((EJS.Scanner.to_text(MenuBarController_VIEW_MODE_VISUAL_SEARCH)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            \t\t<span>\n");
+                    ___ViewO.push("            \t\t\t<em>");
+                    ___ViewO.push((EJS.Scanner.to_text(links.visualSearch)));
+                    ___ViewO.push("</em>\n");
+                    ___ViewO.push("        \t\t\t</span>\n");
+                    ___ViewO.push("    \t\t\t</a>\n");
+                    ___ViewO.push("\t\t\t</li>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </ul>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

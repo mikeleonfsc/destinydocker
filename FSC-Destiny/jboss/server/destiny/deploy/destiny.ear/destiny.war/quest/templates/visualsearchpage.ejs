@@ -1,0 +1,82 @@
+/* visualsearchpage.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (!pageList || pageList.length == 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_PAGE)));
+                    ___ViewO.push("\" class=\"resultsWrapper\">\n");
+                    ___ViewO.push("        <span class=\"visualSearchMessage\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("visualSearchController_noResultsFoundForThisVisualSearch"))));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("    </div>\n");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_PAGE)));
+                    ___ViewO.push("\" class=\"resultsWrapper\">\n");
+                    ___ViewO.push("    \t");
+                    for (var i = 0; i < pageList.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            <div class=\"vsGroup\">\n");
+                        ___ViewO.push("                <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(VisualSearchController_DIV_VISUAL_SEARCH_NODE)));
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" class=\"vsGroupInner\" vsDescription=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                        ___ViewO.push("\" vsImagePath=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(pageList[i].imageName)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                    ");
+                        if (pageList[i].nodeType == VisualSearchController_TYPE_ELEMENT_URL) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        <a href=\"/cataloging/servlet/handlevisualsearchdisplayform.do?nodeid=");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].nodeID)));
+                            ___ViewO.push("&fromQuest=true\" target=\"vswindow\" class=\"\"><img class=\"vsThumbnail\" src=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].imageName)));
+                            ___ViewO.push("\" alt=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                            ___ViewO.push("\" title=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                            ___ViewO.push("\" width=\"80\" height=\"72\" /></a>\n");
+                            ___ViewO.push("                        <a href=\"/cataloging/servlet/handlevisualsearchdisplayform.do?nodeid=");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].nodeID)));
+                            ___ViewO.push("&fromQuest=true\" target=\"vswindow\" class=\"\">");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                            ___ViewO.push("</a>\n");
+                            ___ViewO.push("                    ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        <a href=\"#\" class=\"\" onclick=\"return false;\"><img class=\"vsThumbnail\" src=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].imageName)));
+                            ___ViewO.push("\" alt=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                            ___ViewO.push("\" title=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                            ___ViewO.push("\" width=\"80\" height=\"72\" /></a>\n");
+                            ___ViewO.push("                        <a href=\"#\" class=\"\" onclick=\"return false;\">");
+                            ___ViewO.push((EJS.Scanner.to_text(pageList[i].description)));
+                            ___ViewO.push("</a>\n");
+                            ___ViewO.push("                    ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                </div>\n");
+                        ___ViewO.push("            </div>\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    </div>\n");
+                }
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

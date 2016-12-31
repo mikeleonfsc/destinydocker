@@ -1,0 +1,74 @@
+/* titledetailsebook.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (!errorMessage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("<div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_EBOOK_CHECKOUT_MODULE_OUTER)));
+                    ___ViewO.push("\" class=\"genericModuleOuter\">\n");
+                    ___ViewO.push("\t<div class=\"genericModuleTR\">\n");
+                    ___ViewO.push("\t\t<h4 class=\"genericModuleTL\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_eBookCheckout"))));
+                    ___ViewO.push("</h4>\n");
+                    ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                    ___ViewO.push("        \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:TitleDetailsController_BUTTON_EBOOK_CHECKOUT_CLOSE, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("titleDetailsController_close")}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        </a>\n");
+                    ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                    ___ViewO.push("        \t<div class=\"genericModuleBR\">\n");
+                    ___ViewO.push("                <div id=\"ebookCheckoutContents\">\n");
+                    ___ViewO.push("                    <p><span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_EBOOK_CHECKOUT_METHOD)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(ebookCheckoutMethod)));
+                    ___ViewO.push("</span></p>\n");
+                    ___ViewO.push("                    <p><span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_EBOOK_DOWNLOAD_TO_COMPUTER)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(ebookDownloadToComputer)));
+                    ___ViewO.push("</span></p>\n");
+                    ___ViewO.push("                    <p id=\"ebookCheckoutDownload\">\n");
+                    ___ViewO.push("                        <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_EBOOK_ACTION_PROMPT)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(ebookActionPrompt)));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("                        <span id=\"ebookCheckoutControls\">\n");
+                    ___ViewO.push("                            <nobr>\n");
+                    ___ViewO.push("                            <input type=\"button\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_CHECKOUT_EBOOK_LATER)));
+                    ___ViewO.push("\"\n");
+                    ___ViewO.push("                               value=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(downloadLaterValue)));
+                    ___ViewO.push("\"\n");
+                    ___ViewO.push("                               class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_CHECKOUT_EBOOK_LATER)));
+                    ___ViewO.push("\"/>\n");
+                    ___ViewO.push("                            <span id=\"checkoutNow\"></span>\n");
+                    ___ViewO.push("                            </nobr>\n");
+                    ___ViewO.push("                        </span>\n");
+                    ___ViewO.push("                    </p>\n");
+                    ___ViewO.push("                    <p><span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_EBOOK_DUE_DATE_MESSAGE)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(ebookDueDateMessage)));
+                    ___ViewO.push("</span></p>   \n");
+                    ___ViewO.push("            \t</div>\n");
+                    ___ViewO.push("        \t</div>\n");
+                    ___ViewO.push("    \t</div>\n");
+                    ___ViewO.push("    </div>\n");
+                    ___ViewO.push("</div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

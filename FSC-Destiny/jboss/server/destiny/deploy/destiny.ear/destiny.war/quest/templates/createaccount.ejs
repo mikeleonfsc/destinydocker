@@ -1,0 +1,58 @@
+/* createaccount.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_DIV_CREATE_ACCOUNT_BOX_ERRORS)));
+                ___ViewO.push("\" style=\"display: none;\"></div>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_DIV_CREATE_ACCOUNT_BOX_CONTENTS)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"loginModuleButton_Control\">\n");
+                ___ViewO.push("    <div class=\"loginModuleButton_Inner\">\n");
+                ___ViewO.push("        <input name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_BUTTON_NEXT)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_BUTTON_NEXT)));
+                ___ViewO.push("\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createaccount_Next"))));
+                ___ViewO.push("\" type=\"button\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_LOGIN_BUTTONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <input name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_BUTTON_SAVE)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_BUTTON_SAVE)));
+                ___ViewO.push("\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createaccount_Save"))));
+                ___ViewO.push("\" type=\"button\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_LOGIN_BUTTONS)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("        <input name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_BUTTON_CANCEL)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_BUTTON_CANCEL)));
+                ___ViewO.push("\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createaccount_Cancel"))));
+                ___ViewO.push("\" type=\"button\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_LOGIN_BUTTONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div id=\"loginBoxRequired_createAccount\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_LOGIN_BOX_GROUP)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_requiredInformation"))));
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

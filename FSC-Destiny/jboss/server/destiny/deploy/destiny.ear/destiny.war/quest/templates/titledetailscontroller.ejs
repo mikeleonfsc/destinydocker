@@ -1,0 +1,1559 @@
+/* titledetailscontroller.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (keywordSearchRecord) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"titleDetails\">\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_HEADER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <h4>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_titleDetails"))));
+                    ___ViewO.push("</h4>\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_CLOSE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <a href=\"#\" onclick=\"return false;\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    ");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:TitleDetailsController_DIV_TITLE_DETAIL_CLOSE_IMAGE, styleClass:TitleDetailsController_CLASS_TITLE_DETAIL_CLOSE, altText:MessageHelper.format("titleDetailsController_closeTitleDetails")}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </a>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TOP)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_CONTROLS)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(availabilityClass)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_ACTIONS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_AVAILABILITY)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                        ");
+                    if (availabilityClass) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <span id=\"tdvAvailability\">\n");
+                        ___ViewO.push("                                ");
+                        ___ViewO.push((EJS.Scanner.to_text(availabilityText)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </span>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if (!titleDetailValue.shelfBib && !titleDetailValue.resoldShelfBib && keywordSearchRecord.bibType != 4 && !(keywordSearchRecord.bibType == 16 && titleDetailValue.availability == 0)) {
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("                            <span id=\"localCopies\">");
+                        ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.localAvailability)));
+                        ___ViewO.push("</span>\n");
+                        ___ViewO.push("                            <span id=\"offsiteCopies\">");
+                        ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.offsiteAvailability)));
+                        ___ViewO.push("</span>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    </div>\n");
+                    ___ViewO.push("                    <div id=\"titleDetailsActionButtons\">\n");
+                    ___ViewO.push("                        ");
+                    if (titleDetailValue.canPlaceHold) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"titleDetailsHoldInfo\">\n");
+                        ___ViewO.push("                                <span id=\"holdInfo\"></span>\n");
+                        ___ViewO.push("                                <span id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_HOLD_IT_BUTTON)));
+                        ___ViewO.push("\"><input type=\"button\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_HOLD_IT)));
+                        ___ViewO.push("\" value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_holdIt"))));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_HOLD_IT)));
+                        ___ViewO.push("\"/></span>\n");
+                        ___ViewO.push("                            </div>   \n");
+                        ___ViewO.push("                        ");
+                    } else {
+                        if (titleDetailValue.holdHeader || titleDetailValue.holdDetail) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <div id=\"titleDetailsHoldInfo\">\n");
+                            ___ViewO.push("                                <span id=\"holdInfo\">\n");
+                            ___ViewO.push("                                    ");
+                            ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.holdHeader)));
+                            ___ViewO.push("<br/>\n");
+                            ___ViewO.push("                                    ");
+                            ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.holdDetail)));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                </span>\n");
+                            ___ViewO.push("                            </div>   \n");
+                            ___ViewO.push("                        ");
+                        }
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if ((titleDetailValue.shelfBib || titleDetailValue.resoldShelfBib) && follettEBookTitleDetailsURL) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_READ_IT)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                           \n");
+                        ___ViewO.push("                            ");
+                        if (titleDetailValue.materialType == 16) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <input type=\"button\" id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_READ_IT)));
+                            ___ViewO.push("\" value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_playIt"))));
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_READ_IT)));
+                            ___ViewO.push("\"/>\n");
+                            ___ViewO.push("                            ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <input type=\"button\" id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_READ_IT)));
+                            ___ViewO.push("\" value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readIt"))));
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_READ_IT)));
+                            ___ViewO.push("\"/>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if (showReadItNonFollettEbook) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_READ_IT_NON_FOLLETT)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <input type=\"button\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_READ_IT_NON_FOLLETT)));
+                        ___ViewO.push("\" value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readIt"))));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_READ_IT_NON_FOLLETT)));
+                        ___ViewO.push("\"/>\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if (titleDetailValue.follettEBook) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_PREVIEW_EBOOK_BUTTON)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                ");
+                        if (canPreviewEbooks && titleDetailValue.ebookReadOnlineState == TitleDetailsController_EBOOK_READ_ONLINE_STATE_AVAILABLE) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                    <input type=\"button\" id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_PREVIEW_EBOOK)));
+                            ___ViewO.push("\" value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readOnline"))));
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_PREVIEW_EBOOK)));
+                            ___ViewO.push("\"/>\n");
+                            ___ViewO.push("                                ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                            ");
+                        if (titleDetailValue.ebookCheckoutState != TitleDetailsController_EBOOK_CHECKOUT_STATE_UNAVAILABLE) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_EBOOK_CHECKOUT)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                    ");
+                            if (titleDetailValue.ebookCheckoutState == TitleDetailsController_EBOOK_CHECKOUT_STATE_BLOCKS_EXIST) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                        <p id=\"titleDetailEbookError\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_checkOutBlocked"))));
+                                ___ViewO.push("</p>\n");
+                                ___ViewO.push("                                    ");
+                            } else {
+                                if (titleDetailValue.ebookCheckoutState == TitleDetailsController_EBOOK_CHECKOUT_STATE_AVAILABLE) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        <span id=\"checkoutEbookButton\">\n");
+                                    ___ViewO.push("                                            <input type=\"button\" id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_CHECKOUT_EBOOK)));
+                                    ___ViewO.push("\" \n");
+                                    ___ViewO.push("                                             value=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_checkOut"))));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_CHECKOUT_EBOOK)));
+                                    ___ViewO.push("\"/>\n");
+                                    ___ViewO.push("                                        </span>\n");
+                                    ___ViewO.push("                                    ");
+                                }
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                </div>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("  \n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if (canAddToMyQuestShelf) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ShelfSelectTemplate", {selectedShelf:shelfNumber, bibID:bibID}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if (canAccessBooklist) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        var inBooklistDisplay = "";
+                        var addToBooklistDisplay = "";
+                        if (keywordSearchRecord.inUsersBookList) {
+                            addToBooklistDisplay = "display: none";
+                        } else {
+                            inBooklistDisplay = "display: none";
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(BooklistSelectController_SELECT_LIST_CONTAINER)));
+                        ___ViewO.push("\"></div>\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_IN_BOOKLIST)));
+                        ___ViewO.push("\" style=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(inBooklistDisplay)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <span>");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_inThisList"))));
+                        ___ViewO.push("</span> \n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_ADD_TO_BOOKLIST)));
+                        ___ViewO.push("\" style=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(addToBooklistDisplay)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <input type=\"button\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_TO_LIST)));
+                        ___ViewO.push("\" value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_addToThisList"))));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADD_TO_LIST)));
+                        ___ViewO.push("\"/>\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        \n");
+                    ___ViewO.push("                        ");
+                    if (canAddToWishList) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_ADD_WISHLIST)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <input type=\"button\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_TO_WISHLIST_BUTTON)));
+                        ___ViewO.push("\" value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_makeAWish"))));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_ADD_WISH)));
+                        ___ViewO.push("\"/>\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        \n");
+                    ___ViewO.push("                        ");
+                    if (canSeeRecommendationButton) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_ADD_RECOMMENDATION)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <input type=\"button\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_RECOMMENDATION)));
+                        ___ViewO.push("\" value=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_recommend"))));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_ADD_RECOMMENDATION)));
+                        ___ViewO.push("\"/>\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    </div>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_COVER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_COVER_IMAGE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                        ");
+                    var defaultImageClass = (keywordSearchRecord.digitalMediaProviderName) ? CoverImageTemplate_DEFAULT_DCPI_IMAGE_CLASS : CoverImageTemplate_DEFAULT_TITLE_IMAGE_CLASS;
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("InnerCoverImageTemplate", {url:titlePeekImageURL, styleClass:"titleDetailCoverImageFile", defaultImageClass:defaultImageClass, id:""}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (availabilityClass) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <div id=\"imageAvailabilityDiv\">\n");
+                        ___ViewO.push("                            <div class=\"titleDetailCoverStatus ");
+                        ___ViewO.push((EJS.Scanner.to_text(availabilityClass)));
+                        ___ViewO.push("\" id=\"\">\n");
+                        ___ViewO.push("                                ");
+                        ___ViewO.push((EJS.Scanner.to_text(availabilityString)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </div>\n");
+                        ___ViewO.push("                        </div>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    <div class=\"titleDetailCoverMediaBadge\">\n");
+                    ___ViewO.push("                        <img alt=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(keywordSearchRecord.bibTypeDescription)));
+                    ___ViewO.push("\" title=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(keywordSearchRecord.bibTypeDescription)));
+                    ___ViewO.push("\" height=\"16\" border=\"0\" width=\"20\" src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(keywordSearchRecord.miniBibTypeIconURL)));
+                    ___ViewO.push("\" />\n");
+                    ___ViewO.push("                    </div>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                ");
+                    if (titleDetailValue.callNumber) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_COVER_CAPTION)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_CALL_NUMBER)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        <p class=\"titleDetailCallNumber\">\n");
+                        ___ViewO.push("                            ");
+                        var callNumber;
+                        if (shelfBrowseEnabled) {
+                            callNumber = "<a href=\"#\" onclick=\"return false;\">" + titleDetailValue.callNumber + "</a>";
+                        } else {
+                            callNumber = titleDetailValue.callNumber;
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_callNumber", callNumber))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                        <p class=\"titleDetailsShelfBrowse\">\n");
+                        ___ViewO.push("                            ");
+                        if (shelfBrowseEnabled) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <a href=\"#\" onclick=\"return false;\">\n");
+                            ___ViewO.push("                                <img\n");
+                            ___ViewO.push("                                   id=\"shelfBrowseImage\"\n");
+                            ___ViewO.push("                                   src=\"/images/icons/general/spacer.gif\" \n");
+                            ___ViewO.push("                                   title=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_browseWhatsOnTheShelf"))));
+                            ___ViewO.push("\" \n");
+                            ___ViewO.push("                                   alt=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_browseWhatsOnTheShelf"))));
+                            ___ViewO.push("\"/>\n");
+                            ___ViewO.push("                                   ");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_shelfBrowse"))));
+                            ___ViewO.push("                             \n");
+                            ___ViewO.push("                             ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <img src=\"/images/icons/general/spacer.gif\" width=\"1\" height=\"1\">\n");
+                            ___ViewO.push("                                ");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_disabled"))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                             ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                             ");
+                        if (shelfBrowseEnabled) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                 </a>\n");
+                            ___ViewO.push("                             ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                         </p>  \n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_COVER_CAPTION_CALL_NUMBER_HIDDEN)));
+                        ___ViewO.push("\" style=\"display: none;\">\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.callNumber)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_COVER_CAPTION_COPY_ID)));
+                        ___ViewO.push("\" style=\"display: none;\">\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.callNumberCopyID)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_COVER_CAPTION_MATERIAL_TYPE)));
+                        ___ViewO.push("\" style=\"display: none;\">\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.materialType)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (titleDetailValue.subLocation) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_SUB_LOCATION)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_SUB_LOCATION)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        <p class=\"titleDetailSubLocation\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_location", titleDetailValue.subLocation))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (addThisURL) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_SOCIAL_MEDIA)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        <p>\n");
+                        ___ViewO.push("                            <a id =\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_FACEBOOK)));
+                        ___ViewO.push("\" href=\"http://api.addthis.com/oexchange/0.8/forward/facebook/offer?pco=tbxnj-1.0&amp;url=");
+                        ___ViewO.push((EJS.Scanner.to_text(addThisURL)));
+                        ___ViewO.push("&amp;pubid=ra-4f2ffb8101228953\" target=\"_blank\" ><img src=\"http://cache.addthis.com/icons/v1/thumbs/facebook.gif\" border=\"0\" alt=\"Facebook\" id = \"Facebook\"/></a>\n");
+                        ___ViewO.push("                            <a id =\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_TWITTER)));
+                        ___ViewO.push("\" href=\"http://api.addthis.com/oexchange/0.8/forward/twitter/offer?pco=tbxnj-1.0&amp;url=");
+                        ___ViewO.push((EJS.Scanner.to_text(addThisURL)));
+                        ___ViewO.push("&amp;pubid=ra-4f2ffb8101228953&amp;title=");
+                        ___ViewO.push((EJS.Scanner.to_text(twitterTitle)));
+                        ___ViewO.push("\" target=\"_blank\" ><img src=\"http://cache.addthis.com/icons/v1/thumbs/twitter.gif\" id = \"Twitter\" border=\"0\" alt=\"Twitter\" /></a>\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <div id=\"titlePeekDiv\">\n");
+                    ___ViewO.push("                    ");
+                    if (ISBNForTitlePeekImage) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"titleDetailsTitlePeek\">\n");
+                        ___ViewO.push("                            <a target=\"_blank\" href=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(ISBNForTitlePeekImage)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <img id=\"titlePeekImage\" src=\"/images/icons/general/spacer.gif\" title=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_clickForMoreInformationOnThisTitle"))));
+                        ___ViewO.push("\" alt=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_clickForMoreInformationOnThisTitle"))));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_titlePeek"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </a>\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </div>                \n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_DETAILS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TITLE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                        ");
+                    if (keywordSearchRecord.digitalMediaIconPathSmall) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <img id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_IMG_DIGITAL_MEDIA_PROVIDER_ICON)));
+                        ___ViewO.push("\" src=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(digitalResourcePath)));
+                        ___ViewO.push((EJS.Scanner.to_text(keywordSearchRecord.digitalMediaIconPathSmall)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    <h5 id=\"titleDetailTitleText\">");
+                    ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.mainTitle)));
+                    ___ViewO.push("</h5>\n");
+                    ___ViewO.push("                    <h6 id=\"titleDetailAuthor\">");
+                    ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.responsibility)));
+                    ___ViewO.push("</h6>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                ");
+                    if (!titleDetailValue.shelfBib && !titleDetailValue.temporary && titleDetailValue.reviewInfo.totalReviews > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:titleDetailValue.reviewInfo.averageTotalRoundedToNearestHalf, starType:ReviewStarsTemplate_STAR_TYPE_LARGE_QUEST, hideOnZero:true}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        (<a href=\"#\" onclick=\"return false;\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_REVIEWS)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                        ___ViewO.push(" ");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_TAB_LINK)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_reviewsAndCount", titleDetailValue.reviewInfo.totalReviews))));
+                        ___ViewO.push("</a>)\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (titleDetailValue.displayableSummary) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_SUMMARY)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.displayableSummary)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (titleDetailValue.quizInfo.acceleratedReader.length > 0 || titleDetailValue.quizInfo.readingCounts.length > 0) {
+                        ___ViewO.push("                         \n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_QUIZINFO)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        ");
+                        var outputQuizInfo = false;
+                        if (titleDetailValue.quizInfo.acceleratedReader.length > 0 || titleDetailValue.quizInfo.readingCounts.length > 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_quizInfo"))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \n");
+                        ___ViewO.push("                        ");
+                        if (titleDetailValue.quizInfo.acceleratedReader.length > 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                            for (i = 0; i < titleDetailValue.quizInfo.acceleratedReader.length; i++) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <div class=\"titleDetailQuizInfoItem\" id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_QUIZ_LINK_INNER)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                    <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_TAB_LINK)));
+                                ___ViewO.push("\" id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_QUIZ_AR)));
+                                ___ViewO.push((EJS.Scanner.to_text(i)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_acceleratedReaderHeading"))));
+                                ___ViewO.push("</a>\n");
+                                ___ViewO.push("                                    ");
+                                ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.quizInfo.acceleratedReader[i].readingLevelDisplayable)));
+                                ___ViewO.push(" (");
+                                ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.quizInfo.acceleratedReader[i].pointValueDisplayable)));
+                                ___ViewO.push(" pts.)\n");
+                                ___ViewO.push("                                </div>\n");
+                                ___ViewO.push("                            ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                        if (titleDetailValue.quizInfo.readingCounts.length > 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                            for (i = 0; i < titleDetailValue.quizInfo.readingCounts.length; i++) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <div class=\"titleDetailQuizInfoItem\" id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_QUIZ_LINK_INNER)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                    <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_TAB_LINK)));
+                                ___ViewO.push("\" id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_LINK_TITLE_DETAIL_QUIZ_RC)));
+                                ___ViewO.push((EJS.Scanner.to_text(i)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readingCountsHeading"))));
+                                ___ViewO.push("</a>\n");
+                                ___ViewO.push("                                    ");
+                                ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.quizInfo.readingCounts[i].readingLevelDisplayable)));
+                                ___ViewO.push(" (");
+                                ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.quizInfo.readingCounts[i].pointValueDisplayable)));
+                                ___ViewO.push(" pts.)\n");
+                                ___ViewO.push("                                </div>\n");
+                                ___ViewO.push("                            ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                 ");
+                    }
+                    ___ViewO.push("   \n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_BOTTOM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TABS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <div id=\"titleDetailTabsNav\">\n");
+                    ___ViewO.push("                    <ul class=\"tabList\">\n");
+                    ___ViewO.push("                        <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_ADDITIONALINFO)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                            <a href=\"#\" onclick=\"return false;\"><span>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_additionalInfo"))));
+                    ___ViewO.push("</span></a>\n");
+                    ___ViewO.push("                        </li>\n");
+                    ___ViewO.push("                        ");
+                    if (titleDetailValue.quizInfo.acceleratedReader.length > 0 || titleDetailValue.quizInfo.readingCounts.length > 0) {
+                        ___ViewO.push("                         \n");
+                        ___ViewO.push("                            <li id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_QUIZINFO)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <a href=\"#\" onclick=\"return false;\"><span>");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_quizInfoTab"))));
+                        ___ViewO.push("</span></a>\n");
+                        ___ViewO.push("                            </li>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_AWARDS)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                            <a href=\"#\" onclick=\"return false;\"><span>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_awards"))));
+                    ___ViewO.push("</span></a>\n");
+                    ___ViewO.push("                        </li>\n");
+                    ___ViewO.push("                        ");
+                    if (!titleDetailValue.shelfBib && !titleDetailValue.temporary) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <li id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_REVIEWS)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                                <a href=\"#\" onclick=\"return false;\"><span>");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_reviews"))));
+                        ___ViewO.push("</span></a>\n");
+                        ___ViewO.push("                            </li>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    </ul>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_ADDITIONALINFO)));
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_CONTENT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB_CONTENT)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    ");
+                    var addOutput = false;
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.titlesBy) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_titlesBy", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.titlesBy + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.publicationList.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                        var tlist = titleDetailValue.additionalInfo.publicationList;
+                        var label = null;
+                        for (var i = 0; i < tlist.length; i++) {
+                            if (label === tlist[i][0]) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    <span class=\"titleDetailAdditionalInfoLabel\">&nbsp;</span> \n");
+                                ___ViewO.push("                                ");
+                            } else {
+                                label = tlist[i][0];
+                                if (i > 0) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        </p>\n");
+                                    ___ViewO.push("                                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    <p class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                        <span class=\"titleDetailAdditionalInfoLabel\">");
+                                ___ViewO.push((EJS.Scanner.to_text(tlist[i][0])));
+                                ___ViewO.push(":</span>\n");
+                                ___ViewO.push("                                ");
+                            }
+                            ___ViewO.push(" \n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoValue\">");
+                            ___ViewO.push((EJS.Scanner.to_text(tlist[i][1])));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("                        ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.terms33XTagList.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                        var tlist = titleDetailValue.additionalInfo.terms33XTagList;
+                        var header = null;
+                        for (var i = 0; i < tlist.length; i++) {
+                            if (header === tlist[i][0]) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    <span class=\"titleDetailAdditionalInfoLabel\">&nbsp;</span> \n");
+                                ___ViewO.push("                                ");
+                            } else {
+                                header = tlist[i][0];
+                                if (i > 0) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        </p>\n");
+                                    ___ViewO.push("                                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    <p class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                        <span class=\"titleDetailAdditionalInfoLabel\">");
+                                ___ViewO.push((EJS.Scanner.to_text(tlist[i][0])));
+                                ___ViewO.push(":</span>\n");
+                                ___ViewO.push("                                ");
+                            }
+                            ___ViewO.push(" \n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoValue\">");
+                            ___ViewO.push((EJS.Scanner.to_text(tlist[i][1])));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("                        ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.edition) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_edition", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.edition + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.format) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_format", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.format + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.displayableLCCNList.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_lccn", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.displayableLCCNList.join(", ") + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.displayableISBNList.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_isbn", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.displayableISBNList.join(", ") + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.displayableISSNList.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_issn", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.displayableISSNList.join(", ") + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.targetAudienceTag.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_targetAudience", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.targetAudienceTag.join("<br/>") + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </p>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    \n");
+                    ___ViewO.push("                    ");
+                    if (Object.isArray(titleDetailValue.additionalInfo.series) && titleDetailValue.additionalInfo.series.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_series", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + titleDetailValue.additionalInfo.series.join("<br/>") + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.electronicResources.length > 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        var resources = "";
+                        titleDetailValue.additionalInfo.electronicResources.each(function (resource) {
+                            resources += "<a target=\"_blank\" href=\"" + resource.url + "\">" + resource.urlDescription + "</a><br/>";
+                        });
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_electronicResources", "<span class=\"titleDetailAdditionalInfoLabel\">", "</span>", "<span class=\"titleDetailAdditionalInfoValue\">" + resources + "</span>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            </p>\n");
+                        ___ViewO.push("                        ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.lexile.length > 0) {
+                        ___ViewO.push("                        \n");
+                        ___ViewO.push("                            ");
+                        for (i = 0; i < titleDetailValue.additionalInfo.lexile.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <p class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoLabel\">Lexile:&nbsp;</span>\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoValue\">");
+                            ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.additionalInfo.lexile[i])));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                            </p>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.lexileService.length > 0) {
+                        ___ViewO.push("                        \n");
+                        ___ViewO.push("                            ");
+                        for (i = 0; i < titleDetailValue.additionalInfo.lexileService.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <p class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoLabel\">Lexile Service:&nbsp;</span>\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoValue\">");
+                            ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.additionalInfo.lexileService[i])));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                            </p>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.fountasAndPinnell.length > 0) {
+                        ___ViewO.push("                        \n");
+                        ___ViewO.push("                            ");
+                        for (i = 0; i < titleDetailValue.additionalInfo.fountasAndPinnell.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <p class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoLabel\">Fountas and Pinnell:&nbsp;</span>\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoValue\">");
+                            ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.additionalInfo.fountasAndPinnell[i])));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                            </p>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("     \n");
+                    ___ViewO.push("                    ");
+                    if (titleDetailValue.additionalInfo.fountasAndPinnellService.length > 0) {
+                        ___ViewO.push("                        \n");
+                        ___ViewO.push("                            ");
+                        for (i = 0; i < titleDetailValue.additionalInfo.fountasAndPinnellService.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <p class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_ADDL_INFO_ROW)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoLabel\">Fountas and Pinnell Service:&nbsp;</span>\n");
+                            ___ViewO.push("                                <span class=\"titleDetailAdditionalInfoValue\">");
+                            ___ViewO.push((EJS.Scanner.to_text(titleDetailValue.additionalInfo.fountasAndPinnellService[i])));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                            </p>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        addOutput = true;
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("     \n");
+                    ___ViewO.push("                    ");
+                    if (addOutput == false) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <div><h6 class=\"titleDetailAdditionalInfoEntries\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_noAdditionalInformationForThisTitle"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </h6></div>\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    \n");
+                    ___ViewO.push("                    \n");
+                    ___ViewO.push("                    \n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                ");
+                    if (titleDetailValue.quizInfo.acceleratedReader.length > 0 || titleDetailValue.quizInfo.readingCounts.length > 0) {
+                        ___ViewO.push("                \n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_QUIZINFO)));
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_CONTENT)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB_CONTENT)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        ");
+                        if (titleDetailValue.quizInfo.acceleratedReader.length == 0 && titleDetailValue.quizInfo.readingCounts.length == 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <div class=\"titleDetailQuizInfoEntry\">\n");
+                            ___ViewO.push("                                <h6>");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_noQuizInformationForThisTitle"))));
+                            ___ViewO.push("</h6>\n");
+                            ___ViewO.push("                            </div>\n");
+                            ___ViewO.push("                        ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                            var emptyIfNullOrUndef = function (o) {
+                                return (o == null) ? "&nbsp;" : o;
+                            };
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                            if (titleDetailValue.quizInfo.acceleratedReader.length > 0) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <div class=\"titleDetailQuizInfoEntry\">\n");
+                                ___ViewO.push("                                    <h6>");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_acceleratedReader"))));
+                                ___ViewO.push("</h6>\n");
+                                ___ViewO.push("                                    ");
+                                for (i = 0; i < titleDetailValue.quizInfo.acceleratedReader.length; i++) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        ");
+                                    var arQuiz = titleDetailValue.quizInfo.acceleratedReader[i];
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        <p>\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_quizNumber", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(arQuiz.quizNumber) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readingLevel", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(arQuiz.readingLevelDisplayable) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_points", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(arQuiz.pointValueDisplayable) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_interestLevel", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(arQuiz.interestLevel) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        </p>\n");
+                                    ___ViewO.push("                                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                </div>\n");
+                                ___ViewO.push("                            ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("            \n");
+                            ___ViewO.push("                            ");
+                            if (titleDetailValue.quizInfo.readingCounts.length > 0) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <div class=\"titleDetailQuizInfoEntry\">\n");
+                                ___ViewO.push("                                    <h6>");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readingCounts"))));
+                                ___ViewO.push("</h6>\n");
+                                ___ViewO.push("                                    ");
+                                for (i = 0; i < titleDetailValue.quizInfo.readingCounts.length; i++) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        ");
+                                    var rcQuiz = titleDetailValue.quizInfo.readingCounts[i];
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        <p> \n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_quizNumber", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(rcQuiz.quizNumber) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_readingLevel", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(rcQuiz.readingLevelDisplayable) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_points", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(rcQuiz.pointValueDisplayable) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_interestLevel", "<span class=\"titleDetailQuizInfoLabel\">", "</span>", "<span class=\"titleDetailQuizInfoValue\">" + emptyIfNullOrUndef(rcQuiz.interestLevel) + "&nbsp;&nbsp;&nbsp;</span><wbr>"))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                        </p> \n");
+                                    ___ViewO.push("                                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                </div>\n");
+                                ___ViewO.push("                            ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("                \n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_AWARDS)));
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_CONTENT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB_CONTENT)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <div class=\"titleDetailAwardEntries\">\n");
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("                        ");
+                    if (titleDetailValue.awardInfo.length == 0) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <h6>");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_noAwardsForThisTitle"))));
+                        ___ViewO.push("</h6>\n");
+                        ___ViewO.push("                        ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <h6>");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_awardsFoundForThisTitle"))));
+                        ___ViewO.push("</h6>\n");
+                        ___ViewO.push("                            ");
+                        for (i = 0; i < titleDetailValue.awardInfo.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                ");
+                            var award = titleDetailValue.awardInfo[i];
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <p>\n");
+                            ___ViewO.push("                                    <span class=\"titleDetailAwardSubject\">");
+                            ___ViewO.push((EJS.Scanner.to_text(award.groupName)));
+                            ___ViewO.push("</span>&#8212;<span class=\"titleDetailAwardTitle\">");
+                            ___ViewO.push((EJS.Scanner.to_text(award.awardName)));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                                </p>\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    </div>                \n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                ");
+                    if (!titleDetailValue.shelfBib && !titleDetailValue.temporary) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_REVIEWS)));
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_TAB_CONTENT)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TAB_CONTENT)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                        ");
+                        if (titleDetailValue.reviewInfo.totalReviews == 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEW_TOTALS)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                <p>\n");
+                            ___ViewO.push("                                <span id=\"titleDetailsReviewTotalsLabel\">\n");
+                            ___ViewO.push("                                    ");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_noReviewsForThisTitle"))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                </span>\n");
+                            ___ViewO.push("                                </p>\n");
+                            ___ViewO.push("                                <div id=\"titleDetailsAddReview\">\n");
+                            ___ViewO.push("                                    ");
+                            if (bibAssociated && canSubmitReviews) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                        ");
+                                if (!titleDetailValue.reviewForPatron) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            <input id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_REVIEW)));
+                                    ___ViewO.push("\" name=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_REVIEW)));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_ADD_REVIEW)));
+                                    ___ViewO.push("\" type=\"button\" value=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_addReview"))));
+                                    ___ViewO.push("\"/>\n");
+                                    ___ViewO.push("                                        ");
+                                } else {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            <span id=\"titleDetailsAddReviewDate\">\n");
+                                    ___ViewO.push("                                                ");
+                                    var message = "";
+                                    if (userLoggedIn) {
+                                        var reviewedMessageKey = "titleDetailsController_reviewed0";
+                                        var reviewedDate = "";
+                                        var reviewedOptStyle = "";
+                                        reviewedDate = titleDetailValue.reviewForPatron.created;
+                                        if (!titleDetailValue.reviewForPatron.approved) {
+                                            reviewedMessageKey = "titleDetailsController_reviewedPendingApproval";
+                                            reviewedOptStyle = "<br/>";
+                                        }
+                                        message = MessageHelper.format(reviewedMessageKey, reviewedDate, reviewedOptStyle);
+                                    } else {
+                                        message = MessageHelper.format("titleDetailsController_reviewed");
+                                    }
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                ");
+                                    ___ViewO.push((EJS.Scanner.to_text(message)));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            </span>\n");
+                                    ___ViewO.push("                                        ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                </div>\n");
+                            ___ViewO.push("                            </div>\n");
+                            ___ViewO.push("                        ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEW_TOTALS)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                              <p>\n");
+                            ___ViewO.push("                                ");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_totalNumberOfReviews", "<span id=\"titleDetailsReviewTotalsLabel\">", "</span>", "<span class=\"titleDetailsReviewTotal\">" + titleDetailValue.reviewInfo.totalReviews + "</span>"))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                </span>\n");
+                            ___ViewO.push("                                \n");
+                            ___ViewO.push("                              </p>\n");
+                            ___ViewO.push("                    \n");
+                            ___ViewO.push("                                <div id=\"titleDetailsAddReview\">\n");
+                            ___ViewO.push("                                    ");
+                            if (bibAssociated && canSubmitReviews) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                        ");
+                                if (!titleDetailValue.reviewForPatron) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            <input id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_REVIEW)));
+                                    ___ViewO.push("\" name=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_REVIEW)));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_ADD_REVIEW)));
+                                    ___ViewO.push("\" type=\"button\" value=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_addReview"))));
+                                    ___ViewO.push("\"/>\n");
+                                    ___ViewO.push("                                        ");
+                                } else {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            <span id=\"titleDetailsAddReviewDate\">\n");
+                                    ___ViewO.push("                                                ");
+                                    var message = "";
+                                    if (userLoggedIn) {
+                                        var reviewedMessageKey = "titleDetailsController_reviewed0";
+                                        var reviewedDate = "";
+                                        var reviewedOptStyle = "";
+                                        reviewedDate = titleDetailValue.reviewForPatron.created;
+                                        if (!titleDetailValue.reviewForPatron.approved) {
+                                            reviewedMessageKey = "titleDetailsController_reviewedPendingApproval";
+                                            reviewedOptStyle = "<br/>";
+                                        }
+                                        message = MessageHelper.format(reviewedMessageKey, reviewedDate, reviewedOptStyle);
+                                    } else {
+                                        message = MessageHelper.format("titleDetailsController_reviewed");
+                                    }
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                \n");
+                                    ___ViewO.push("                                                ");
+                                    ___ViewO.push((EJS.Scanner.to_text(message)));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            </span>\n");
+                                    ___ViewO.push("                                        ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                </div>\n");
+                            ___ViewO.push("                            </div>\n");
+                            ___ViewO.push("            \n");
+                            ___ViewO.push("                            ");
+                            if (titleDetailValue.reviewInfo.totalWithoutComments > 0) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITHOUT_COMMENTS)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                    <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITHOUT_COMMENTS_HEADER)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                        <p>\n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewCommentRating\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:titleDetailValue.reviewInfo.averageWithoutCommentsRoundedToNearestHalf, starType:ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>\n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewsWithoutCommentsLabel\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_reviewsWithoutComments"))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>\n");
+                                ___ViewO.push("                                            <br/>                    \n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewsWithoutCommentsTotal\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_totalReviewsWithoutComments", titleDetailValue.reviewInfo.totalWithoutComments))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>\n");
+                                ___ViewO.push("                                        </p>\n");
+                                ___ViewO.push("                                        <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITHOUT_COMMENTS_SHOW_MORE)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                            <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_UNDECORATED)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_MORE_LESS)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_showMore"))));
+                                ___ViewO.push("</a>\n");
+                                ___ViewO.push("                                            <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_UNDECORATED)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_MORE_LESS)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"", styleClass:"titleDetailsShowMore", altText:MessageHelper.format("titleDetailsController_showMore")}))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </a>\n");
+                                ___ViewO.push("                                        </div>\n");
+                                ___ViewO.push("                                        <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITHOUT_COMMENTS_SHOW_LESS)));
+                                ___ViewO.push("\" style=\"display: none;\">\n");
+                                ___ViewO.push("                                            <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_UNDECORATED)));
+                                ___ViewO.push("} ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_MORE_LESS)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_showLess"))));
+                                ___ViewO.push("</a>\n");
+                                ___ViewO.push("                                            <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_CONTROL)));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_UNDECORATED)));
+                                ___ViewO.push("} ");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_MORE_LESS)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"", styleClass:"titleDetailsShowLess", altText:MessageHelper.format("titleDetailsController_showLess")}))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </a>\n");
+                                ___ViewO.push("                                        </div>\n");
+                                ___ViewO.push("                                    </div>\n");
+                                ___ViewO.push("                                    \n");
+                                ___ViewO.push("                                    <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITHOUT_COMMENTS_DATA)));
+                                ___ViewO.push("\" style=\"display: none;\">\n");
+                                ___ViewO.push("                                        ");
+                                for (i = 0; i < titleDetailValue.reviewInfo.reviewsWithoutComments.length; i++) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            ");
+                                    var reviewNoComments = titleDetailValue.reviewInfo.reviewsWithoutComments[i];
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                            <div id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITHOUT_COMMENTS_DATA)));
+                                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_REVIEW_ROW)));
+                                    ___ViewO.push("\">\n");
+                                    ___ViewO.push("                                                <p>\n");
+                                    ___ViewO.push("                                                    <span class=\"titleDetailReviewCommentRating\">\n");
+                                    ___ViewO.push("                                                        ");
+                                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:reviewNoComments.rating, starType:ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                    </span> \n");
+                                    ___ViewO.push("                                                    <span class=\"titleDetailReviewCommentDate\">\n");
+                                    ___ViewO.push("                                                        ");
+                                    ___ViewO.push((EJS.Scanner.to_text(reviewNoComments.created)));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                    </span>\n");
+                                    ___ViewO.push("                                                    ");
+                                    if (reviewNoComments.reviewerName) {
+                                        ___ViewO.push("\n");
+                                        ___ViewO.push("                                                        <span class=\"titleDetailReviewCommentAuthor\">\n");
+                                        ___ViewO.push("                                                            ");
+                                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_by", reviewNoComments.reviewerName))));
+                                        ___ViewO.push("\n");
+                                        ___ViewO.push("                                                        </span>\n");
+                                        ___ViewO.push("                                                    ");
+                                    }
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                </p>\n");
+                                    ___ViewO.push("                                            </div>\n");
+                                    ___ViewO.push("                                        ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    </div>\n");
+                                ___ViewO.push("                                </div>\n");
+                                ___ViewO.push("                            ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        \n");
+                            ___ViewO.push("                            <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITH_COMMENTS)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                ");
+                            for (i = 0; i < titleDetailValue.reviewInfo.reviewsWithComments.length; i++) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    ");
+                                var reviewWithComments = titleDetailValue.reviewInfo.reviewsWithComments[i];
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                    <div id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_REVIEWS_WITH_COMMENTS_DATA)));
+                                ___ViewO.push((EJS.Scanner.to_text(i)));
+                                ___ViewO.push("\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_REVIEW_ROW)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                                        <p>\n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewCommentRating\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:reviewWithComments.rating, starType:ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span> \n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewCommentDate\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(reviewWithComments.created)));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>\n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewCommentAuthor\">\n");
+                                ___ViewO.push("                                                ");
+                                if (reviewWithComments.reviewerName) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                    ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_by", reviewWithComments.reviewerName))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>\n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewCommentAuthor\">\n");
+                                ___ViewO.push("                                                ");
+                                if (reviewWithComments.fileDisplayName && displayingDigitalContent) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                    <a href=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(digitalResourcesPath)));
+                                    ___ViewO.push((EJS.Scanner.to_text(reviewWithComments.fileName)));
+                                    ___ViewO.push("\" target=\"_blank\">\n");
+                                    ___ViewO.push("                                                        ");
+                                    ___ViewO.push((EJS.Scanner.to_text(reviewWithComments.fileDisplayName)));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                    </a>                                \n");
+                                    ___ViewO.push("                                                ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>                             \n");
+                                ___ViewO.push("                                            <span class=\"titleDetailReviewComment\">\n");
+                                ___ViewO.push("                                                ");
+                                ___ViewO.push((EJS.Scanner.to_text(reviewWithComments.comment)));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                            </span>\n");
+                                ___ViewO.push("                                            ");
+                                if (reviewWithComments.editedByPatronName) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                <span class=\"titleDetailReviewCommentAuthor\">\n");
+                                    ___ViewO.push("                                                    <br>");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_thisReviewWasModifiedBy", reviewWithComments.editedByPatronName))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                                                </span>\n");
+                                    ___ViewO.push("                                            ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                        </p>\n");
+                                ___ViewO.push("                                     </div>\n");
+                                ___ViewO.push("                                ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            </div>                 \n");
+                            ___ViewO.push("                        ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    </div>                                                \n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_SUGGESTIONS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_SUGGESTIONS_HEADER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <h6>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_youMayAlsoLike"))));
+                    ___ViewO.push("</h6>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_SUGGESTIONS_CONTENT)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    ");
+                    if (bacoEnabled) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"", styleClass:"loading", altText:MessageHelper.format("titleDetailsController_loading")}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_noSuggestions"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_DETAIL_FOOTER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    </div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

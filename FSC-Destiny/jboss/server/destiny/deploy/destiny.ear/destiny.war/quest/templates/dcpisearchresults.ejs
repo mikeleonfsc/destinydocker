@@ -1,0 +1,98 @@
+/* dcpisearchresults.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (!Object.isArray(errors) || errors.length == 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("<div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_DCPI_SEARCH_RESULTS_CONTAINER)));
+                    ___ViewO.push("\" class=\"dcpiSearchResultsWrapper\">\n");
+                    ___ViewO.push("\t");
+                    for (var i = 0; i < records.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t<div class=\"dcpiSearchResultItem\">\n");
+                        ___ViewO.push("\t\t    ");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("DCPIHitListRecordTemplate", {idx:i, data:records[i]}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t<div class=\"column3\">\n");
+                        ___ViewO.push("\t\t\t\t");
+                        if (canAddToBooklist) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t\t     \t");
+                            var inBooklistDisplay = "";
+                            var addToBooklistDisplay = "";
+                            if (records[i].recData.inUsersBookList) {
+                                addToBooklistDisplay = "display: none";
+                            } else {
+                                inBooklistDisplay = "display: none";
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t\t         <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULT_IN_BOOKLIST)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_RESULT_IN_BOOKLIST)));
+                            ___ViewO.push("\" style=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(inBooklistDisplay)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("\t\t\t             <span>In your list</span>\n");
+                            ___ViewO.push("\t\t\t         </div>\n");
+                            ___ViewO.push("\t\t\t         <p id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_DIV_ADD_TO_BOOKLIST)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" class=\"dcpiSearchResultsActionButtons\" style=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(addToBooklistDisplay)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("\t\t\t         \t<input id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_BUTTON_ADD_TO_LIST)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" type=\"button\" value=\"Add to List\">\n");
+                            ___ViewO.push("\t\t         \t </p>\n");
+                            ___ViewO.push("\t\t\t     ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t     <p class=\"dcpiSearchResultsActionButtons\">\n");
+                        ___ViewO.push("\t\t\t     \t<input id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_BUTTON_TITLE_DETAILS)));
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" type=\"button\" value=\"Title Details\">\n");
+                        ___ViewO.push("\t\t\t     </p>\n");
+                        ___ViewO.push("\t\t\t</div>\n");
+                        ___ViewO.push("\t\t</div>\n");
+                        ___ViewO.push("\t");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("</div>\n");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t<div id=\"didYouMeanOuter\">\n");
+                    ___ViewO.push("\t\t<div id=\"didYouMeanInner\">\n");
+                    ___ViewO.push("\t\t\t<div id=\"didYouMeanHeaderOuter\">\n");
+                    ___ViewO.push("\t\t\t\t<div id=\"didYouMeanHeaderInner\">\n");
+                    ___ViewO.push("\t\t\t\t\t");
+                    for (i = 0; i < errors.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t\t\t\t<p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(DCPISearchController_PARAGRAPH_HEADER_TEXT)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(errors[i])));
+                        ___ViewO.push("</p>\n");
+                        ___ViewO.push("\t\t\t\t\t");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t\t</div>\n");
+                    ___ViewO.push("\t\t\t</div>\n");
+                    ___ViewO.push("\t\t</div>\n");
+                    ___ViewO.push("\t</div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

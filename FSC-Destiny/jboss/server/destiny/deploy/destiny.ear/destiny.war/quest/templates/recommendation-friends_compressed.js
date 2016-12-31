@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var a=Registry.lookup("RecommendationController.RecommendationDialog");a.updateFriends(this.data)},registerEvents:function(){}});

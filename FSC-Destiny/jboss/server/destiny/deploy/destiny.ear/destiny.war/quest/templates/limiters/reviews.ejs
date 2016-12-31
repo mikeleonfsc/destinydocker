@@ -1,0 +1,39 @@
+/* reviews.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_REVIEW)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <ul>\n");
+                ___ViewO.push("        ");
+                for (var i = 0; i < reviewData.values.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t        <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t            <a href=\"#\" onclick=\"return false;\">\n");
+                    ___ViewO.push("\t            \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:reviewData.values[i].value, starType:ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST, hideOnZero:false}))));
+                    ___ViewO.push(" (");
+                    ___ViewO.push((EJS.Scanner.to_text(reviewData.values[i].count)));
+                    ___ViewO.push(")\n");
+                    ___ViewO.push("\t            </a>\n");
+                    ___ViewO.push("\t        </li>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </ul>                    \n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

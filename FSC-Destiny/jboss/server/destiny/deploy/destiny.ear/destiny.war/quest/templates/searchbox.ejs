@@ -1,0 +1,103 @@
+/* searchbox.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_SEARCH_BAR_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_LOGIN_MODULE_OUTER)));
+                ___ViewO.push("\"></div>                \n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_LOGIN_HEADER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <p id=\"line1\">\n");
+                ___ViewO.push("            <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_SCHOOL_NAME)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                ___ViewO.push((EJS.Scanner.to_text(schoolName)));
+                ___ViewO.push("\n");
+                ___ViewO.push("            </span>\n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("        <p id=\"line2\">\n");
+                ___ViewO.push("            ");
+                if (!loggedInUserName) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchBoxController_helloGuest"))));
+                    ___ViewO.push(" \n");
+                    ___ViewO.push("            ");
+                } else {
+                    ___ViewO.push("            \n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchBoxController_hello", loggedInUserName))));
+                    ___ViewO.push(" \n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("    </div>    \n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_LOGO)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("        <a href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(httpRootURL)));
+                ___ViewO.push("&viewMode=0\" id=\"logo_image\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchBoxController_destinyQuest"))));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchBoxController_destinyQuest"))));
+                ___ViewO.push("\" onclick=\"window.killEventListener = true;window.ajaxTracker.abortAllRequests();\">\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("    </div>    \n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_BODY_SEARCH)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_BODY_SEARCH_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <form method=\"get\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_FORM_ID_SEARCH_FORM)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_FORM_ID_SEARCH_FORM)));
+                ___ViewO.push("\">            \n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"findimg", altText:MessageHelper.format("searchBoxController_find"), styleClass:"find"}))));
+                ___ViewO.push("                                            \t                    \t\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_INPUT_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                var defaultSearchTerm = MessageHelper.format("searchBoxController_enterYourSearchHere");
+                ___ViewO.push("      \n");
+                ___ViewO.push("                <input tabindex=\"1\" type=\"text\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_FIELD_CURRENT_TEXT)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_FIELD_CURRENT_TEXT)));
+                ___ViewO.push("\" maxlength=\"500\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(defaultSearchTerm)));
+                ___ViewO.push("\" autocomplete=\"off\">\n");
+                ___ViewO.push("                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchBoxController_DIV_SEARCH_BOX_SUGGESTIONS)));
+                ___ViewO.push("\" style=\"display: none;\"></div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:SearchBoxController_BUTTON_SUBMIT, altText:MessageHelper.format("searchBoxController_enter"), styleClass:"Enter"}))));
+                ___ViewO.push("                                    \n");
+                ___ViewO.push("        </form>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div> \n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

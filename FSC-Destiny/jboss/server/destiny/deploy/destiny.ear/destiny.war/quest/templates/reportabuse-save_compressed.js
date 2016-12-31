@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var a=Registry.lookup("ReportAbuseController.ReportAbuseDialog");if(a&&a.modal&&Object.isFunction(a.modal.animatedSubmit)){a.modal.animatedSubmit(this.data.sentMessage,2)}},registerEvents:function(){}});

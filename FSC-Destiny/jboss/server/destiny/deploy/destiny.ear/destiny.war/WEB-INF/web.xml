@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-app_2_4.xsd"
+    version="2.4">
+
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- set this if you map the Resteasy servlet to something other than /* -->
+    <context-param>
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/rest</param-value>
+    </context-param>
+
+    <!-- set this if you map the Resteasy servlet to something other than /* -->
+    <!-- context-param> <param-name>resteasy.providers</param-name> <param-value>com.follett.fsc.destiny.client.rest.DistrictInterceptor</param-value> 
+        </context-param -->
+
+
+    <!-- to turn on security <context-param> <param-name>resteasy.role.based.security</param-name> 
+        <param-value>true</param-value> </context-param> -->
+
+    <!-- set this if you map the Resteasy servlet to something other than /* -->
+    <context-param>
+        <param-name>oauth.provider.provider-class</param-name>
+        <param-value>com.follett.fsc.destiny.client.common.oauth.DestinyOAuthProvider</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>ContextFilter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.ContextFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>PerfMon4JFilter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.DestinyPerfMonFilter</filter-class>
+        <init-param>
+            <param-name>ABORT_TIMER_ON_REDIRECT</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ABORT_TIMER_ON_IMAGE_RESPONSE</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <!-- Group all static content into one monitor, including the following: 
+                /images/ folder OR /passthrough servlet OR /imagestore servlet OR files with common 
+                media extensions -->
+            <param-name>STATIC_CONTENT_PATTERN</param-name>
+            <param-value>/imagestore|/passthrough|/images/.*|.*\.(css|js|ejs|gif|jpg|jpeg|tiff|wav|au)</param-value>
+        </init-param>
+
+
+    </filter>
+    
+    <filter>
+        <filter-name>AASPFilter-Reflector</filter-name>
+        <filter-class>com.follett.fss.aasp.filter.AaspReflectorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AASPFilter-Reflector</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping> 
+
+    <!-- This is important for diacritical support in our application -->
+    <filter>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.DestinyFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>DestinyAuthAPIFilter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.DestinyAuthAPIFilter</filter-class>
+    </filter>
+
+
+    <filter>
+        <filter-name>DestinyFilter-ISO88591</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.DestinyFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>ISO-8859-1</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>CacheFilter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.CacheFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>VersionFilter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.VersionFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>LogFilter-Servlet</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.LogFilter</filter-class>
+        <init-param>
+            <param-name>logLabel</param-name>
+            <param-value>request</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>LogFilter-REST</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.filters.LogFilter</filter-class>
+        <init-param>
+            <param-name>logLabel</param-name>
+            <param-value>rest</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>OAuth-Filter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.common.oauth.DestinyOAuthFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>OAuth-Login-Filter</filter-name>
+        <filter-class>com.follett.fsc.destiny.client.common.oauth.OAuthLoginFilter</filter-class>
+    </filter>
+
+    <!-- Define filter mappings for the defined filters -->
+    <filter-mapping>
+        <filter-name>PerfMon4JFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>VersionFilter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>VersionFilter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>VersionFilter</filter-name>
+        <url-pattern>*.ejs</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>VersionFilter</filter-name>
+        <url-pattern>/quest/js/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>action</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-ISO88591</filter-name>
+        <servlet-name>FIASearch</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>ContextRedirector</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>TestHelperServlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>MockEBookSerlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>CommandLineServlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>PassThroughServlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>CallAASPRegistrationServlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>DigitalResourcesViewer</servlet-name>
+    </filter-mapping>`
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>CommandLineToolsDownloader</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyFilter-UTF8</filter-name>
+        <servlet-name>OAuth</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>LogFilter-Servlet</filter-name>
+        <servlet-name>action</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>LogFilter-Servlet</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DestinyAuthAPIFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>LogFilter-Servlet</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>LogFilter-REST</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>OAuth-Filter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>OAuth-Filter</filter-name>
+        <servlet-name>action</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>OAuth-Filter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>OAuth-Login-Filter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>OAuth-Login-Filter</filter-name>
+        <servlet-name>action</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>OAuth-Login-Filter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ***START*** IMPORTANT - DCD 11/1/2016
+        We lost Destiny logging for Rest request from Destiny Discover.
+        To ensure that does not reoccur you must map the "/destiny/context/*" pattern
+        to the LogFilter-REST first and then map to the ContextFilter.
+          
+        If the ContextFilter mapping occurs first, it will NOT be handled
+        by the LogFilter.    
+        
+        Also... Just to be safe and ensure NO other filter mappings are ignored,
+        make sure that the ContextFilter is the LAST filter-mapping
+        in the web.xml file.
+     -->
+    <filter-mapping>
+        <filter-name>LogFilter-REST</filter-name>
+        <url-pattern>/destiny/context/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>ContextFilter</filter-name>
+        <url-pattern>/destiny/context/*</url-pattern>
+    </filter-mapping>
+    <!-- ***END*** IMPORTANT - DCD 11/1/2016 -->
+
+
+    <!-- Action Servlet Configuration -->
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>application</param-name>
+            <param-value>DestinyResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>destiny-config</param-name>
+            <param-value>/WEB-INF/destiny-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>convertNull</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>6</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>6</param-value>
+        </init-param>
+        <init-param>
+            <param-name>nocache</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>validate</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>locale</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ContextRedirector</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.servlet.ContextRedirector</servlet-class>
+    </servlet>
+
+    <servlet>
+    
+        <servlet-name>CommandLineDownloadRedirector</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.servlet.CommandLineDownloadRedirector</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FIASearch</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.cataloging.servlet.FIASearchServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TextbookLedgerExcelServlet</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.backoffice.servlet.TextbookLedgerExcelServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>TestHelperServlet</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.test.servlet.TestHelperServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MockEBookSerlet</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.entity.ejb.FollettEBookMockTestServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CommandLineServlet</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.session.cmd.CommandLineServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PassThroughServlet</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.PassThroughServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CallAASPRegistrationServlet</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.CallAASPRegistrationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DigitalResourcesViewer</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.DigitalResourcesViewer</servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>CommandLineToolsDownloader</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.CommandLineToolsDownloader</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AllianceOnlineGate</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.online.AllianceOnlineGateServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DisplayChart</servlet-name>
+        <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Resteasy</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>OAuth</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.oauth.DestinyOAuthServlet</servlet-class>
+    </servlet>
+
+
+    <!-- Action Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+
+        <servlet-name>ContextRedirector</servlet-name>
+        <url-pattern>/imagestore/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TextbookLedgerExcelServlet</servlet-name>
+        <url-pattern>/textbookledgerexcelservlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CommandLineDownloadRedirector</servlet-name>
+        <url-pattern>/commandDownloads/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FIASearch</servlet-name>
+        <url-pattern>/fiasearch/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TestHelperServlet</servlet-name>
+        <url-pattern>/testhelperservlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>MockEBookSerlet</servlet-name>
+        <url-pattern>/mockebookservlet/ebooks/query</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CommandLineServlet</servlet-name>
+        <url-pattern>/commandline/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PassThroughServlet</servlet-name>
+        <url-pattern>/passthrough/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CallAASPRegistrationServlet</servlet-name>
+        <url-pattern>/callaaspregistration/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AllianceOnlineGate</servlet-name>
+        <url-pattern>/gate.cgi</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DigitalResourcesViewer</servlet-name>
+        <url-pattern>/digitalresource/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CommandLineToolsDownloader</servlet-name>
+        <url-pattern>/CommandLineToolsDownloader</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- JFreeChart Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>DisplayChart</servlet-name>
+        <url-pattern>/displaychart</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Resteasy</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- This will be the base for the token exchange endpoint URL -->
+    <servlet-mapping>
+        <servlet-name>OAuth</servlet-name>
+        <url-pattern>/oauth/*</url-pattern>
+    </servlet-mapping>
+
+    <!--*********************************************** WebServices testing *********************************************** -->
+    <servlet>
+        <servlet-name>destinyauthapi-test</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.servlet.DestinyAuthAPITestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>destinyauthapi-test</servlet-name>
+        <url-pattern>/backoffice/servlet/destinyauthapi/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>universaldiscovery-test</servlet-name>
+        <servlet-class>com.follett.fsc.destiny.client.common.servlet.UniversalDiscoveryTestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>universaldiscovery-test</servlet-name>
+        <url-pattern>/test/udapi/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- expire servlet sessions after 240 minutes (4 hrs) of inactivity -->
+    <!-- there is a default 5 minute time out in the SessionStoreBean also in code -->
+    <session-config>
+        <session-timeout>240</session-timeout>
+    </session-config>
+
+    <!-- The Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>common/welcome.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Needed so that .ejs files are compressed by Tomcat -->
+    <mime-mapping>
+        <extension>ejs</extension>
+        <mime-type>text/javascript</mime-type>
+    </mime-mapping>
+
+    <!-- I18n Support -->
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.LocalizationContext</param-name>
+        <param-value>ApplicationResources</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.FallbackLocale</param-name>
+        <param-value>en_US</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.Locale</param-name>
+        <param-value>en_US</param-value>
+    </context-param>
+    <!-- Struts Tag Library Descriptors -->
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-core.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-core.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-function.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-function.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-format.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-format.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-xml.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-xml.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-sql.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-sql.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-permittedTaglibs.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-permittedTaglibs.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/jstl-scriptfree.tld</taglib-uri>
+        <taglib-location>/WEB-INF/jstl-scriptfree.tld</taglib-location>
+    </taglib>
+
+    <!-- Struts Tag Library Descriptors -->
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+    </taglib>
+    <!-- <taglib> <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri> <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location> 
+        </taglib> -->
+    <taglib>
+        <taglib-uri>/WEB-INF/destiny-util.tld</taglib-uri>
+        <taglib-location>/WEB-INF/destiny-util.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/destiny-base.tld</taglib-uri>
+        <taglib-location>/WEB-INF/destiny-base.tld</taglib-location>
+    </taglib>
+
+</web-app>

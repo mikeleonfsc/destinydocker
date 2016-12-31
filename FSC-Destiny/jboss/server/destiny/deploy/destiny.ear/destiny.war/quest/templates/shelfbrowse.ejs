@@ -1,0 +1,75 @@
+/* shelfbrowse.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_CONTENTS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_CLASS_SHELF_BROWSE_CONTENTS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"shelfBrowseModuleOuter\">\n");
+                ___ViewO.push("        <div id=\"shelfBrowseModuleTR\">\n");
+                ___ViewO.push("            <h4 id=\"shelfBrowseModuleTL\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("shelfBrowseController_visualShelfBrowse"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("            <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ShelfBrowseController_ID_SHELF_BROWSE_CLOSE, styleClass:ShelfBrowseController_CLASS_SHELF_BROWSE_CLOSE, altText:MessageHelper.format("shelfBrowseController_closeVisualShelfBrowse")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("            </a>\n");
+                ___ViewO.push("            <div id=\"shelfBrowseModuleBL\">\n");
+                ___ViewO.push("                <div id=\"shelfBrowseModuleBR\">\n");
+                ___ViewO.push("                    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_LOADING)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("                    \n");
+                ___ViewO.push("                    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_INNER_CONTENTS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                    \n");
+                ___ViewO.push("                    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_CONTROLS)));
+                ___ViewO.push("\" class=\"clearfloatfix\" style=\"display: none;\">\n");
+                ___ViewO.push("                        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_PREVIOUS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                            <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_LINK_SHELF_BROWSE_PREVIOUS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_LINK_SHELF_BROWSE_PREVIOUS)));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_NEXT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                            <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_LINK_SHELF_BROWSE_NEXT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_LINK_SHELF_BROWSE_NEXT)));
+                ___ViewO.push("\"></a>\n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_SLIDER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ShelfBrowseController_DIV_SHELF_BROWSE_SLIDER_CONTROL)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

@@ -1,0 +1,87 @@
+/* onesearchresults.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                for (i = 0; i < oneSearchResult.results.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                    var database = oneSearchResult.results[i];
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"oneseachDatabaseRow_");
+                    ___ViewO.push((EJS.Scanner.to_text(database.vopacRecDisplayID - 1)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DB_ROW)));
+                    ___ViewO.push("\">       \n");
+                    ___ViewO.push("\t\t");
+                    var index = database.vopacRecDisplayID - 1;
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t<span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_SPAN_ONESEARCH_DB_ELEMENT_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(index)));
+                    ___ViewO.push("\" style=\"display:block;\">       \n");
+                    ___ViewO.push("\t\t    <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_SPAN_ONESEARCH_DB_LOGO_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(index)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DB_LOGO)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <img border=\"0\" src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(database.databaseImagePassthroughURL)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t\t    </span>\n");
+                    ___ViewO.push("\t\t    <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_SPAN_ONESEARCH_DB_NAME_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(index)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DB_NAME)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <a href=\"#\" class=\"DetailLink\" onclick=\"return false;\">\n");
+                    ___ViewO.push("                \t");
+                    ___ViewO.push((EJS.Scanner.to_text(database.translatorName)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </a>\n");
+                    ___ViewO.push("\t\t    </span>\n");
+                    ___ViewO.push("\t\t    \n");
+                    ___ViewO.push("\t\t    ");
+                    if (database.totalRecords != null) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t        <span id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchController_SPAN_ONESEARCH_DB_MESSAGE_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(index)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DB_MESSAGE)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("\t\t        \t");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limiterController_results", database.totalRecords))));
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("\t\t        </span>\n");
+                        ___ViewO.push("\t\t    ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t        <span id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchController_SPAN_ONESEARCH_DB_MESSAGE_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(index)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DB_MESSAGE)));
+                        ___ViewO.push("\" style=\"color:#CC0000;\">\n");
+                        ___ViewO.push("\t\t            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limiterController_error"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t        </span>\n");
+                        ___ViewO.push("\t\t    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t</span>\n");
+                    ___ViewO.push("    </div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

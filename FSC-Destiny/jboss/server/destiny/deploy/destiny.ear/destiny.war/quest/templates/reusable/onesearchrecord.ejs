@@ -1,0 +1,123 @@
+/* onesearchrecord.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_SEARCH_RESULT_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_SEARCHRESULT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_COVER_IMAGE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_COVER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t");
+                if (options.draggable && canAddToBooklist) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t");
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t        \n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_TITLE_IMAGE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" hoverKey=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.hoverKey)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <a href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.url)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_LINK_TITLE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" target=\"_blank\">\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:"", id:OneSearchRecordTemplate_DIV_TITLE_PEEK_PREFIX + currentID, styleClass:OneSearchRecordTemplate_CLASS_COVERIMAGE + " " + OneSearchRecordTemplate_DEFAULT_ONE_SEARCH_IMAGE_CLASS + " draggableBook"}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("            </a>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("        ");
+                if (options.renderXNextToImage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_TITLE_REMOVE)));
+                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_TITLE_REMOVE_IMAGE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t        \t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("oneSearchController_removeFromList"), id:OneSearchRecordTemplate_DIV_TITLE_REMOVE_IMAGE + currentID, styleClass:OneSearchRecordTemplate_CLASS_CONTROL + " " + OneSearchRecordTemplate_CLASS_TITLE_REMOVE + " " + OneSearchRecordTemplate_CLASS_TITLE_REMOVE_TRIGGER}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                \n");
+                    ___ViewO.push("\t            ");
+                    if (options.renderCitationIconNextToImage) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_RESOURCE_LIST_CITATION_EDIT)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("        \t        \t");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("oneSearchController_editCitation"), id:OneSearchRecordTemplate_BUTTON_RESOURCE_LIST_CITATION_EDIT + currentID, styleClass:OneSearchRecordTemplate_CLASS_CONTROL + " " + OneSearchRecordTemplate_CLASS_RESOURCE_LIST_CITATION_EDIT}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("        \t        \t</div>\n");
+                        ___ViewO.push("        \t     ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_TITLE_INFO_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_TITLEINFO)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("        <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_TITLE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_SEARCH_RESULT_TITLE)));
+                ___ViewO.push("\"><a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_LINK_SEARCH_RESULT_TITLE)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.url)));
+                ___ViewO.push("\" target=\"_blank\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_SEARCH_RESULT_TITLE_LINK)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(record.shortTitle)));
+                ___ViewO.push("</a></p>\n");
+                ___ViewO.push("        <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_DIV_AUTHOR_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchRecordTemplate_CLASS_SEARCH_RESULT_AUTHOR)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("oneSearchController_database", record.databaseSearch))));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"recordID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(record.resourceID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"currentID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}
