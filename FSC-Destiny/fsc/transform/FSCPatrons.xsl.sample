@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+
+<!-- ************************* -->
+<!-- **** Begin Transform **** -->
+<!-- ************************* -->
+<xsl:template match="/csvfile">
+<xsl:text>&#xA;</xsl:text><FSC-Destiny-PatronImport version="2">
+
+<xsl:for-each select="line">
+
+<!-- **** Skip embedded header lines from individual schools -->
+<xsl:if test="not(field_1) or (field_1!='Patron Maintenance')">
+
+
+<xsl:text>&#xA;</xsl:text><Patron action="addmodify">
+
+<!-- The Match section can match on DistrictID (only), or match on Barcode + SiteShortName -->
+<!-- Note: SiteShortName should not be used for the single-site edition of Destiny -->
+<Match>
+  <DistrictID><xsl:if test="field_1"><xsl:value-of select="field_1"/></xsl:if></DistrictID>
+</Match>
+
+<!-- REPLACE SiteShortName with actual value or field_x if the input XML file contains the data -->
+<!-- REMOVE this line entirely for the single-site edition of Destiny -->
+<SiteShortName>REPLACE THIS SITESHORTNAME</SiteShortName>
+
+<!-- EXAMPLE: Lookup ShortSiteName from school# in UserDefined4 (field_14) in the input file -->
+<!--
+
+<SiteShortName>
+  <xsl:choose>
+    <xsl:when test="field_14='001'">Washington</xsl:when>
+    <xsl:when test="field_14='002'">Lincoln</xsl:when>
+    <xsl:when test="field_14='003'">Jefferson</xsl:when>
+    <xsl:when test="field_14='004'">Adams</xsl:when>
+    <xsl:otherwise>UNKNOWN <xsl:value-of select="field_14"/></xsl:otherwise>
+  </xsl:choose>
+</SiteShortName>
+-->
+
+
+<Barcode><xsl:if test="field_0"><xsl:value-of select="field_0"/></xsl:if></Barcode>
+<DistrictID><xsl:if test="field_1"><xsl:value-of select="field_1"/></xsl:if></DistrictID>
+<LastName><xsl:if test="field_2"><xsl:value-of select="field_2"/></xsl:if></LastName>
+<FirstName><xsl:if test="field_3"><xsl:value-of select="field_3"/></xsl:if></FirstName>
+<MiddleName><xsl:if test="field_4"><xsl:value-of select="field_4"/></xsl:if></MiddleName>
+
+<!-- Convert date from YYYYMMDD to MM/DD/YYYY -->
+
+<CardExpires>
+<xsl:if test="field_5">
+<xsl:if test="string-length(field_5)=8">
+  <xsl:value-of select="substring(field_5,5,2)"/>/<xsl:value-of select="substring(field_5,7,2)"/>/<xsl:value-of select="substring(field_5,1,4)"/>
+</xsl:if>
+</xsl:if>
+</CardExpires>
+
+<xsl:if test="field_6"><GraduationYear><xsl:value-of select="field_6"/></GraduationYear></xsl:if>
+
+<!-- Convert date from YYYYMMDD to MM/DD/YYYY -->
+
+<BirthDate>
+<xsl:if test="field_7">
+<xsl:if test="string-length(field_7)=8">
+  <xsl:value-of select="substring(field_7,5,2)"/>/<xsl:value-of select="substring(field_7,7,2)"/>/<xsl:value-of select="substring(field_7,1,4)"/>
+</xsl:if>
+</xsl:if>
+</BirthDate>
+
+<xsl:if test="field_8"><Gender><xsl:value-of select="field_8"/></Gender></xsl:if>
+
+<!-- Leave PatronType out to preserve custom PatronTypes if already assigned in Destiny. New Patrons will be set to default PatronType. -->
+<!--
+<PatronType><xsl<xsl:if test="field_9"><:value-of select="field_9"/></xsl:if></PatronType>
+-->
+
+<Status><xsl:if test="field_10"><xsl:value-of select="field_10"/></xsl:if></Status>
+<UserDefined1><xsl:if test="field_11"><xsl:value-of select="field_11"/></xsl:if></UserDefined1>
+<UserDefined2><xsl:if test="field_12"><xsl:value-of select="field_12"/></xsl:if></UserDefined2>
+<UserDefined3><xsl:if test="field_13"><xsl:value-of select="field_13"/></xsl:if></UserDefined3>
+<UserDefined4><xsl:if test="field_14"><xsl:value-of select="field_14"/></xsl:if></UserDefined4>
+
+<!-- Add the following if the input XML file contains the data      -->
+<!--
+  <UserDefined5></UserDefined5>
+  <AccessLevel>Student</AccessLevel>
+  <UserName></UserName>
+  <Password></Password>
+  <IsTeacher></IsTeacher>
+-->
+<!-- EXAMPLE: Use Barcode for Userid, LastName for Password -->
+<!--
+<UserName><xsl:if test="field_0"><xsl:value-of select="field_0"/></xsl:if></UserName>
+<Password><xsl:if test="field_2"><xsl:value-of select="field_2"/></xsl:if></Password>
+-->
+
+<AddressPrimaryLine1><xsl:if test="field_15"><xsl:value-of select="field_15"/></xsl:if></AddressPrimaryLine1>
+<AddressPrimaryLine2><xsl:if test="field_16"><xsl:value-of select="field_16"/></xsl:if></AddressPrimaryLine2>
+<AddressPrimaryCity><xsl:if test="field_17"><xsl:value-of select="field_17"/></xsl:if></AddressPrimaryCity>
+<AddressPrimaryState><xsl:if test="field_18"><xsl:value-of select="field_18"/></xsl:if></AddressPrimaryState>
+<AddressPrimaryZipCode><xsl:if test="field_19"><xsl:value-of select="field_19"/></xsl:if></AddressPrimaryZipCode>
+<EmailPrimary><xsl:if test="field_20"><xsl:value-of select="field_20"/></xsl:if></EmailPrimary>
+<AddressPrimaryPhoneNumberSecondary><xsl:if test="field_22"><xsl:value-of select="field_22"/></xsl:if></AddressPrimaryPhoneNumberSecondary>
+<AddressSecondaryLine1><xsl:if test="field_23"><xsl:value-of select="field_23"/></xsl:if></AddressSecondaryLine1>
+<AddressSecondaryLine2><xsl:if test="field_24"><xsl:value-of select="field_24"/></xsl:if></AddressSecondaryLine2>
+<AddressSecondaryCity><xsl:if test="field_25"><xsl:value-of select="field_25"/></xsl:if></AddressSecondaryCity>
+<AddressSecondaryState><xsl:if test="field_26"><xsl:value-of select="field_26"/></xsl:if></AddressSecondaryState>
+<AddressSecondaryZipCode><xsl:if test="field_27"><xsl:value-of select="field_27"/></xsl:if></AddressSecondaryZipCode>
+<EmailSecondary><xsl:if test="field_28"><xsl:value-of select="field_28"/></xsl:if></EmailSecondary>
+<AddressSecondaryPhoneNumberPrimary><xsl:if test="field_29"><xsl:value-of select="field_29"/></xsl:if></AddressSecondaryPhoneNumberPrimary>
+<AddressSecondaryPhoneNumberSecondary><xsl:if test="field_30"><xsl:value-of select="field_30"/></xsl:if></AddressSecondaryPhoneNumberSecondary>
+</Patron>
+
+</xsl:if><!-- **** End Skip embedded header lines -->
+
+
+</xsl:for-each>
+
+<xsl:text>&#xA;</xsl:text></FSC-Destiny-PatronImport>
+
+</xsl:template>
+
+</xsl:stylesheet>
+

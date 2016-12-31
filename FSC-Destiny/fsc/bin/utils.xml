@@ -1,0 +1,907 @@
+<project name="utils" default="stop-jboss">
+<!--   ############################################### properties ############################   -->
+
+
+
+    <property environment="env"/>
+
+    <!-- in case this is not set in a config file -->
+    <property name="DISTRICT_RESOURCES_DIR" value=""/>
+
+    <property file="${env.USERPROFILE}/.destiny/build.properties"/>
+    <property file="${env.FSC_DESTINY_HOME}/fsc/bin/config.properties"/>
+    <property file="${env.FSC_DESTINY_HOME}/fsc/bin/run-classpath.properties"/>
+    <property file="importsites.properties"/>
+    <property file="testdbupgrade.properties"/>
+
+    <property name="FSC_DESTINY_HOME_FILE_PATH" value="${basedir}\..\..\"/>
+    <property name="QUIET_MODE" value="quiet"/>
+    <property name="LOG_PROP_FILE" value=""/>
+    <property name="maxmemory.utils" value="64m"/>
+    <property name="APPLY_DEV_CONSTRAINTS" value=""/>
+
+    <property name="DB_RESTORE_FOLDER" value="${env.TEMP}\destinydb"/>
+    <property name="DB_RESTORE_FOLDER_PATH" value="${env.TEMP}\destinydb"/>
+    <!-- NOTE: the TEST_DBUPGRADE_DB_NAME is hardcoded. It is also hardcoded in bin/testDbUpgrade.bat  It must be changed in both places. -->
+    <property name="TEST_DBUPGRADE_DB_NAME" value="test_db_upgrade_database"/>
+    <!-- NOTE: the TEST_DBUPGRADE_CONSORTIUM_DB_NAME is hardcoded. It is also hardcoded in bin/testDbUpgrade.bat  It must be changed in both places. -->
+    <property name="TEST_DBUPGRADE_CONSORTIUM_DB_NAME" value="test_db_upgrade_consortium_database"/>
+    <property name="TEST_DBUPGRADE_ZIPNAME" value="${TEST_DBUPGRADE_DB_NAME}.zip"/>
+    <property name="TEST_DBUPGRADE_CONSORTIUM_ZIPNAME" value="${TEST_DBUPGRADE_CONSORTIUM_DB_NAME}.zip"/>
+    <property name="SA_USER" value="sa"/>
+
+    <property name="TOOLS_DIR" value="${env.PROJECTS_HOME}/${env.DESTINY_DIR}/tools"/>
+
+
+	<!--   ############################################### targets ############################   -->
+
+
+	<!-- ********************************************************* -->
+	<!-- * Unzip the testDbUpgrade database test files           * -->
+	<!-- ********************************************************* -->
+    <target name="unzipTestDbUpgradeDBFiles" description="Export the database backup file">
+        <copy file="${TEST_DATA_PATH}/${TEST_DBUPGRADE_ZIPNAME}"
+              todir="${DB_RESTORE_FOLDER_PATH}" />
+        <unzip src="${DB_RESTORE_FOLDER_PATH}/${TEST_DBUPGRADE_ZIPNAME}"
+        	   dest="${DB_RESTORE_FOLDER_PATH}"/>
+    </target>
+
+
+	<!-- ********************************************************* -->
+	<!-- * Delete the testDbUpgrade databases                    * -->
+	<!-- ********************************************************* -->
+    <target name="deleteTestDBUpgradeDatabases" depends="-get-sa-login-password,
+                                                         -get-jdbc-url,
+                                                         -get-jdbc-driver-class"
+                                                description="Delete the testDbUpgrade databases">
+            <property name="maxmemory.utils.db-attach" value="${maxmemory.utils}"/>
+            <antcall target="-java-runner" >
+    	    <!-- Do not put any params here.  They belong in the java-runner target -->
+                <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.DbRemove"/>
+                <param name="MAX_MEMORY" value="${maxmemory.utils.db-attach}" />
+            </antcall>
+    </target>
+
+
+	<!-- ******************************************************************************************************** -->
+	<!-- * Attach the databases specified in ${TEST_DBUPGRADE_CONSORTIUM_DB_NAME} and ${TEST_DBUPGRADE_DB_NAME} * -->
+	<!-- ******************************************************************************************************** -->
+    <target name="db-attach"
+            depends="-get-sa-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Attaches the databases specified by: ${DB_RESTORE_FOLDER}/${TEST_DBUPGRADE_CONSORTIUM_DB_NAME} and ${DB_RESTORE_FOLDER}/${TEST_DBUPGRADE_DB_NAME}" >
+
+
+	        <property name="DB_USER" value=""/>
+ 	        <property name="DB_PASSWORD" value=""/>
+            <property name="DB_USER_ARG" value="${DB_USER}"/>
+ 	        <property name="DB_PASSWORD_ARG" value="${DB_PASSWORD}"/>
+
+            <property name="maxmemory.utils.db-attach" value="${maxmemory.utils}"/>
+            <antcall target="-java-runner" >
+    	    <!-- Do not put any params here.  They belong in the java-runner target -->
+                <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.DbAttach"/>
+                <param name="MAX_MEMORY" value="${maxmemory.utils.db-attach}" />
+            </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="db-create"
+            depends="-get-sa-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class,
+                     -get-data-file,
+                     -get-log-file,
+                     -get-num-sites"
+            description="Initializes the database specified by: ${JDBC_URL}" >
+
+	<property name="DB_RO_USER" value=""/>
+ 	<property name="DB_RO_PASSWORD" value=""/>
+	<property name="DB_RO_USER_ARG" value="${DB_RO_USER}"/>
+ 	<property name="DB_RO_PASSWORD_ARG" value="${DB_RO_PASSWORD}"/>
+
+	<property name="DB_USER" value=""/>
+ 	<property name="DB_PASSWORD" value=""/>
+	<property name="DB_USER_ARG" value="${DB_USER}"/>
+ 	<property name="DB_PASSWORD_ARG" value="${DB_PASSWORD}"/>
+ 	<property name="LOG_PROP_FILE" value="${LOG_PROP_FILE}"/>
+
+	<property name="maxmemory.utils.db-create" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.DbCreate"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-create}" />
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="cpdb-create"
+            depends="-get-sa-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class,
+                     -get-data-file,
+                     -get-log-file"
+            description="Initializes the consortium database specified by: ${JDBC_URL}" >
+
+	<property name="DB_RO_USER" value=""/>
+ 	<property name="DB_RO_PASSWORD" value=""/>
+	<property name="DB_RO_USER_ARG" value="${DB_RO_USER}"/>
+ 	<property name="DB_RO_PASSWORD_ARG" value="${DB_RO_PASSWORD}"/>
+
+	<property name="DB_USER" value=""/>
+ 	<property name="DB_PASSWORD" value=""/>
+	<property name="DB_USER_ARG" value="${DB_USER}"/>
+ 	<property name="DB_PASSWORD_ARG" value="${DB_PASSWORD}"/>
+
+	<property name="maxmemory.utils.db-create" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.consortium.CpDbCreate"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-create}" />
+        </antcall>
+
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="db-init"
+            depends="-get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Initializes the database specified by: ${JDBC_URL}" >
+
+	<property name="maxmemory.utils.db-init" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.DbInit"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-init}" />
+		<param name="RUNCLASS_EXTRACLASSPATH" value="${env.FSC_DESTINY_HOME}/jboss/lib/fsc-crypto.jar"/>
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="cp-db-init"
+            depends="-get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Initializes the database specified by: ${JDBC_URL}" >
+
+	<property name="maxmemory.utils.db-init" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.consortium.CpDbInit"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-init}" />
+        </antcall>
+    </target>
+
+
+
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="db-upgrade"
+            depends="-get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-sa-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Upgrades the database specified by: ${JDBC_URL}" >
+
+	<property name="maxmemory.utils.db-upgrade" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.DbUpgrade"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-upgrade}" />
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="cp-db-upgrade"
+            depends="-get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-sa-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Upgrades the consortium database specified by: ${JDBC_URL}" >
+
+	<property name="maxmemory.utils.db-upgrade" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.consortium.CpDbUpgrade"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-upgrade}" />
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="backupDestinyDatabases"
+            depends="-get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Backup Destiny Databases">
+	<property name="maxmemory.utils.backuprestore" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.BackupDestinyDatabases"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.backuprestore}" />
+	    <param name="DESTINY_BACKUP_FOLDER" value="${DESTINY_BACKUP_FOLDER}"/>
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="db-update-passwords"
+            depends="-get-sa-login-password,
+                     -get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Update Destiny database login passwords: ${JDBC_URL}" >
+
+	<property name="maxmemory.utils.db-update-password" value="${maxmemory.utils}"/>
+
+        <!-- The readonly user is not required. If it is specified in config.properties,
+             this assignment will not work based upon how ANT treats these. -->
+	<property name="DB_RO_USER" value=""/>
+ 	<property name="DB_RO_PASSWORD" value=""/>
+	<property name="DB_RO_USER_ARG" value="${DB_RO_USER}"/>
+ 	<property name="DB_RO_PASSWORD_ARG" value="${DB_RO_PASSWORD}"/>
+
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.util.database.DbUpdatePasswords"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-update-password}" />
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="post-info"
+            description="Posts info to Follett Software">
+        <java classpath="${JBOSS_RUN_CP}"
+              classname="com.follett.fsc.destiny.client.apps.postinfo.PostInfo"
+              fork="yes">
+		<sysproperty key="java.naming.provider.url" value="${JAVA_NAMING_PROVIDER_URL}"/>
+		<sysproperty key="JBOSS_HOME" value="${env.FSC_DESTINY_HOME}"/>
+		<sysproperty key="tomcat.base.uri" value="${TOMCAT_BASE_URI}"/>
+		<arg value="${ARG1}"/>
+		<arg value="${ARG2}"/>
+                <arg value="${ARG3}"/>
+		<arg value="${ARG4}"/>
+		<arg value="${ARG5}"/>
+                <arg value="${ARG6}"/>
+		<arg value="${ARG7}"/>
+                <arg value="${ARG8}"/>
+        </java>
+    </target>
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="index-compare"
+            depends="-get-sql-login-name,
+                     -get-sql-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+            description="Initializes the database specified by: ${JDBC_URL}" >
+
+	<property name="maxmemory.utils.db-init" value="${maxmemory.utils}"/>
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.IndexCompare"/>
+	    <param name="MAX_MEMORY" value="${maxmemory.utils.db-init}" />
+        </antcall>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="copy-log4j-properties">
+        <echo message="$${TEMP_DIR}=${TEMP_DIR}"/>
+        <pathconvert targetos="unix" property="new.temp.dir">
+            <path>
+                <pathelement location="${TEMP_DIR}"/>
+            </path>
+        </pathconvert>
+        <echo message="$${new.temp.dir}=${new.temp.dir}"/>
+         <copy tofile="${TEMP_DIR}/destiny/log4j.properties"
+              file="${TEMP_DIR}/destiny/log4j.properties.sample"
+              overwrite="yes">
+            <filterset>
+                <filter token="TEMP"  value="${new.temp.dir}"/>
+            </filterset>
+        </copy>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="devinit"
+            depends="-get-sql-login-name,
+		     -get-sql-login-password,
+                     -get-jdbc-url,
+                     -get-jdbc-driver-class"
+	    description="make a small district for testing purposes">
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.DestinyDeveloperInit"/>
+            <param name="RUNCLASS_EXTRACLASSPATH" value="${TOOLS_DIR}/destinyauthapi/target/destinyauthapi.jar"/>
+        </antcall>
+    </target>
+
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="msv"
+            description="Run msv" >
+        <java classpath="${IMPORTSITES_CP};c:/devtools/msv-20030225/msv.jar"
+              classname="com.sun.msv.driver.textui.Driver"
+              fork="no">
+            <sysproperty key="login" value="${SQL_LOGIN}"/>
+            <sysproperty key="password" value="${SQL_PASSWORD}"/>
+            <sysproperty key="jdbc.url" value="${JDBC_URL}"/>
+            <sysproperty key="jdbc.driver" value="${JDBC_DRIVER_CLASS}"/>
+            <sysproperty key="java.naming.provider.url"
+                         value="${JAVA_NAMING_PROVIDER_URL}"/>
+            <sysproperty key="org.xml.sax.driver"
+                         value="org.apache.xerces.parsers.SAXParser"/>
+            <arg value="C:/projects/new-destiny/app/src/session/src/com/follett/fsc/destiny/session/backoffice/remote/xml/patronimport.dtd"/>
+            <arg value="C:/projects/new-destiny/app/src/session/src/com/follett/fsc/destiny/session/backoffice/remote/xml/patronimport-dtdtest.xml"/>
+        </java>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="stop-jboss"
+            description="Shuts down JBoss/Tomcat">
+        <antcall target="-java-runner">
+
+	    <!-- Do not put any params here.  They belong in the java-runner target -->
+            <param name="CLASS_TO_RUN" value="com.follett.fsc.destiny.client.district.Shutdown"/>
+        </antcall>
+    </target>
+
+
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="runClass"
+            description="This target will run the class specified by ${RUNCLASS_CLASS}">
+	<property name="RUNCLASS_ARGS" value="" />
+	<property name="RUNCLASS_EXTRACLASSPATH" value="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/destiny.ear/lib/destinyauthapi.jar"/>
+	<property name="maxmemory.utils.runClass" value="${maxmemory.utils}"/>
+
+        <java classname="${RUNCLASS_CLASS}" failonerror="true"
+		classpath="${JBOSS_RUN_CP};${RUNCLASS_EXTRACLASSPATH}"
+		fork="yes"
+		maxmemory="${maxmemory.utils.runClass}">
+       		<arg line="${RUNCLASS_ARGS}"/>
+                <jvmarg value="-XX:MaxPermSize=128m"/>
+	</java>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="explode-ear">
+	<echo>destiny.ear.spec set to ${destiny.ear.spec}</echo>
+	<echo>destiny.ear.tmp.dir set to ${destiny.ear.tmp.dir}</echo>
+	<!-- allow default location -->
+	<property name="destiny.ear.spec" value="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/destiny.ear" />
+	<property name="destiny.ear.tmp.dir" value="./ear" />
+	<delete dir="${destiny.ear.tmp.dir}" />
+	<mkdir dir="${destiny.ear.tmp.dir}" />
+	<unzip src="${destiny.ear.spec}" dest="${destiny.ear.tmp.dir}"/>
+	<unzip src="${destiny.ear.tmp.dir}/destiny.war" dest="${destiny.ear.tmp.dir}/war"/>
+	<unzip src="${destiny.ear.tmp.dir}/util.jar" dest="${destiny.ear.tmp.dir}/util"/>
+    <unzip src="${destiny.ear.tmp.dir}/entity-ejb3.jar" dest="${destiny.ear.tmp.dir}/entity-ejb3"/>
+	<unzip src="${destiny.ear.tmp.dir}/session.jar" dest="${destiny.ear.tmp.dir}/session"/>
+	<unzip src="${destiny.ear.tmp.dir}/session-ejb3.jar" dest="${destiny.ear.tmp.dir}/session-ejb3"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="implode-ear">
+	<echo>destiny.ear.spec set to ${destiny.ear.spec}</echo>
+	<echo>destiny.ear.tmp.dir set to ${destiny.ear.tmp.dir}</echo>
+	<!-- allow default location -->
+	<property name="destiny.ear.spec" value="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/destiny.ear" />
+	<property name="destiny.ear.tmp.dir" value="./ear" />
+
+        <zip destfile="${destiny.ear.tmp.dir}/session.jar" basedir="${destiny.ear.tmp.dir}/session" update="true"/>
+        <zip destfile="${destiny.ear.tmp.dir}/session-ejb3.jar" basedir="${destiny.ear.tmp.dir}/session" update="true"/>
+	<delete dir="${destiny.ear.tmp.dir}/session"/>
+
+        <zip destfile="${destiny.ear.tmp.dir}/entity-ejb3.jar" basedir="${destiny.ear.tmp.dir}/entity" update="true"/>
+	<delete dir="${destiny.ear.tmp.dir}/entity"/>
+
+        <zip destfile="${destiny.ear.tmp.dir}/util.jar" basedir="${destiny.ear.tmp.dir}/util" update="true"/>
+	<delete dir="${destiny.ear.tmp.dir}/util"/>
+
+        <zip destfile="${destiny.ear.tmp.dir}/destiny.war" basedir="${destiny.ear.tmp.dir}/war" update="true"/>
+	<delete dir="${destiny.ear.tmp.dir}/war"/>
+
+	<zip destfile="${destiny.ear.spec}" basedir="${destiny.ear.tmp.dir}" update="true"/>
+	<delete dir="${destiny.ear.tmp.dir}"/>
+
+	<echo message="Your updated Destiny.Ear file is in ${destiny.ear.spec}"/>
+
+    </target>
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    
+    <target name="explode-jar">
+        <fail unless="jar.spec">jar.spec system property must be set to full path of jar to explode, or use command line -Djar.spec=path/to/my.jar</fail>
+        <!-- allow default location -->
+        <property name="jar.tmp.dir" value="./jar-tmp" />
+        <echo>jar.spec set to ${jar.spec}</echo>
+        <echo>jar.tmp.dir set to ${jar.tmp.dir}</echo>
+        <delete dir="${jar.tmp.dir}" />
+        <mkdir dir="${jar.tmp.dir}" />
+        <unzip src="${jar.spec}" dest="${jar.tmp.dir}"/>
+    </target>
+  
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="implode-jar">
+        <fail unless="jar.spec">jar.spec system property must be set to full path of jar to implode, or use command line -Djar.spec=path/to/my.jar</fail>
+        <!-- allow default location -->
+        <property name="jar.tmp.dir" value="./jar-tmp" />
+        <echo>jar.spec set to ${jar.spec}</echo>
+        <echo>jar.tmp.dir set to ${jar.tmp.dir}</echo>
+        <zip destfile="${jar.spec}" basedir="${jar.tmp.dir}" update="true"/>
+        <!--delete dir="${jar.tmp.dir}"/ -->
+        <echo message="Your updated jar file is in ${jar.spec}"/>
+    </target>
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <!-- This is used to build the custom session jar for Baltimore Public Schools with the 
+            custom label stock. Copy a release version of the session jar to jar.in.spec path.
+      -->
+    <target name="prepare-bcps">
+        <!-- allow default location -->
+        <property name="jar.in.spec" value="D:/deploy/session-90-orig.jar" />
+        <property name="jar.out.spec" value="D:/deploy/session-90-bcps.jar" />
+        <property name="paperstocks.out.dir" value="D:/deploy/" />
+        <property name="jar.tmp.dir" value="${env.TEMP}/jar-tmp" />
+        <property name="jar.tmp.explodedir" value="${jar.tmp.dir}/explode" />
+        <property name="jar.tmp.checkoutdir" value="${jar.tmp.dir}/checkout" />
+        
+        <fail unless="jar.in.spec">jar.in.spec system property must be set to full path of jar to implode, or use command line -Djar.in.spec=path/to/my.jar</fail>
+        <fail unless="jar.out.spec">jar.out.spec system property must be set to full path of jar to implode, or use command line -Djar.out.spec=path/to/my.jar</fail>
+        <echo>jar.in.spec set to ${jar.in.spec}</echo>
+        <echo>jar.out.spec set to ${jar.out.spec}</echo>
+        <echo>jar.tmp.dir set to ${jar.tmp.dir}</echo>
+        <delete dir="${jar.tmp.dir}" />
+        <mkdir dir="${jar.tmp.dir}" />
+        <echo>exploding original jar ${jar.in.spec} to ${jar.tmp.dir}</echo>
+        <unzip src="${jar.in.spec}" dest="${jar.tmp.explodedir}"/>
+        <echo>replaces existing paper stock with custom one</echo>
+        <cvspass cvsroot=":pserver:devasp@cvs.fsc.follett.com:/cvs/asp"
+            password="stuffy"
+        />        
+		<cvs cvsRoot=":pserver:devasp@cvs.fsc.follett.com:/cvs/asp" 
+                failonerror="true"
+				command="export -rBCPS_DEMCO_OCLC4_PATCH_90_20090120 new-destiny/app/src/session/src/com/follett/fsc/destiny/session/backoffice/remote/reportxml/labelStock_DemcoOCLC4.xml"
+				dest="${jar.tmp.checkoutdir}" />
+        <echo>Copy checkout value to implode dir</echo>
+        <copy file="${jar.tmp.checkoutdir}\new-destiny\app\src\session\src\com\follett\fsc\destiny\session\backoffice\remote\reportxml\labelStock_DemcoOCLC4.xml"
+              todir="${jar.tmp.explodedir}\com\follett\fsc\destiny\session\backoffice\remote\reportxml"
+              overwrite="true"
+              />
+        <echo>Get new paperstocks.xml</echo>
+		<cvs cvsRoot=":pserver:devasp@cvs.fsc.follett.com:/cvs/asp" 
+                failonerror="true"
+				command="export -rBCPS_DEMCO_OCLC4_PATCH_90_20090120 new-destiny/app/conf/paperstocks.xml"
+				dest="${jar.tmp.checkoutdir}" />
+        <echo>Copy paperstocks to target dir</echo>
+        <copy file="${jar.tmp.checkoutdir}\new-destiny\app\conf\paperstocks.xml"
+              todir="${paperstocks.out.dir}"
+              overwrite="true"
+              />
+        <!-- replace "Specification-Version: 9.5 (Iteration_178)"
+                with "Specification-Version: 9.5 (Iteration_178)(BCPS Demco Patch)" -->
+        <echo>Update manifest: Specification-Version: </echo>
+        <replaceregexp byline="true">
+          <regexp pattern="Specification-Version: (.*)$"/>
+          <substitution expression="Specification-Version: \1(BCPS Demco Patch)"/>
+          <fileset dir="${jar.tmp.explodedir}/META-INF" includes="MANIFEST.MF"/>
+        </replaceregexp>
+        <echo>Update manifest: Implementation-Version: </echo>
+        <replaceregexp byline="true">
+          <regexp pattern="Implementation-Version: (.*)$"/>
+          <substitution expression="Implementation-Version: \1(BCPS Demco Patch)"/>
+          <fileset dir="${jar.tmp.explodedir}/META-INF" includes="MANIFEST.MF"/>
+        </replaceregexp>
+        <echo>imploding patched jar ${jar.out.spec} from ${jar.tmp.explodedir}</echo>
+        <zip destfile="${jar.out.spec}" basedir="${jar.tmp.explodedir}" update="true"/>
+        <echo message="Your updated jar file is in ${jar.out.spec}"/>
+    </target>
+
+
+            
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="setConfigProperty" description="Sets a key=value in config.properties">
+        <java classname="com.follett.fsc.destiny.client.district.SetConfigProperty" failonerror="true" classpath="${JBOSS_RUN_CP}" fork="no">
+           <arg value="${env.FSC_DESTINY_HOME}/fsc/bin/config.properties"/>
+           <arg value="${KEY}"/>
+           <arg value="${VALUE}"/>
+        </java>
+    </target>
+
+    <!-- ########################## subroutines ############################# -->
+
+    <!-- This is a convenient way of setting the properties we need over and over and over again -->
+    <target name="-java-runner">
+	<property name="maxmemory.utils.java.runner" value="${maxmemory.utils}"/>
+	<property name="MAX_MEMORY" value="${maxmemory.utils.java.runner}"/>
+	<property name="RUNCLASS_EXTRACLASSPATH" value="" />
+        <java classname="${CLASS_TO_RUN}" failonerror="true"
+		classpath="${JBOSS_RUN_CP};${RUNCLASS_EXTRACLASSPATH}"
+		fork="yes"
+		maxmemory="${MAX_MEMORY}">
+
+           <jvmarg value="-XX:MaxPermSize=128m"/>
+
+           <!-- Basic needs to connect with and use jboss -->
+           <sysproperty key="DISTRICT_RESOURCES_DIR" value="${DISTRICT_RESOURCES_DIR}"/>
+           <sysproperty key="JBOSS_HOME" value="${env.FSC_DESTINY_HOME}"/>
+           <sysproperty key="jboss.server.home.dir" value="${env.FSC_DESTINY_HOME}/jboss"/>
+           <sysproperty key="jboss.server.log.dir" value="${env.FSC_DESTINY_HOME}/jboss/server/destiny/log"/>
+           <sysproperty key="java.naming.provider.url" value="${JAVA_NAMING_PROVIDER_URL}"/>
+           <sysproperty key="tomcat.base.uri" value="${TOMCAT_BASE_URI}"/>
+           <sysproperty key="FAILOVER_MODE" value="${FAILOVER_MODE}"/>           
+           <arg value="-LOG_PROP_FILE=${LOG_PROP_FILE}"/>
+	   <arg value="-host=${DESTINY_HOST}"/>
+           <sysproperty key="RUN_MODE" value="${RUN_MODE}"/>
+
+           <!-- Needed to connect to the database -->
+           <sysproperty key="jdbc.url" value="${JDBC_URL_ARG}"/>
+           <sysproperty key="jdbc.driver" value="${JDBC_DRIVER_CLASS_ARG}"/>
+           <sysproperty key="db.host" value="${DB_HOST}"/>
+           <sysproperty key="db.instance" value="${DB_INSTANCE}"/>
+           <sysproperty key="db.name" value="${DB_NAME}"/>
+           <sysproperty key="JDBC_DRIVER_CLASSID" value="${JDBC_DRIVER_CLASSID}"/>
+
+           <!--International-->
+ 	  <arg value="-db.international=${FSC_DESTINY_INTERNATIONAL}"/>
+ 	  <arg value="-db.collation=${FSC_DATABASE_COLLATION}"/>
+
+           <!-- database users -->
+           <sysproperty key="db.sa.password" value="${SA_PASSWORD_ARG}"/>
+           <sysproperty key="db.login" value="${DB_USER_ARG}"/>
+           <sysproperty key="db.password" value="${DB_PASSWORD_ARG}"/>
+           <sysproperty key="db.readonly.login" value="${DB_RO_USER_ARG}"/>
+           <sysproperty key="db.readonly.password" value="${DB_RO_PASSWORD_ARG}"/>
+
+	   <!-- destinyadmin user -->
+           <sysproperty key="app.login" value="${DESTINY_ADMIN_LOGIN_ARG}"/>
+           <sysproperty key="app.password" value="${DESTINY_ADMIN_PASSWORD_ARG}"/>
+
+           <!-- special dbupgrade flags -->
+           <sysproperty key="dbupgrade.testing" value="${dbupgrade.testing}"/>
+           <sysproperty key="SKIP_VIEWS" value="${SKIP_VIEWS}"/>
+
+           <!-- special rebuildkeywords args -->
+           <arg value="-REBUILD_KEYWORDS_RUN_MODE=${REBUILD_KEYWORDS_RUN_MODE}"/>
+           <arg value="-REBUILD_KEYWORDS_OPTION=${REBUILD_KEYWORDS_OPTION}"/>
+
+           <!-- special dbcreate/dbattach args -->
+           <arg value="-db.datafile=${DATAFILE_DIR_ARG}"/>
+           <arg value="-db.logfile=${LOGFILE_DIR_ARG}"/>
+           <arg value="-numsites=${NUM_SITES_ARG}"/>
+           <arg value="-db.datasrcfile=${DATASRCFILE_DIR_ARG}"/>
+           <arg value="-db.logsrcfile=${LOGSRCFILE_DIR_ARG}"/>
+           <arg value="-dr.zip=${DISTRICTRESOURCES_ZIP_FILE_ARG}"/>
+           <arg value="-dr.path=${DISTRICTRESOURCES_PATH_ARG}"/>
+
+           <!-- special dbinit args -->
+           <arg value="-dbinit.applyDevConstraints=${APPLY_DEV_CONSTRAINTS}"/>
+
+           <!-- special rebuildtabledata args -->
+           <arg value="-ONLY_REFRESH_SITEBIB_COUNTS=${ONLY_REFRESH_SITEBIB_COUNTS}"/>
+
+           <!-- special flag used when downing server -->
+           <arg value="-${QUIET_MODE}"/>
+
+           <!-- special import bib by control number args -->
+           <arg value="-IMPORT_PATH_AND_FILENAME=${IMPORT_PATH_AND_FILENAME_ARG}"/>
+
+	   <!-- consortium configurations here -->
+           <sysproperty key="CONSORTIUM_RESOURCES_PATH" value="${CONSORTIUM_RESOURCES_PATH}"/>
+
+           <!-- consortium specific context here -->
+           <arg value="-consortium.context=${DESTINY_CONSORTIUM_CONTEXT}"/>
+           <arg value="-consortium.dbname=${CONSORTIUM_DB_NAME}"/>
+           <arg value="-TEST_DB_UPGRADE_USING_SQL_2005_JDBC_URL=${TEST_DB_UPGRADE_USING_SQL_2005_JDBC_URL}"/>
+
+          <sysproperty key="TEST_DBUPGRADE_RESTORE_FOLDER" value="${DB_RESTORE_FOLDER}"/>
+          <sysproperty key="TEST_DBUPGRADE_DB_NAME" value="${TEST_DBUPGRADE_DB_NAME}"/>
+          <sysproperty key="TEST_DBUPGRADE_CONSORTIUM_DB_NAME" value="${TEST_DBUPGRADE_CONSORTIUM_DB_NAME}"/>
+
+          <sysproperty key="TEST_DB_UPGRADE_RESTORE_FOLDER" value="${TEST_DB_UPGRADE_RESTORE_FOLDER}"/>
+          <sysproperty key="TEST_DB_UPGRADE_ZIP_FILE" value="${TEST_DB_UPGRADE_ZIP_FILE}"/>
+          <sysproperty key="TEST_DB_UPGRADE_JDBC_URL_SQL_2000" value="${TEST_DB_UPGRADE_JDBC_URL_SQL_2000}"/>
+          <sysproperty key="TEST_DB_UPGRADE_JDBC_URL_SQL_2005" value="${TEST_DB_UPGRADE_JDBC_URL_SQL_2005}"/>
+          <sysproperty key="TEST_DB_UPGRADE_USING_SQL_2005_JDBC_URL" value="${TEST_DB_UPGRADE_USING_SQL_2005_JDBC_URL}"/>
+
+          <!-- actions for backup/restore db -->
+          <sysproperty key="DESTINY_BACKUP_FOLDER" value="${DESTINY_BACKUP_FOLDER}"/>
+        </java>
+    </target>
+
+<!--
+    The following targets follow the same pattern.  If the property does not
+    already exists then ask the user to enter it.  Properties can be preset by
+    inserting the property name, and equals sign without spaces, and the value
+    for the property into the config.properties file.
+
+    i.e. APP_LOGIN=stuffy
+
+    Note: placing passwords in the config.properties file weakens security;
+          therefore, it is not recommended.
+
+    The order of precedence is as follows...
+    user commandline overide
+    config.properties
+    prompt user
+-->
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-jdbc-url" unless="JDBC_URL_ARG"
+	depends="-get-jdbc-url-prop">
+        <input message="Please enter jdbc url:"
+               addproperty="JDBC_URL_ARG"/>
+    </target>
+
+    <target name="-get-jdbc-url-prop" if="JDBC_URL">
+        <property name="JDBC_URL_ARG" value="${JDBC_URL}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-jdbc-driver-class" unless="JDBC_DRIVER_CLASS_ARG"
+	depends="-get-jdbc-driver-class-prop">
+        <input message="Please enter jdbc driver class:"
+               addproperty="JDBC_DRIVER_CLASS_ARG"/>
+    </target>
+
+    <target name="-get-jdbc-driver-class-prop" if="JDBC_DRIVER_CLASS">
+        <property name="JDBC_DRIVER_CLASS_ARG" value="${JDBC_DRIVER_CLASS}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-db-name" unless="DB_NAME_ARG"
+	depends="-get-db-name-prop">
+        <input message="Please enter the name of the database:"
+               addproperty="DB_NAME_ARG"/>
+    </target>
+
+    <target name="-get-db-name-prop" if="DB_NANE">
+        <property name="DB_NAME_ARG" value="${DB_NAME}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-context-name" unless="CONTEXT_NAME_ARG"
+	depends="-get-context-name-prop">
+        <input message="Please enter the context name of the database:"
+               addproperty="CONTEXT_NAME_ARG"/>
+    </target>
+
+    <target name="-get-context-name-prop" if="CONTEXT_NAME">
+        <property name="CONTEXT_NAME_ARG" value="${CONTEXT_NAME}"/>
+    </target>
+
+
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-sa-login-password" unless="SA_PASSWORD_ARG"
+	depends="-get-sa-login-password-prop">
+        <input message="Please enter the SQL SERVER Administrator password:"
+               addproperty="SA_PASSWORD_ARG"/>
+    </target>
+
+    <target name="-get-sa-login-password-prop" if="SA_PASSWORD">
+        <property name="SA_PASSWORD_ARG" value="${SA_PASSWORD}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-sql-login-name" unless="DB_USER_ARG" 
+        depends="-get-sql-login-name-prop">
+        <input message="Please enter the Destiny Database login name:"
+               addproperty="DB_USER_ARG"/>
+    </target>
+
+    <target name="-get-sql-login-name-prop" if="SQL_LOGIN">
+        <property name="DB_USER_ARG" value="${SQL_LOGIN}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-sql-login-password" unless="DB_PASSWORD_ARG"
+	depends="-get-sql-login-password-prop">
+        <input message="Please enter the Destiny Database password:"
+               addproperty="DB_PASSWORD_ARG"/>
+    </target>
+
+    <target name="-get-sql-login-password-prop" if="SQL_PASSWORD">
+        <property name="DB_PASSWORD_ARG" value="${SQL_PASSWORD}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-data-file" unless="DATAFILE_DIR_ARG"
+	depends="-get-data-file-prop">
+        <input message="Please enter the directory to put your data file:"
+               addproperty="DATAFILE_DIR_ARG"/>
+    </target>
+
+    <target name="-get-data-file-prop" if="DATAFILE_DIR">
+        <property name="DATAFILE_DIR_ARG" value="${DATAFILE_DIR}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-log-file" unless="LOGFILE_DIR_ARG"
+	depends="-get-log-file-prop">
+        <input message="Please enter the directory to put your log file:"
+               addproperty="LOGFILE_DIR_ARG"/>
+    </target>
+
+    <target name="-get-log-file-prop" if="LOGFILE_DIR">
+        <property name="LOGFILE_DIR_ARG" value="${LOGFILE_DIR}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-data-src-file" unless="DATASRCFILE_DIR_ARG"
+	depends="-get-data-src-file-prop">
+        <input message="Please enter the data filename to attach:"
+               addproperty="DATASRCFILE_DIR_ARG"/>
+    </target>
+
+    <target name="-get-data-src-file-prop" if="DATASRCFILE_DIR">
+        <property name="DATASRCFILE_DIR_ARG" value="${DATASRCFILE_DIR}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-log-src-file" unless="LOGSRCFILE_DIR_ARG"
+	depends="-get-log-src-file-prop">
+        <input message="Please enter the log filename to attach:"
+               addproperty="LOGSRCFILE_DIR_ARG"/>
+    </target>
+
+    <target name="-get-log-src-file-prop" if="LOGSRCFILE_DIR">
+        <property name="LOGSRCFILE_DIR_ARG" value="${LOGSRCFILE_DIR}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-dr-zip-file" unless="DISTRICTRESOURCES_ZIP_FILE_ARG"
+	depends="-get-dr-zip-file-prop">
+        <input message="Please enter the district resources zip file to restore:"
+               addproperty="DISTRICTRESOURCES_ZIP_FILE_ARG"/>
+    </target>
+
+    <target name="-get-dr-zip-file-prop" if="DISTRICTRESOURCES_ZIP_FILE">
+        <property name="DISTRICTRESOURCES_ZIP_FILE_ARG" value="${DISTRICTRESOURCES_ZIP_FILE}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-dr-path" unless="DISTRICTRESOURCES_PATH_ARG"
+	depends="-get-dr-path-prop">
+        <input message="Please enter the directory location in which to put the district resources folder:"
+               addproperty="DISTRICTRESOURCES_PATH_ARG"/>
+    </target>
+
+    <target name="-get-dr-path-prop" if="DISTRICTRESOURCES_PATH">
+        <property name="DISTRICTRESOURCES_PATH_ARG" value="${DISTRICTRESOURCES_PATH}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-num-sites" unless="NUM_SITES_ARG"
+	depends="-get-num-sites-prop">
+        <input message="Please enter number of sites:"
+               addproperty="NUM_SITES_ARG"/>
+    </target>
+
+    <target name="-get-num-sites-prop" if="NUM_SITES">
+        <property name="NUM_SITES_ARG" value="${NUM_SITES}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-updateclasses-file" unless="UPDATECLASSES_FILE_ARG"
+	depends="-get-updateclasses-file-prop">
+        <input message="Please enter updateclasses filename:"
+               addproperty="UPDATECLASSES_FILE_ARG"/>
+    </target>
+
+    <target name="-get-updateclasses-file-prop" if="UPDATECLASSES_FILE">
+        <property name="UPDATECLASSES_FILE_ARG" value="${UPDATECLASSES_FILE}"/>
+    </target>
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get-importsites-file" unless="IMPORTSITES_FILE_ARG"
+	depends="-get-importsites-file-prop">
+        <input message="Please enter importsites filename:"
+               addproperty="IMPORTSITES_FILE_ARG"/>
+    </target>
+
+    <target name="-get-importsites-file-prop" if="IMPORTSITES_FILE">
+        <property name="IMPORTSITES_FILE_ARG" value="${IMPORTSITES_FILE}"/>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="run-custom"
+            description="Process a custom task from destiny-custom" >
+
+        <echo>CUSTOM_CLASS ${CUSTOM_CLASS} </echo>
+        <echo>CUSTOM_ARGS ${CUSTOM_ARGS} </echo>
+        <echo>CP=${CUSTOM_EXTRACLASSPATH};${REPORTS_CP}</echo>
+        <echo>JBOSS_HOME=${env.FSC_DESTINY_HOME}</echo>
+        <echo>JAVA_NAMING_PROVIDER_URL=${JAVA_NAMING_PROVIDER_URL}</echo>
+        <echo>JDBC_URL=${JDBC_URL}</echo>
+        <echo>TOMCAT_BASE_URI=${TOMCAT_BASE_URI}</echo>
+
+	<property name="CUSTOM_ARGS" value="" />
+	<property name="CUSTOM_EXTRACLASSPATH" value="" />
+
+        <java classpath="${CUSTOM_EXTRACLASSPATH};${REPORTS_CP}"
+              classname="${CUSTOM_CLASS}"
+              fork="yes"
+              failonerror="true">
+            <sysproperty key="JBOSS_HOME" value="${env.FSC_DESTINY_HOME}/jboss" />
+            <sysproperty key="java.naming.provider.url" value="${JAVA_NAMING_PROVIDER_URL}"/>
+            <sysproperty key="tomcat.base.uri" value="${TOMCAT_BASE_URI}"/>
+            <sysproperty key="connection" value="${JDBC_URL}"/>
+            <sysproperty key="org.xml.sax.driver" value="org.apache.xerces.parsers.SAXParser"/>
+            <arg value="${CUSTOM_ARGS}"/>
+	  <jvmarg value="-client"/>
+	  <jvmarg value="-Xgcprio:throughput"/>
+            <jvmarg value="-Xnoopt"/>
+        </java>
+    </target>
+
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="setup-armstrong">
+
+	 <echo message="Setting up files for armstrong run..." />
+	 <echo message="$${env.FSC_DESTINY_HOME}=${env.FSC_DESTINY_HOME}" />
+         <copy todir="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy"
+              file="${env.FSC_DESTINY_HOME}/fsc/client/lib/armstrong/armstrong-server.war"
+              overwrite="yes">
+        </copy>
+         <copy todir="/perf" overwrite="yes">
+            <fileset dir="${env.FSC_DESTINY_HOME}/fsc/client/lib/armstrong/">
+                <include name="**/*"/>
+                <exclude name="armstrong-server.war"/>
+            </fileset>
+        </copy>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="setup-armstrong-with-server-config" depends="setup-armstrong">
+
+	 <echo message="Setting up config file for the armstrong server..." />
+	 <echo message="$${env.FSC_DESTINY_HOME}=${env.FSC_DESTINY_HOME}" />
+         <property name="FSC_DESTINY_BIN" value="${env.FSC_DESTINY_HOME}/fsc/bin"/>
+	 <echo message="config.properties will land in ${FSC_DESTINY_BIN}" />
+         <copy tofile="${FSC_DESTINY_BIN}/config.properties"
+              file="${env.FSC_DESTINY_HOME}/fsc/client/lib/armstrong/config.properties.armstrong"
+              overwrite="yes">
+        </copy>
+    </target>
+
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="archive-destiny-database" description="Backup, sanitize, and optionally send via FTP a Destiny database">
+        <java classpath="${JBOSS_RUN_CP}"
+            classname="com.follett.fsc.destiny.client.apps.backupdb.BackupDb" fork="yes">
+            <arg value="${ARG1}"/>
+            <arg value="${ARG2}"/>
+            <arg value="${ARG3}"/>
+            <arg value="${ARG4}"/>
+            <arg value="${ARG5}"/>
+            <arg value="${ARG6}"/>
+            <arg value="${ARG7}"/>
+            <arg value="${ARG8}"/>
+            <arg value="${ARG9}"/>
+            <arg value="${ARG10}"/>
+            <arg value="${ARG11}"/>
+            <arg value="${ARG12}"/>
+            <arg value="${ARG13}"/>
+            <arg value="${ARG14}"/>
+            <arg value="${ARG15}"/>
+            <arg value="${ARG16}"/>
+        </java>
+    </target>
+
+</project>
+

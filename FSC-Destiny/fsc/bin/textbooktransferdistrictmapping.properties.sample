@@ -1,0 +1,6 @@
+# NOTE: This file, used with the -districtNameMapFile option is only valid for Destiny with State Textbook Repository
+# Add multiple entries in format specified below, for each district whose name is different in the transfer input file
+# from what the Destiny district name is. Any districts named correctly in the input file do not need to be added
+# to this mapping file. Leading and trailing spaces are ignored on either side of the equals sign,
+# there is no case sensitivity.
+districtNameInTransferFile=DistrictNameInDestiny

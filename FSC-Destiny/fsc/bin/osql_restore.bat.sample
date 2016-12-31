@@ -1,0 +1,38 @@
+@ECHO ON
+rem This is a customer batch file that is deployed with the application.
+
+if "%1"=="usage" goto usage
+if "%1"=="?" goto usage
+if "%1"=="-?" goto usage
+if "%1"=="-help" goto usage
+if "%1"=="help" goto usage
+if "%1"=="-h" goto usage
+
+goto begin
+
+:usage
+
+echo.
+echo This batch file will retore Destiny database from previous backup.
+echo.
+echo   Usage:
+echo   osql_restore <sa_password : required> <backupFile: required> <databaseName : optional> <instanceName : optional>
+goto :end
+
+
+:begin
+
+SET SA_PASSWORD=%1
+
+SET BACKUP_FILE=%2
+
+SET DATABASE_NAME=%3
+if %DATABASE_NAME%! == ! SET DATABASE_NAME=destiny
+
+REM CHANGE THIS PARAMETER IF YOU ARE RUNNING AN INSTANCE NAME OR JUST SPECIFY IT ON THE COMMANDLINE
+SET DATABASE_INSTANCE=%4
+
+
+osql -H 127.0.0.1 -S 127.0.0.1\%DATABASE_INSTANCE% -d master -U sa -P %SA_PASSWORD% -Q "RESTORE DATABASE %DATABASE_NAME% FROM DISK='%BACKUP_FILE%' WITH REPLACE"
+
+:end

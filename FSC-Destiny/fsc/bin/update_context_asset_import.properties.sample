@@ -1,0 +1,7 @@
+# Enter the user name and password of the user with the ability to import assets
+username=du
+password=du
+
+# Set true to allow patrons to be deleted even if they have outstanding
+# transactions.
+deletePatronsWithTransactions = false

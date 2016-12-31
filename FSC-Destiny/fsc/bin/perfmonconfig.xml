@@ -1,0 +1,195 @@
+<!--
+	To enable perfmon4j monitoring change the enabled attribute to 'true'
+	This file is reloaded every 60 seconds....
+-->
+<Perfmon4JConfig enabled='true'>
+	<appender name='lo-res' className='org.perfmon4j.TextAppender' interval='1 hour'/>
+	<appender name='med-res' className='org.perfmon4j.TextAppender' interval='30 minutes'/>
+	<appender name='med-hi-res' className='org.perfmon4j.TextAppender' interval='5 minutes'/>
+	<appender name='high-res' className='org.perfmon4j.TextAppender' interval='1 minutes'/>
+
+	<!-- BEGIN Destiny Server Dashboard monitoring...  -->
+	<!-- Request Monitoring -->
+	<appender name='destiny-appender-request' className='com.follett.fsc.destiny.session.common.data.PerfMonSQLAppender' 
+		interval='1 minute'>
+		<attribute name='medianCalculator'>factor=10</attribute>		
+		<attribute name='thresholdCalculator'>2 seconds, 5 seconds, 10 seconds</attribute>
+	</appender>
+
+	<monitor name='WebRequest'>
+		<appender name='destiny-appender-request' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.backoffice'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.circulation'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.cataloging'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.dashboard'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.vopac'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.rest'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+	
+	<monitor name='WebRequest.destiny'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+        <monitor name='WebRequest.commandline'>
+                <appender name='destiny-appender-request' pattern="."/>
+                <appender name='med-res' pattern="."/>
+        </monitor>
+         <monitor name='WebRequest.myfollettsso'>
+                <appender name='destiny-appender-request' pattern="."/>
+                <appender name='med-res' pattern="."/>
+        </monitor>
+
+	<monitor name='StaticWebRequest'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+	<monitor name='WebRequest.callaaspregistration'>
+		<appender name='destiny-appender-request' pattern="."/>
+         	<appender name='med-res' pattern="."/>
+	</monitor>
+
+
+	<!-- Bandwidth Monitoring -->
+	<appender name='destiny-appender-bandwidth' className='com.follett.fsc.destiny.session.common.data.PerfMonSQLAppender'
+		interval='10 minutes'>
+	</appender>
+
+	<snapShotMonitor name='BandwidthAgent' className='com.follett.fsc.destiny.session.common.data.BandwidthSnapShotMonitor'>
+		<appender name='destiny-appender-bandwidth'/>
+		<attribute name='usePriorityTimer'>true</attribute>
+	</snapShotMonitor>
+
+	<!-- Useragent Monitoring (Tracks client browser types) -->
+	<appender name='destiny-appender-useragent' className='com.follett.fsc.destiny.session.common.data.PerfMonSQLAppender'
+		interval='1 hour'>
+	</appender>
+
+	<snapShotMonitor name='UserAgent' className='org.perfmon4j.UserAgentSnapShotMonitor'>
+		<appender name='destiny-appender-useragent'/>
+	</snapShotMonitor>
+
+	<!-- Server Info Monitoring (Tracks basic metrics about the destiny server, number of sites, number of titles, etc...) -->
+	<appender name='destiny-appender-server' className='com.follett.fsc.destiny.session.common.data.PerfMonSQLAppender'
+		interval='4 hours'>
+	</appender>
+
+	<snapShotMonitor name='ServerAgent' className='com.follett.fsc.destiny.session.common.data.ServerSnapShotMonitor'>
+		<appender name='destiny-appender-server'/>
+	</snapShotMonitor>
+	<!-- END Destiny Server Dashboard monitoring... -->
+
+	<!-- BEGIN Churchill monitoring -->
+	<snapShotMonitor name='Churchill Job Manager' className='com.follett.fsc.churchill.ChurchillSnapShot'>
+		<appender name='med-hi-res'/>
+	</snapShotMonitor>
+
+	<!-- END Churchill monitoring -->
+
+	<!-- BEGIN JVM monitoring -->
+	<snapShotMonitor name='Old Generation Collector (Memory)' className='org.perfmon4j.java.management.GarbageCollectorSnapShot'>
+         	<appender name='med-res'/>
+		<attribute name='instanceName'>ConcurrentMarkSweep</attribute>
+	</snapShotMonitor>
+
+        <snapShotMonitor name='Composite Memory Pool'  className='org.perfmon4j.java.management.MemoryPoolSnapShot'>
+                <appender name='med-res'/>
+        </snapShotMonitor>
+
+        <snapShotMonitor name='JVMSnapShot' className='org.perfmon4j.java.management.JVMSnapShot'>
+                <appender name='med-res'/>
+        </snapShotMonitor>
+
+        <!-- Uncomment this block to expose more detailed memory monitors
+	<snapShotMonitor name='Parallel New GC' className='org.perfmon4j.java.management.GarbageCollectorSnapShot'>
+	        <appender name='med-res'/>
+		<attribute name='instanceName'>ParNew</attribute>
+	</snapShotMonitor>
+
+	<snapShotMonitor name='Concurrent GC' className='org.perfmon4j.java.management.GarbageCollectorSnapShot'>
+	        <appender name='med-res'/>
+		<attribute name='instanceName'>ConcurrentMarkSweep</attribute>
+	</snapShotMonitor>
+
+	<snapShotMonitor name='Composite Garbage Collector' className='org.perfmon4j.java.management.GarbageCollectorSnapShot'>
+	        <appender name='med-res'/>
+	</snapShotMonitor>
+	-->
+
+	<!-- END JVM monitoring -->
+
+	<!-- BEGIN Lucene monitoring
+		Note: If you are running Lucene in a seperate keyword VM you will want to include
+		this section in keyword.perfmonconfig.xml instead of here.
+	<monitor name='LuceneWrapper.search'>
+		<appender name='high-res' pattern="."/>
+	</monitor>
+
+	<monitor name='LuceneWrapper'>
+		<appender name='lo-res' pattern="/*"/>
+	</monitor>
+
+	<monitor name='LuceneWrapper.OfflineIndexer'>
+		<appender name='lo-res' pattern="/*"/>
+	</monitor>
+	-->
+	<!-- END Lucene Monitoring -->
+
+	<!-- BEGIN Browse monitoring
+	Browse Monitoring
+	<monitor name='BrowseFacadeBean.searchHeadingsBase'> 	\
+		<appender name='high-res' pattern="."/>
+	</monitor>
+	-->
+	<!-- END Browse monitoring -->
+
+
+	<!-- BEGIN Circulation monitoring
+	Circulation monitoring
+	<monitor name='CircMainBean.checkOutCopy'>
+		<appender name='med-res' pattern="."/>
+	</monitor>
+	<monitor name='CircMainBean.checkInCopy'>
+		<appender name='med-res' pattern="."/>
+	</monitor>
+	-->
+	<!-- END Circulation monitoring -->
+
+	<!-- BEGIN LRU cache monitoring
+	<snapShotMonitor name='ALL LRU Caches' className='com.follett.fsc.jbosshelper.cache.DestinyLRUCacheSnapShot'>
+         	<appender name='high-res'/>
+	</snapShotMonitor>
+
+	<snapShotMonitor name='Bibmaster Cache' className='com.follett.fsc.jbosshelper.cache.DestinyLRUCacheSnapShot'>
+         	<appender name='high-res'/>
+		<attribute name='instanceName'>destiny_ear,entity-ejb3_jar,default.com.follett.fsc.destiny.entity.ejb3.BibMaster</attribute>
+	</snapShotMonitor>
+	-->
+	<!-- END LRU cache monitoring -->
+
+</Perfmon4JConfig>

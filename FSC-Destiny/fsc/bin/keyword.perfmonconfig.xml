@@ -1,0 +1,27 @@
+<!--
+	- To enable perfmon4j monitoring change the enabled attribute to 'true'
+	- This file is reloaded every 60 seconds....
+-->
+<Perfmon4JConfig enabled='false'>
+	<alias fromName='com.follett.fsc.destiny.util' toName='util'/>
+	<alias fromName='com.follett.fsc.destiny.entity' toName='entity'/>
+	<alias fromName='com.follett.fsc.destiny.session' toName='session'/>
+	<alias fromName='com.follett.fsc.destiny.client' toName='client'/>
+
+	<appender name='lo-res' className='com.follett.fsc.perfmon4j.TextAppender' interval='1 hour'/>
+	<appender name='med-res' className='com.follett.fsc.perfmon4j.TextAppender' interval='30 minutes'/>
+	<appender name='high-res' className='com.follett.fsc.perfmon4j.TextAppender' interval='5 minutes'/>
+
+	<monitor name='LuceneWrapper.search'> <!-- LuceneWrapper.search combines the methods LuceneWrapper.searchAndReturnAlternateTerm and LuceneWrapper.search -->
+		<appender name='high-res' pattern="."/>
+		<appender name='lo-res' pattern="/*"/>
+	</monitor>
+	
+	<monitor name='LuceneWrapper'> 			
+		<appender name='lo-res' pattern="/*"/>
+	</monitor>
+	
+	<monitor name='LuceneWrapper.OfflineIndexer'> 			
+		<appender name='lo-res' pattern="/*"/>
+	</monitor>
+</Perfmon4JConfig>

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paperstock>
+  
+  
+  <!-- These are physical label stock measurements.
+        Top measured from top of backing to top of top label.
+        Bottom measured from bottom of last label to end of stock (not backing) -->
+
+  <!-- spine and spine/pocket labels -->
+  
+  <stock name="Demco 5 by 10 - 14942270 (spine)"
+        labelsAcross="5"
+	    labelsTopToBottom="10"     
+		marginTop="36" 
+		marginBottom="36" 
+		marginLeft="18"
+		marginRight="18"
+        xmlPath="labelStock_Demco5By10.xml">
+    <report>spineLabels</report>
+  </stock>
+  
+  <stock name="Demco 5 by 10 - 14942270 (spine-vertical)"
+        labelsAcross="5"
+	    labelsTopToBottom="10"
+        labelHeight="72"
+        labelWidth="117"
+        labelSpacing="0"
+		marginTop="36" 
+		marginBottom="36" 
+		marginLeft="14"
+		marginRight="13"
+        xmlPath="labelStock_Demco5By10.xml">
+    <report>spineLabels</report>
+  </stock>
+  
+  <stock name="Demco 5 by 11 - 14216170 (spine)"
+        labelsAcross="5"
+	    labelsTopToBottom="11"     
+		marginTop="40" 
+		marginBottom="36" 
+		marginLeft="34"
+		marginRight="34"
+        xmlPath="labelStock_Demco5By11.xml">
+    <report>spineLabels</report>
+  </stock>
+  <stock name="Demco 5 by 11 - 14216170 (spine-vertical)"
+        labelsAcross="5"
+	    labelsTopToBottom="11"
+		marginTop="40"
+		marginBottom="36" 
+		marginLeft="34"
+		marginRight="34"
+        xmlPath="labelStock_Demco5By11.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 10 by 10 - 14216190 (spine)"
+        labelsAcross="10"
+	    labelsTopToBottom="10"
+		marginTop="36" 
+		marginLeft="36"
+		marginBottom="36"
+		marginRight="36"
+        xmlPath="labelStock_Demco10By10.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 7 by 14 - 14217210 (spine)"
+        labelsAcross="7"
+        labelsTopToBottom="14"
+        labelHeight="54"
+        labelWidth="72"
+        labelSpacing="9"
+        marginTop="18"
+        marginLeft="27"
+        marginBottom="18"
+        marginRight="27"
+        pageHeight="792"
+        pageWidth="612"
+        xmlPath="labelStock_Demco7By14.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 7 by 14 - 14217210 (spine-vertical)"
+        labelsAcross="7"
+        labelsTopToBottom="14"
+        labelHeight="54"
+        labelWidth="72"
+        labelSpacing="9"
+        marginTop="18"
+        marginLeft="27"
+        marginBottom="18"
+        marginRight="27"
+        pageHeight="792"
+        pageWidth="612"
+        xmlPath="labelStock_Demco7By14.xml">
+    <report>spineLabels</report>
+  </stock>
+  
+  <stock name="Demco 7 by 14 - 14942230 (spine)"
+        labelsAcross="7"
+        labelsTopToBottom="14"
+        labelHeight="54"
+        labelWidth="72"
+        labelSpacing="9"
+        marginTop="18"
+        marginLeft="27"
+        marginBottom="18"
+        marginRight="27"
+        pageHeight="792"
+        pageWidth="612"
+        xmlPath="labelStock_Demco7By14.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 7 by 14 - 14942230 (spine-vertical)"
+        labelsAcross="7"
+        labelsTopToBottom="14"
+        labelHeight="54"
+        labelWidth="72"
+        labelSpacing="9"
+        marginTop="18"
+        marginLeft="27"
+        marginBottom="18"
+        marginRight="27"
+        pageHeight="792"
+        pageWidth="612"
+        xmlPath="labelStock_Demco7By14.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 8 by 7 - 14218020 (spine)"
+		labelsAcross="8"
+		labelsTopToBottom="7"
+		marginTop="18" 
+		marginLeft="18"
+		marginBottom="18"
+		marginRight="18"
+        xmlPath="labelStock_Demco8By7.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 8 by 6 - 14218030 (spine)"
+        labelsAcross="8"
+		labelsTopToBottom="6"
+        marginTop="36"
+        marginLeft="18"
+		marginBottom="36" 
+		marginRight="18"
+        xmlPath="labelStock_Demco8By6.xml">
+    <report>spineLabels</report>
+  </stock>
+  <stock name="Demco 8 by 6 - 14218030 (spine-vertical)"
+        labelsAcross="8"
+		labelsTopToBottom="6"
+        marginTop="36"
+        marginLeft="18"
+		marginBottom="36" 
+		marginRight="18"
+        xmlPath="labelStock_Demco8By6.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco 2 by 6 - 14971370 (spine/pocket)"
+        labelsAcross="2"
+		labelsTopToBottom="6"
+        marginTop="26"
+        marginLeft="16"
+		marginBottom="11"
+		marginRight="16"
+        xmlPath="labelStock_Demco2By6.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco OCLC 4 - 14216850 (spine/pocket)"
+		labelsAcross="2"
+	    labelsTopToBottom="5"
+        marginTop="36"
+		marginBottom="36"
+        marginLeft="18"
+		marginRight="18"
+        xmlPath="labelStock_DemcoOCLC4.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco OCLC 4 - 14216850 (spine/pocket BCPS Custom)"
+        labelsAcross="2"
+        labelsTopToBottom="5"
+        marginTop="36"
+        marginBottom="36"
+        marginLeft="27"
+        marginRight="26"
+        xmlPath="labelStock_DemcoOCLC4BCPS.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Demco Three Across - 14216180 (spine/pocket)"
+        labelsAcross="1"
+	    labelsTopToBottom="12"
+        marginTop="18" 
+        marginLeft="68"
+		marginBottom="18" 
+		marginRight="67"
+        xmlPath="labelStock_DemcoThreeAcross.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="University 8 by 6 - 9-62450-12 (spine)"
+        labelsAcross="8"
+	    labelsTopToBottom="6"
+        marginTop="36" 
+        marginLeft="16"
+		marginBottom="36" 
+		marginRight="16"
+        xmlPath="labelStock_University8By6.xml">
+    <report>spineLabels</report>
+  </stock>
+  <stock name="University 8 by 6 - 9-62450-12 (spine-vertical)"
+        labelsAcross="8"
+	    labelsTopToBottom="6"
+        marginTop="36" 
+        marginLeft="16"
+		marginBottom="36" 
+		marginRight="16"
+        xmlPath="labelStock_University8By6.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="University OCLC 4 - 342-SL4L (spine/pocket)"
+		labelsAcross="2"
+		labelsTopToBottom="5"
+        marginTop="40" 
+        marginLeft="16"     
+		marginBottom="37"
+		marginRight="22"    
+        xmlPath="labelStock_UniversityOCLC4.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <!-- University OCLC 6 - 342-OS6DL:
+       NOTE: marginbottom was 0 since bottom space part of label 
+       NOTE: This label is asymmetric - the spacer between labels 
+       is 60 pts and the bottom margin / bottom label spacer is 50 pts.
+       So we have to set the page height bigger so JR doesn't wrap
+       the last label set down to the next page.
+       NOTE: The PDF is now 11.8 inches long, but extra doesn't print anyway.
+       NOTE: Release 6.0 PDFs were 8.53 x 11.25 in.
+    -->
+  <stock name="University OCLC 6 - 342-OS6DL (spine/pocket)"
+        labelsAcross="2"
+	    labelsTopToBottom="3"
+        marginTop="50" 
+        marginLeft="22"
+		marginBottom="50" 
+        marginRight="22"
+        xmlPath="labelStock_UniversityOCLC6.xml"> 
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="Sagebrush Laser 6 by 5 - 0370-00000009 (spine)"
+		labelsAcross="6"
+		labelsTopToBottom="5"
+        marginTop="13" 
+        marginLeft="36"
+		marginBottom="13" 
+		marginRight="36"
+		xmlPath="labelStock_Sagebrush6By5.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <stock name="University Three Across - 9-62450-15 (spine/pocket)"
+		labelsAcross="1"
+		labelsTopToBottom="10"
+        marginTop="36" 
+        marginLeft="48"
+		marginBottom="36" 
+		marginRight="64"
+		xmlPath="labelStock_UniversityThreeAcross.xml">
+    <report>spineLabels</report>
+  </stock>
+
+  <!-- END OF spine and spine/pocket labels -->
+
+  <stock name="Reading Program LARGE label - FSC 28-up"
+		labelsAcross="4"
+		labelsTopToBottom="7"
+        marginTop="40" 
+        marginLeft="15"
+		marginBottom="0" 
+		marginRight="3"
+		xmlPath="labelStock_fsc_28_up.xml">
+    <report>readingProgramLabels</report>
+  </stock>
+  
+  <stock name="Reading Program SMALL label set - FSCFLR spine 48-up"
+		labelsAcross="4"
+		labelsTopToBottom="6"
+        marginTop="9" 
+        marginLeft="27"
+		marginBottom="27" 
+		marginRight="27"
+		xmlPath="labelStock_fscflr_48_up.xml">
+    <report>readingProgramLabels</report>
+  </stock>
+
+  <stock name="Demco 14218050"
+        miniName="Demco 14218050"
+        labelsAcross="3"
+        labelsTopToBottom="10"
+        labelHeight="72"
+        labelWidth="189"
+        labelSpacing="9"
+        marginTop="36"
+        marginLeft="9"
+        marginBottom="36"
+        marginRight="9"
+        pageHeight="792"
+        pageWidth="612"
+        xmlPath="labelStock_Demco3By10.xml">
+    <report>copyBarcodes</report>
+    <report>patronBarcodes</report>
+  </stock>
+
+  <stock name="University 9-62450-16"
+		miniName="University 9-62450-16"
+        labelsAcross="3"
+		labelsTopToBottom="10"
+		labelHeight="72"
+		labelWidth="189"
+		labelSpacing="0"
+		marginTop="36"
+		marginLeft="23"
+		marginBottom="36"
+		marginRight="22"
+		pageHeight="792"
+		pageWidth="612"
+		xmlPath="labelStock_University3By10.xml">
+    <report>copyBarcodes</report>
+    <report>patronBarcodes</report>
+  </stock>
+
+  <stock name="Avery white address labels (style 5160)"
+		miniName="Avery 5160"
+		labelsAcross="3"
+		labelsTopToBottom="10"
+		labelHeight="72"
+		labelWidth="188"
+		labelSpacing="11"
+		marginTop="36"
+		marginLeft="10"
+		marginBottom="36"
+		marginRight="10"
+		pageHeight="792"
+		pageWidth="612"
+		xmlPath="labelStock_Avery5160_3By10.xml">
+    <report>copyBarcodes</report>
+    <report>patronBarcodes</report>
+  </stock>
+  
+    <stock name="Sagebrush Laser 0370-00000001"
+        miniName="Sagebrush 370-01"
+        labelsAcross="3"
+        labelsTopToBottom="11"
+        labelHeight="63"
+        labelWidth="189"
+        labelSpacing="11"
+        marginTop="48"
+        marginLeft="10"
+        marginBottom="49"
+        marginRight="10"
+        pageHeight="792"
+        pageWidth="612"
+        xmlPath="labelStock_Sagebrush_3By11.xml">
+    <report>copyBarcodes</report>
+    <report>patronBarcodes</report>
+  </stock>
+
+  <stock name="Standard 8.5 x 11 white paper"
+     labelsAcross="2"
+	 labelsTopToBottom="10"
+	 labelHeight="72"
+	 labelWidth="189"
+	 labelSpacing="162"
+	 marginTop="36"
+	 marginLeft="36"
+	 marginBottom="36"
+	 marginRight="36"
+	 pageHeight="792"
+	 pageWidth="612">
+  </stock>
+
+  <!-- Patron ID labels -->
+  <stock name="Avery ID Card 2 x 3.25 (05361)"
+     	labelsAcross="1"
+		labelsTopToBottom="3"
+		labelHeight="144" 
+		marginTop="0"
+		marginLeft="0" 
+		marginBottom="0" 
+		marginRight="0"
+		maxOffsetTop="60"
+		maxOffsetBottom="62" 
+		maxOffsetLeft="306"
+		maxOffsetRight="72" 
+        useMaxOffsetsForValidation="true"
+        xmlPath="labelStock_Avery05361.xml">
+    <report>patronIDCard</report>
+  </stock>
+
+  <stock name="Avery Small Rotary 2.25 x 4 (05385)"
+        labelsAcross="2"
+		labelsTopToBottom="4"
+		labelHeight="156" 
+		marginTop="84"
+		marginLeft="18" 
+		marginBottom="84" 
+		marginRight="18"
+		xmlPath="labelStock_Avery05385.xml">
+    <report>patronIDCard</report>
+  </stock>
+
+  <stock name="Avery Large Rotary 3 x 5 (05386)"
+        labelsAcross="1"
+        labelsTopToBottom="3"
+		labelHeight="216" 
+		marginTop="73"
+		marginLeft="123" 
+		marginBottom="71" 
+		marginRight="129"
+        xmlPath="labelStock_Avery05386.xml">
+    <report>patronIDCard</report>
+  </stock>
+
+  <stock name="Rolodex ID 2.25 x 4 (67620)"
+        labelsAcross="2"
+        labelsTopToBottom="4"
+		labelHeight="157" 
+		marginTop="82"
+		marginLeft="18" 
+		marginBottom="82" 
+		marginRight="18"
+        xmlPath="labelStock_Rolodex67620.xml">
+    <report>patronIDCard</report>
+  </stock>
+  
+  <!-- END OF Patron ID labels -->
+
+  <!-- Booking labels -->
+  <stock name="Avery 1 1/3&quot; x 4&quot; mailing labels (8462)"
+		labelsAcross="2"
+		labelsTopToBottom="7"
+		marginTop="58" 
+		marginLeft="10" 
+		marginBottom="60" 
+		marginRight="10"		
+        xmlPath="bookingLabelsAvery8462.xml">
+    <report>bookingLabels</report>
+  </stock>
+
+  <stock name="Avery 2&quot; x 4&quot; mailing labels (8463)"
+		labelsAcross="2"
+		labelsTopToBottom="5"
+      	labelHeight="144"
+		marginTop="36" 
+		marginLeft="12" 
+		marginBottom="36" 
+		marginRight="12"		
+        xmlPath="bookingLabelsAvery8463.xml">
+    <report>bookingLabels</report>
+  </stock>
+
+  <!-- END OF Booking labels -->
+
+
+</paperstock>
+

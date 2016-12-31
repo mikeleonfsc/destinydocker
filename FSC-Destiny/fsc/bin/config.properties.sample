@@ -1,0 +1,207 @@
+#
+# $Revision: 1.148 $ $Date: 2015/08/11 20:08:20 $
+#
+
+
+#Database information
+#    NOTE:  When you are trying to connect to one of multiple instances of SQL server on a single box,
+#           you can specify either DB_PORT or DB_INSTANCE, but not both.
+#
+#	e.g.
+#
+#		DB_PORT=:1710
+#               DB_INSTANCE=
+#
+#	or
+#
+#		DB_PORT=
+#               DB_INSTANCE=SNOOPY
+#
+# 	YOu can find out what port your SQL server instance is listening on by looking at the registry
+#       key:
+#
+#		My Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\<instance_name>\MSSQLServer\SuperSocketNetLib\Tcp\TcpPort
+#
+DB_IP=127.0.0.1
+DB_PORT=:1433
+DB_INSTANCE=
+DB_HOST=${DB_IP}${DB_PORT}
+DB_NAME=destiny
+DB_IDENTIFIER=Destiny
+DB_PASSWORD=$ENC{TDNUMkdpU1FxR0xYT3BKOUtJZWxiZw}
+DB_RO_USER=readonlyuser
+DB_RO_PASSWORD=$ENC{NnR2TlFaY2NHWHpSVThMZUF6VVFUQQ}
+SERVICE_DEPENDANCY=MSSQLSERVER
+##SERVICE_DEPENDANCY=Destiny Keyword
+
+# concurrency settings should NOT be adjusted except at direction of tech support.
+#  MAX_CONCURRENT_JOBS - should not be more than twice the number of CPU's, not less than 1
+#  MAX_CONCURRENT_EXPENSIVE_JOBS - should be a little less than MAX_CONCURRENT_JOBS,
+#                                  never be less than one
+MAX_CONCURRENT_JOBS=4
+MAX_CONCURRENT_EXPENSIVE_JOBS=2
+
+#JDBC Stuff
+#appName allows for people viewing the active connection on SQL Server to recognize ones coming from Destiny
+JDBC_URL=jdbc:jtds:sqlserver://${DB_HOST}/${DB_NAME};instance=${DB_INSTANCE};appName=${DB_IDENTIFIER}
+JDBC_DRIVER_CLASS=net.sourceforge.jtds.jdbc.Driver
+JDBC_DRIVER_CLASSID=E7FE2C26F084DB1C4900F038A2A19B21
+
+#MIN_CONNECTIONS should be set to 40 + (the number of sites), but not more than 125.
+MIN_CONNECTIONS=40
+# MAX_CONNECTIONS should be set to MAX_PROCESSES (Set below) + NUMBER_OF_SITES, but no higher than 300  
+MAX_CONNECTIONS=145
+
+# Timeout of connection synchronization in seconds.  -1 disables it.
+CONNECTION_WAIT_TIMEOUT_SECONDS=30
+
+#JBOSS_PORT is now JNDI_PORT
+JNDI_PORT=1099
+RMI_OBJECT_PORT=4444
+TOMCAT_PORT=80
+
+# VM Memory Settings for JBOSS
+# Minimum memory to be used by Jboss (same as maximum)
+JBOSS_XMS=512m
+
+# Maximum memory to be used by Jboss
+# For a 32 bit JVM this value should never be more than 1280m
+# For a s 64 bit JVM this value should never be more than 3500m
+# For machines with 4 GB of RAM or less it should be no more than 1024m
+JBOSS_XMX=512m
+
+#64-bit version here:
+#JBOSS_VM_PARAMS=-server -XX:PermSize=300M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+DoEscapeAnalysis -XX:+EliminateLocks -XX:+UseBiasedLocking -XX:SurvivorRatio=3 -XX:CMSInitiatingOccupancyFraction=60 -XX:-UseSplitVerifier
+#32-bit version here:
+#JBOSS_VM_PARAMS=-server -XX:PermSize=200m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+DoEscapeAnalysis -XX:+EliminateLocks -XX:+UseBiasedLocking -XX:-UseSplitVerifier
+#JBOSS_GC_PARAMS=-verbose:gc -XX:+PrintGCDetails -Xloggc:gc.log
+#PERFMON4J_VM_PARAMS=-javaagent:../lib/perfmon4j.jar=-acom.follett.fsc.destiny,-ecom.follett.fsc.destiny,-eSQL(JTDS)
+
+# SQL Server Memory Settings
+# These options configure the sql server memory when destiny starts up.  See installation instructions for setting these.
+# Comment these out if you do not want the application to configure them on startup
+SQL_MIN_MEMORY=
+SQL_MAX_MEMORY=
+
+
+# Caching policy for low volume data object - ConfigSite, PatronType, CircTypes, etc..
+# SMALL_ENTITY_MIN_CAPACITY = (Number of Sites)
+# SMALL_ENTITY_MAX_CAPACITY = (Number of Sites) * 5
+# Note: If you notice excessive instances of "Unable to passivate due to ctx lock" in the log it may indicate these settings are too low
+SMALL_ENTITY_MIN_CAPACITY=20
+SMALL_ENTITY_MAX_CAPACITY=100
+
+# Caching policy for medium volume data objecs - Holds, Fines, etc...
+# MEDIUM_ENTITY_MIN_CAPACITY =  (Maximum JBoss Memory) / 2
+# MEDIUM_ENTITY_MAX_CAPACITY =  (Maximum JBoss Memory) * 2
+MEDIUM_ENTITY_MIN_CAPACITY=256
+MEDIUM_ENTITY_MAX_CAPACITY=1024
+
+# Caching policy for high volume data objects - Patrons, Titles, Copies etc..
+# LARGE_ENTITY_MIN_CAPACITY= (Maximum JBoss Memory) * 3
+# LARGE_ENTITY_MAX_CAPACITY= (Maximum JBoss Memory) * 5
+LARGE_ENTITY_MIN_CAPACITY=1536
+LARGE_ENTITY_MAX_CAPACITY=5120
+
+#Tomcat Settings for HTTP Requests
+# The number of request processing threads that will remain in the thread pool at all times. 
+# This attribute should be set to the number of sites, but not less than 75 or more than 125.
+MIN_SPARE_PROCESSES=30
+
+# This is the number of concurrent threads that will be used to process web requests
+# Each connection can consume up to 1Mb of memory so do not set too high
+# For 64 bit installations this setting should be configured to 350
+# For 32 bit installations this setting should be configured no higher than 250
+# (Note if you increase this value you may need to adjust MAX_CONNECTIONS (Set above)...
+MAX_PROCESSES=125
+
+#Info for utils.xml
+CONNECT_URL=
+DESTINY_HOST=localhost
+JAVA_NAMING_PROVIDER_URL=jnp://${DESTINY_HOST}:${JNDI_PORT}
+TOMCAT_BASE_URI=http://${DESTINY_HOST}:${TOMCAT_PORT}
+
+# This is for SSL
+SECURE_TOMCAT_PORT=443
+SECURE_MIN_SPARE_PROCESSES=15
+SECURE_MAX_PROCESSES=25
+
+## Specify the full path to your HTTPS keystore
+## KEYSTORE_PATH=D:/mydistrct/distict.keystore
+KEYSTORE_PASSWORD=changeit
+SECURITY_ENABLED=
+
+# These values are used to configure the proxy server (if used)
+PROXY_HOST=
+PROXY_PORT=
+PROXY_USER=
+PROXY_PASSWORD=
+
+# ZServer settings
+ZSTART_SERVER=true
+#ZSERVER_IP_ADDRESS=127.0.0.1
+#ZSERVER_PORT=210
+#ZDATABASE_NAME=Main
+#ZGROUP=patrons
+#ZUSERNAME=
+#ZPASSWORD=
+#ZALLOWABLE_IP_MASK=192.168.*.*
+#ZMAX_SESSIONS=50
+#ZCOLLECTION_NAME=District Collection
+#ZSERVER_SOCKET_TIMEOUT=2000
+#ZSERVER_SOCKET_BACKLOG=5
+#ZSERVER_SESSION_TIMEOUT=900000
+ZSHOW_HOLDINGS=true
+ZUSMOC_SUBFIELD=a
+ZSHORT_SITE_NAME_SUBFIELD=b
+ZBARCODE_SUBFIELD=p
+ZCALL_NUMBER_SUBFIELD=h
+ZPRICE_SUBFIELD=9
+ZCOPY_NUMBER_SUBFIELD=t
+ZAVAILABILITY_SUBFIELD=y
+ZFULL_SITE_NAME_SUBFIELD=4
+
+# ZClient settings
+#ZMARC_CACHE_SIZE=10
+#ZCLIENT_MAX_THREADS=10
+
+# SIF Server settings
+SIF_START_SERVER=false
+#SIF_POLLING_RATE=60000
+SIF_ALLOW_DELETE_STUDENT=false
+
+# Destiny Service Info
+SERVICE_NAME=Destiny
+SERVICE_DISPLAY_NAME=Destiny Server
+
+# Keyword Server Configuration
+# To turn on keyword server you must uncomment at least the following 4 lines.
+#KEYWORD_JNDI_PORT=1098
+#KEYWORD_RMI_OBJECT_PORT=4443
+#KEYWORD_SERVER_URL=127.0.0.1:${KEYWORD_JNDI_PORT}
+
+#KEYWORD_SERVICE_NAME=Destiny Keyword
+#KEYWORD_SERVICE_DISPLAY_NAME=Destiny Keyword Server
+#KEYWORD_JBOSS_XMS=1280m	
+#KEYWORD_JBOSS_XMX=1280m
+
+# If you are running dual keyword VM then you should uncomment this line
+#KEYWORD_JBOSS_VM_PARAMS=-XX:MaxPermSize=128m -javaagent:../lib/perfmon4j.jar
+#KEYWORD_JBOSS_GC_PARAMS=-verbose:gc -XX:+PrintGCDetails -Xloggc:keywordgc.log
+
+# Show suggestions for misspelled search terms in basic keyword search (Did You Mean) default=enabled (true)
+DID_YOU_MEAN_ENABLED=true
+
+# Show suggestions for misspelled search terms in WPE text search (Did You Mean) default=enabled (true)
+DID_YOU_MEAN_WPE_ENABLED=true
+
+# Uncomment to enable lucene search thread governor.  This should be enabled when you believe that 
+# keyword searches are experiencing periods of short term high traffic volume that is flooding the server
+#MAX_LUCENE_SEARCH_THREADS=25
+
+# Uncomment to turn off analytics
+#TRACK_ANALYTICS=false
+
+# Uncomment to change the Destiny Registration timeout
+#com.follett.fsc.ws.client.aasp.remote.connectTimeoutMillis=5000
+#com.follett.fsc.ws.client.aasp.remote.readTimeoutMillis=5000

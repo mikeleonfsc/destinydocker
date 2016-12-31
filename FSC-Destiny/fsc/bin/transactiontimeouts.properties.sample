@@ -1,0 +1,11 @@
+# Please note that timeouts can only be configured on the method level.  If you want to cover
+# multiple methods within a given class or even multiple classes you must add each exposed
+#interface method separately with the same timeout.
+
+#com.follett.fsc.destiny.session.circulation.ejb.InventoryFacadeBean.startInventory=1800
+
+# If you are receiving timeout exceptions when changing the site type of a site, uncomment out this
+# line and copy this file to transactiontimeouts.properties and restart your Destiny server.
+
+#com.follett.fsc.destiny.session.district.ejb.ConfigDistrictFacadeBean.setSiteInfo=3600
+

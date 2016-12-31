@@ -1,0 +1,98 @@
+@ECHO OFF
+setlocal
+REM **************************************************************************
+REM ***                                                                    ***
+REM *** WE STRONGLY RECOMMEND PURCHASING SQL SERVER BACKUP SOFTWARE        ***
+REM *** USE OF THIS BATCH FILE FOR DESTINY BACKUPS IS NOT RECOMMENDED      ***
+REM *** IT IS EXTREMELY SIMPLISTIC AND LIMITED                             ***
+REM *** THERE IS NO AUTOMATIC NOTIFICATION IF THE BACKUP FAILS             ***
+REM *** IT IS PROVIDED FOR LEGACY PURPOSES ONLY                            ***
+REM ***                                                                    ***
+REM *** The Destiny backup path must be set before scheduled backup runs.  ***
+REM ***                                                                    ***
+REM *** It is important to make sure the backup files are located on a     ***
+REM ***   different computer.                                              ***
+REM ***                                                                    ***
+REM *** Please set the backup folder location below using the examples.    ***
+REM ***                                                                    ***
+REM *** Examples:  (Note: No trailing slash)                               ***
+REM ***                                                                    ***
+REM ***  1) Using UNC name of the backup folder location.                  ***
+REM ***                                                                    ***
+REM ***  SET DESTINY_BACKUP_FOLDER=\\BackupServer\DESTINY\BACKUPS          ***
+REM ***                                                                    ***
+REM ***                                                                    ***
+REM ***  2 ) Using a mapped drive.                                         ***
+REM ***                                                                    ***
+REM ***  SET DESTINY_BACKUP_FOLDER=E:                                      ***
+REM ***                                                                    ***
+REM **************************************************************************
+REM *************************** SET THIS VALUE *******************************
+
+SET DESTINY_BACKUP_FOLDER=c:\destinybackup
+SET CIRC_CAT_ADMIN_PW=makeitso
+
+REM ************************* END SET THIS VALUE *****************************
+REM **************************************************************************
+
+set path=..\..\ant\bin;%PATH%;
+set JAVA_HOME=..\..\java
+set FSC_DESTINY_HOME=..\..\
+SET ANT_HOME=..\..\ant
+
+IF NOT EXIST %DESTINY_BACKUP_FOLDER% MD %DESTINY_BACKUP_FOLDER%
+
+
+REM Capture the 3-character name of today
+SET DAY=Default
+
+SET DATECOMMAND=DATE/T
+
+FOR /F "TOKENS=1,2" %%A IN ('%DATECOMMAND%') DO IF %%B!==! GOTO dateCommandMissingDayOfWeek
+goto success
+
+:dateCommandMissingDayOfWeek
+FOR /F "TOKENS=2 delims=/" %%A IN ('%DATECOMMAND%') DO SET DAY=%%A
+
+echo *** Your version of DOS date command does NOT return the day of week. *** > BACKUP_%DAY%.log
+echo *** Using day of month for backup folder name. *** >> BACKUP_%DAY%.log
+
+goto next
+
+:success
+FOR /F "TOKENS=1" %%A IN ('%DATECOMMAND%') DO SET DAY=%%A
+echo *** Detected day of week for backup *** > BACKUP_%DAY%.log
+goto next
+
+:next
+SET DESTINY_BACKUP_DIR=%DESTINY_BACKUP_FOLDER%\%DAY%
+IF NOT EXIST %DESTINY_BACKUP_DIR% MD %DESTINY_BACKUP_DIR%
+
+ECHO *** Backing up Destiny to folder=%DAY%  >> BACKUP_%DAY%.log
+
+ECHO *** Stopping Destiny service...  >> BACKUP_%DAY%.log
+call StopDestinyService.bat
+
+REM    Backup the entire Destiny directory - Application, configuration and keyword data
+ECHO *** Copying Destiny application resources to %DESTINY_BACKUP_DIR%\FSC-Destiny >> BACKUP_%DAY%.log
+
+REM Option One-- Overlay last week's file backup, copying only changed files (first time is a complete backup)
+IF NOT EXIST %DESTINY_BACKUP_DIR%\FSC-Destiny MD %DESTINY_BACKUP_DIR%\FSC-Destiny
+xcopy ..\..\*.* /s/e/y/k/r/c/D  %DESTINY_BACKUP_DIR%\FSC-Destiny\  >> BACKUP_%DAY%.log
+
+REM Option Two-- Delete last week's file backup and do a complete new one
+REM IF EXIST %DESTINY_BACKUP_DIR%\FSC-Destiny RD /S /Q %DESTINY_BACKUP_DIR%\FSC-Destiny
+REM IF NOT EXIST %DESTINY_BACKUP_DIR%\FSC-Destiny MD %DESTINY_BACKUP_DIR%\FSC-Destiny
+REM xcopy ..\..\*.* /s/e/y/k/r/c  %DESTINY_BACKUP_DIR%\FSC-Destiny\ >> BACKUP_%DAY%.log
+
+REM    Backup the SQL data
+ECHO *** Backing up the Destiny SQL data to %DESTINY_BACKUP_DIR%  >> BACKUP_%DAY%.log
+SET ANT_OPTS=-DDB_USER_ARG=CircCatAdmin -DDB_PASSWORD_ARG=%CIRC_CAT_ADMIN_PW% -DDESTINY_BACKUP_FOLDER=%TEMP%\databases
+call ant -f utils.xml backupDestinyDatabases >> BACKUP_%DAY%.log
+IF NOT EXIST %DESTINY_BACKUP_DIR%\databases MD %DESTINY_BACKUP_DIR%\databases
+xcopy %TEMP%\databases /s/e/y/k/r/c/D %DESTINY_BACKUP_DIR%\databases >> BACKUP_%DAY%.log
+
+ECHO *** Restarting Destiny service...  >> BACKUP_%DAY%.log
+call RunDestinyService.bat
+
+endlocal

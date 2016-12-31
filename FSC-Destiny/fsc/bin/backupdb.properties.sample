@@ -1,0 +1,11 @@
+#backupdb.bat should only be used under the direction of Follett Software.
+#It is intended to backup and sanatize customer data before sending that
+#data to Follett Software for testing purposes.
+transfer.protocol=ftp
+transfer.host=
+transfer.port=21
+transfer.login=
+transfer.password=
+transfer.remoteDirectory=
+
+

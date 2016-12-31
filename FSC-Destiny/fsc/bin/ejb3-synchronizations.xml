@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  This file is designed to configure EJB3 synchronizations. It will override any existing synchronized annotation on the method(s) specified.
+      These synchronizations are considered to be soft in that no exception is ever thrown.  When timeouts are exceeded the operation is continued
+      as normal.
+
+        Class attributes explained...
+          "name"                 Name of the class in which specified methods are.
+                                 REQUIRED | NO DEFAULT
+
+        Method attributes explained...
+
+          "name"                  Name of the method to apply synchronization.  All matching methods will be synchronized
+                                  REQUIRED | NO DEFAULT
+
+          "paramIndex"            Zero based index specifying which method parameter to synchronize on
+                                  NOT REQUIRED | DEFAULT "0"
+
+          "lockWaitTimeoutMillis" Maximum amount of time to wait for another thread to finish calling the method.
+                                  If timeout is exceeded then this thread will proceed anyway.
+                                  NOT REQUIRED | DEFAULT System.getProperty("DEFAULT_SYNCHRONIZED_LOCK_WAIT_MILLIS", "1000")
+
+          "lockHoldTimeoutMillis" Maximum anount of time a thread is allowed to spend exclusively in a method.
+                                  if timeout is exceeded then the next thread will proceed anyway.
+                                  NOT REQUIRED | DEFAULT System.getProperty("DEFAULT_SYNCHRONIZED_LOCK_HOLD_MILLIS", "1000")
+
+          "compareByValue"        This is the compare rule used to determine lock scope.  If set to true
+                                  then any Object matching on hashCode() and equals() methods will operate
+                                  on the same lock.
+                                  NOT REQUIRED | DEFAULT "false"
+
+          "synchronized"          Specifies whether the method is synchronized.  Typically used in this XML
+                                  to forcefully disable method level synchronization that has been enabled
+                                  via annotation.  When specifying "false" all other attributes except name are ignored.
+                                  NOT REQUIRED | DEFAULT "true"
+-->
+
+<classes>
+  <!-- To enable EJB3 synchronization on specific method(s)
+  <class name="com.follett.fsc.destiny.session.circulation.ejb.CircConversationBean">
+     <method name="scanForCheckOut" paramIndex="0" lockWaitTimeoutMillis="1000" lockHoldTimeoutMillis="1000" compareByValue="false"/>
+     <method name="scanCopyForCheckIn" paramIndex="0" lockWaitTimeoutMillis="1000" lockHoldTimeoutMillis="1000" compareByValue="false"/>
+     ...
+  </class> -->
+  <!-- To disable EJB3 synchronization on specific method(s)
+  <class name="com.follett.fsc.destiny.backoffice.ejb.InventoryFacadeBean">
+     <method name="scanBarcode" paramIndex="0" lockWaitTimeoutMillis="1000" lockHoldTimeoutMillis="1000" compareByValue="false"/>
+     ...
+  </class> -->
+</classes>
+

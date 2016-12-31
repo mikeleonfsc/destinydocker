@@ -1,0 +1,411 @@
+<!-- $Revision: 1.112 $ $Date: 2016/04/12 13:08:59 $ -->
+<project name="config" default="configure-destiny">
+    <description>
+        This script is responsible for a one-time post unzip configuration of the Destiny project
+    </description>
+
+<!--   ############################################### properties ############################   -->
+
+
+    <property environment="env"/>
+    <property file="${env.USERPROFILE}/.destiny/build.properties"/>
+    <property name="CONFIG_PROP_FILE" value="config.properties"/>
+    <property file="${CONFIG_PROP_FILE}"/>
+    <property name="TOOLS_DIR" value="${env.PROJECTS_HOME}/${env.DESTINY_DIR}/tools"/>
+    <property file="${TOOLS_DIR}/buildtools.properties"/>
+    <property environment="env"/>
+    <property name="JVM_TEMP_DIR" value="jvmtemp"/>
+
+    <path id="jdbcCP">
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/jtds.jar" />
+    </path>
+
+
+    <path id="jbossRunCP">
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/commons-httpclient.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/jboss-system.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/jboss-jmx.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/jboss-j2ee.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/log4j.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/perfmon4j.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/lucene.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/churchill.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/jbosshelper.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/servlet-api.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/jsp-api.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/el-api.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/commons-digester.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/commons-logging.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/commons-beanutils.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/commons-codec.jar" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/ejb3-persistence.jar" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/jboss-ejb3x.jar" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/hibernate3jar" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/hibernate-annotations.jar" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/hibernate-entitymanager.jar" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/javassist.jar" />
+		<pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/fsc-crypto.jar"/>
+	<pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/jboss-annotations-ejb3.jar"/>
+
+
+	<fileset dir="${env.FSC_DESTINY_HOME}/fsc/client/lib">
+
+
+            <include name="**/*.jar" />
+
+            <!-- 9/24/04 - R.J. - added this because it was screwing up common-utils stuff -->
+            <exclude name="**/armstrong/*.jar" />
+
+        </fileset>
+        <pathelement location="${env.FSC_DESTINY_HOME}/ant/lib/ant.jar"/>
+
+        <path refid="jdbcCP" />
+    </path>
+
+    <path id="checksumCP">
+        <path refid="jbossRunCP" />
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/fss-checkum.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/slf4j-api.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/slf4j-simple.jar"/>
+    </path>
+
+    <!-- We need an XML parser for HttpUnit 1.5.1 -->
+    <path id="importSitesCP">
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/xercesImpl.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/xml-apis.jar"/>
+        <path refid="jbossRunCP"/>
+    </path>
+
+    <!-- Canned test reports -->
+    <!-- ACHTUNG! If you change the reports classpath you most likely need to change com.follett.fsc.destiny.session.helpers.JRDesignHelper.java -->
+    <path id="reportsCP">
+        <path refid="jdbcCP"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/ant/lib/ant.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/client.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/common-utils.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/fsc-commons-core.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/fsc-commons-database.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/entity-ejb3.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/itext.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/jasperreports.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/oro.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/jbossall-client.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/jrsupport.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/session-ejb3.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/util-ejb3.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/jboss-j2ee.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/log4j.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/commons-httpclient.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/xercesImpl.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/xml-apis.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/java/lib/tools.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/jbosshelper.jar"/>
+    </path>
+
+    <path id="siftestsCP">
+        <path refid="jbossRunCP"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/jbosshelper-agent.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/activation.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/mail.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/mail-plug-in.jar"/>
+        <pathelement location="SifTestFramework.jar"/>
+        <pathelement location="SifTestFrameworkImpl.jar"/>
+    </path>
+
+    <path id="encryptCP">
+        <path refid="jdbcCP"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/ant/lib/ant.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/client.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/common-utils.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/fsc-commons-core.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/fsc-commons-database.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/util-ejb3.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/jboss-j2ee.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/client/log4j.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/xml-apis.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/java/lib/tools.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/server/destiny/lib/jbosshelper.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/jboss/lib/fsc-crypto.jar"/>
+        <pathelement location="${env.FSC_DESTINY_HOME}/fsc/client/lib/jbossall-client.jar"/>
+    </path>
+
+
+<!--   ############################################### targets ############################   -->
+
+    <target name="configure-destiny"
+            depends="build-run-classpaths, -get_jboss_nursery_memory_jvm_option">
+
+         <!-- Default keystore path is relative to FSC_Destiny\fsc\bin folder.... -->
+         <property name="KEYSTORE_PATH" value="../../jboss/server/destiny/conf/destiny.keystore"/>
+         <property name="ABSOLUTE_KEYSTORE_PATH" location="${KEYSTORE_PATH}"/>
+
+        <copy tofile="${env.FSC_DESTINY_HOME}/jboss/bin/run.bat"
+              file="${env.FSC_DESTINY_HOME}/jboss/samples/run.bat.sample"
+              overwrite="yes">
+            <filterset>
+                <filter token="JBOSS_XMX"    value="${JBOSS_XMX}"/>
+                <filter token="JBOSS_XMS"    value="${JBOSS_XMS}"/>
+                <filter token="JBOSS_XNS_JVM_ARG"    value="${JBOSS_XNS_JVM_ARG}"/>
+            </filterset>
+        </copy>
+
+
+    	<property name="SERVICE_NAME" value="Destiny" />
+    	<property name="SERVICE_DISPLAY_NAME" value="Destiny Server" />
+	<property name="JBOSS_GC_PARAMS" value="" />
+	<property name="JAVA_VM_DIR_NAME" value="java" />
+    	<property name="SERVICE_DEPENDANCY" value="" />
+    	<property name="SERVICE_DEPENDANCY_2" value="" />
+    	<property name="KEYWORD_SERVER_URL" value="" />
+    	<property name="JBOSS_BIND_ADDRESS" value="0.0.0.0" />
+
+        <condition property="PERFMON4J_VM_PARAMS" value="-javaagent:../lib/perfmon4j.jar=-gtrue,-acom.follett.fsc.destiny,-eSQL(JTDS)">
+            <not><equals arg1="${ALLOW_AUTOMATED_SYSTEM_GC}" arg2="false"/></not>
+        </condition>
+
+        <condition property="PERFMON4J_VM_PARAMS" value="-javaagent:../lib/perfmon4j.jar=-acom.follett.fsc.destiny,-eSQL(JTDS)">
+            <equals arg1="${ALLOW_AUTOMATED_SYSTEM_GC}" arg2="false"/>
+        </condition>
+
+        <condition property="JBOSS_VM_PARAMS" value="-server -XX:PermSize=300M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+DoEscapeAnalysis -XX:+EliminateLocks -XX:+UseBiasedLocking -XX:SurvivorRatio=3  -XX:CMSInitiatingOccupancyFraction=60 -XX:-UseSplitVerifier">
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+        </condition>
+
+        <condition property="JBOSS_VM_PARAMS" value="-server -XX:PermSize=200m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+DoEscapeAnalysis -XX:+EliminateLocks -XX:+UseBiasedLocking -XX:-UseSplitVerifier">
+            <equals arg1="${sun.arch.data.model}" arg2="32"/>
+        </condition>
+
+
+    	<!-- Create the temp jvmdir or else jboss will blow up when it attempts to start -->
+        <mkdir dir="${env.FSC_DESTINY_HOME}/${JVM_TEMP_DIR}"/>
+        <copy tofile="${env.FSC_DESTINY_HOME}/jboss/bin/wrapper.conf"
+              file="${env.FSC_DESTINY_HOME}/jboss/samples/wrapper.conf"
+              overwrite="yes">
+            <filterset>
+                <filter token="JBOSS_XMX"    value="${JBOSS_XMX}"/>
+                <filter token="JBOSS_XMS"    value="${JBOSS_XMS}"/>
+                <filter token="SQL_MAX_MEMORY"    value="${SQL_MAX_MEMORY}"/>
+                <filter token="SQL_MIN_MEMORY"    value="${SQL_MIN_MEMORY}"/>
+                <filter token="CONNECTION_WAIT_TIMEOUT_SECONDS"    value="${CONNECTION_WAIT_TIMEOUT_SECONDS}"/>
+                <filter token="SECURITY_ENABLED"    value="${SECURITY_ENABLED}"/>
+                <filter token="HTTP_PORT"    value="${TOMCAT_PORT}"/>
+                <filter token="HTTPS_PORT"   value="${SECURE_TOMCAT_PORT}"/>
+                <filter token="RUN_MODE"     value="${RUN_MODE}"/>
+                <filter token="PRODUCT_TYPE"     value="${PRODUCT_TYPE}"/>
+                <filter token="AOL_PORT"     value="${AOL_PORT}"/>
+		<filter token="PROXY_ENABLED"   value="${PROXY_ENABLED}"/>
+                <filter token="PROXY_PORT"   value="${PROXY_PORT}"/>
+                <filter token="PROXY_HOST"   value="${PROXY_HOST}"/>
+                <filter token="PROXY_USER"   value="${PROXY_USER}"/>
+                <filter token="PROXY_PASSWORD"   value="${PROXY_PASSWORD}"/>
+                <filter token="SERVICE_DEPENDANCY"   value="${SERVICE_DEPENDANCY}"/>
+                <filter token="SERVICE_DEPENDANCY_2"   value="${SERVICE_DEPENDANCY_2}"/>
+                <filter token="JNDI_PORT"    value="${JNDI_PORT}"/>
+                <filter token="SERVICE_NAME" value="${SERVICE_NAME}"/>
+                <filter token="SERVICE_DISPLAY_NAME" value="${SERVICE_DISPLAY_NAME}"/>
+                <filter token="JBOSS_VM_PARAMS" value="${JBOSS_VM_PARAMS}"/>
+                <filter token="PERFMON4J_VM_PARAMS" value="${PERFMON4J_VM_PARAMS}"/>
+                <filter token="JAVA_VM_DIR_NAME" value="${JAVA_VM_DIR_NAME}"/>
+	      <filter token="JBOSS_GC_PARAMS" value="${JBOSS_GC_PARAMS}"/>		
+                <filter token="KEYWORD_SERVER_URL" value="${KEYWORD_SERVER_URL}"/>
+                <filter token="JBOSS_BIND_ADDRESS" value="${JBOSS_BIND_ADDRESS}"/>
+            </filterset>
+        </copy>
+
+        <!-- Keyword Server Configuration -->
+    	<property name="KEYWORD_SERVICE_NAME" value="Destiny Keyword" />
+    	<property name="KEYWORD_SERVICE_DISPLAY_NAME" value="Destiny Keyword Server" />
+    	<property name="KEYWORD_JBOSS_VM_PARAMS" value="-XX:MaxPermSize=128m -javaagent:../lib/perfmon4j.jar -javaagent:../lib/jbosshelper-agent.jar" />
+	<property name="KEYWORD_JBOSS_GC_PARAMS" value="" />
+    	<property name="KEYWORD_JBOSS_XMS" value="512m" />
+    	<property name="KEYWORD_JBOSS_XMX" value="512m" />
+
+    	<property name="KEYWORD_JNDI_PORT" value="1098" />
+    	<property name="KEYWORD_RMI_OBJECT_PORT" value="4443" />
+    	
+        <copy tofile="${env.FSC_DESTINY_HOME}/jboss/bin/keyword.wrapper.conf"
+              file="${env.FSC_DESTINY_HOME}/jboss/samples/keyword.wrapper.conf"
+              overwrite="yes">
+            <filterset>
+                <filter token="KEYWORD_JBOSS_XMX"    value="${KEYWORD_JBOSS_XMX}"/>
+                <filter token="KEYWORD_JBOSS_XMS"    value="${KEYWORD_JBOSS_XMS}"/>
+                 <filter token="KEYWORD_SERVICE_NAME" value="${KEYWORD_SERVICE_NAME}"/>
+                <filter token="KEYWORD_SERVICE_DISPLAY_NAME" value="${KEYWORD_SERVICE_DISPLAY_NAME}"/>
+                <filter token="KEYWORD_JBOSS_VM_PARAMS" value="${KEYWORD_JBOSS_VM_PARAMS}"/>
+                 <filter token="KEYWORD_JBOSS_GC_PARAMS" value="${KEYWORD_JBOSS_GC_PARAMS}"/>
+               <filter token="JAVA_VM_DIR_NAME" value="${JAVA_VM_DIR_NAME}"/>
+            </filterset>
+        </copy>
+
+        <!-- Configure development settings for tomcat -->
+    	<property name="TOMCAT_DEVELOPMENT_MODE" value="false" />
+    	<property name="TOMCAT_USE_CHAR_ARRAYS" value="true" />
+        <copy tofile="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/jboss-web.deployer/conf/web.xml"
+              file="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/jboss-web.deployer/conf/web.xml.sample"
+              overwrite="yes">
+            <filterset>
+                <filter token="TOMCAT_DEVELOPMENT_MODE"    value="${TOMCAT_DEVELOPMENT_MODE}"/>
+                <filter token="TOMCAT_USE_CHAR_ARRAYS"    value="${TOMCAT_USE_CHAR_ARRAYS}"/>
+            </filterset>
+        </copy>
+
+        <!-- Configure development settings for deployment scanner -->
+        <!-- If DEPLOYER_SCAN_ENABLED is not set, then set it to false.  (If it is set,
+        set it to true just to be explicit) -->
+        <condition property="DEPLOYER_SCAN_ENABLED" value="true">
+            <isset property="DEPLOYER_SCAN_ENABLED"/>
+        </condition>
+        <condition property="DEPLOYER_SCAN_ENABLED" value="false">
+            <not><isset property="DEPLOYER_SCAN_ENABLED"/></not>
+        </condition>
+        <echo message="DEPLOYER_SCAN_ENABLED = ${DEPLOYER_SCAN_ENABLED}"/>
+
+        <!-- Configure development settings for deployment scanner -->
+        <copy tofile="${env.FSC_DESTINY_HOME}/jboss/server/destiny/conf/jboss-service.xml"
+              file="${env.FSC_DESTINY_HOME}/jboss/server/destiny/conf/jboss-service.xml.sample"
+              overwrite="yes">
+            <filterset>
+                <filter token="DEPLOYER_SCAN_ENABLED" value="${DEPLOYER_SCAN_ENABLED}"/>
+            </filterset>
+        </copy>
+
+        <!-- Configure development settings for deployment scanner -->
+    	<property name="ENABLE_AOP_OPTIMIZE" value="true" />
+        <copy tofile="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/jboss-aop-jdk50.deployer/META-INF/jboss-service.xml"
+              file="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/jboss-aop-jdk50.deployer/META-INF/jboss-service.xml.sample"
+              overwrite="yes">
+            <filterset>
+                <filter token="ENABLE_AOP_OPTIMIZE" value="${ENABLE_AOP_OPTIMIZE}"/>
+            </filterset>
+        </copy>		
+
+        <!-- See if its a Destiny Dev or Build Machine? -->
+        <available file="${env.USERPROFILE}/.destiny/build.properties" property="BUILD_PROPERTIES_FOUND"/>
+
+        <antcall target="loadLocalSettings"/>
+        <antcall target="saveMachineOSInfo"/>
+
+        <antcall target="build-jmx-console-context-xml"/>
+		<!--warn about duplicate properties -->
+		<echo message="Checking for duplicate property entries..."/>
+		 <java classname="com.follett.fsc.destiny.client.district.ConfigFileFindDuplicates" failonerror="false" classpath="${JBOSS_RUN_CP}" fork="no">
+		 <arg value="${env.FSC_DESTINY_HOME}/fsc/bin/${CONFIG_PROP_FILE}"/> <!-- To -->
+		 </java>
+
+    </target>
+
+	
+		 
+    <target name="loadLocalSettings" if="BUILD_PROPERTIES_FOUND">
+        <java classname="com.follett.fsc.destiny.client.district.SetConfigProperty" failonerror="true" classpath="${JBOSS_RUN_CP}" fork="no">
+           <arg value="${env.USERPROFILE}/.destiny/build.properties"/> <!-- From -->
+           <arg value="${env.FSC_DESTINY_HOME}/fsc/bin/config.properties"/> <!-- To -->
+        </java>
+    </target>
+
+
+
+    <target name="saveMachineOSInfo">
+        <java classname="com.follett.fsc.destiny.client.district.SaveMachineOSInfo" failonerror="true" classpath="${JBOSS_RUN_CP}" fork="yes">
+           <arg value="${env.FSC_DESTINY_HOME}/fsc/bin/config.properties"/> <!-- To -->
+           <jvmarg value="-Djava.library.path=../../jboss/lib"/>
+        </java>
+    </target>
+
+    <target name="insertSaPassword">
+        <pathconvert targetos="windows" property="REPORTS_CP" refid="reportsCP"/>
+        <java classname="com.follett.fsc.destiny.client.district.InsertSaPassword" failonerror="true" classpath="${REPORTS_CP}" fork="yes">
+           <arg value="${env.FSC_DESTINY_HOME}/fsc/bin/config.properties"/> <!-- To configuration file-->
+           <arg value="${env.CMDP2}"/> <!-- SA password in plaintext -->
+           <jvmarg value="-Djava.library.path=../../jboss/lib"/>
+        </java>
+        <antcall target="configure-destiny"/>
+    </target>
+
+    <target name="encryptDbPassword">
+        <pathconvert targetos="windows" property="ENCRYPT_CP" refid="encryptCP"/>
+        <java classname="com.follett.fsc.destiny.client.district.EncryptDbPassword" failonerror="true" classpath="${ENCRYPT_CP}" fork="yes">
+           <arg value="${env.FSC_DESTINY_HOME}/fsc/bin/config.properties"/> <!-- To configuration file-->
+           <jvmarg value="-Djava.library.path=../../jboss/lib"/>
+        </java>
+        <antcall target="configure-destiny"/>
+    </target>
+
+    <target name="build-run-classpaths"
+            depends="-fail-if-config-properties-not-present">
+        <pathconvert targetos="windows" property="JBOSS_RUN_CP" refid="jbossRunCP"/>
+        <pathconvert targetos="windows" property="CHECKSUM_CP" refid="checksumCP"/>
+        <pathconvert targetos="windows" property="IMPORTSITES_CP" refid="importSitesCP"/>
+        <pathconvert targetos="windows" property="REPORTS_CP" refid="reportsCP"/>
+        <pathconvert targetos="windows" property="SIFTESTS_CP" refid="siftestsCP"/>
+
+        <propertyfile file="run-classpath.properties"
+                      comment="This file contains all of the classpaths required to run Destiny.  These classpaths are automatically generated.  DO NOT EDIT THIS FILE. USE config.xml">
+            <entry key="JBOSS_RUN_CP"   value="${JBOSS_RUN_CP}"/>
+            <entry key="CHECKSUM_CP"   value="${CHECKSUM_CP}"/>
+            <entry key="IMPORTSITES_CP" value="${IMPORTSITES_CP}"/>
+            <entry key="REPORTS_CP" value="${REPORTS_CP}"/>
+            <entry key="SIFTESTS_CP" value="${SIFTESTS_CP}"/>
+        </propertyfile>
+    </target>
+
+    <target name="-fail-if-config-properties-not-present"
+            depends="-verify-config-properties-present"
+            unless="CONFIG_PROPERTIES_PRESENT">
+        <fail>
+
+config.properties not present.
+Please copy config.properties.sample to config.properties.
+Modify config.properties for your configuration.
+        </fail>
+    </target>
+
+    <target name="-verify-config-properties-present">
+        <available file="config.properties" property="CONFIG_PROPERTIES_PRESENT"/>
+    </target>
+    
+    <target name="build-jmx-console-context-xml">
+        <delete failonerror="false" file="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/destiny-console.war/WEB-INF/context.xml"/>
+
+        <antcall target="write-jmx-console-xml"/>
+    </target>
+
+    <target name="build-jmx-console-allow-list" depends="check-jmx-console-override">
+        <condition property="jmx.console.ip.allow.list" value="${MASTER_IP_ALLOW_LIST}">
+            <and>
+                <isset property="MASTER_IP_ALLOW_LIST"/>
+                <not><isset property="jmx.console.ip.allow.list"/></not>
+            </and>
+        </condition>
+
+        <condition property="jmx.console.ip.allow.list" value="">
+            <not><isset property="jmx.console.ip.allow.list"/></not>
+        </condition>
+    </target>
+
+    <target name="check-jmx-console-override">
+        <condition property="jmx.console.ip.allow.list" value="${ALLOW_JMX_CONSOLE_FROM_IP_LIST}">
+            <isset property="ALLOW_JMX_CONSOLE_FROM_IP_LIST"/>
+        </condition>
+    </target>
+
+    <target name="write-jmx-console-xml" depends="build-jmx-console-allow-list" if="LIMIT_JMX_CONSOLE_BY_IP">
+        <echo file="${env.FSC_DESTINY_HOME}/jboss/server/destiny/deploy/destiny-console.war/WEB-INF/context.xml">
+&lt;Context&gt;
+    &lt;Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="${jmx.console.ip.allow.list}"/&gt;
+&lt;/Context&gt;
+        </echo>
+    </target>
+    
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <target name="-get_jboss_nursery_memory_jvm_option" 
+            depends="-clear_jboss_nursery_memory_arg_if_not_found, -set_jboss_nursery_memory_arg_if_found"/>
+
+    <target name="-clear_jboss_nursery_memory_arg_if_not_found" unless="JBOSS_XNS">
+        <property name="JBOSS_XNS_JVM_ARG" value=""/>
+    </target>
+
+    <target name="-set_jboss_nursery_memory_arg_if_found" if="JBOSS_XNS">
+        <property name="JBOSS_XNS_JVM_ARG" value="-Xns${JBOSS_XNS}"/>
+    </target>
+</project>
