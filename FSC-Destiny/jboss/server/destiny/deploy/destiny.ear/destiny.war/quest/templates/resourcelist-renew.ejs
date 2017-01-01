@@ -1,0 +1,57 @@
+/* resourcelist-renew.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListRenewController_DIV_RENEW_MESSAGE_BOX)));
+                ___ViewO.push("\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListRenewController_DIV_RENEW_MESSAGE_BOX_TITLE)));
+                ___ViewO.push("\" class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4 class=\"genericModuleTL\">\n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListRenewController_renewFailed"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ResourceListRenewController_BUTTON_RENEW_CLOSE, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("resourceListRenewController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("            <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("                <div class=\"genericModuleContent\">\n");
+                ___ViewO.push("                    <div id=\"renewModuleContent\">\n");
+                ___ViewO.push("                    <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListRenewController_SPAN_REASON_FOR_RENEW_FAILURE)));
+                ___ViewO.push("\"></p>\n");
+                ___ViewO.push("                    <p>\n");
+                ___ViewO.push("                       <input type=\"button\" \n");
+                ___ViewO.push("                                id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListRenewController_BUTTON_RENEW_MESSAGE_BOX_CLOSE)));
+                ___ViewO.push("\"\n");
+                ___ViewO.push("                                onclick=\"window.renewMessageModalDialogModal.hide()\" \n");
+                ___ViewO.push("                                value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListRenewController_ok"))));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListRenewController_CLASS_BUTTON_RENEW_MESSAGE_BOX_CLOSE)));
+                ___ViewO.push("\"/>\n");
+                ___ViewO.push("                    </p>\n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("                        \n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

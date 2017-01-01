@@ -1,0 +1,88 @@
+/* titledetailsebookpreview.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_INNER)));
+                ___ViewO.push("\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("\t<div class=\"genericModuleTR\">\n");
+                ___ViewO.push("\t    <h4  class=\"genericModuleTL\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_HEADER)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_passwordRequired"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("\t    <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("\t    \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:TitleDetailsController_BUTTON_PREVIEW_EBOOK_PASSWORD_CLOSE, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("titleDetailsController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t    </a>\n");
+                ___ViewO.push("\t    <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("\t        <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("\t        <div class=\"genericModuleContent\">            \n");
+                ___ViewO.push("\t        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_CONTENT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_MODAL_DIALOG_SHRINKY_TO_HIDE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_DATA)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_MESSAGES)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t                    <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_P_PREVIEW_EBOOK_PASSWORD_INSTRUCTION_HEADER)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_aPasswordIsRequiredToReadThisEBookOnline"))));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("\t                    <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_P_PREVIEW_EBOOK_PASSWORD_INSTRUCTION_WARNING)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_toContinuePleaseEnterThePasswordProvidedByYourAdministrator"))));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("\t                </div>                            \n");
+                ___ViewO.push("\t                <div>\n");
+                ___ViewO.push("\t                    <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_SPAN_PREVIEW_EBOOK_PASSWORD_LABEL)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_password"))));
+                ___ViewO.push("&nbsp;</span><input class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_PREVIEW_EBOOK_PASSWORD_FIELD)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_FIELD_PREVIEW_EBOOK_PASSWORD)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_FIELD_PREVIEW_EBOOK_PASSWORD)));
+                ___ViewO.push("\" type=\"text\" value=\"\" maxlength=\"50\"/>\n");
+                ___ViewO.push("\t                </div>\n");
+                ___ViewO.push("\t            </div>\n");
+                ___ViewO.push("\t            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_ERRORS)));
+                ___ViewO.push("\" style=\"display: none;\"></div>\n");
+                ___ViewO.push("\t            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_PREVIEW_EBOOK_PASSWORD_SAVE_AREA)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t                <input id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_PREVIEW_EBOOK_PASSWORD_SAVE)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_PREVIEW_EBOOK_PASSWORD_SAVE)));
+                ___ViewO.push("\" type=\"button\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("titleDetailsController_ok"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t            </div>\n");
+                ___ViewO.push("\t        </div>\n");
+                ___ViewO.push("\t        </div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

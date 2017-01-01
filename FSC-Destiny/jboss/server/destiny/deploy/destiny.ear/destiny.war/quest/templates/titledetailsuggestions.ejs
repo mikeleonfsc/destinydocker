@@ -1,0 +1,56 @@
+/* titledetailsuggestions.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                for (i = 0; i < recList.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t");
+                    var suggestion = recList[i];
+                    var currentID = TitleDetailsController_DIV_TITLE_DETAIL_SUGGESTION_HOVER + i;
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_SUGGESTION)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_DIV_TITLE_PEEK_PREFIX + currentID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAILS_SUGGESTION_ROW)));
+                    ___ViewO.push("\" hoverKey=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(suggestion.hoverKey)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_SUGGESTIONS_CONTENT_IMAGE + currentID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_SUGGESTIONS_CONTENT_IMAGE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            \t<img alt=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(suggestion.bibTypeDescription)));
+                    ___ViewO.push("\" title=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(suggestion.bibTypeDescription)));
+                    ___ViewO.push("\" height=\"16\" border=\"0\" width=\"20\" src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(suggestion.miniBibTypeIconURL)));
+                    ___ViewO.push("\" />\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_SUGGESTIONS_CONTENT_TITLE + currentID)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_CLASS_TITLE_DETAIL_SUGGESTIONS_CONTENT_TITLE)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(suggestion.shortTitle)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    </div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

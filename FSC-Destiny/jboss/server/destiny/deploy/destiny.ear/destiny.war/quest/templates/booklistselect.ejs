@@ -1,0 +1,56 @@
+/* booklistselect.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BooklistSelectController_SPAN_BOOK_LIST_SELECT)));
+                ___ViewO.push("\" style=\"display:none;\">\n");
+                ___ViewO.push("    ");
+                if (results.length > 1) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <select id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BooklistSelectController_PARAM_SELECTED_LIST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(className)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            ");
+                    for (var i = 0; i < results.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                ");
+                        if (results[i].recData.listID == stickyListID) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                    <option selected value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(results[i].recData.listID)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(results[i].recData.name)));
+                            ___ViewO.push("</option>\n");
+                            ___ViewO.push("                ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                    <option value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(results[i].recData.listID)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(results[i].recData.name)));
+                            ___ViewO.push("</option>\n");
+                            ___ViewO.push("                ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        </select>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</span>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

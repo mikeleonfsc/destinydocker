@@ -1,0 +1,1 @@
+Class.create(AdvancedSearchAnyLine,{getQueryString:function($super,b){var a=$super(b);if(!a.strip().empty()){if(b==AdvancedSearchController_AS_QUERY_OUTPUT_HIGHLIGHTED){a='<span class="queryBoolean">NOT </span>'+a}else{a="NOT "+a}}return a},getLineType:function(){return AdvancedSearchController_AS_LINE_TYPE_NOT}});

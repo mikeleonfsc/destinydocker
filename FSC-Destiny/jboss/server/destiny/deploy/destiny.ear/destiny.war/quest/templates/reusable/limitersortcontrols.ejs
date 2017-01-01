@@ -1,0 +1,90 @@
+/* limitersortcontrols.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (data.length > 1) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("<div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_NARROWING_SORT_CONTROLS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("    <span>\n");
+                    ___ViewO.push("\t    ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_sortedBy"))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t");
+                    if (currentSort == LimiterController_NARROWING_SORT_ALPHA) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t        ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limitersortcontrols_Ascending"))));
+                        ___ViewO.push("          \n");
+                        ___ViewO.push("\t    ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t        <a href=\"#\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_NARROWING_SORT_ALPHA)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_NARROWING_SORT_OPTION)));
+                        ___ViewO.push("\" onclick=\"return false;\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limitersortcontrols_Ascending"))));
+                        ___ViewO.push("</a>\n");
+                        ___ViewO.push("\t    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \n");
+                    ___ViewO.push("\t    |\n");
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                    if (currentSort == LimiterController_NARROWING_SORT_REVERSE_ALPHA) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limitersortcontrols_Descending"))));
+                        ___ViewO.push("          \n");
+                        ___ViewO.push("        ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            <a href=\"#\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_NARROWING_SORT_REVERSE_ALPHA)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_NARROWING_SORT_OPTION)));
+                        ___ViewO.push("\" onclick=\"return false;\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limitersortcontrols_Descending"))));
+                        ___ViewO.push("</a>\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("        |\n");
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("        ");
+                    if (currentSort == LimiterController_NARROWING_SORT_MOST_HITS) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_mostHits"))));
+                        ___ViewO.push("          \n");
+                        ___ViewO.push("        ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            <a href=\"#\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_NARROWING_SORT_MOST_HITS)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_NARROWING_SORT_OPTION)));
+                        ___ViewO.push("\" onclick=\"return false;\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_mostHits"))));
+                        ___ViewO.push("</a>\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    </span>\n");
+                    ___ViewO.push("</div>    \n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

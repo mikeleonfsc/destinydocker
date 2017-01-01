@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var a=Registry.lookup("SearchBoxController.SearchBox");a.showSuggestions()},registerEvents:function(){}});

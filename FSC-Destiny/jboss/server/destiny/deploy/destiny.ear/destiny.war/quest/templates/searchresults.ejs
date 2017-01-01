@@ -1,0 +1,155 @@
+/* searchresults.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_RESULTS_WRAPPER_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(pageNumber)));
+                ___ViewO.push("\" class=\"resultsWrapper ");
+                ___ViewO.push((EJS.Scanner.to_text(searchTypeWrapperClass)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t");
+                if (!Object.isArray(errors) || errors.length == 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t");
+                    var currentID = 0;
+                    var hitListRows = [];
+                    var currentRow = [];
+                    var isWPE = wpeHitList && Object.isArray(wpeHitList.records);
+                    var rawHitList = isWPE ? wpeHitList : hitList;
+                    for (i = 0; i < rawHitList.records.length; i++) {
+                        if (currentRow.length == SearchController_MAX_RECORDS_PER_ROW) {
+                            hitListRows.push({records:currentRow});
+                            currentRow = [];
+                        }
+                        currentRow.push(rawHitList.records[i]);
+                    }
+                    hitListRows.push({records:currentRow});
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t");
+                    for (i = 0; i < hitListRows.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t<div id=\"row");
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" class=\"searchResultsRow\">\n");
+                        ___ViewO.push("\t\t\t\t");
+                        for (j = 0; j < hitListRows[i].records.length; j++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t\t\t\t");
+                            if (isWPE) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("\t\t\t\t\t\t");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("WPERecordTemplate", {record:hitListRows[i].records[j], currentID:currentID, options:rawHitList.options}))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("\t\t\t\t\t");
+                            } else {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("\t\t\t\t\t\t");
+                                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("HitListRecordTemplate", {record:hitListRows[i].records[j], currentID:currentID, options:rawHitList.options}))));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("\t\t\t\t\t");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t\t\t\t");
+                            currentID++;
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t\t\t\t");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t\t</div>\n");
+                        ___ViewO.push("\t\t");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <div id=\"didYouMeanOuter\">\n");
+                    ___ViewO.push("            <div id=\"didYouMeanInner\">\n");
+                    ___ViewO.push("                <div id=\"didYouMeanHeaderOuter\">\n");
+                    ___ViewO.push("                    <div id=\"didYouMeanHeaderInner\">\n");
+                    ___ViewO.push("                    \t");
+                    for (i = 0; i < errors.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            <p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(SearchController_PARAGRAPH_HEADER_TEXT)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(errors[i])));
+                        ___ViewO.push("</p>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                        ");
+                    if (showMakeAWish) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        \t<div id=\"didYouMeanAddToWishlist\"><a href=\"#\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(SearchController_DIV_ADD_WISH_FROM_SEARCH_RESULTS_LINK)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(SearchController_CLASS_ADD_WISH_FROM_SEARCH_RESULTS)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchResultPage_makeAWish"))));
+                        ___ViewO.push("</a></div>\n");
+                        ___ViewO.push("                        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    </div>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                ");
+                    if (Object.isArray(alternateTerms)) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t                <div id=\"didYouMeanContentOuter\">\n");
+                        ___ViewO.push("\t\t                <div id=\"didYouMeanContentInner\">\n");
+                        ___ViewO.push("\t\t                    <p>\n");
+                        ___ViewO.push("\t\t                    \t");
+                        var didYouMeanContent = "";
+                        for (i = 0; i < alternateTerms.length; i++) {
+                            var term = alternateTerms[i];
+                            if (term.length == 1) {
+                                didYouMeanContent += term[0] + "<input type=\"hidden\" id=\"" + SearchController_SELECT_DID_YOU_MEAN_PREFIX + i + "\" value=\"" + term[0] + "\" name=\"" + SearchController_SELECT_DID_YOU_MEAN_PREFIX + i + "\"/>";
+                            } else {
+                                didYouMeanContent += "<select id=\"" + SearchController_SELECT_DID_YOU_MEAN_PREFIX + i + "\" name=\"" + SearchController_SELECT_DID_YOU_MEAN_PREFIX + i + "\">";
+                                for (j = 0; j < term.length; j++) {
+                                    didYouMeanContent += "<option value=\"" + term[j] + "\">" + term[j] + "</option>";
+                                }
+                                didYouMeanContent += "</select>";
+                            }
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchResultPage_didYouMean", didYouMeanContent))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        \t\t");
+                        ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:SearchController_BUTTON_DID_YOU_MEAN_GO, altText:MessageHelper.format("searchResultPage_enter"), styleClass:SearchController_BUTTON_DID_YOU_MEAN_GO}))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("\t\t                        <span class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(SearchController_BUTTON_DID_YOU_MEAN_GO)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchResultPage_searchAgain"))));
+                        ___ViewO.push("</span>\n");
+                        ___ViewO.push("\t\t                    </p>\n");
+                        ___ViewO.push("\t\t                    <p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(SearchController_PARAGRAPH_CHECK_YOUR_SPELLING)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchResultPage_ifNotPleaseCheckYourSpellingAndOrTryAnotherSearchTerm"))));
+                        ___ViewO.push("</p>\n");
+                        ___ViewO.push("\t\t                </div>\n");
+                        ___ViewO.push("\t\t            </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

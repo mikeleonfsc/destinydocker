@@ -1,0 +1,79 @@
+/* loginstandard.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_DIV_LOGIN_BOX_GROUP1)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_LOGIN_BOX_GROUP)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("  <h5>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("loginController_enterYourInfo"))));
+                ___ViewO.push("</h5>\n");
+                ___ViewO.push("  <div id=\"loginModuleUserName\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t  <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_FIELD_USERNAME)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("loginController_userName"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("\t  <input tabindex=\"1\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_FIELD_USERNAME)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_FIELD_USERNAME)));
+                ___ViewO.push("\" value=\"\" type=\"text\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                ___ViewO.push("\" maxlength=\"50\" autocomplete=\"off\">\n");
+                ___ViewO.push("  </div>\n");
+                ___ViewO.push("\t\t      \n");
+                ___ViewO.push("  <div id=\"loginModulePassword\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("      <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_FIELD_PASSWORD)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("loginController_password"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("      <input tabindex=\"2\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_FIELD_PASSWORD)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_FIELD_PASSWORD)));
+                ___ViewO.push("\" value=\"\" type=\"password\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                ___ViewO.push("\" maxlength=\"60\" autocomplete=\"off\">\n");
+                ___ViewO.push("  </div>\n");
+                ___ViewO.push("\t\t      \n");
+                ___ViewO.push("  ");
+                if (userCanCreateLogin) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("      <div id=\"loginModuleForgot_Link\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("          <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LoginController_SPAN_LOGIN_FORGOT_PASSWORD_LINK_TEXT)));
+                    ___ViewO.push("\" class=\"forgotPasswordLink ");
+                    ___ViewO.push((EJS.Scanner.to_text(LoginController_CLASS_FIELD_LOGIN_COLUMN_TYPE3)));
+                    ___ViewO.push("\"><a href=\"#\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("loginController_forgotPassword"))));
+                    ___ViewO.push("</a></span>\n");
+                    ___ViewO.push("      </div>\n");
+                    ___ViewO.push("  ");
+                }
+                ___ViewO.push("\t\t      \n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

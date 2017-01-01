@@ -1,0 +1,97 @@
+/* resourcelist-print.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_MODULE_INNER)));
+                ___ViewO.push("\"  class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4 class=\"genericModuleTL\">\n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_printOptions"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ResourceListPrintController_BUTTON_PRINT_OPTIONS_CLOSE, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("resourceListPrintController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("        \t<div class=\"genericModuleBR\">\n");
+                ___ViewO.push("            \t<div class=\"genericModuleContent\">\n");
+                ___ViewO.push("            \t\t<div id=\"printOptionsModuleContent\">\n");
+                ___ViewO.push("\t\t\t            <p>\n");
+                ___ViewO.push("\t\t\t                ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_print"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t                <input id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_FIELD_RESOURCE_LIST_PRINT_TITLE)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_FIELD_RESOURCE_LIST_PRINT_TITLE)));
+                ___ViewO.push("\" type=\"text\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(listTitle)));
+                ___ViewO.push("\" maxlength=\"50\">  \n");
+                ___ViewO.push("\t\t\t            </p>\n");
+                ___ViewO.push("\t\t\t            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t                ");
+                var hideCitation = "";
+                if (window.isI18N) {
+                    hideCitation = "style=\"display:none;\"";
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_GENERAL)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_CLASS_RESOURCE_LIST_PRINT_COLUMN_1)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("\t\t\t                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_RESOURCE_LIST_PRINT_CITATION)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_CLASS_RESOURCE_LIST_PRINT_COLUMN_1)));
+                ___ViewO.push("\" ");
+                ___ViewO.push((EJS.Scanner.to_text(hideCitation)));
+                ___ViewO.push(">\n");
+                ___ViewO.push("\t\t\t                    <input id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_OPTION_RESOURCE_LIST_PRINT_CITATION)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_RADIO_RESOURCE_LIST_PRINT)));
+                ___ViewO.push("\" type=\"radio\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_OPTION_RESOURCE_LIST_PRINT_CITATION)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_mlaCitationList"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t\t                </div>\n");
+                ___ViewO.push("\t\t\t            </div>\n");
+                ___ViewO.push("\t\t\t            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_DIV_PRINT_OPTIONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t\t                <input type=\"button\" class=\"printOptionsButton\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_printPreview"))));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_BUTTON_RESOURCE_LIST_PRINT_OK)));
+                ___ViewO.push("\"/>                \n");
+                ___ViewO.push("\t\t\t                <input type=\"button\" class=\"printOptionsButton\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListPrintController_cancel"))));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_BUTTON_RESOURCE_LIST_PRINT_CANCEL)));
+                ___ViewO.push("\"/>\n");
+                ___ViewO.push("\t\t                </div>\n");
+                ___ViewO.push("\t\t            </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

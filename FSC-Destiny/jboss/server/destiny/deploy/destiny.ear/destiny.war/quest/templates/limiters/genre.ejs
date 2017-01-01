@@ -1,0 +1,97 @@
+/* genre.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("LimiterSortControlsTemplate", {data:pageData, currentSort:currentSort}))));
+                ___ViewO.push(" \n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_GENRE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <ul>\n");
+                ___ViewO.push("        ");
+                var genreHeader = narrowingHistoryHeader;
+                ___ViewO.push("\n");
+                ___ViewO.push("        ");
+                var genreHeadingLinkPrefix = "";
+                ___ViewO.push("\n");
+                ___ViewO.push("        ");
+                if (genreHeader) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_GENRE_HEADER)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(genreHeader)));
+                    ___ViewO.push("</li>\n");
+                    ___ViewO.push("            ");
+                    genreHeadingLinkPrefix = "-- ";
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        ");
+                for (var i = 0; i < pageData.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                <a href=\"#\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(genreHeadingLinkPrefix)));
+                    ___ViewO.push((EJS.Scanner.to_text(pageData[i].value.subjectDisplayable)));
+                    ___ViewO.push(" (");
+                    ___ViewO.push((EJS.Scanner.to_text(pageData[i].count)));
+                    ___ViewO.push(")</a>\n");
+                    ___ViewO.push("            </li>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("<hr/>\n");
+                ___ViewO.push("<span id=\"prevNextButtonRowSpan\">\n");
+                ___ViewO.push("    <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS_PREV)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_LIMITER_CONTROLS_PREV)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_previousGenres"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_previousGenres"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questLimiters_previous"), id:"previousImage", styleClass:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    \t</a>\n");
+                ___ViewO.push("    </span>\n");
+                ___ViewO.push("    <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS_NEXT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_LIMITER_CONTROLS_NEXT)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_moreGenres"))));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_moreGenres"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questLimiters_next"), id:"nextImage", styleClass:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    \t</a>\n");
+                ___ViewO.push("    </span>\n");
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

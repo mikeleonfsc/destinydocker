@@ -1,0 +1,265 @@
+/* wpehover.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(hoverKey)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<div id=\"titleHoverModuleInner\">\n");
+                ___ViewO.push("\t    <div id=\"titleHoverHeader\">\n");
+                ___ViewO.push("\t        <h4>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_quickDetails"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("\t        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t            <a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_LINK_HOVER_CLOSE_BUTTON)));
+                ___ViewO.push("\" href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("\t\t            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:"Close", styleClass:"", id:"hoverCloseButtonImage"}))));
+                ___ViewO.push("    \n");
+                ___ViewO.push("\t    \t\t</a>\n");
+                ___ViewO.push("\t\t\t</div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    \n");
+                ___ViewO.push("\t    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_LEFT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_TITLE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_TITLE)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("\t        \t<a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_WPE_ANCHOR)));
+                ___ViewO.push("\" href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(element.buildForwardFromResult)));
+                ___ViewO.push("\" target=\"_blank\">\n");
+                ___ViewO.push("\t         \t\t");
+                ___ViewO.push((EJS.Scanner.to_text(element.title)));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t            </a>\n");
+                ___ViewO.push("\t \t\t</div>\n");
+                ___ViewO.push("\t \t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_AUTHOR)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_AUTHOR)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                if (element.headingString) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \t \t\t    ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_topic", element.headingString))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t \t\t</div>\n");
+                ___ViewO.push("\t \t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_WPE_HOVER_LANGUAGE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_WPE_HOVER_LANGUAGE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t \t\t");
+                if (element.languageString) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_language", element.languageString))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\t\t\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_HOVER_WPE_LEXILE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_WPE_LEXILE)));
+                ___ViewO.push("\">             \n");
+                ___ViewO.push("\t \t\t    ");
+                if (element.lexileMeasure) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_lexile", element.lexileMeasure))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("\t \t\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_REVIEWS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_REVIEWS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                if (element.rating > 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_userRating"))));
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("ReviewStarsTemplate", {starValue:element.rating, starType:ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST, hideOnZero:true}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_WPE_HOVER_ICONS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_WPE_HOVER_ICONS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                ");
+                if (element.formatType) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    var formatTypes = element.formatType.split(",");
+                    for (i = 0; i < formatTypes.length; i++) {
+                        var formatTypeName = formatTypes[i];
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                <img src=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(formatTypeImages[i])));
+                        ___ViewO.push("\" width=\"24\" height=\"24\" alt=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(formatTypeName)));
+                        ___ViewO.push("\" title=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(formatTypeName)));
+                        ___ViewO.push("\"> \n");
+                        ___ViewO.push("                  \n");
+                        ___ViewO.push("                 ");
+                    }
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("                 \n");
+                ___ViewO.push("                ");
+                if (element.sourceType) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    var sourceTypes = element.sourceType.split(",");
+                    for (i = 0; i < sourceTypes.length; i++) {
+                        var sourceTypeName = sourceTypes[i];
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                <img src=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(sourceTypeImages[i])));
+                        ___ViewO.push("\" width=\"24\" height=\"24\" alt=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(sourceTypeName)));
+                        ___ViewO.push("\" title=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(sourceTypeName)));
+                        ___ViewO.push("\"> \n");
+                        ___ViewO.push("                 ");
+                    }
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_RIGHT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t        ");
+                if (element.gradeLevelPreKto2) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t        \t<img src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(gradeprek_2)));
+                    ___ViewO.push("\" width=\"32\" height=\"32\">\n");
+                    ___ViewO.push("\t        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\n");
+                ___ViewO.push("\t        ");
+                if (element.gradeLevel3to5) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t        <img src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(grade3_5)));
+                    ___ViewO.push("\" width=\"32\" height=\"32\">\n");
+                    ___ViewO.push("\t        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\n");
+                ___ViewO.push("\t        ");
+                if (element.gradeLevel6to8) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t        <img src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(grade6_8)));
+                    ___ViewO.push("\" width=\"32\" height=\"32\">\n");
+                    ___ViewO.push("\t        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t        ");
+                if (element.gradeLevel9to12) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <img src=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(grade9_12)));
+                    ___ViewO.push("\" width=\"32\" height=\"32\">\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            ");
+                if (!resourceList && canAddToBooklist) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t            ");
+                    var inBooklistDisplay = "";
+                    var addToBooklistDisplay = "";
+                    if (inUsersBookList) {
+                        addToBooklistDisplay = "display: none";
+                    } else {
+                        inBooklistDisplay = "display: none";
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t     \t   <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(BooklistSelectController_SELECT_LIST_CONTAINER)));
+                    ___ViewO.push("\"></div>\n");
+                    ___ViewO.push("               <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_IN_BOOKLIST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_IN_BOOKLIST)));
+                    ___ViewO.push("\" style=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(inBooklistDisplay)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                   <span>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_inThisList"))));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("               </div>\n");
+                    ___ViewO.push("               <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_ADD_TO_BOOKLIST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVER_ADDTO_BOOKLIST)));
+                    ___ViewO.push("\" style=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(addToBooklistDisplay)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                   <input type=\"button\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(TitleDetailsController_BUTTON_TITLE_DETAILS_ADD_TO_LIST)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_ADD_TO_LIST)));
+                    ___ViewO.push("\" value=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questWpeRecord_addToThisList"))));
+                    ___ViewO.push("\"/>\n");
+                    ___ViewO.push("               </div>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_CLASS_HOVERGROUP_BOTTOM)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HoverMasterController_DIV_TITLE_HOVER_SUMMARY)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(summaryDivClass)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    \t\t<p>");
+                ___ViewO.push((EJS.Scanner.to_text(element.description)));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("    \t\t</div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t</div>     \n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

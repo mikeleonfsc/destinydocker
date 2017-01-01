@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var a=Registry.lookup("TitleDetailsController.PreviewEBookPasswordChecker");if(this.data.url){a.launchPreview(this.data.url);var b=Registry.lookup("TitleDetailsController.TitleDetails");b.showPreviewEBookButton();a.closeDialog()}else{if(this.data.error){a.showPreviewEBookPasswordErrors(this.data.error)}}},registerEvents:function(){}});

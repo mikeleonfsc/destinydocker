@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+  version="2.0">
+    
+  <description>JSTL 1.1 functions library</description>
+  <display-name>JSTL functions</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>fn</short-name>
+  <uri>http://java.sun.com/jsp/jstl/functions</uri>
+
+  <function>
+    <description>
+      Formats a number
+    </description>
+    <name>formatNumber</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String formatNumber(long)</function-signature>
+  </function>
+
+
+  <function>
+    <description>
+      Formats a timestamp into a date string
+    </description>
+    <name>formatDate</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String formatDate(java.sql.Timestamp)</function-signature>
+  </function>
+  
+  <function>
+    <description>
+      Formats a timestamp into a date string including time
+    </description>
+    <name>formatDateAndTime</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String formatDateTime(java.sql.Timestamp)</function-signature>
+  </function>
+  
+ <function>
+    <description>
+      compares a timestamp versus now, returns true if it is before now
+    </description>
+    <name>isBeforeNow</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>boolean isBeforeNow(java.sql.Timestamp)</function-signature>
+  </function>
+  
+  <function>
+    <description>
+      Formats a due date timestamp into a date string (potentially with time)
+    </description>
+    <name>formatDueDate</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String formatDueDate(java.sql.Timestamp)</function-signature>
+  </function>
+    
+  <function>
+    <description>
+      Formats a price into a pretty price string
+    </description>
+    <name>formatPrice</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String formatPrice(java.lang.Long, java.lang.String)</function-signature>
+  </function>
+
+  <function>
+    <description>
+      Returns whether an object is an instance of a class
+    </description>
+    <name>instanceOf</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>boolean instanceOf(java.lang.Object, java.lang.String)</function-signature>
+    <example>
+      ${fn:instanceOf(value, 'java.lang.String')}
+    </example>
+  </function>
+
+  <function>
+    <description>
+      Transforms a string into a comma-separated string of byte values for the individual characters in the original string
+    </description>
+    <name>characterfy</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String characterfy(java.lang.String)</function-signature>
+    <example>
+      ${fn:characterfy(value)}
+    </example>
+  </function>
+
+  <function>
+    <description>
+      Removes new lines and escapes double quotes in the input string
+    </description>
+    <name>escapeQuotesAndRemoveNewLines</name>
+    <function-class>com.follett.fsc.destiny.client.common.JSTLHelper</function-class>
+    <function-signature>String escapeQuotesAndRemoveNewLines(java.lang.String)</function-signature>
+    <example>
+      ${fn:escapeQuotesAndRemoveNewLines(value)}
+    </example>
+  </function>
+
+</taglib>

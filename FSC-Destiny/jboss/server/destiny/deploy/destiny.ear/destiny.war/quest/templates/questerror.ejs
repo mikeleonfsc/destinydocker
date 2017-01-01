@@ -1,0 +1,49 @@
+/* questerror.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                var allErrors = errors.concat(messages);
+                ___ViewO.push("\n");
+                if (allErrors) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(QuestErrorController_DIV_ERROR_MESSAGE)));
+                    ___ViewO.push("\" class=\"normal bold\">\n");
+                    ___ViewO.push("    \t");
+                    if (allErrors.length > 1) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t\t<ul>\n");
+                        ___ViewO.push("\t    \t\t");
+                        for (var i = 0; i < allErrors.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t    \t\t\t<li>");
+                            ___ViewO.push((EJS.Scanner.to_text(allErrors[i])));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t    \t\t");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t\t</ul>\n");
+                        ___ViewO.push("    \t");
+                    } else {
+                        if (allErrors.length == 1) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("    \t\t");
+                            ___ViewO.push((EJS.Scanner.to_text(allErrors[0])));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("    \t");
+                        }
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    </div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

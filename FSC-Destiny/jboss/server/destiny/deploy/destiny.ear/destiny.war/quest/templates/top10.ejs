@@ -1,0 +1,43 @@
+/* top10.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_OUTER)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_LEFT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_ITEMS)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_RIGHT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_TOP10_RIGHT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(Top10Controller_DIV_LOADING)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("            \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"loading", altText:MessageHelper.format("top10Controller_loading"), styleClass:"loading"}))));
+                ___ViewO.push("                    \n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>       ");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

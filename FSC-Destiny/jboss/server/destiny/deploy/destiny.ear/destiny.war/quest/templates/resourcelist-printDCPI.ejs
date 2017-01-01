@@ -1,0 +1,26 @@
+/* resourcelist-printDCPI.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<input id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_OPTION_RESOURCE_LIST_PRINT_GENERAL)));
+                ___ViewO.push("\" \n");
+                ___ViewO.push("\tname=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_RADIO_RESOURCE_LIST_PRINT)));
+                ___ViewO.push("\" type=\"radio\" \n");
+                ___ViewO.push("\tvalue=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListPrintController_OPTION_RESOURCE_LIST_PRINT_GENERAL)));
+                ___ViewO.push("\" checked=\"checked\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourcelist-printDCPI_Printable"))));
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

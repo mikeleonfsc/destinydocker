@@ -1,0 +1,52 @@
+/* newarrivals.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_DIV_NEW_ARRIVALS_OUTER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_DIV_NEW_ARRIVALS_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_DIV_NEW_ARRIVALS_CONTENT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_DIV_NEW_ARRIVALS_LOADING)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("            <img src=\"/images/icons/general/spacer.gif\" class=\"loading\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("newArrivalsController_loading"))));
+                ___ViewO.push("\"/>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_DIV_NEW_ARRIVALS_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_ANCHOR_NEW_ARRIVALS_PREV)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_CLASS_CONTROL)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_ANCHOR_NEW_ARRIVALS_PREV)));
+                ___ViewO.push("\" style=\"display: none;\"></a>\n");
+                ___ViewO.push("            <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_ANCHOR_NEW_ARRIVALS_NEXT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_CLASS_CONTROL)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(NewArrivalsController_ANCHOR_NEW_ARRIVALS_NEXT)));
+                ___ViewO.push("\" style=\"display: none;\"></a>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>       \n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

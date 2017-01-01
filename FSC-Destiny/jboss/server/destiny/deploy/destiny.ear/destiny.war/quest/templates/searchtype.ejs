@@ -1,0 +1,95 @@
+/* searchtype.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_DIV_SEARCH_TYPE_SELECTOR_INNER)));
+                ___ViewO.push("\" class=\"questMenuListWrapper\">\n");
+                ___ViewO.push("\t<ul class=\"questMenuList\">\n");
+                ___ViewO.push("\t\t<li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_LI_SEARCH_TYPE_LIBRARY)));
+                ___ViewO.push("\" class=\"first qMenuItem\">\n");
+                ___ViewO.push("\t\t\t<a id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_IMG_SEARCH_TYPE_LIBRARY)));
+                ___ViewO.push("\" href=\"#\" class=\"activeButton\" >\n");
+                ___ViewO.push("\t\t\t\t<span>\n");
+                ___ViewO.push("\t\t\t\t\t<em>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchTypeController_searchLibrary"))));
+                ___ViewO.push("</em>\n");
+                ___ViewO.push("\t\t\t\t\t<em class=\"activeSearchTypeIndicator\"></em>\n");
+                ___ViewO.push("\t\t\t\t</span>\n");
+                ___ViewO.push("\t\t\t</a>\n");
+                ___ViewO.push("\t\t</li>\n");
+                ___ViewO.push("\t\t");
+                if (canDoWPE) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t<li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_LI_SEARCH_TYPE_WPE)));
+                    ___ViewO.push("\" class=\"qMenuItem\">\n");
+                    ___ViewO.push("\t\t\t\t<a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_IMG_SEARCH_TYPE_WPE)));
+                    ___ViewO.push("\" class=\"inactiveButton\" href=\"#\">\n");
+                    ___ViewO.push("\t\t\t\t\t<span>\n");
+                    ___ViewO.push("\t\t\t\t\t\t<em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchTypeController_searchTheWeb"))));
+                    ___ViewO.push("</em>\n");
+                    ___ViewO.push("\t\t\t\t\t\t<em class=\"activeSearchTypeIndicator\"></em>\n");
+                    ___ViewO.push("\t\t\t\t\t</span>\n");
+                    ___ViewO.push("\t\t\t\t</a>\n");
+                    ___ViewO.push("\t\t\t</li>\n");
+                    ___ViewO.push("\t\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t\t");
+                if (canDoOneSearch) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t<li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_LI_SEARCH_TYPE_ONESEARCH)));
+                    ___ViewO.push("\" class=\"qMenuItem\">\n");
+                    ___ViewO.push("\t\t\t\t<a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_IMG_SEARCH_TYPE_ONESEARCH)));
+                    ___ViewO.push("\" class=\"inactiveButton\" href=\"#\">\n");
+                    ___ViewO.push("\t\t\t\t\t<span>\n");
+                    ___ViewO.push("\t\t\t\t\t\t<em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchTypeController_searchOnlineResources"))));
+                    ___ViewO.push("</em>\n");
+                    ___ViewO.push("\t\t\t\t\t\t<em class=\"activeSearchTypeIndicator\"></em>\n");
+                    ___ViewO.push("\t\t\t\t\t</span>\n");
+                    ___ViewO.push("\t\t\t\t</a>\n");
+                    ___ViewO.push("\t\t\t</li>\n");
+                    ___ViewO.push("\t\t");
+                }
+                ___ViewO.push("\t\t\n");
+                ___ViewO.push("\t\t");
+                if (canDoDCPI) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t\t<li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_LI_SEARCH_TYPE_DCPI)));
+                    ___ViewO.push("\" class=\"qMenuItem\">\n");
+                    ___ViewO.push("\t\t\t\t<a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(SearchTypeController_IMG_SEARCH_TYPE_DCPI)));
+                    ___ViewO.push("\" href=\"#\" class=\"inactiveButton\" >\n");
+                    ___ViewO.push("\t\t\t\t\t<span>\n");
+                    ___ViewO.push("\t\t\t\t\t\t<em>");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("searchTypeController_searchDigitalResources"))));
+                    ___ViewO.push("</em>\n");
+                    ___ViewO.push("\t\t\t\t\t\t<em class=\"activeSearchTypeIndicator\"></em>\n");
+                    ___ViewO.push("\t\t\t\t\t</span>\n");
+                    ___ViewO.push("\t\t\t\t</a>\n");
+                    ___ViewO.push("\t\t\t</li>\n");
+                    ___ViewO.push("\t\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t</ul>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

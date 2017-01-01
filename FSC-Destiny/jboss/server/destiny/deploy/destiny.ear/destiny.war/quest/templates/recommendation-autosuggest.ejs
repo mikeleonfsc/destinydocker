@@ -1,0 +1,28 @@
+/* recommendation-autosuggest.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<ul>\n");
+                for (i = 0; i < patrons.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t<li id=\"recommendationPatron_");
+                    ___ViewO.push((EJS.Scanner.to_text(i)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t\t<span class=\"suggestionText\">");
+                    ___ViewO.push((EJS.Scanner.to_text(patrons[i].patronNameForQuest)));
+                    ___ViewO.push("</span>\n");
+                    ___ViewO.push("\t</li>\n");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</ul>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

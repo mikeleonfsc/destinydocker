@@ -1,0 +1,1 @@
+Class.create(BaseController,{init:function(){var b=Registry.lookup("TitleDetailsController.TitleDetails");if(b){b.updateHoldInfo(this.data)}var a=Registry.lookup("SearchController.SearchResults");if(a){a.updateStatusInfo(this.data.bibID,this.data.availabilityString,this.data.availabilityClass,this.data.titleDetailValue.localAvailability)}},registerEvents:function(){}});

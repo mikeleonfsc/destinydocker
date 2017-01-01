@@ -1,0 +1,51 @@
+/* myquest-inbox.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<h2 id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestInboxController_DIV_MYQUEST_INBOX_HEADER)));
+                ___ViewO.push("\"><span><em>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestInboxController_myQuestInbox"))));
+                ___ViewO.push("</em></span></h2>\n");
+                ___ViewO.push("<div id=\"myQuestUpdatesResults\">\n");
+                ___ViewO.push("\t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestShelfListTemplate", {data:data}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div id=\"myQuestFooter\">\n");
+                ___ViewO.push("    ");
+                if (prevPage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <p id=\"\" class=\"myQuestLaterPostControl\"><a href=\"#\" id=\"\" class=\"myQuestLaterPostControlLink\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_seeNewerPosts"))));
+                    ___ViewO.push("</a></p>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    ");
+                if (nextPage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <p id=\"\" class=\"myQuestEarlierPostControl\"><a href=\"#\" id=\"\" class=\"myQuestEarlierPostControlLink\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_seeOlderPosts"))));
+                    ___ViewO.push("</a></p>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>    \n");
+                ___ViewO.push("<div id=\"updatesOffsetNext\" style=\"display:none;\">");
+                ___ViewO.push((EJS.Scanner.to_text(updatesOffsetNext)));
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div id=\"updatesOffsetPrev\" style=\"display:none;\">");
+                ___ViewO.push((EJS.Scanner.to_text(updatesOffsetPrev)));
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

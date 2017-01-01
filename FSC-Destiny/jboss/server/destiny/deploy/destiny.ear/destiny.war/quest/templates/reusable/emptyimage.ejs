@@ -1,0 +1,24 @@
+/* emptyimage.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<img src=\"/images/icons/general/spacer.gif\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(id)));
+                ___ViewO.push("\"  class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(styleClass)));
+                ___ViewO.push("\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(altText)));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(altText)));
+                ___ViewO.push("\"/>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

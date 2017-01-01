@@ -1,0 +1,31 @@
+/* quizinfo.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                for (var i = 0; i < quizzes.length; i++) {
+                    var quiz = quizzes[i];
+                    ___ViewO.push("\n");
+                    ___ViewO.push("<div class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(QuizInfoTemplate_CLASS_QUIZ_INFO)));
+                    ___ViewO.push("\" >\n");
+                    ___ViewO.push("    <span class=\"titleHoverBold\">");
+                    ___ViewO.push((EJS.Scanner.to_text(quiz.quizType)));
+                    ___ViewO.push("</span>&nbsp;");
+                    ___ViewO.push((EJS.Scanner.to_text(quiz.readingLevel)));
+                    ___ViewO.push("&nbsp;(");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("keywordSearchRecordTranslator_points", quiz.pointValue))));
+                    ___ViewO.push(")\n");
+                    ___ViewO.push("</div>   \n");
+                }
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

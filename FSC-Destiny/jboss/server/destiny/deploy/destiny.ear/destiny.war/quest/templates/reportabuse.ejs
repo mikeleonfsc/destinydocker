@@ -1,0 +1,70 @@
+/* reportabuse.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_DIV_REPORT_ABUSE_INNER)));
+                ___ViewO.push("\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4  class=\"genericModuleTL\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_H4_REPORT_ABUSE_HEADER)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(label_header)));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ReportAbuseController_BUTTON_REPORT_ABUSE_CLOSE, styleClass:"moduleCloseButtonImage", altText:label_close}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("      \n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("            <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("                <div class=\"genericModuleContent\">\n");
+                ___ViewO.push("                    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_DIV_REPORT_ABUSE_MAIN)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_CLASS_MODAL_DIALOG_SHRINKY_TO_HIDE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_DIV_REPORT_ABUSE_REPORTER_NAME)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                            ");
+                ___ViewO.push((EJS.Scanner.to_text(label_patronName)));
+                ___ViewO.push("\n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                        <div id=\"addReportAbuseTextArea\">\n");
+                ___ViewO.push("                            <textarea id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_FIELD_ADD_REPORT_ABUSE_TEXT)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_CLASS_MY_QUEST_ADD_REPORT_ABUSE_NOTE_BOX)));
+                ___ViewO.push("\"></textarea>\n");
+                ___ViewO.push("                        </div>                        \n");
+                ___ViewO.push("                        <div id=\"addReportAbuseCharacterCountArea\">\n");
+                ___ViewO.push("                            <p class=\"myQuestAddReportAbuseNoteCharCounter\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("reportAbuseController_012CharactersLeft", "<span class=\"myQuestAddReportAbuseNoteCharValue\">", "2048", "</span>"))));
+                ___ViewO.push("</p>                            \n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                        <div id=\"addReportAbuseSaveArea\">\n");
+                ___ViewO.push("                            <input type=\"submit\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(label_save)));
+                ___ViewO.push("\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReportAbuseController_BUTTON_REPORT_ABUSE_SAVE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                        </div>\n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

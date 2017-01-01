@@ -1,0 +1,57 @@
+/* limiterhistoryelement.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (indexToPrint === 0) {
+                    ___ViewO.push(" \n");
+                    ___ViewO.push("\t<li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_NARROWING_HISTORY_NAV_TERM)));
+                    ___ViewO.push("\" title=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limiterhistoryelement_DeleteSearch", termToPrint))));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t\t<a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_NARROWING_HISTORY_MAIN_SEARCH_TERM)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_NARROWING_HISTORY_FIRST_LEVEL)));
+                    ___ViewO.push("\" href=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(deleteTermHref)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(termToPrint)));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("\t</li>\n");
+                }
+                ___ViewO.push("\n");
+                if (gradeFirstSearchTerm) {
+                    termToPrint = gradeFirstSearchTerm;
+                    indexToPrint = 1;
+                }
+                ___ViewO.push("\n");
+                if (indexToPrint != 0) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t<li class=\"narrowingHistoryElementClass\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_NARROWING_HISTORY_NAV_BREADCRUMB_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(indexToPrint)));
+                    ___ViewO.push("\" title=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("limiterController_delete", termToPrint))));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("\t\t<a id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LINK_NARROWING_HISTORY_TERM_PREFIX)));
+                    ___ViewO.push((EJS.Scanner.to_text(indexToPrint)));
+                    ___ViewO.push("\" href=\"#\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_NARROWING_HISTORY_FIRST_LEVEL)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(termToPrint)));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("\t</li>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

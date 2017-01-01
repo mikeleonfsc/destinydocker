@@ -1,0 +1,405 @@
+/* hitlistrecord.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_SEARCH_RESULT_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCHRESULT)));
+                ___ViewO.push((EJS.Scanner.to_text((record.bibID) ? " " + HitListRecordTemplate_CLASS_BIBID_PREFIX + record.bibID : "")));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("CoverImageTemplate", {record:record, currentID:currentID, options:options}))));
+                ___ViewO.push("\t\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_TITLE_INFO_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_TITLEINFO)));
+                ___ViewO.push("\" >\n");
+                ___ViewO.push("        <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_TITLE_PREFIX)));
+                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_TITLE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        ");
+                if (!options.hideLinkToTitleDetails) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <a href=\"#\" class=\"searchResultsTitleLink ");
+                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_TITLE_DETAIL_LINK)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(record.shortTitle)));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("        ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            ");
+                    ___ViewO.push((EJS.Scanner.to_text(record.shortTitle)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("            ");
+                if (options.renderBarcodeDueDate) {
+                    ___ViewO.push(" \n");
+                    ___ViewO.push("                ");
+                    if (record.truncatedCopyBarcode) {
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("                      <p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_COPY_BARCODE_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\" \n");
+                        ___ViewO.push("                      class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_BARCODE)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                      <nobr>(");
+                        ___ViewO.push((EJS.Scanner.to_text(record.truncatedCopyBarcode)));
+                        ___ViewO.push(")</nobr></p>\n");
+                        ___ViewO.push("                      ");
+                        if (record.dueDate) {
+                            ___ViewO.push("   \n");
+                            ___ViewO.push("                          ");
+                            if (record.overDueItem) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                              <p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_DUE_DATE_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\" \n");
+                                ___ViewO.push("                              class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_DUE_DATE_NORMAL)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                              ");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questHitListOptions_due", record.dueDate))));
+                                ___ViewO.push("</p>\n");
+                                ___ViewO.push("                          ");
+                            } else {
+                                ___ViewO.push("                      \n");
+                                ___ViewO.push("                              <p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_DUE_DATE_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\" \n");
+                                ___ViewO.push("                              class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_DUE_DATE_OVERDUE)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                              ");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questHitListOptions_due", record.dueDate))));
+                                ___ViewO.push("</p>\n");
+                                ___ViewO.push("                          ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                     ");
+                        }
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("                 ");
+                    } else {
+                        ___ViewO.push(" \n");
+                        ___ViewO.push("                      <p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_DUE_DATE_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\" \n");
+                        ___ViewO.push("                      class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_DUE_DATE_NORMAL)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                      ");
+                        if (record.consumable) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("hitlistrecord_DueConsumable"))));
+                            ___ViewO.push("</p>\n");
+                            ___ViewO.push("                      ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                 ");
+                    }
+                    ___ViewO.push(" \n");
+                    ___ViewO.push("                 <p id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_ETEXTBOOK_LINK)));
+                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                ");
+                    for (var i = 0; i < record.digitalResources.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <a href=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(record.digitalResources[i].digitalResourceURL)));
+                        ___ViewO.push("\" target=\"_blank\">");
+                        ___ViewO.push((EJS.Scanner.to_text(record.digitalResources[i].description)));
+                        ___ViewO.push("</a>\n");
+                        ___ViewO.push("                    <br>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </p>\n");
+                    ___ViewO.push("            ");
+                } else {
+                    if (record.recommendationID) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                <p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_RECOMMENDATION_FROM_PATRON_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_RECOMMENDATION_FROM_PATRON)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                    ");
+                        var recommender = "";
+                        if (record.hasRecommendationComment) {
+                            recommender = "<br/><a id=\"" + HitListRecordTemplate_ID_RECOMMENDATION_PATRON_LINK_PREFIX + currentID + "\" class=\"" + HitListRecordTemplate_CLASS_RESOURCE_LIST_RECOMMENDATION_TRIGGER + "\" href=\"#\" alt=\"" + MessageHelper.format("questHitListOptions_clickForComments") + "\" title=\"" + MessageHelper.format("questHitListOptions_clickForComments") + "\" onclick=\"return false;\"><em>" + record.recommender + "</em></a>";
+                        } else {
+                            recommender = "<br/><em>" + record.recommender + "</em>";
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questHitListOptions_recommendedBy", recommender))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                </p>\n");
+                        ___ViewO.push("                <p id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_RECOMMENDATION_DATE_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_RECOMMENDATION_DATE)));
+                        ___ViewO.push("\">");
+                        ___ViewO.push((EJS.Scanner.to_text(record.dateRecommended)));
+                        ___ViewO.push("</p>\n");
+                        ___ViewO.push("            ");
+                    } else {
+                        if (record.holdID) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                            if (record.holdSiteShortName) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    <nobr><p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_ID_HOLD_SITE_SHORT_NAME_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\">[<span style=\"color:#CC0000;\">");
+                                ___ViewO.push((EJS.Scanner.to_text(record.holdSiteShortName)));
+                                ___ViewO.push("</span>]</p></nobr>\n");
+                                ___ViewO.push("                ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                            if (record.truncatedCopyBarcode) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    ");
+                                if (record.holdQuantity > 1) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        <p id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_ID_HOLD_COPY_BARCODE_PREFIX)));
+                                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                    ___ViewO.push("\"><nobr>(");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("hitlistrecord_Multiples"))));
+                                    ___ViewO.push(")</nobr></p>\n");
+                                    ___ViewO.push("                    ");
+                                } else {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        <p id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_ID_HOLD_COPY_BARCODE_PREFIX)));
+                                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                    ___ViewO.push("\"><nobr>(");
+                                    ___ViewO.push((EJS.Scanner.to_text(record.truncatedCopyBarcode)));
+                                    ___ViewO.push(")</nobr></p>\n");
+                                    ___ViewO.push("                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                            if (record.holdStatus) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    <p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_HOLD_STATUS)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_HOLD_STATUS)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                    ");
+                                ___ViewO.push((EJS.Scanner.to_text(record.holdStatus)));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    </p>\n");
+                                ___ViewO.push("                    ");
+                                if ((record.holdReserveStartDate && record.holdExpireDate) || record.holdQuantity > 1) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        <p id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_HOLD_QUANTITY)));
+                                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_HOLD_QUANTITY)));
+                                    ___ViewO.push("\">\n");
+                                    ___ViewO.push("                        ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("hitlistrecord_Quantity"))));
+                                    ___ViewO.push(" ");
+                                    ___ViewO.push((EJS.Scanner.to_text(record.holdQuantity)));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        </p>\n");
+                                    ___ViewO.push("                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    ");
+                                if (record.holdReserveStartDate && record.holdExpireDate) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        <p id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_HOLD_RESERVE_DATE)));
+                                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_HOLD_RESERVE_DATE)));
+                                    ___ViewO.push("\">\n");
+                                    ___ViewO.push("                        ");
+                                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("hitlistrecord_holdReserveDateRange", record.holdReserveStartDate, record.holdExpireDate))));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                        </p>\n");
+                                    ___ViewO.push("                    ");
+                                }
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("            ");
+                        } else {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                            if (record.digitalMediaRecord && !record.follettEBookTitleDetailsURL) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                  <p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_AUTHOR_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_AUTHOR)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(record.publisher)));
+                                ___ViewO.push("</p>\n");
+                                ___ViewO.push("                ");
+                            } else {
+                                if (record.shortAuthor && !options.hideAuthor) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("                  <p id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_AUTHOR_PREFIX)));
+                                    ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                    ___ViewO.push("\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_AUTHOR)));
+                                    ___ViewO.push("\">");
+                                    ___ViewO.push((EJS.Scanner.to_text(record.shortAuthor)));
+                                    ___ViewO.push("</p>\n");
+                                    ___ViewO.push("                ");
+                                }
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                            if (record.callNumber) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                  <p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_CALLNUMBER_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_CALLNUMBER)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(record.truncatedCallNumber)));
+                                ___ViewO.push("</p>\n");
+                                ___ViewO.push("                ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                ");
+                            if (record.seriesDisplayable) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                  <p id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_SERIESDISPLAYABLE_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                                ___ViewO.push("\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_SEARCH_RESULT_SERIESDISPLAYABLE)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                  ");
+                                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("hitlistrecord_Series"))));
+                                ___ViewO.push(" ");
+                                ___ViewO.push((EJS.Scanner.to_text(record.seriesDisplayable)));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                  </p>\n");
+                                ___ViewO.push("                ");
+                            }
+                            ___ViewO.push("\n");
+                            ___ViewO.push("             ");
+                        }
+                    }
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    ");
+                if (options.renderRenewNextToImage) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        ");
+                    if (record.renewable) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t  ");
+                        if (options.canRenewOwnItems) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("            <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_TITLE_RENEW)));
+                            ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                            ___ViewO.push("\" class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_TITLE_RENEW_IMAGE)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                <a href=\"#\" onclick=\"return false;\">\n");
+                            ___ViewO.push("                ");
+                            ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("questHitListOptions_renew"), styleClass:HitListRecordTemplate_CLASS_CONTROL + " " + HitListRecordTemplate_CLASS_TITLE_RENEW, id:HitListRecordTemplate_DIV_TITLE_RENEW_IMAGE + currentID}))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                </a>\n");
+                            ___ViewO.push("            </div>\n");
+                            ___ViewO.push("          ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("        \n");
+                    ___ViewO.push("        ");
+                    if (record.follettEBookURL) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_DIV_TITLE_CHECKOUT_EBOOK)));
+                        ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                        ___ViewO.push("\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_TITLE_CHECKOUT_EBOOK_IMAGE)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                    ");
+                        if (record.follettEBookCheckoutMethod == HitListRecordTemplate_CHECKOUT_METHOD_READ_ONLINE || record.follettEBookCheckoutMethod == HitListRecordTemplate_CHECKOUT_METHOD_FOLLETT_SHELF_READ_ONLINE) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        <input \n");
+                            ___ViewO.push("                            onclick=\"window.open('");
+                            ___ViewO.push((EJS.Scanner.to_text(record.follettEBookURL)));
+                            ___ViewO.push("', 'checkoutEbookOnline');\" \n");
+                            ___ViewO.push("                            type=\"button\" \n");
+                            ___ViewO.push("                            id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_BUTTON_MY_INFO_EBOOK_READ_ONLINE)));
+                            ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                            ___ViewO.push("\" \n");
+                            ___ViewO.push("                            name=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_BUTTON_MY_INFO_EBOOK_READ_ONLINE)));
+                            ___ViewO.push((EJS.Scanner.to_text(currentID)));
+                            ___ViewO.push("\" \n");
+                            ___ViewO.push("                            value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questHitListOptions_readOnline"))));
+                            ___ViewO.push("\" \n");
+                            ___ViewO.push("                            class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(HitListRecordTemplate_CLASS_MY_INFO_EBOOK_READ_ONLINE)));
+                            ___ViewO.push("\"/>\n");
+                            ___ViewO.push("                    ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            </div>\n");
+                        ___ViewO.push("        ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

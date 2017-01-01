@@ -1,0 +1,96 @@
+/* limiterslider.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                var trackID = id;
+                ___ViewO.push("\n");
+                var lowHandleID = trackID + LimiterController_LIMITER_SLIDER_LOW_HANDLE;
+                ___ViewO.push("\n");
+                var highHandleID = trackID + LimiterController_LIMITER_SLIDER_HIGH_HANDLE;
+                ___ViewO.push("\n");
+                var sliderInfoID = trackID + LimiterController_LIMITER_SLIDER_INFO;
+                ___ViewO.push("\n");
+                var minValueID = trackID + LimiterController_LIMITER_SLIDER_MIN_VALUE;
+                ___ViewO.push("\n");
+                var maxValueID = trackID + LimiterController_LIMITER_SLIDER_MAX_VALUE;
+                ___ViewO.push("\n");
+                var lowSliderValueID = trackID + LimiterController_LIMITER_SLIDER_VALUE_LOW;
+                ___ViewO.push("\n");
+                var highSliderValueID = trackID + LimiterController_LIMITER_SLIDER_VALUE_HIGH;
+                ___ViewO.push("\n");
+                var sliderTitle = trackID + LimiterController_LIMITER_SLIDER_TITLE;
+                ___ViewO.push("\n");
+                var sliderBackground = trackID + LimiterController_LIMITER_SLIDER_BACKGROUND;
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                if (!sliderData.singleValue) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div>\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(minValueID)));
+                    ___ViewO.push("\" class=\"minValue\">");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderData.minimum)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(maxValueID)));
+                    ___ViewO.push("\" class=\"maxValue\">");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderData.maximum)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderTitle)));
+                    ___ViewO.push("\" class=\"sliderTitle\">");
+                    ___ViewO.push((EJS.Scanner.to_text(title)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("    </div>\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderBackground)));
+                    ___ViewO.push("\" class=\"sliderBackground\">\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(trackID)));
+                    ___ViewO.push("\" class=\"sliderTrack ");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_RESETTABLE_LIMITER)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(lowHandleID)));
+                    ___ViewO.push("\" class=\"sliderHandle\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(lowSliderValueID)));
+                    ___ViewO.push("\" class=\"sliderValue leftSliderValue\">");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderData.minimum)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("            <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(highHandleID)));
+                    ___ViewO.push("\" class=\"sliderHandle\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(highSliderValueID)));
+                    ___ViewO.push("\" class=\"sliderValue rightSliderValue\">");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderData.maximum)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    </div>\n");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderTitle)));
+                    ___ViewO.push("\" class=\"sliderTitle\">");
+                    ___ViewO.push((EJS.Scanner.to_text(title)));
+                    ___ViewO.push("</div>\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(trackID)));
+                    ___ViewO.push("\" class=\"sliderSingleValue\">");
+                    ___ViewO.push((EJS.Scanner.to_text(sliderData.singleValue)));
+                    ___ViewO.push("</div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

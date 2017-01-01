@@ -1,0 +1,109 @@
+/* myquest-shelfaction.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_ID_MYQUEST_SHELF_ACTION_ROW)));
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\" class=\"myQuestItem myQuestUpdatesItem\" rowID=\"");
+                ___ViewO.push((EJS.Scanner.to_text(userID)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_AVATAR_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <div class=\"myQuestAvatar\" id=\"\">\n");
+                ___ViewO.push("                <div onmouseout=\"\" onmouseover=\"\" onmousedown=\"\" id=\"\">\n");
+                ___ViewO.push("                \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestAvatarTemplate", {pictureURL:pictureURL, avatarSize:50}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_COLUMN2)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <p class=\"myQuestUpdatesAction\" id=\"\">\n");
+                ___ViewO.push("            ");
+                if (type == MyQuestController_AUDIT_TYPE_SHELF_REMOVE) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            \t");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_xRemovedYFromZ", "<span class=\"myQuestFriendsFullName\">" + displayName + "</span>", "<a id=\"titleDetailLink_" + auditID + "\" class=\"titleDetailLink\" onclick=\"return false;\" href=\"#\">" + title + "</a>", shelfName))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            ");
+                } else {
+                    ___ViewO.push(" \n");
+                    ___ViewO.push("\t            ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_xMarkedYAsZ", "<span class=\"myQuestFriendsFullName\">" + displayName + "</span>", "<a id=\"titleDetailLink_" + auditID + "\" class=\"titleDetailLink\" onclick=\"return false;\" href=\"#\">" + title + "</a>", shelfName))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("             ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </p>\n");
+                ___ViewO.push("            <p class=\"myQuestUpdatesToolbar\" id=\"\">\n");
+                ___ViewO.push("            ");
+                if (canComment) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                <a href=\"#\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_ADD_A_COMMENT)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_addAComment"))));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("            ");
+                if (conversationID && !allCommentsHidden) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    if (canComment) {
+                        ___ViewO.push(" | ");
+                    }
+                    ___ViewO.push("<a href=\"#\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_VIEW_ALL_COMMENT)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_viewComments"))));
+                    ___ViewO.push("</a>\n");
+                    ___ViewO.push("                | <a href=\"#\" id=\"\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_REPORT_ABUSE)));
+                    ___ViewO.push("\" onclick=\"return false;\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_reportAbuse"))));
+                    ___ViewO.push("</a>                \n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push(" \n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestCommentBoxTemplate", {auditID:auditID, myPictureURL:myPictureURL, displayName:displayName, canComment:canComment, approvalNotRequired:approvalNotRequired}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"column3\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none;\" class=\"myQuestItemRemove\">\n");
+                ___ViewO.push("        <p> </p>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"recordID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(bibID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"shelfNumber\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(myShelfNumber)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"auditID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(auditID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("    <div style=\"display: none\" class=\"conversationID\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(conversationID)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("</div>  \n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

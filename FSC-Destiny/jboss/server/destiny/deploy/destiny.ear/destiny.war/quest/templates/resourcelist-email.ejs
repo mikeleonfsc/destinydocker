@@ -1,0 +1,117 @@
+/* resourcelist-email.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"resourceListEmailModuleInner\"  class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4 class=\"genericModuleTL\">\n");
+                ___ViewO.push("            ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_emailOptions"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ResourceListEmailController_BUTTON_EMAIL_OPTIONS_CLOSE, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("resourceListEmailController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("        \t<div class=\"genericModuleBR\">\n");
+                ___ViewO.push("            \t<div class=\"genericModuleContent\">\n");
+                ___ViewO.push("                \t<div id=\"emailOptionsModuleContent\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_CLASS_MODAL_DIALOG_SHRINKY_TO_HIDE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                    \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_DIV_EMAIL_OPTIONS_ERROR_MESSAGE)));
+                ___ViewO.push("\" style=\"display:none;\"></div>\n");
+                ___ViewO.push("\t                    <p>\n");
+                ___ViewO.push("\t                        ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_recipientInformation"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t                    </p>\n");
+                ___ViewO.push("\t                    <table id=\"emailOptionsTable\">\n");
+                ___ViewO.push("\t                        <tr>\n");
+                ___ViewO.push("\t                            <td class=\"editLabel\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_displayName"))));
+                ___ViewO.push("</td>\n");
+                ___ViewO.push("\t                            <td>\n");
+                ___ViewO.push("\t                                <input type=\"text\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_DISPLAY_NAME)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_DISPLAY_NAME)));
+                ___ViewO.push("\" class=\"classEmailOptionsField\">\n");
+                ___ViewO.push("\t                                <span class=\"moduleRequired\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_required"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("\t                            </td>\n");
+                ___ViewO.push("\t                        </tr>\n");
+                ___ViewO.push("\t                        <tr>\n");
+                ___ViewO.push("\t                            <td class=\"editLabel\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_email"))));
+                ___ViewO.push("</td>\n");
+                ___ViewO.push("\t                            <td>\n");
+                ___ViewO.push("\t                                <input type=\"text\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_ADDRESS)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_ADDRESS)));
+                ___ViewO.push("\" class=\"classEmailOptionsField\">\n");
+                ___ViewO.push("\t                                <span class=\"moduleRequired\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_required"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("\t                            </td>\n");
+                ___ViewO.push("\t                        </tr>\n");
+                ___ViewO.push("\t                        <tr>\n");
+                ___ViewO.push("\t                            <td class=\"editLabel\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_subject"))));
+                ___ViewO.push("</td>\n");
+                ___ViewO.push("\t                            <td>\n");
+                ___ViewO.push("\t                                <input type=\"text\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_SUBJECT)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_SUBJECT)));
+                ___ViewO.push("\" class=\"classEmailOptionsField\" maxlength=\"30\">\n");
+                ___ViewO.push("\t                                <span class=\"moduleRequired\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_required"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("\t                            </td>\n");
+                ___ViewO.push("\t                        </tr>\n");
+                ___ViewO.push("\t                        <tr>\n");
+                ___ViewO.push("\t                            <td class=\"editLabel\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_message"))));
+                ___ViewO.push("</td>\n");
+                ___ViewO.push("\t                            <td><textarea id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_MESSAGE)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_INPUT_EMAIL_OPTIONS_MESSAGE)));
+                ___ViewO.push("\" cols=\"40\" rows=\"3\"></textarea></td>\n");
+                ___ViewO.push("\t                        </tr>\n");
+                ___ViewO.push("\t                    </table>\n");
+                ___ViewO.push("\t                    <div id=\"windowButtons\">\n");
+                ___ViewO.push("\t                        <input type=\"button\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_BUTTON_EMAIL_OPTIONS_SEND)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ResourceListEmailController_BUTTON_EMAIL_OPTIONS_SEND)));
+                ___ViewO.push("\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("resourceListEmailController_send"))));
+                ___ViewO.push("\" class=\"classResourceListEmailSend\">\n");
+                ___ViewO.push("\t                        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ResourceListEmailController_IMG_SEND_EMAIL_IN_PROGRESS, styleClass:"display:none;", altText:MessageHelper.format("resourceListEmailController_sendingEmail")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t                        </div>\n");
+                ___ViewO.push("\t                    </div>\n");
+                ___ViewO.push("\t                </div>\n");
+                ___ViewO.push("\t            </div>\n");
+                ___ViewO.push("\t        </div>\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

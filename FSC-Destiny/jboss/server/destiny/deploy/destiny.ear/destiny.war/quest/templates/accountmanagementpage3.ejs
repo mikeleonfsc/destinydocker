@@ -1,0 +1,125 @@
+/* accountmanagementpage3.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_DIV_CREATE_ACCOUNT_BOX_GROUP3)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_LOGIN_BOX_GROUP)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <h5>");
+                ___ViewO.push((EJS.Scanner.to_text(accountGroup3Prompt)));
+                ___ViewO.push("</h5>\n");
+                ___ViewO.push("    <div id=\"loginModuleCreate_PatronConfirmed_3\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <label class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_patron"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("        <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_SPAN_PATRON_CONFIRMED_DISPLAY)));
+                ___ViewO.push("\" class=\"patronConfirmedDisplayed\"></span>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"loginModuleCreate_UserName\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_USERNAME)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_userName"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("        ");
+                if (!forgotPassword) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <input tabindex=\"1\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_USERNAME)));
+                    ___ViewO.push("\" value=\"\" type=\"text\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                    ___ViewO.push("\" maxLength=\"42\" autocomplete=\"off\">\n");
+                    ___ViewO.push("        ");
+                } else {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <span id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_SPAN_USERNAME_CONFIRMED_DISPLAY)));
+                    ___ViewO.push("\" class=\"patronConfirmedDisplayed\"></span>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"loginModuleCreate_Password\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_PASSWORD)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_password"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("        <input tabindex=\"2\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_PASSWORD)));
+                ___ViewO.push("\" value=\"\" type=\"password\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                ___ViewO.push("\" maxLength=\"60\" autocomplete=\"off\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"loginModuleCreate_PasswordConfirm\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_CONFIRM_PASSWORD)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_confirmPassword"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("        <input tabindex=\"3\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_CONFIRM_PASSWORD)));
+                ___ViewO.push("\" value=\"\" type=\"password\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                ___ViewO.push("\" maxLength=\"60\" autocomplete=\"off\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    ");
+                if (!forgotPassword) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_DIV_CREATE_ACCOUNT_EMAIL)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            <label for=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_EMAIL)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_email"))));
+                    ___ViewO.push("</label>\n");
+                    ___ViewO.push("            <input tabindex=\"4\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_EMAIL)));
+                    ___ViewO.push("\" value=\"\" type=\"text\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                    ___ViewO.push("\" maxlength=\"128\" autocomplete=\"off\">\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

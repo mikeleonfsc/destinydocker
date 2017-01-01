@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application 1.2//EN' 'http://java.sun.com/j2ee/dtds/application_1_2.dtd'>
+
+<application>
+    <display-name>DestinyEJB</display-name>
+    <module>
+        <ejb>util-ejb3.jar</ejb>
+    </module>
+    <module>
+        <ejb>entity-ejb3.jar</ejb>
+    </module>
+    <module>
+        <ejb>session-ejb3.jar</ejb>
+    </module>
+    <module>
+        <ejb>client.jar</ejb>
+    </module>
+    <module>
+        <web>
+            <web-uri>destiny.war</web-uri>
+            <context-root>/</context-root>
+        </web>
+    </module>
+</application>
+

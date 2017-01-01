@@ -1,0 +1,49 @@
+/* reviewstars.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<nobr>\n");
+                var starTypeClass = "";
+                switch (starType) {
+                  case ReviewStarsTemplate_STAR_TYPE_SMALL_QUEST:
+                    starTypeClass = "rating_small";
+                    break;
+                  case ReviewStarsTemplate_STAR_TYPE_LARGE_QUEST:
+                    starTypeClass = "rating_large";
+                    break;
+                }
+                var flooredValue = Math.floor(starValue);
+                var hasHalf = (starValue - flooredValue) > 0;
+                var starsLeft = (5 - flooredValue) - (hasHalf ? 1 : 0);
+                var altText = MessageHelper.format("reviewStarsTemplate_stars", starValue);
+                var fullStarHTML = "<img class=\"" + starTypeClass + "_full\" title=\"" + altText + "\" alt=\"" + altText + "\" src=\"/images/icons/general/spacer.gif\"/>";
+                var halfStarHTML = "<img class=\"" + starTypeClass + "_half\" title=\"" + altText + "\" alt=\"" + altText + "\" src=\"/images/icons/general/spacer.gif\"/>";
+                var emptyStarHTML = "<img class=\"" + starTypeClass + "_empty\" title=\"" + altText + "\" alt=\"" + altText + "\" src=\"/images/icons/general/spacer.gif\"/>";
+                var putHalf = false;
+                if (!hideOnZero || flooredValue > 0 || hasHalf) {
+                    for (var idx = 0; idx < 5; idx++) {
+                        if (idx < flooredValue) {
+                            ___ViewO.push((EJS.Scanner.to_text(fullStarHTML)));
+                        } else {
+                            if (hasHalf && !putHalf) {
+                                putHalf = true;
+                                ___ViewO.push((EJS.Scanner.to_text(halfStarHTML)));
+                            } else {
+                                ___ViewO.push((EJS.Scanner.to_text(emptyStarHTML)));
+                            }
+                        }
+                    }
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</nobr>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

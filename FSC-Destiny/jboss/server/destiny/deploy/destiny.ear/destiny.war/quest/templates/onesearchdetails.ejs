@@ -1,0 +1,254 @@
+/* onesearchdetails.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                var database = searchResultElement;
+                ___ViewO.push("\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DBDETAIL_CONTENT_TOP)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"onesearchDBDetailImage\">\n");
+                ___ViewO.push("        <p>\n");
+                ___ViewO.push("        \t<img border=\"0\" src=\"");
+                ___ViewO.push((EJS.Scanner.to_text(databaseImagePassthroughURL)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(headerMessage)));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div id=\"onesearchDBDetailSummary\">\n");
+                ___ViewO.push("        <p>");
+                ___ViewO.push((EJS.Scanner.to_text(database.blurbage)));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div id=\"onesearchDBLink\">\n");
+                ___ViewO.push("\t    Go to <a href=\"");
+                ___ViewO.push((EJS.Scanner.to_text(database.linkHref)));
+                ___ViewO.push("\" class=\"DetailLink\" target=\"_blank\">");
+                ___ViewO.push((EJS.Scanner.to_text(database.linkName)));
+                ___ViewO.push("</a>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                if (hasResults) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DBDETAIL_CONTENT_BOTTOM)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("        <div id=\"onesearchPagingOuter\">\n");
+                    ___ViewO.push("            <div id=\"onesearchPagingInner\">\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DBDETAIL_PAGING_CONTROLS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    <a href=\"#\" onclick=\"return false;\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ANCHOR_ONESEARCH_DBDETAIL_PREV)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_CONTROL)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DBDETAIL_PREV)));
+                    ___ViewO.push("\" style=\"display: none;\"></a>\n");
+                    ___ViewO.push("                    <a href=\"#\" onclick=\"return false;\" id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ANCHOR_ONESEARCH_DBDETAIL_NEXT)));
+                    ___ViewO.push("\" class=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_CONTROL)));
+                    ___ViewO.push(" ");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_ONESEARCH_DBDETAIL_NEXT)));
+                    ___ViewO.push("\" style=\"display: none;\"></a>\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ONE_SEARCH_DETAIL_RESULTS_COUNTS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("                    ");
+                    ___ViewO.push((EJS.Scanner.to_text(resultCountMessage)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                </div>\n");
+                    ___ViewO.push("                ");
+                    if (canAddToBooklist) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ONE_SEARCH_BOOK_LIST_SELECTION)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("oneSearchDatabaseDetail_List"))));
+                        ___ViewO.push(" <span id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(BooklistSelectController_SELECT_LIST_CONTAINER)));
+                        ___ViewO.push("\"></span>\n");
+                        ___ViewO.push("                        </div>\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>                                \n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    \n");
+                    ___ViewO.push("        <div id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ONE_SEARCH_DETAIL_RESULTS)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            ");
+                    for (i = 0; i < database.results.length; i++) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            \t");
+                        var result = database.results[i];
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            \t");
+                        var oddRowClass = (i % 2 == 1) ? "oddRow" : "";
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                <div id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ONE_SEARCH_DB_DETAIL_RESULT_PREFIX)));
+                        ___ViewO.push((EJS.Scanner.to_text(i)));
+                        ___ViewO.push("\" class=\"onesearchDBDetailResultItem ");
+                        ___ViewO.push((EJS.Scanner.to_text(oddRowClass)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                    ");
+                        var addToListStyle = "";
+                        var inListStyle = "display: none";
+                        if (result.inSelectedList) {
+                            addToListStyle = "display: none";
+                            inListStyle = "";
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    ");
+                        if (canAddToBooklist) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(OneSearchController_BUTTON_ONE_SEARCH_DETAIL_ADD_TO_BOOKLIST_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" class=\"onesearchDBDetailAddToList\" style=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(addToListStyle)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                            <input id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(OneSearchController_BUTTON_ONE_SEARCH_DB_DETAIL_RESULT_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" type=\"button\" value=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("oneSearchDatabaseDetail_addToThisList"))));
+                            ___ViewO.push("\"/>\n");
+                            ___ViewO.push("                        </div>\n");
+                            ___ViewO.push("                        <div id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(OneSearchController_BUTTON_ONE_SEARCH_DB_DETAIL_IN_LIST_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" class=\"onesearchDBDetailInList ");
+                            ___ViewO.push((EJS.Scanner.to_text(OneSearchController_CLASS_HOVER_IN_BOOKLIST)));
+                            ___ViewO.push("\" style=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(inListStyle)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                            <span>");
+                            ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("oneSearchDatabaseDetail_inThisList"))));
+                            ___ViewO.push("</span>\n");
+                            ___ViewO.push("                        </div>\n");
+                            ___ViewO.push("                    ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                    <div class=\"onesearchDBDetailTextParent\">\n");
+                        ___ViewO.push("                        <p class=\"onesearchDBDetailTextIntro\">\n");
+                        ___ViewO.push("                            <span class=\"onesearchDBDetailBullet\"></span>\n");
+                        ___ViewO.push("                            ");
+                        if (!result.linkTarget) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                <a id=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ANCHOR_ONE_SEARCH_DB_DETAIL_RESULT_PREFIX)));
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\" href=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(result.linkHref)));
+                            ___ViewO.push("\" target=\"FIA_RESULT\">");
+                            ___ViewO.push((EJS.Scanner.to_text(result.title)));
+                            ___ViewO.push("</a>\n");
+                            ___ViewO.push("                            ");
+                        } else {
+                            if (result.linkTarget == "NONE") {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <a id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ANCHOR_ONE_SEARCH_DB_DETAIL_RESULT_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(i)));
+                                ___ViewO.push("\" href=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(result.linkHref)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(result.title)));
+                                ___ViewO.push("</a>\n");
+                                ___ViewO.push("                            ");
+                            } else {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                                <a id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_ANCHOR_ONE_SEARCH_DB_DETAIL_RESULT_PREFIX)));
+                                ___ViewO.push((EJS.Scanner.to_text(i)));
+                                ___ViewO.push("\" href=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(result.linkHref)));
+                                ___ViewO.push("\" target=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(result.linkTarget)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(result.title)));
+                                ___ViewO.push("</a>\n");
+                                ___ViewO.push("                            ");
+                            }
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                       \n");
+                        ___ViewO.push("                        <p class=\"onesearchDBDetailTextSummary\">\n");
+                        ___ViewO.push("                        \t");
+                        if (result.numberOfColorImages) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                                ");
+                            ___ViewO.push((EJS.Scanner.to_text(result.numberOfColorImages)));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        if (result.numberOfBWImages) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\t                            ");
+                            ___ViewO.push((EJS.Scanner.to_text(result.numberOfBWImages)));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                            ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                            ");
+                        ___ViewO.push((EJS.Scanner.to_text(result.description)));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                        </p>\n");
+                        ___ViewO.push("                    </div>\n");
+                        ___ViewO.push("                </div>\n");
+                        ___ViewO.push("            ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    \n");
+                    ___ViewO.push("            <div id=\"onesearchDBDetailOtherResults\">\n");
+                    ___ViewO.push("                ");
+                    if (database.otherLinksEntries) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                \t");
+                        for (i = 0; i < database.otherLinksEntries.length; i++) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("                        <p>                    \n");
+                            ___ViewO.push("                            <a href=\"#\" onclick=\"return false;\" class=\"otherLinkClass\" id=\"otherLink");
+                            ___ViewO.push((EJS.Scanner.to_text(i)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("                                [ ");
+                            ___ViewO.push((EJS.Scanner.to_text(database.otherLinksEntries[i].linkDescription)));
+                            ___ViewO.push(" ]\n");
+                            ___ViewO.push("                            </a>\n");
+                            ___ViewO.push("                        </p>\n");
+                            ___ViewO.push("                    ");
+                        }
+                        ___ViewO.push("\n");
+                        ___ViewO.push("                ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            </div>\n");
+                    ___ViewO.push("        </div>\n");
+                    ___ViewO.push("    </div>\n");
+                }
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

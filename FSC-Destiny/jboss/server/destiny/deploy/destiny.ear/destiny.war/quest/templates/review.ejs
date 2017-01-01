@@ -1,0 +1,122 @@
+/* review.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_INNER)));
+                ___ViewO.push("\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("<div class=\"genericModuleTR\">\n");
+                ___ViewO.push("    <h4  class=\"genericModuleTL\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_HEADER)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("reviewController_reviewing"))));
+                ___ViewO.push("</h4>\n");
+                ___ViewO.push("    <a href=\"#\" onclick=\"return false;\">\n");
+                ___ViewO.push("    \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:ReviewController_BUTTON_ADD_REVIEW_CLOSE, styleClass:"moduleCloseButtonImage", altText:MessageHelper.format("reviewController_close")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </a>\n");
+                ___ViewO.push("    <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("        <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("        <div class=\"genericModuleContent\">\n");
+                ___ViewO.push("        <div id=\"addReviewContents\">\n");
+                ___ViewO.push("            <div class=\"reviewContentsTitle\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_TITLE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_RATING)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                    ");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("reviewController_howDoYouRateThisTitle"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                    <img id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_STAR1)));
+                ___ViewO.push("\" class=\"rating_large_empty\" src=\"/images/icons/general/spacer.gif\" align=\"absbottom\"/>\n");
+                ___ViewO.push("                    <img id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_STAR2)));
+                ___ViewO.push("\" class=\"rating_large_empty\" src=\"/images/icons/general/spacer.gif\" align=\"absbottom\"/>\n");
+                ___ViewO.push("                    <img id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_STAR3)));
+                ___ViewO.push("\" class=\"rating_large_empty\" src=\"/images/icons/general/spacer.gif\" align=\"absbottom\"/>\n");
+                ___ViewO.push("                    <img id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_STAR4)));
+                ___ViewO.push("\" class=\"rating_large_empty\" src=\"/images/icons/general/spacer.gif\" align=\"absbottom\"/>\n");
+                ___ViewO.push("                    <img id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_STAR5)));
+                ___ViewO.push("\" class=\"rating_large_empty\" src=\"/images/icons/general/spacer.gif\" align=\"absbottom\"/>            \n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                    <span style=\"color: rgb(204, 0, 0);\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_SPAN_ADD_REVIEW_RATING_TEXT)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("reviewController_rateThisTitle"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            \n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_COMMENTS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            ");
+                if (canSubmitLibraryReviews) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                    ");
+                    ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("reviewController_enterYourReviewCommentsBelow"))));
+                    ___ViewO.push("<br>\n");
+                    ___ViewO.push("                    <textarea id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(ReviewController_FIELD_ADD_REVIEW_COMMENT)));
+                    ___ViewO.push("\" name=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(ReviewController_FIELD_ADD_REVIEW_COMMENT)));
+                    ___ViewO.push("\"></textarea>\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            \n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_UPLOAD)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_UPLOAD_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_UPLOAD_DISPLAY_NAME)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_ERRORS)));
+                ___ViewO.push("\" style=\"display: none;\"></div>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_DIV_ADD_REVIEW_SAVE_AREA)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <input id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_BUTTON_ADD_REVIEW_SAVE)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(ReviewController_BUTTON_ADD_REVIEW_SAVE)));
+                ___ViewO.push("\" type=\"button\" value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("reviewController_save"))));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

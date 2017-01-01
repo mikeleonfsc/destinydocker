@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+     This is the Destiny configuration file for the destiny application,
+-->
+
+<destiny-config>
+
+<!--
+     Menus are entered as a Top menu and the sub menus associated wither
+     the top menu.  The prefix on the name indicates the order that the menu
+     will be displayed.  These are sorted alphabetically so the leading zeros
+     are critical.
+
+     ** Note regarding the 'l2m' parameter on the contentURL **
+     This sets the level2menu name for the url requested and all subsequent
+     URLs until the menu is deliberately changed.  If you do not want your
+     menu selection to persist, remove this parameter.
+
+     Also, if adding additional parameters separated by the &, be sure to use
+     the encoded value which is &amp; ,- including the semicolon
+-->
+  <menu-mappings>
+
+    <top-menu name="Home"
+      activeImage="tab1active.gif"
+      passiveImage="tab1passive.gif"
+      order="1"
+      altText="topmenu_Home"
+      defaultSelection="false"
+      translatedInOPAC="true"> <!-- FSC: french / spanish translation (key: primary_tabs.image.alt.home) -->
+
+
+      <sub-menu name="Home"
+        activeImage="/images/template/basicsearchactive.gif"
+        passiveImage="/images/template/basicsearchpassive.gif"
+        contentURL="/common/servlet/presenthomeform.do?l2m=Home"
+        order="01"
+        altText="level2menu_Home"
+        permissionRequired="viewHomePage,editHomePage"
+        permissionsMethod=""
+        defaultSelection="true"
+        translatedInOPAC="true"/> <!-- FSC: french / spanish translation (key: primary_tabs.image.alt.home) -->
+
+
+    </top-menu>
+
+    <top-menu name="TopLevelDashboard"
+      activeImage="tab1active.gif"
+      passiveImage="tab1passive.gif"
+      order="2"
+      altText="Dashboard"
+      defaultSelection="false"
+      translatedInOPAC="true"> <!-- FSC: french / spanish translation (key: primary_tabs.image.alt.home) -->
+
+
+      <sub-menu name="Dashboard"
+        contentURL="/dashboard/servlet/presentdashboardform.do?l2m=Dashboard"
+        order="01"
+        altText="Dashboard"
+        permissionRequired=""
+        permissionsMethod="permissionsMethodDashboard"
+        defaultSelection="true"
+        translatedInOPAC="true"/> <!-- FSC: french / spanish translation (key: primary_tabs.image.alt.home) -->
+
+
+    </top-menu>
+
+<!--  ********************************* Catalog ************************************  -->
+
+    <top-menu name="TopLevelCatalog"
+      activeImage="tab2active.gif"
+      passiveImage="tab2passive.gif"
+      order="3"
+      altText="topmenu_Catalog"
+      defaultSelection="true"
+      translatedInOPAC="true"> <!-- FSC: french / spanish translation (key: primary_tabs.image.alt.catalog) -->
+
+    <!-- the ordering for the sub-menus must be padded out since they are declared
+         as strings in the object and '10' comes before '2' in the world of strings.
+         Ultimately, the 'order' property in the Level2Menu object should be an
+         int.
+    -->
+      <sub-menu name="Library Search"
+        contentURL="/cataloging/servlet/presentadvancedsearchredirectorform.do?l2m=Library%20Search"
+        order="01"
+        altText="level2menu_LibrarySearch"
+        permissionRequired="BasicSearch,AdvancedSearch,VisualSearch,CategorySearch,NumberSearch,BarcodeSearch,CallNumberSearch,BriefSearch,CreateAssignCategories"
+        permissionsMethod="permissionsMethodLibrarySearch"
+        defaultSelection="true"
+        translatedInOPAC="true"/> <!-- FSC: french / spanish translation (key: side_menu.image.alt.library_search) -->
+        
+      <sub-menu name="Media Search"
+        contentURL="/cataloging/servlet/presentadvancedsearchredirectorform.do?l2m=Media%20Search"
+        order="02"
+        altText="level2menu_MediaSearch"
+        permissionRequired="MediaSearch,AdvancedSearch,CategorySearch,NumberSearch,BarcodeSearch,CallNumberSearch,BriefSearch,CreateAssignCategories"
+        permissionsMethod="permissionsMethodMediaSearch"
+        defaultSelection="true"/>
+
+      <sub-menu name="Destiny Quest"
+        contentURL="/quest/servlet/presentquestwelcomeform.do?l2m=Destiny%20Quest"
+        altText="Destiny Quest"
+        order="03"
+        permissionRequired="QuestSearch"
+        defaultSelection="false"/>
+
+      <sub-menu name="Destiny Discover"
+        contentURL="/cataloging/servlet/presentuniversaldiscoverywelcomeform.do?l2m=Universal%20Search"
+        altText="Destiny Discover"
+        order="04"
+        permissionRequired="UDSearch"
+        permissionsMethod="permissionsMethodUniversalSearch"
+        defaultSelection="false"/>
+
+      <sub-menu name="WebPath Express"
+        contentURL="/cataloging/servlet/presentwpesearchform.do?l2m=WebPath%20Express"
+        order="05"
+        altText="WebPath Express"
+        permissionRequired="WebPathExpressSearch"
+        permissionsMethod="permissionsMethodWPESearch"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Digital Resources"
+        contentURL="/cataloging/servlet/presentdigitalresourcesearchform.do?l2m=Digital%20Resources"
+        order="06"
+        altText="level2menu_DigitalResources"
+        permissionRequired=""
+        permissionsMethod="permissionsMethodDigitalResources"
+        defaultSelection="false"/>
+<!-- altText="Digital Resources"   -->
+      <sub-menu name="Standards Search"
+        contentURL="/cataloging/servlet/presentstatestandardssearchform.do?l2m=Standards%20Search&amp;leftMenu=true"
+        order="07"
+        altText="Standards Search"
+        permissionRequired="StateStandardSearch"
+        permissionsMethod="permissionsMethodStateStandardSearch"
+        defaultSelection="false"/>
+        
+     <sub-menu name="Add Title"
+        contentURL="/cataloging/servlet/presentaddtitlesearchform.do?action=view&amp;l2m=Add%20Title&amp;collectionType=0&amp;showMessageBox=false"
+        order="08"
+        altText="level2menu_AddTitle"
+        permissionRequired="AddTitles"
+        defaultSelection="false"/>
+
+ <!-- todo - Change permission to appropriate one when textbook perm is implemented -->
+      <sub-menu name="Textbook Search"
+        contentURL="/cataloging/servlet/presenttextbooknavigatorform.do?l2m=Textbook%20Search"
+        order="09"
+        altText="Textbook Search"
+        permissionRequired="TextbookSearch,CreateAssignCategoriesTextbook"
+        defaultSelection="false"/>
+        
+ <!-- todo - Change permission to appropriate one when textbook perm is implemented -->
+     <sub-menu name="Add Textbook"
+        contentURL="/cataloging/servlet/presentaddtitlesearchform.do?action=view&amp;l2m=Add%20Textbook&amp;collectionType=1&amp;leftMenu=true"
+        order="10"
+        altText="Add Textbook"
+        permissionRequired="AddTextbook"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Resource Search"
+        contentURL="/cataloging/servlet/presentassetsearchnavigationform.do?action=view&amp;l2m=Resource%20Search"
+        order="11"
+        altText="Resource Search"
+        permissionRequired="CatAssetSearchAssets,CreateAssignCategoriesAsset"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Add Resource"
+        contentURL="/cataloging/servlet/presentaddtitlesearchform.do?action=view&amp;l2m=Add%20Resource&amp;collectionType=4"
+        order="12"
+        altText="Add Resource"
+        permissionRequired="CatAssetAddAssetSpec"
+        defaultSelection="false"/>
+        
+
+        
+
+       <!-- NOTE for View BookList: the permissionRequired must be AccessBookcart, not AccessBookList
+            to maintain compatibility with old beta permissions data. -->
+       <sub-menu name="Resource Lists"
+        contentURL="/cataloging/servlet/presentviewmylistsform.do?l2m=Resource%20Lists&amp;sideLink=true"
+        order="13"
+        altText="level2menu_ResourceLists"
+        permissionRequired="ViewPublicLists, AccessBookcart,AccessBookcartTextbook,AccessBookcartMedia,AccessBookListAsset"
+        permissionsMethod="permissionsMethodViewBooklist"
+        defaultSelection="false"
+        translatedInOPAC="true"/> <!-- FSC: french / spanish translation (key: side_menu.image.alt.view_my_list) -->
+
+      <sub-menu name="Import Titles"
+        contentURL="/cataloging/servlet/presentimportbibform.do?l2m=Import%20Titles&amp;collectionType=0"
+        order="14"
+        altText="level2menu_ImportTitles"
+        permissionRequired="ImportTitlesCopies"
+        defaultSelection="false"/>
+
+      <sub-menu name="Export Titles"
+        contentURL="/cataloging/servlet/presentexportbibform.do?l2m=Export%20Titles&amp;mode=Titles"
+        order="15"
+        altText="level2menu_ExportTitles"
+        permissionRequired="ExportTitles"
+        defaultSelection="false"/>
+
+      <sub-menu name="Titlewave"
+        contentURL="/cataloging/servlet/presenttitlewaveform.do?l2m=Titlewave"
+        order="16"
+        altText="level2menu_Titlewave"
+        permissionRequired="AllowUseTitlewave"
+        permissionsMethod="permissionsAllowTitlewaveToDisplay" 
+        defaultSelection="false"/>
+
+      <sub-menu name="Import Textbooks"
+        contentURL="/cataloging/servlet/presentimportbibform.do?l2m=Import%20Textbooks&amp;collectionType=1"
+        order="17"
+        altText="Import Textbooks"
+        permissionRequired="ImportTextbooksCopies"
+        defaultSelection="false"/>
+
+      <sub-menu name="Export Textbooks"
+        contentURL="/cataloging/servlet/presentexportbibform.do?l2m=Export%20Textbooks&amp;mode=Textbooks"
+        order="18"
+        altText="Export Textbooks"
+        permissionRequired="ExportTextbooks"
+        defaultSelection="false"/>
+
+      <sub-menu name="Order Textbooks"
+        contentURL="/cataloging/servlet/presentorderslistform.do?l2m=Order%20Textbooks&amp;collectionType=1"
+        order="19"
+        altText="Order Textbooks"
+        permissionRequired="OrderTextbooks"
+        permissionsMethod="canViewOrderTextbooks"
+        defaultSelection="false"/>
+      
+      <sub-menu name="Transfer Textbooks"
+        contentURL="/cataloging/servlet/presenttransfertrackform.do?l2m=Transfer%20Textbooks&amp;collectionType=1"
+        order="20"
+        altText="Transfer Textbooks"
+        permissionRequired="TransferTextbookCopies,ReceiveTextbookCopies"
+        defaultSelection="false"/>
+        
+         <sub-menu name="Import Resources"
+        contentURL="/cataloging/servlet/presentassetimportform.do?l2m=Import%20Resources&amp;collectionType=4"
+        order="21"
+        altText="Import Resources"
+        permissionRequired="ImportAssetItems"
+        permissionsMethod="canViewAllAssetTemplates"
+        defaultSelection="false"/>
+
+         <sub-menu name="Export Resources"
+        contentURL="/cataloging/servlet/presentexportassetsform.do?l2m=Export%20Resources&amp;collectionType=4"
+        order="22"
+        altText="Export Resources"
+        permissionRequired="ExportAssetItems"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Transfer Resources"
+        contentURL="/cataloging/servlet/presenttransfertrackform.do?l2m=Transfer%20Resources&amp;collectionType=4"
+        order="23"
+        altText="Transfer Resources"
+        permissionRequired="TransferAssetItems"
+        defaultSelection="false"/>
+
+      <sub-menu name="Resource Orders"
+        contentURL="/cataloging/servlet/presentorderrollupform.do?l2m=Resource%20Orders&amp;collectionType=4&amp;transferType=1"
+        order="24"
+        altText="Resource Orders"
+        permissionsMethod="canViewOrderResources"
+        permissionRequired="OrderResources,OrderAssetItems"
+        defaultSelection="false"/>
+
+      <sub-menu name="Update Titles"
+        contentURL="/cataloging/servlet/presentupdatetitlesnavigationform.do?l2m=Update%20Titles"
+        order="25"
+        altText="level2menu_UpdateTitles"
+        permissionRequired="BulkRemoveTitles,BulkRemoveTextbookTitles,AllianceRecon,UpdateHeadings, UpdateMaterialType, EditTitles,AEDSiteSpecificSubjects, ApproveDeleteLibraryReviews,GloballyMergeTitles"
+        defaultSelection="false"/>
+
+      <sub-menu name="Update Copies"
+        contentURL="/cataloging/servlet/presentindividualdeleteform.do?l2m=Update%20Copies"
+        order="26"
+        altText="level2menu_UpdateCopies"
+        permissionRequired="EditCopies, DeleteCopies,DeleteTextbookCopies,EditTextbookCopies,ReceiveLibraryCopies"
+        permissionsMethod="permissionsMethodUpdateCopies"
+        defaultSelection="false"/>
+
+      <sub-menu name="Update Resources"
+        contentURL="/cataloging/servlet/presentindividualdeleteassetitemsform.do?l2m=Update%20Resources"
+        order="27"
+        altText="Update Resources"                
+        permissionRequired="CatAssetDeleteAsset, CatAssetEditAsset"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Update Software"
+        contentURL="/cataloging/servlet/presentbatchassignlicensesform.do?l2m=Update%20Software"
+        order="28"
+        altText="Update Software"                  
+        permissionRequired="ManageSoftwareAssignments"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Import Authority"
+        contentURL="/cataloging/servlet/presentimportauthform.do?l2m=Import%20Authority"
+        order="29"
+        altText="level2menu_ImportAuthority"
+        permissionRequired="ImportAuthority"
+        defaultSelection="false"/>
+
+      <sub-menu name="Manage Authority"
+        contentURL="/cataloging/servlet/presentauthoritysearchform.do?l2m=Manage%20Authority"
+        order="30"
+        altText="level2menu_ManageAuthority"
+        permissionRequired="ManageAuthority"
+        defaultSelection="false"/>
+
+      <sub-menu name="Reading Program"
+        contentURL="/cataloging/servlet/presentreadingprogramnavigationform.do?l2m=Reading%20Program"
+        order="31"
+        altText="Reading Program"
+        permissionsMethod="permissionsMethodReadingProgram"
+        defaultSelection="false"/>
+
+      <sub-menu name="Manage Subjects"
+        contentURL="/cataloging/servlet/presentmanagesubjectsform.do?l2m=Manage%20Subjects"
+        order="32"
+        altText="level2menu_ManageSubjects"
+        permissionRequired="ManageSubjects"
+        defaultSelection="false"/>
+
+      <sub-menu name="Search Setup"
+        contentURL="/cataloging/servlet/presentsearchsetupnavigationform.do?l2m=Search%20Setup"
+        order="33"
+        altText="level2menu_SearchSetup"
+        permissionsMethod="permissionsMethodSearchSetup"
+        defaultSelection="false"/>
+    </top-menu>
+
+<!--  ********************************* Circulation ************************************  -->
+
+    <top-menu name="TopLevelCirculation"
+      activeImage="tab3active.gif"
+      passiveImage="tab3passive.gif"
+      order="4"
+      altText="topmenu_Circulation"
+      defaultSelection="false">
+
+      <sub-menu name="Bookings"
+        contentURL="/circulation/servlet/presentholdviewform.do?l2m=Bookings&amp;holdSideLink=true"
+        order="01"
+        altText="Bookings"
+        permissionRequired="ViewHolds,AEDHolds"
+        permissionsMethod="permissionsMethodIsMedia"
+        defaultSelection="true"/>
+
+      <sub-menu name="Check Out"
+        contentURL="/circulation/servlet/presentcheckoutform.do?l2m=Check%20Out&amp;collectionType=0"
+        order="02"
+        altText="level2menu_CheckOut"
+        permissionRequired="Checkout"
+        defaultSelection="true"
+        accessKey="O"/>
+
+      <sub-menu name="Check Out Text"
+        contentURL="/circulation/servlet/presentcheckoutform.do?l2m=Check%20Out%20Text&amp;fromSideLink=true&amp;collectionType=1"
+        order="03"
+        altText="Check Out Text"
+        permissionRequired="CheckoutTextbook"
+        defaultSelection="true"
+        accessKey="C"/>
+
+      <sub-menu name="Check Out Items"
+        contentURL="/circulation/servlet/presentcheckoutnavigationform.do?l2m=Check%20Out%20Items&amp;fromSideLink=true&amp;collectionType=4"
+        order="04"
+        altText="Check Out Items"
+        permissionRequired="CircAssetCheckOut"
+        defaultSelection="false"
+        accessKey="m"/>
+
+      <sub-menu name="Check In"
+        contentURL="/circulation/servlet/presentcheckinform.do?l2m=Check%20In&amp;collectionType=0"
+        order="05"
+        altText="level2menu_CheckIn"
+        permissionRequired="Checkin"
+        defaultSelection="false"
+        accessKey="I"/>
+
+      <sub-menu name="Check In Text"
+        contentURL="/circulation/servlet/presentcheckinform.do?l2m=Check%20In%20Text&amp;collectionType=1"
+        order="06"
+        altText="Check In Text"
+        permissionRequired="CheckinTextbook"
+        defaultSelection="false"
+        accessKey="T"/>
+
+      <sub-menu name="Check In Items"
+        contentURL="/circulation/servlet/presentcheckinform.do?l2m=Check%20In%20Items&amp;collectionType=4"
+        order="07"
+        altText="Check In Items"
+        permissionRequired="CircAssetCheckin"
+        defaultSelection="false"
+        accessKey="n"/>
+        
+      <sub-menu name="Renew"
+        contentURL="/circulation/servlet/presentrenewform.do?l2m=Renew"
+        order="08"
+        altText="level2menu_Renew"
+        permissionRequired="RenewCheckedOutMaterials,RenewTextbooks,RenewAssets"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Holds/ILL"
+        contentURL="/circulation/servlet/presentholdviewform.do?l2m=Holds%2FILL&amp;holdSideLink=true"
+        order="09"
+        altText="level2menu_HoldsILL"
+        permissionRequired="ViewHolds,AEDHolds"
+        permissionsMethod="permissionsMethodNotMedia"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Fines"
+        contentURL="/circulation/servlet/presentfineviewform.do?l2m=Fines&amp;fineSidelink=true"
+        order="10"
+        altText="level2menu_Fines"
+        permissionRequired="ViewAnyFines,ViewFinesTextbook,ViewFinesAsset,ViewFinesPatron"
+        defaultSelection="false"/>
+
+      <sub-menu name="Copy Status"
+        contentURL="/circulation/servlet/presentcopystatusform.do?l2m=Copy%20Status"
+        order="11"
+        altText="level2menu_CopyStatus"
+        permissionRequired="ViewCopyStatusLibrary,ViewCopyStatusTextbook"
+        permissionsMethod="permissionsMethodCopyStatus"        
+        defaultSelection="false"/>
+
+      <sub-menu name="Item Status"
+        contentURL="/circulation/servlet/presentcopystatusform.do?l2m=Item%20Status&amp;collectionType=4"
+        order="12"
+        altText="Item Status"
+        permissionRequired="ViewItemStatus"
+        permissionsMethod="permissionsMethodCopyStatus"        
+        defaultSelection="false"/>
+        
+      <sub-menu name="Patron Status"
+        contentURL="/circulation/servlet/presentpatroninfoform.do?l2m=Patron%20Status&amp;sideLink=true"
+        order="13"
+        altText="level2menu_PatronStatus"
+        permissionRequired="ViewPatronStatus"
+        defaultSelection="false"
+        accessKey="P"/>
+
+      <sub-menu name="Offline Circulation"
+        contentURL="/circulation/servlet/presentremotecircform.do?l2m=Offline%20Circulation&amp;sideLink=true"
+        order="14"
+        altText="level2menu_OfflineCirculation"
+        permissionsMethod="permissionsMethodRemoteCirculation"
+        defaultSelection="false"/>
+
+      <sub-menu name="Library Information"
+        contentURL="/circulation/servlet/presentpreviewduedatesform.do?l2m=Library%20Information"
+        order="15"
+        altText="level2menu_LibraryInformation"
+        permissionRequired="ViewLibraryStats"
+        defaultSelection="false"/>
+
+      <sub-menu name="Textbook Information"
+        contentURL="/circulation/servlet/presentlibrarystatisticsform.do?l2m=Textbook%20Information&amp;sideLink=true&amp;collectionType=1"
+        order="16"
+        altText="Textbook Information"
+        permissionRequired="ViewTextbookStats"
+        defaultSelection="false"/>
+
+      <sub-menu name="Reset"
+        contentURL="/circulation/servlet/presentresetcircform.do?l2m=Reset"
+        order="17"
+        altText="level2menu_Reset"
+        permissionRequired="CircAssetCheckOut,CircAssetCheckin,Checkout,CheckoutTextbook,Checkin,CheckinTextbook,RenewCheckedOutMaterials,ViewHolds,ViewAnyFines,ViewCopyStatusLibrary,ViewCopyStatusTextbook,ViewPatronStatus,ViewItemStatus"
+        permissionsMethod="permissionsMethodCopyStatus"        
+        defaultSelection="false"
+        accessKey="R"/>
+    </top-menu>
+
+<!--  ********************************* Reports ************************************  -->
+
+    <top-menu name="TopLevelReports"
+      activeImage="reporttabactive.gif"
+      passiveImage="reporttabpassive.gif"
+      order="5"
+      altText="topmenu_Reports"
+      defaultSelection="false">
+
+      <sub-menu name="My Favorites"
+        contentURL="/backoffice/servlet/presentmyfavoritesform.do?l2m=My%20Favorites&amp;sideLink=true"
+        order="1"
+        altText="level2menu_MyFavorites"
+        permissionsMethod="permissionsMethodIsRealUser"
+        permissionRequired="AEDCustomTextbookReports,AEDCustomAssetReports,AEDCustomPatronReports,AEDCustomGeneralReports,GenerateReportsLibrary,GenerateReportsTextbook,GenerateReportsPatron,GenerateReportsAsset"
+        defaultSelection="true"/>
+        
+      <sub-menu name="Library Reports"
+        contentURL="/backoffice/servlet/presentreportsform.do?l2m=Library%20Reports&amp;sideLink=true&amp;currentTab=0"
+        order="2"
+        altText="level2menu_LibraryReports"
+        permissionsMethod="permissionsMethodNotMedia"
+        permissionRequired="GenerateReportsLibrary"
+        defaultSelection="false"/>
+        
+       <sub-menu name="Media Reports"
+        contentURL="/backoffice/servlet/presentreportsform.do?l2m=Media%20Reports&amp;sideLink=true&amp;currentTab=3"
+        order="3"
+        altText="Media Reports"
+        permissionsMethod="permissionsMethodIsMedia"
+        permissionRequired="GenerateReportsLibrary"
+        defaultSelection="false"/>
+
+       <sub-menu name="Textbook Reports"
+        contentURL="/backoffice/servlet/presentreportsform.do?l2m=Textbook%20Reports&amp;sideLink=true&amp;currentTab=1"
+        order="4"
+        altText="Textbook Reports"
+        permissionRequired="GenerateReportsTextbook"
+        defaultSelection="false"/>
+
+       <sub-menu name="Resource Reports"
+        contentURL="/backoffice/servlet/presentreportsform.do?l2m=Resource%20Reports&amp;sideLink=true&amp;currentTab=2"
+        order="5"
+        altText="Resource Reports"
+        permissionRequired="GenerateReportsAsset"
+        defaultSelection="false"/>
+
+       <sub-menu name="Patron Reports"
+        contentURL="/backoffice/servlet/presentreportsform.do?l2m=Patron%20Reports&amp;sideLink=true&amp;currentTab=4"
+        order="6"
+        altText="level2menu_PatronReports"
+        permissionRequired="GenerateReportsPatron"
+        permissionsMethod="permissionMethodSitesExistOtherThanDistrictWarehouse"
+        defaultSelection="false"/>
+
+       <sub-menu name="Report Builder"
+        contentURL="/backoffice/servlet/presentreportmenutabform.do?l2m=Report%20Builder&amp;sideLink=true&amp;page=5"
+        order="7"
+        altText="level2menu_ReportBuilder"
+        permissionRequired="AEDCustomGeneralReports,GenerateReportsLibrary,GenerateReportsTextbook,GenerateReportsPatron,GenerateReportsAsset"
+        defaultSelection="false"/>
+        
+       <sub-menu name="Destiny Analytics"
+        contentURL="/common/servlet/presentinsightanalyticsredirectform.do?l2m=Destiny%20Analytics&amp;sideLink=true"
+        order="8"
+        altText="Destiny Analytics"
+        permissionRequired="GenerateReportsLibrary,GenerateReportsPatron,GenerateReportsAsset"
+        permissionsMethod="permissionMethodIsDestinyAnalyticsEnabledAtDistrict"        
+        defaultSelection="false"/>
+
+       <sub-menu name="Report Manager"
+        contentURL="/backoffice/servlet/presentjobmanagerform.do?l2m=Report%20Manager&amp;sideLink=true&amp;reportManager=true"
+        order="9"
+        altText="level2menu_ReportManager"
+        permissionRequired="AEDCustomTextbookReports,AEDCustomAssetReports,AEDCustomPatronReports,AEDCustomGeneralReports,GenerateReportsLibrary,GenerateReportsTextbook,GenerateReportsPatron,GenerateReportsAsset"
+        defaultSelection="false"/>
+        
+    </top-menu>
+    
+<!--   **************************  Back Office ********************************** -->
+
+    <top-menu name="TopLevelBackOffice"
+      activeImage="tab4active.gif"
+      passiveImage="tab4passive.gif"
+      order="6"
+      altText="topmenu_BackOffice"
+      defaultSelection="false">
+
+        
+      <sub-menu name="Manage Patrons"
+        activeImage="/images/template/managepatronsactive.gif"
+        passiveImage="/images/template/managepatronspassive.gif"
+        contentURL="/backoffice/servlet/presentmanagepatronsform.do?action=Create&amp;l2m=Manage%20Patrons"
+        order="1a"
+        altText="level2menu_ManagePatrons"
+        permissionRequired="AddEditPatrons,DeletePatrons"
+        permissionsMethod="permissionMethodSitesExistOtherThanDistrictWarehouse"
+        defaultSelection="true"/>
+
+      <sub-menu name="Update Patrons"
+        contentURL="/backoffice/servlet/presentupdatepatronindividualform.do?l2m=Update%20Patrons"
+        order="1b"
+        altText="level2menu_UpdatePatrons"
+        permissionRequired="UpdatePatrons,MergeDuplicatePatronRecords,FinesGlobalDelete,DeletePatrons,ModerateMyQuestConversations,AECDPatronNotes"
+        permissionsMethod="permissionMethodSitesExistOtherThanDistrictWarehouse"
+        defaultSelection="false"/>
+
+      <sub-menu name="Update Classes"
+        contentURL="/backoffice/servlet/presentupdateclassesnavigationform.do?l2m=Update%20Classes"
+        order="1c"
+        altText="Update Classes"
+        permissionsMethod="permissionsMethodUpdateClasses"
+        defaultSelection="false"/>
+
+      <sub-menu name="Import Patrons"
+        contentURL="/backoffice/servlet/presentimportpatronsform.do?l2m=Import%20Patrons"
+        order="1d"
+        altText="level2menu_ImportPatrons"
+        permissionRequired="ImportPatrons"
+        defaultSelection="false"/>
+
+      <sub-menu name="Export Patrons"
+        contentURL="/backoffice/servlet/presentexportpatronsform.do?l2m=Export%20Patrons"
+        order="1e"
+        altText="level2menu_ExportPatrons"
+        permissionRequired="ExportPatrons"
+        permissionsMethod="permissionMethodSitesExistOtherThanDistrictWarehouse"
+        defaultSelection="false"/>
+
+      <sub-menu name="Manage Homerooms"
+        contentURL="/backoffice/servlet/presenthomeroomaedform.do?l2m=Manage%20Homerooms"
+        order="1f"
+        altText="level2menu_ManageHomerooms"
+        permissionRequired="SiteAdministration"
+        permissionsMethod="permissionMethodManageHomerooms"
+        defaultSelection="false"/>
+
+      <sub-menu name="Upload Patron Pictures"
+        contentURL="/backoffice/servlet/presentimportpatronpicturesform.do?l2m=Upload%20Patron%20Pictures"
+        order="1g"
+        altText="level2menu_UploadPatronPictures"
+        permissionRequired="ImportPatrons"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Resource Policies"
+        contentURL="/backoffice/servlet/presentviewtextbookloanperiodsform.do?l2m=Resource%20Policies&amp;sideLink=true&amp;collectionType=4"
+        order="1h"
+        altText="Resource Policies"
+        permissionRequired="BackOfficeAssetAEDLoanPolicies"
+        defaultSelection="false"/>  
+
+      <sub-menu name="Media Policies"
+        contentURL="/backoffice/servlet/presentviewtextbookloanperiodsform.do?l2m=Media%20Policies&amp;sideLink=true&amp;collectionType=2"
+        order="1i"
+        altText="Media Policies"
+        permissionRequired="AEDMediaPolicies"
+        
+        defaultSelection="false"/>  
+
+      <sub-menu name="Library Policies"
+        contentURL="/backoffice/servlet/presentviewpatrontypeform.do?l2m=Library%20Policies&amp;sideLink=true&amp;collectionType=0"
+        order="1j"
+        altText="level2menu_LibraryPolicies"
+        permissionRequired="AEDLoanPolicies"
+        defaultSelection="false"/>
+
+    <sub-menu name="Textbook Policies"
+        contentURL="/backoffice/servlet/presentviewtextbookloanpoliciesform.do?l2m=Textbook%20Policies&amp;sideLink=true&amp;collectionType=1"
+        order="1k"
+        altText="Textbook Policies"
+        permissionRequired="AEDTextbookLoanPolicies"
+        defaultSelection="false"/>
+
+      <sub-menu name="Access Levels"
+        contentURL="/backoffice/servlet/presentviewaccesslevelsform.do?l2m=Access%20Levels"
+        order="1l"
+        altText="level2menu_AccessLevels"
+        permissionRequired="EditUserAccessLevels"
+        defaultSelection="false"/>
+
+      <sub-menu name="Calendar / Hours"
+        contentURL="/backoffice/servlet/presentcalendarform.do?l2m=Calendar%20/%20Hours"
+        order="1m"
+        altText="level2menu_CalendarHours"
+        permissionRequired="EditDaysAndHours"
+        defaultSelection="false"/>
+
+      <sub-menu name="Forecasting"
+        contentURL="/backoffice/servlet/presentforecastlistform.do?l2m=Forecasting"
+        order="1n"
+        altText="Forecasting"
+        permissionRequired="TextbookForecast"
+        permissionsMethod="permissionMethodNotDistrictWarehouse"
+        defaultSelection="false"/>
+
+      <sub-menu name="Site Configuration"
+        contentURL="/backoffice/servlet/presentsiteconfigcatalogform.do?l2m=Site%20Configuration"
+        order="1o"
+        altText="level2menu_SiteConfiguration"
+        permissionRequired="SiteAdministration,CatManageLocations,ChangeSitePreferencesAsset,ChangeSitePreferencesLibrary,ChangeSitePreferencesTextbook,ChangeSitePreferencesPatron"
+        permissionsMethod="permissionsSiteConfig"
+        defaultSelection="false"/>
+
+      <sub-menu name="Departments"
+        contentURL="/backoffice/servlet/presentsiteadministrationform.do?l2m=Departments&amp;fromSiteConfig=true"
+        order="1p"
+        altText="Departments"
+        permissionsMethod="permissionsDistrictUserTextbookOrAsset"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Help Tickets"
+        contentURL="/backoffice/servlet/presenthelpticketsform.do?l2m=Help%20Tickets&amp;tabID=tabHelpTicketsTrack"
+        order="1pa"
+        altText="level2menu_HelpTickets"
+        permissionsRequired="AssetManageHelpTickets"
+        permissionsMethod="permissionsManageHelpTicketsAssetViewOrDistrictViewOnly"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Inventory"
+        contentURL="/backoffice/servlet/presentinventoryform.do?l2m=Inventory"
+        order="1q"
+        altText="level2menu_Inventory"
+        permissionRequired="InventoryCollection,InventoryTextbookCollection,InventoryAssetCollection"
+        defaultSelection="false"/>
+        
+      <sub-menu name="Ledger"
+        contentURL="/backoffice/servlet/presenttextbookledgerform.do?l2m=Ledger"
+        order="1r"
+        altText="Ledger"
+        permissionsMethod="permissionsMethodHasStateRepository"
+        permissionRequired="StartFinalizeTextbookCollection"
+        defaultSelection="false"/>
+
+      <sub-menu name="Configuration"
+        contentURL="/backoffice/servlet/presentstateconfigurationform.do?l2m=Configuration"
+        order="1s"
+        altText="Configuration"
+        permissionsMethod="permissionCanSeeStateConfiguration"
+        defaultSelection="false"/>
+
+      <sub-menu name="Job Manager"
+        contentURL="/backoffice/servlet/presentjobmanagerform.do?l2m=Job%20Manager&amp;sideLink=true"
+        order="1t"
+        altText="level2menu_JobManager"
+        permissionRequired="AEDCustomGeneralReports,ViewHolds,GenerateReportsLibrary,GenerateReportsTextbook,GenerateReportsPatron,GenerateReportsAsset,ImportPatrons,ExportPatrons,ImportTitlesCopies,MonitorDeleteSitesJobs,UpdatePatrons,TransferTextbookCopies,AllianceRecon, ExportTitles, ExportTextbooks, ExportAssetItems, CatAssetDeleteAsset, StartFinalizeAssetCollection, InventoryAssetCollection, InventoryCollection, InventoryTextbookCollection, CatAssetEditAsset, AEDSiteSpecificSubjects, UpdateHeadings, UpdateReadingProgram, BulkRemoveTitles, BulkRemoveTextbookTitles, MergeDuplicatePatronRecords, EditCopies, ImportTextbooksCopies, ImportAssetItems, ImportAuthority, ManageSubjects, AEDClasses, ManageSoftwareAssignments, FinesGlobalDelete,ModerateMyQuestConversations,AECDPatronNotes,RenewTextbooks"
+        defaultSelection="false"/>
+
+      <sub-menu name="Configuration"
+        contentURL="/backoffice/servlet/presentcatalogerconfigform.do?l2m=Configuration"
+        order="1u"
+        altText="level2menu_Configuration"
+        permissionsMethod="permissionsIsCataloger"
+        defaultSelection="false"/>
+<!--  altText="Configuration" -->
+        
+        <sub-menu name="Download Tools"
+        contentURL="/backoffice/servlet/presentdownloadtoolsform.do?l2m=Download%20Tools"
+        order="1v"
+        altText="level2menu_DownloadTools"
+        permissionsMethod="permissionsShowDownloadTools"
+        defaultSelection="false"/>
+        
+    </top-menu>
+
+<!--  ********************************* My Info ************************************  -->
+
+    <top-menu name="TopLevelMyInfo"
+      activeImage="myinfotabactive.gif"
+      passiveImage="myinfotabpassive.gif"
+      order="7"
+      altText="topmenu_MyInfo"
+      defaultSelection="false"
+      translatedInOPAC="true"> <!-- FSC: french / spanish translation (key: primary_tabs.image.alt.myinfo) -->
+
+      <sub-menu name="Patron Status"
+        contentURL="/circulation/servlet/presentpatroninfoform.do?l2m=Patron%20Status&amp;sideLink=true&amp;userInfoOnly=true"
+        order="1"
+        altText="level2menu_PatronStatus"
+        permissionRequired="ViewOwnStatus"
+        defaultSelection="true"
+        translatedInOPAC="true"/> <!-- FSC: french / spanish translation (key: side_menu.image.alt.patron_status) -->
+        
+       <sub-menu name="Resource Lists"
+        contentURL="/cataloging/servlet/presentviewmylistsform.do?l2m=Resource%20Lists&amp;sideLink=true"
+        order="2"
+        altText="level2menu_ResourceLists"
+        permissionsMethod="permissionsMethodMyInfoBookList"
+        defaultSelection="false"
+        translatedInOPAC="true"/> <!-- FSC: french / spanish translation (key: side_menu.image.alt.view_my_list) -->
+
+    </top-menu>
+  </menu-mappings>
+<!--
+  <autoforwardparams>
+    <param>site</param>
+  </autoforwardparams>
+-->
+</destiny-config>

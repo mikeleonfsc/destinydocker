@@ -1,0 +1,58 @@
+/* accountmanagementpage1.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_DIV_CREATE_ACCOUNT_BOX_GROUP1)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_LOGIN_BOX_GROUP)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <h5>");
+                ___ViewO.push((EJS.Scanner.to_text(accountGroupPrompt)));
+                ___ViewO.push("</h5>\n");
+                ___ViewO.push("    <div id=\"loginModuleCreate_LastName\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_LASTNAME_OR_USERNAME)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(accountGroup1UserOrLast)));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("        <input tabindex=\"1\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_LASTNAME_OR_USERNAME)));
+                ___ViewO.push("\" value=\"\" type=\"text\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                ___ViewO.push("\" maxlength=\"42\" autocomplete=\"off\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("    <div id=\"loginModuleCreate_Barcode\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_ROW_TYPE1)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <label for=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_BARCODE)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE1)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("createAccountController_enterYourBarcode"))));
+                ___ViewO.push("</label>\n");
+                ___ViewO.push("        <input tabindex=\"2\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_INPUT_CREATE_ACCOUNT_BARCODE)));
+                ___ViewO.push("\" value=\"\" type=\"text\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(CreateAccountController_CLASS_FIELD_LOGIN_COLUMN_TYPE2)));
+                ___ViewO.push("\" maxlength=\"14\" autocomplete=\"off\">\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

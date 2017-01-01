@@ -1,0 +1,16 @@
+/* myquest-updates-older.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestShelfListUpdatesTemplate", {data:data, lastDateGroupIdx:lastDateGroupIdx, lastDateString:lastDateString, lastDateGroupAuditID:lastDateGroupAuditID, canComment:canComment, approvalNotRequired:approvalNotRequired}))));
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

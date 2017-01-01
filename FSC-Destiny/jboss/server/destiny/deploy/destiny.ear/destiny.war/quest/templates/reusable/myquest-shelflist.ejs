@@ -1,0 +1,71 @@
+/* myquest-shelflist.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP)));
+                ___ViewO.push("\">\n");
+                var rowAdded = false;
+                var dateGroups = data.dateGroups;
+                for (var i = 0; i < dateGroups.length; i++) {
+                    var dateGroup = dateGroups[i];
+                    if (dateGroup.items && dateGroup.items.length > 0) {
+                        if (dateGroup.dateValue > 0) {
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\n");
+                            ___ViewO.push("<p class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_ACTIVITY_TIMESTAMP)));
+                            ___ViewO.push("\">\n");
+                            ___ViewO.push("    <span class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_TIMESTAMP_CONTEXT)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(dateGroup.dateGroupingHeader)));
+                            ___ViewO.push(" --</span>\n");
+                            ___ViewO.push("    <em class=\"");
+                            ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_TIMESTAMP_FORMATTED)));
+                            ___ViewO.push("\">");
+                            ___ViewO.push((EJS.Scanner.to_text(dateGroup.dateString)));
+                            ___ViewO.push("</em>\n");
+                            ___ViewO.push("</p>\n");
+                            ___ViewO.push("\n");
+                        }
+                        for (var j = 0; j < dateGroup.items.length; j++) {
+                            var item = dateGroup.items[j];
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\n");
+                            ___ViewO.push((EJS.Scanner.to_text(new EJS({url:item.template}).render(item))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\n");
+                            rowAdded = true;
+                        }
+                    }
+                }
+                if (!rowAdded) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <span class=\"noDataMessage\">");
+                    ___ViewO.push((EJS.Scanner.to_text(data.noDataMessage.unescapeHTML())));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                    if (data.showCheckYourPreferences) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_checkYourPreferences", "<a href=\"#\" class=\"myQuestShelfPreferencesLink\">", "</a>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    </span>\n");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

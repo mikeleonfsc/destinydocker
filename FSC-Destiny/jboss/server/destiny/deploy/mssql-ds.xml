@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  JBoss Server Configuration                                           -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!-- $Id: mssql-ds.xml,v 1.1 2010/02/08 19:10:40 rlancast Exp $ -->
+
+  <!-- ======================================================================-->
+  <!-- New ConnectionManager setup for Microsoft SQL Server 2005  driver     -->
+  <!-- Further information about the Microsoft JDBC Driver version 1.1      -->
+  <!-- can be found here:                                                   -->
+  <!-- http://msdn2.microsoft.com/en-us/library/aa496082.aspx               -->  
+  <!-- ===================================================================== -->
+
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>MSSQLDS</jndi-name>
+    <min-pool-size>${MIN_CONNECTIONS}</min-pool-size>
+    <max-pool-size>${MAX_CONNECTIONS}</max-pool-size>
+    <idle-timeout-minutes>${CONNECTION_IDLE_TIMEOUT_MINUTES}</idle-timeout-minutes>
+
+    <connection-url>${JDBC_URL}</connection-url>
+    <driver-class>${JDBC_DRIVER_CLASS}</driver-class>
+    <user-name>${DB_USER}</user-name>
+
+    <!-- We generate this property in DestinyServerImpl during startup to properly support special characters that may not be xml safe -->
+    <password>${DB_PASSWORD_XML_SAFE}</password>
+    <transaction-isolation>TRANSACTION_READ_UNCOMMITTED</transaction-isolation>
+    <valid-connection-checker-class-name>com.follett.fsc.jbosshelper.JtdsConnectionValidator</valid-connection-checker-class-name>
+    <connection-wrapper-class-name>com.follett.fsc.common.consortium.ConnectionWrapper</connection-wrapper-class-name>
+
+        <!-- sql to call when connection is created
+        <new-connection-sql>some arbitrary sql</new-connection-sql>
+        -->
+
+        <!-- sql to call on an existing pooled connection when it is obtained from pool 
+        <check-valid-connection-sql>some arbitrary sql</check-valid-connection-sql>
+        -->
+
+      <!-- corresponding type-mapping in the standardjbosscmp-jdbc.xml (optional) -->
+      <metadata>
+         <type-mapping>MS SQLSERVER2000</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+
+</datasources>

@@ -1,0 +1,29 @@
+/* innercoverimage.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                if (!url) {
+                    url = InnerCoverImageTemplate_PATH_TO_BLANK_COVER_IMAGE;
+                    styleClass += " " + defaultImageClass;
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("<img border=\"0\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(styleClass)));
+                ___ViewO.push("\" id=\"titlePeek_");
+                ___ViewO.push((EJS.Scanner.to_text(id)));
+                ___ViewO.push("\" name=\"titlePeek_");
+                ___ViewO.push((EJS.Scanner.to_text(id)));
+                ___ViewO.push("\" src=\"");
+                ___ViewO.push((EJS.Scanner.to_text(url)));
+                ___ViewO.push("\"/>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

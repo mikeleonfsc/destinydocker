@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd" >
+
+<!--
+     This is the Struts configuration file for the destiny application.
+
+     NOTE:  You would only flesh out the details in the "form-bean"
+     declarations if you had a generator tool that used them to create
+     the corresponding Java classes for you.  Otherwise, you would
+     need only the "form-bean" element itself, with the corresponding
+     "name" and "type" attributes.
+-->
+
+
+<!--
+    We used the underscore character in the name because JavaScript doesn't like it
+    when objects have the period character (.) embedded in their names. Do NOT change it
+    back, or we'll come after you.
+
+    Signed,
+    The Programmers
+-->
+<struts-config>
+  <data-sources/>
+  <form-beans/>
+  <global-exceptions/>
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward name="reportSystemCondition"   path="/common/reportsystemcondition.jsp"/>
+  </global-forwards>
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+
+  <action-mappings type="org.apache.struts.config.SecureActionConfig">
+    <action
+      path="/synchronizerTest"
+      type="com.follett.fsc.destiny.client.test.servlet.SynchronizerTestAction">
+          <forward name="success" path="/dumpheaders.jsp"/>
+          <forward name="self" path="/syncrhonizerTest.do"/>
+          <forward name="selfRedirect" path="/syncrhonizerTest.do" redirect="true"/>
+    </action>
+  </action-mappings>
+
+  <controller processorClass="com.follett.fsc.destiny.client.common.servlet.DestinyRequestProcessor"/>
+
+  <message-resources
+    parameter="org.apache.struts.webapp.validator.ApplicationResources"/>
+
+  <plug-in className="com.follett.fsc.destiny.client.common.servlet.DestinyPlugIn">
+    <set-property property="destinyConfig" value="/WEB-INF/destiny-config.xml"/>
+  </plug-in>
+
+  <plug-in className="org.apache.struts.action.SecurePlugIn"/>
+
+
+
+</struts-config>

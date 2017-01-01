@@ -1,0 +1,210 @@
+/* myquest-shelflist-updates.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                var rowAdded = false;
+                var dateGroups = data.dateGroups;
+                var dateGroupAdded = "";
+                var dateGroupTextArray = [data.todayText, data.yesterdayText, data.thisWeekText, data.lastWeekText, data.olderText];
+                var dateGroupIdx = 0;
+                var showHeadingToday = data.showHeadingToday;
+                var showHeadingYesterday = data.showHeadingYesterday;
+                var showHeadingThisWeek = data.showHeadingThisWeek;
+                var showHeadingLastWeek = data.showHeadingLastWeek;
+                var showHeadingOlder = data.showHeadingOlder;
+                for (var i = 0; i < dateGroups.length; i++) {
+                    var dateGroup = dateGroups[i];
+                    var currDateGroupHeader = dateGroup.dateGroupingHeader;
+                    var currDateGroupID = dateGroup.dateGroupID;
+                    if (dateGroup.items && dateGroup.items.length > 0) {
+                        while (currDateGroupID > dateGroupIdx) {
+                            var printHeading = false;
+                            if (dateGroupIdx > lastDateGroupIdx) {
+                                switch (dateGroupIdx) {
+                                  case 0:
+                                    if (showHeadingToday) {
+                                        printHeading = true;
+                                    }
+                                    break;
+                                  case 1:
+                                    if (showHeadingYesterday) {
+                                        printHeading = true;
+                                    }
+                                    break;
+                                  case 2:
+                                    if (showHeadingThisWeek) {
+                                        printHeading = true;
+                                    }
+                                    break;
+                                  case 3:
+                                    if (showHeadingLastWeek) {
+                                        printHeading = true;
+                                    }
+                                    break;
+                                  case 4:
+                                    if (showHeadingOlder) {
+                                        printHeading = true;
+                                    }
+                                    break;
+                                  default:
+                                    printHeading = true;
+                                    break;
+                                }
+                            }
+                            if (printHeading) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                <p class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP_ELEMENT)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                    <a href=\"#\" onclick=\"return false;\" class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP_EXPAND)));
+                                ___ViewO.push("\" id=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(dateGroupIdx)));
+                                ___ViewO.push("\" lastAuditID=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(lastDateGroupAuditID)));
+                                ___ViewO.push("\">\n");
+                                ___ViewO.push("                        ");
+                                ___ViewO.push((EJS.Scanner.to_text(dateGroupTextArray[dateGroupIdx])));
+                                ___ViewO.push("\n");
+                                ___ViewO.push("                    </a>\n");
+                                ___ViewO.push("                </p>\n");
+                                ___ViewO.push("    ");
+                                rowAdded = true;
+                            }
+                            dateGroupIdx++;
+                        }
+                        dateGroupIdx = parseInt(currDateGroupID) + 1;
+                        if (dateGroup.dateValue > 0) {
+                            if (dateGroupAdded != currDateGroupHeader) {
+                                dateGroupAdded = currDateGroupHeader;
+                                ___ViewO.push("\n");
+                                if (lastDateGroupIdx != currDateGroupID) {
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("    <p class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP_ELEMENT)));
+                                    ___ViewO.push("\">\n");
+                                    ___ViewO.push("        <a href=\"#\" onclick=\"return false;\" class=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP_COLLAPSE)));
+                                    ___ViewO.push("\" id=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(currDateGroupID)));
+                                    ___ViewO.push("\" lastAuditID=\"");
+                                    ___ViewO.push((EJS.Scanner.to_text(lastDateGroupAuditID)));
+                                    ___ViewO.push("\">\n");
+                                    ___ViewO.push("            ");
+                                    ___ViewO.push((EJS.Scanner.to_text(currDateGroupHeader)));
+                                    ___ViewO.push("\n");
+                                    ___ViewO.push("        </a>\n");
+                                    ___ViewO.push("    </p>\n");
+                                }
+                                ___ViewO.push("\n");
+                            }
+                            ___ViewO.push("\n");
+                            if (lastDateString != dateGroup.dateString) {
+                                ___ViewO.push("\n");
+                                ___ViewO.push("    <p class=\"");
+                                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_ACTIVITY_TIMESTAMP)));
+                                ___ViewO.push("\">");
+                                ___ViewO.push((EJS.Scanner.to_text(dateGroup.dateString)));
+                                ___ViewO.push("</p>\n");
+                            }
+                            ___ViewO.push("\n");
+                        }
+                        for (var j = 0; j < dateGroup.items.length; j++) {
+                            var item = dateGroup.items[j];
+                            item.canComment = canComment;
+                            item.approvalNotRequired = approvalNotRequired;
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\n");
+                            ___ViewO.push((EJS.Scanner.to_text(new EJS({url:item.template}).render(item))));
+                            ___ViewO.push("\n");
+                            ___ViewO.push("\n");
+                            rowAdded = true;
+                        }
+                        if (dateGroup && dateGroup.items.length > 0) {
+                            lastDateGroupAuditID = dateGroup.items[dateGroup.items.length - 1].auditID;
+                        }
+                    }
+                }
+                while (dateGroupIdx < 5) {
+                    var printHeading = false;
+                    if (dateGroupIdx > lastDateGroupIdx) {
+                        switch (dateGroupIdx) {
+                          case 0:
+                            if (showHeadingToday) {
+                                printHeading = true;
+                            }
+                            break;
+                          case 1:
+                            if (showHeadingYesterday) {
+                                printHeading = true;
+                            }
+                            break;
+                          case 2:
+                            if (showHeadingThisWeek) {
+                                printHeading = true;
+                            }
+                            break;
+                          case 3:
+                            if (showHeadingLastWeek) {
+                                printHeading = true;
+                            }
+                            break;
+                          case 4:
+                            if (showHeadingOlder) {
+                                printHeading = true;
+                            }
+                            break;
+                          default:
+                            printHeading = true;
+                            break;
+                        }
+                    }
+                    if (printHeading) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("        <p class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP_ELEMENT)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("            <a href=\"#\" onclick=\"return false;\" class=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(MyQuestController_CLASS_MYQUEST_DATE_GROUP_EXPAND)));
+                        ___ViewO.push("\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(dateGroupIdx)));
+                        ___ViewO.push("\" lastAuditID=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(lastDateGroupAuditID)));
+                        ___ViewO.push("\">\n");
+                        ___ViewO.push("                ");
+                        ___ViewO.push((EJS.Scanner.to_text(dateGroupTextArray[dateGroupIdx])));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            </a>\n");
+                        ___ViewO.push("        </p>\n");
+                        rowAdded = true;
+                    }
+                    dateGroupIdx++;
+                }
+                if (!rowAdded) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    <span class=\"noDataMessage\">");
+                    ___ViewO.push((EJS.Scanner.to_text(data.noDataMessage.unescapeHTML())));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    ");
+                    if (data.showCheckYourPreferences) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    \t");
+                        ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestController_checkYourPreferences", "<a href=\"#\" class=\"myQuestShelfPreferencesLink\">", "</a>"))));
+                        ___ViewO.push("\n");
+                        ___ViewO.push("    ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("    </span>\n");
+                }
+                ___ViewO.push("\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

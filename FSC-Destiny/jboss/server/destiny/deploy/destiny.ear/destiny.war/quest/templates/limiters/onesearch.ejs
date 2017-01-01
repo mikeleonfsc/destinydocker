@@ -1,0 +1,69 @@
+/* onesearch.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_ONESEARCH_DATABASE_GROUP)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <ul>\n");
+                ___ViewO.push("    \t");
+                for (i = 0; i < databases.length; i++) {
+                    var val = databases[i].value;
+                    var id = LimiterController_CONTENT_DATABASE_GROUP_LIMITER + databases[i].groupNumber + "_db" + i;
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <li id=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(LimiterController_LI_LIMITER_ROW_PREFIX + i)));
+                    ___ViewO.push("\">\n");
+                    ___ViewO.push("            ");
+                    if (databases[i].checked) {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            \t<input type=\"checkbox\" name=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(val)));
+                        ___ViewO.push("\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(id)));
+                        ___ViewO.push("\" checked=\"checked\"/>\n");
+                        ___ViewO.push("            ");
+                    } else {
+                        ___ViewO.push("\n");
+                        ___ViewO.push("            \t<input type=\"checkbox\" name=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(val)));
+                        ___ViewO.push("\" id=\"");
+                        ___ViewO.push((EJS.Scanner.to_text(id)));
+                        ___ViewO.push("\"/>\n");
+                        ___ViewO.push("            ");
+                    }
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            \t<label for=\"");
+                    ___ViewO.push((EJS.Scanner.to_text(id)));
+                    ___ViewO.push("\">");
+                    ___ViewO.push((EJS.Scanner.to_text(databases[i].name)));
+                    ___ViewO.push("</label>\n");
+                    ___ViewO.push("            </li>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </ul>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_CONTROLS)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<input type=\"button\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_BUTTON_APPLY_LIMITER)));
+                ___ViewO.push("\"\n");
+                ___ViewO.push("\t    value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_apply"))));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_APPLY_LIMITER_BUTTON)));
+                ___ViewO.push("\"/>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

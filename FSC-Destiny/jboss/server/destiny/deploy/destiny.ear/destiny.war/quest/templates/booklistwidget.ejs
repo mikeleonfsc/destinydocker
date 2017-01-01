@@ -1,0 +1,35 @@
+/* booklistwidget.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BooklistWidgetController_DIV_BOOK_LIST)));
+                ___ViewO.push("\" style=\"display:none;\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BooklistWidgetController_DIV_RESOURCE_LIST_TEXT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    \t<h3 class=\"boxtop\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BooklistWidgetController_RESOURCE_LIST_NAME)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(defaultBookListName)));
+                ___ViewO.push("</h3>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(BooklistWidgetController_DIV_RESOURCE_LIST_TITLE_COUNT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    \t");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("booklistWidgetController_titles", defaultBookListCount))));
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

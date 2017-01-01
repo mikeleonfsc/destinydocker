@@ -1,0 +1,26 @@
+/* genericlist.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<ul>\n");
+                ___ViewO.push("   ");
+                for (var i = 0; i < list.length; i++) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("   \t\t<li>");
+                    ___ViewO.push((EJS.Scanner.to_text(list[i])));
+                    ___ViewO.push("</li>\n");
+                    ___ViewO.push("   ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</ul>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

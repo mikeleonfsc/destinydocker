@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE jboss PUBLIC
+   "-//JBoss//DTD JBOSS 4.0//EN"
+   "http://www.jboss.org/j2ee/dtd/jboss_4_0.dtd">
+
+<!-- ===================================================================== -->
+<!--  Standard JBoss EJB Configurations                                    -->
+<!-- ===================================================================== -->
+<!-- $Id: standardjboss.xml,v 1.1 2010/02/08 19:10:40 rlancast Exp $ -->
+
+<jboss>
+
+  <!--
+   The missing-method-permissions-excluded-mode is a boolean
+   that allows the deployer to globally indicate that all methods without a
+   method-permission element should be treated as excluded(= true and the default),
+   or that methods without a method-permission element should be treated as
+   unchecked(= false)
+  -->
+  <missing-method-permissions-excluded-mode>true</missing-method-permissions-excluded-mode>
+
+  <invoker-proxy-bindings>
+
+    <invoker-proxy-binding>
+      <name>entity-pooled-invoker</name>
+      <invoker-mbean>jboss:service=invoker,type=pooled</invoker-mbean>
+      <proxy-factory>com.follett.fsc.jbosshelper.DestinyProxyFactory</proxy-factory>
+      <proxy-factory-config>
+        <client-interceptors>
+          <home>
+            <interceptor>com.follett.fsc.jbosshelper.DestinyHomeInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </home>
+          <bean>
+            <interceptor>com.follett.fsc.jbosshelper.DestinyEntityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </bean>
+          <list-entity>
+            <interceptor>org.jboss.proxy.ejb.ListEntityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </list-entity>
+        </client-interceptors>
+      </proxy-factory-config>
+    </invoker-proxy-binding>
+
+    <invoker-proxy-binding>
+      <name>stateless-pooled-invoker</name>
+      <invoker-mbean>jboss:service=invoker,type=pooled</invoker-mbean>
+      <proxy-factory>com.follett.fsc.jbosshelper.DestinyProxyFactory</proxy-factory>
+      <proxy-factory-config>
+        <client-interceptors>
+          <home>
+            <interceptor>org.jboss.proxy.ejb.HomeInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </home>
+          <bean>
+            <interceptor>org.jboss.proxy.ejb.StatelessSessionInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </bean>
+        </client-interceptors>
+      </proxy-factory-config>
+    </invoker-proxy-binding>
+
+    <invoker-proxy-binding>
+      <name>stateful-pooled-invoker</name>
+      <invoker-mbean>jboss:service=invoker,type=pooled</invoker-mbean>
+      <proxy-factory>com.follett.fsc.jbosshelper.DestinyProxyFactory</proxy-factory>
+      <proxy-factory-config>
+        <client-interceptors>
+          <home>
+            <interceptor>org.jboss.proxy.ejb.HomeInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </home>
+          <bean>
+            <interceptor>org.jboss.proxy.ejb.StatefulSessionInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+            <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+            <interceptor call-by-value="false">org.jboss.invocation.InvokerInterceptor</interceptor>
+            <interceptor call-by-value="true">org.jboss.invocation.MarshallingInvokerInterceptor</interceptor>
+          </bean>
+        </client-interceptors>
+      </proxy-factory-config>
+    </invoker-proxy-binding>
+
+    <invoker-proxy-binding>
+         <name>entity-rmi-invoker</name>
+         <invoker-mbean>jboss:service=invoker,type=jrmp</invoker-mbean>
+         <proxy-factory>com.follett.fsc.jbosshelper.DestinyProxyFactory</proxy-factory>
+         <proxy-factory-config>
+            <client-interceptors>
+               <home>
+                  <interceptor>com.follett.fsc.jbosshelper.DestinyHomeInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </home>
+               <bean>
+                  <interceptor>com.follett.fsc.jbosshelper.DestinyEntityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </bean>
+               <list-entity>
+                  <interceptor>org.jboss.proxy.ejb.ListEntityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </list-entity>
+            </client-interceptors>
+         </proxy-factory-config>
+      </invoker-proxy-binding>
+
+    <invoker-proxy-binding>
+         <name>stateless-rmi-invoker</name>
+         <invoker-mbean>jboss:service=invoker,type=jrmp</invoker-mbean>
+         <proxy-factory>com.follett.fsc.jbosshelper.DestinyProxyFactory</proxy-factory>
+         <proxy-factory-config>
+            <client-interceptors>
+               <home>
+                  <interceptor>com.follett.fsc.jbosshelper.DestinyHomeInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </home>
+               <bean>
+                  <interceptor>org.jboss.proxy.ejb.StatelessSessionInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </bean>
+            </client-interceptors>
+         </proxy-factory-config>
+      </invoker-proxy-binding>
+
+
+
+    <invoker-proxy-binding>
+         <name>stateful-rmi-invoker</name>
+         <invoker-mbean>jboss:service=invoker,type=jrmp</invoker-mbean>
+         <proxy-factory>com.follett.fsc.jbosshelper.DestinyProxyFactory</proxy-factory>
+         <proxy-factory-config>
+            <client-interceptors>
+               <home>
+                  <interceptor>com.follett.fsc.jbosshelper.DestinyHomeInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </home>
+               <bean>
+                  <interceptor>org.jboss.proxy.ejb.StatefulSessionInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.SecurityInterceptor</interceptor>
+                  <interceptor>org.jboss.proxy.TransactionInterceptor</interceptor>
+                  <interceptor>com.follett.fsc.jbosshelper.UserContextClientInterceptor</interceptor>
+                  <interceptor>org.jboss.invocation.InvokerInterceptor</interceptor>
+               </bean>
+            </client-interceptors>
+         </proxy-factory-config>
+      </invoker-proxy-binding>
+
+    <invoker-proxy-binding>
+      <name>iiop</name>
+      <invoker-mbean>jboss:service=invoker,type=iiop</invoker-mbean>
+      <proxy-factory>org.jboss.proxy.ejb.IORFactory</proxy-factory>
+      <proxy-factory-config>
+        <web-class-loader>org.jboss.iiop.WebCL</web-class-loader>
+        <poa>per-servant</poa>
+        <register-ejbs-in-jnp-context>true</register-ejbs-in-jnp-context>
+        <jnp-context>iiop</jnp-context>
+        <interface-repository-supported>false</interface-repository-supported>
+      </proxy-factory-config>
+    </invoker-proxy-binding>
+
+  </invoker-proxy-bindings>
+
+  <container-configurations>
+
+
+    <container-configuration>
+      <!--
+         | This is like standard IPT but with global (cross-transactional) row cache behind,
+         | i.e. no locking in EJB layer + global persistence data cache
+      -->
+      <container-name>cmp2.x jdbc2 pm</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>true</insert-after-ejb-post-create>
+      <call-ejb-store-on-clean>false</call-ejb-store-on-clean>
+      <container-interceptors>
+         <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+         <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+         <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+         <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+         <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+         <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+         <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+         <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+         <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+         <interceptor>org.jboss.ejb.plugins.cmp.jdbc2.RelationInterceptor</interceptor>
+      </container-interceptors>
+      <instance-pool>org.jboss.ejb.plugins.EntityInstancePool</instance-pool>
+      <instance-cache>org.jboss.ejb.plugins.PerTxEntityInstanceCache</instance-cache>
+      <persistence-manager>org.jboss.ejb.plugins.cmp.jdbc2.JDBCStoreManager2</persistence-manager>
+      <locking-policy>org.jboss.ejb.plugins.lock.NoLock</locking-policy>
+      <container-cache-conf>
+         <cache-policy-conf>
+            <min-capacity>500</min-capacity>
+            <max-capacity>10000</max-capacity>
+            <!-- uncomment to enable time-based eviction
+            <overager-period>300</overager-period>
+            <max-bean-age>600</max-bean-age> -->
+         </cache-policy-conf>
+         <cache-policy-conf-other>
+            <partitions>10</partitions>
+            <!-- uncomment to use JDBC java.sql.Statement.executeBatch()
+            <batch-commit-strategy/> -->
+            <!-- uncomment to enable cache invalidation <invalidable/> -->
+         </cache-policy-conf-other>
+      </container-cache-conf>
+      <container-pool-conf>
+         <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>C</commit-option> <!-- don't change, irrelevant, use container-cache-conf -->
+    </container-configuration>
+
+
+    <container-configuration>
+      <container-name>Standard CMP 2.x EntityBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>false</insert-after-ejb-post-create>
+      <call-ejb-store-on-clean>false</call-ejb-store-on-clean>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+        <interceptor>org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityLockInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.cmp.jdbc.JDBCRelationInterceptor</interceptor>
+      </container-interceptors>
+      <instance-pool>com.follett.fsc.jbosshelper.cache.DestinyEntityInstancePool</instance-pool>
+      <instance-cache>com.follett.fsc.jbosshelper.cache.DestinyEntityInstanceCache</instance-cache>
+       <persistence-manager>com.follett.fsc.jbosshelper.DestinyJDBCStoreManager</persistence-manager>
+       <web-class-loader>com.follett.fsc.jbosshelper.vo.MagicVOWebClassLoader</web-class-loader>
+      <locking-policy>org.jboss.ejb.plugins.lock.QueuedPessimisticEJBLock</locking-policy>
+      <container-cache-conf>
+        <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+        <cache-policy-conf>
+          <min-capacity>50</min-capacity>
+          <max-capacity>1000000</max-capacity>
+          <overager-period>300</overager-period>
+          <max-bean-age>600</max-bean-age>
+          <resizer-period>400</resizer-period>
+          <max-cache-miss-period>60</max-cache-miss-period>
+          <min-cache-miss-period>1</min-cache-miss-period>
+          <cache-load-factor>0.75</cache-load-factor>
+        </cache-policy-conf>
+      </container-cache-conf>
+      <container-pool-conf>
+        <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>A</commit-option>
+    </container-configuration>
+    <container-configuration>
+      <container-name>Instance Per Transaction CMP 2.x EntityBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>false</insert-after-ejb-post-create>
+      <container-interceptors> 
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+        <interceptor>org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityLockInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.cmp.jdbc.JDBCRelationInterceptor</interceptor>
+      </container-interceptors>
+      <instance-pool>org.jboss.ejb.plugins.EntityInstancePool</instance-pool>
+      <instance-cache>org.jboss.ejb.plugins.PerTxEntityInstanceCache</instance-cache>
+      <persistence-manager>org.jboss.ejb.plugins.cmp.jdbc.JDBCStoreManager</persistence-manager>
+      <web-class-loader>com.follett.fsc.jbosshelper.vo.MagicVOWebClassLoader</web-class-loader>
+      <locking-policy>org.jboss.ejb.plugins.lock.NoLock</locking-policy>
+      <container-cache-conf/>
+      <container-pool-conf>
+        <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>C</commit-option>
+    </container-configuration>
+
+    <container-configuration>
+      <container-name>Standard CMP EntityBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>false</insert-after-ejb-post-create>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+        <interceptor metricsEnabled="true">org.jboss.ejb.plugins.MetricsInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityLockInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+      </container-interceptors>
+      <instance-pool>com.follett.fsc.jbosshelper.cache.DestinyEntityInstancePool</instance-pool>
+      <instance-cache>com.follett.fsc.jbosshelper.cache.DestinyEntityInstanceCache</instance-cache>
+      <persistence-manager>org.jboss.ejb.plugins.cmp.jdbc.JDBCStoreManager</persistence-manager>	            
+      <web-class-loader>com.follett.fsc.jbosshelper.vo.MagicVOWebClassLoader</web-class-loader>
+      <locking-policy>org.jboss.ejb.plugins.lock.QueuedPessimisticEJBLock</locking-policy>
+      <container-cache-conf>
+      <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+       <cache-policy-conf>
+          <min-capacity>100</min-capacity>
+          <max-capacity>1000</max-capacity>
+
+          <overager-period>300</overager-period>
+          <max-bean-age>900</max-bean-age>
+
+          <resizer-period>300</resizer-period>
+          <max-cache-miss-period>60</max-cache-miss-period>
+          <min-cache-miss-period>1</min-cache-miss-period>
+          <cache-load-factor>0.75</cache-load-factor>
+       </cache-policy-conf>
+      </container-cache-conf>
+      <container-pool-conf>
+        <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>A</commit-option>
+      <method-attributes>
+        <method>
+          <method-name>is*</method-name>
+          <read-only>true</read-only>
+        </method>
+        <method>
+          <method-name>get*</method-name>
+          <read-only>true</read-only>
+        </method>
+        <method>
+          <method-name>bulkGetData</method-name>
+          <read-only>true</read-only>
+        </method>
+      </method-attributes>
+    </container-configuration>
+
+
+    <container-configuration>
+      <container-name>Instance Per Transaction CMP EntityBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>false</insert-after-ejb-post-create>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+            <interceptor metricsEnabled="true">org.jboss.ejb.plugins.MetricsInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityLockInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+      </container-interceptors>
+         <instance-pool>com.follett.fsc.jbosshelper.cache.DestinyEntityInstancePool</instance-pool>
+         <instance-cache>org.jboss.ejb.plugins.PerTxEntityInstanceCache</instance-cache>
+         <persistence-manager>com.follett.fsc.jbosshelper.DestinyJDBCStoreManager</persistence-manager>
+      <locking-policy>org.jboss.ejb.plugins.lock.NoLock</locking-policy>
+      <web-class-loader>com.follett.fsc.jbosshelper.vo.MagicVOWebClassLoader</web-class-loader>
+      <container-cache-conf/>
+      <container-pool-conf>
+        <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>C</commit-option>
+    </container-configuration>
+
+    <container-configuration>
+      <container-name>Standard Stateless SessionBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>stateless-pooled-invoker</invoker-proxy-binding-name>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+        
+        <!-- CMT -->
+        <interceptor transaction="Container">com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+        <interceptor transaction="Container" metricsEnabled="true">org.jboss.ejb.plugins.MetricsInterceptor</interceptor>
+        <interceptor transaction="Container">org.jboss.ejb.plugins.StatelessSessionInstanceInterceptor</interceptor>
+        <interceptor transaction="Container">org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+
+        <!-- BMT -->
+        <interceptor transaction="Bean">org.jboss.ejb.plugins.StatelessSessionInstanceInterceptor</interceptor>
+        <interceptor transaction="Bean">org.jboss.ejb.plugins.TxInterceptorBMT</interceptor>
+            <interceptor transaction="Bean" metricsEnabled="true">org.jboss.ejb.plugins.MetricsInterceptor</interceptor>
+        <interceptor transaction="Bean">org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.performance.PerfMon4JSessionInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.HallPassInterceptor</interceptor>
+      </container-interceptors>
+      <instance-pool>org.jboss.ejb.plugins.StatelessSessionInstancePool</instance-pool>
+      <instance-cache></instance-cache>
+      <persistence-manager></persistence-manager>
+      <container-pool-conf>
+        <MaximumSize>250</MaximumSize>
+      </container-pool-conf>
+    </container-configuration>
+
+
+
+    <container-configuration>
+      <container-name>Standard Stateful SessionBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>stateful-pooled-invoker</invoker-proxy-binding-name>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+        <!-- CMT -->
+        <interceptor transaction="Container">com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+        <interceptor transaction="Container">org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor transaction="Container">org.jboss.ejb.plugins.StatefulSessionInstanceInterceptor</interceptor>
+        <!-- BMT -->
+        <interceptor transaction="Bean">org.jboss.ejb.plugins.StatefulSessionInstanceInterceptor</interceptor>
+        <interceptor transaction="Bean">org.jboss.ejb.plugins.TxInterceptorBMT</interceptor>
+        <interceptor transaction="Bean">org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+      </container-interceptors>
+      <instance-cache>org.jboss.ejb.plugins.StatefulSessionInstanceCache</instance-cache>
+      <persistence-manager>org.jboss.ejb.plugins.StatefulSessionFilePersistenceManager</persistence-manager>
+      <container-cache-conf>
+        <cache-policy>org.jboss.ejb.plugins.LRUStatefulContextCachePolicy</cache-policy>
+        <cache-policy-conf>
+          <min-capacity>2500</min-capacity>
+          <max-capacity>1000000</max-capacity>
+ <!--
+        These 2 settings control the maximum life of a session bean
+        The remover is used to delete instances of passivated session
+        beans from disk.  The remover will run every 2 hours and
+        will remove any passivated bean that has not been accessed
+        for more than 4 hours.
+        -->
+          <remover-period>14400</remover-period>
+          <max-bean-life>14400</max-bean-life>
+<!--
+        These 2 settings control the maximum amount of time an untouched
+        session bean will remain in memory.  The session bean will still be
+        available to the client, however, it must be restored from disk.
+        The overager will run every 1 hour and passivate any session beans
+        that have not been accessed in the last 2 hours.
+        -->
+          <overager-period>3600</overager-period>
+          <max-bean-age>7200</max-bean-age>
+          <resizer-period>1800</resizer-period>
+          <max-cache-miss-period>60</max-cache-miss-period>
+          <min-cache-miss-period>1</min-cache-miss-period>
+          <cache-load-factor>0.75</cache-load-factor>
+        </cache-policy-conf>
+      </container-cache-conf>
+      <container-pool-conf>
+        <MaximumSize>200</MaximumSize>
+      </container-pool-conf>
+    </container-configuration>
+
+    <container-configuration>
+      <container-name>Standard BMP EntityBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>false</insert-after-ejb-post-create>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+            <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+            <interceptor metricsEnabled="true">org.jboss.ejb.plugins.MetricsInterceptor</interceptor>
+<!-- this one isn't in jboss 3 -->
+        <interceptor>org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityLockInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+      </container-interceptors>
+         <instance-pool>com.follett.fsc.jbosshelper.cache.DestinyEntityInstancePool</instance-pool>
+         <instance-cache>com.follett.fsc.jbosshelper.cache.DestinyEntityInstanceCache</instance-cache>
+         <persistence-manager>com.follett.fsc.jbosshelper.DestinyBMPPersistenceManager</persistence-manager>
+         <web-class-loader>com.follett.fsc.jbosshelper.vo.MagicVOWebClassLoader</web-class-loader>
+      <locking-policy>org.jboss.ejb.plugins.lock.QueuedPessimisticEJBLock</locking-policy>
+      <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>100</min-capacity>
+               <max-capacity>1000</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>900</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      <container-pool-conf>
+        <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>A</commit-option>
+    <method-attributes>
+      <method>
+        <method-name>is*</method-name>
+        <read-only>true</read-only>
+          </method>
+      <method>
+        <method-name>get*</method-name>
+        <read-only>true</read-only>
+          </method>
+      <method>
+        <method-name>bulkGetData</method-name>
+        <read-only>true</read-only>
+          </method>
+     </method-attributes>
+    </container-configuration>
+
+    <container-configuration>
+      <container-name>Instance Per Transaction BMP EntityBean</container-name>
+      <call-logging>false</call-logging>
+      <invoker-proxy-binding-name>entity-pooled-invoker</invoker-proxy-binding-name>
+      <sync-on-commit-only>false</sync-on-commit-only>
+      <insert-after-ejb-post-create>false</insert-after-ejb-post-create>
+      <container-interceptors>
+        <interceptor>org.jboss.ejb.plugins.ProxyFactoryFinderInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.LogInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.SecurityInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.UserContextContainerInterceptor</interceptor>
+        <interceptor>com.follett.fsc.jbosshelper.transaction.TxInterceptorCMT</interceptor>
+        <interceptor>org.jboss.ejb.plugins.CallValidationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityCreationInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityLockInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityInstanceInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntityReentranceInterceptor</interceptor>
+        <interceptor>org.jboss.resource.connectionmanager.CachedConnectionInterceptor</interceptor>
+        <interceptor>org.jboss.ejb.plugins.EntitySynchronizationInterceptor</interceptor>
+      </container-interceptors>
+      <instance-pool>com.follett.fsc.jbosshelper.cache.DestinyEntityInstancePool</instance-pool>
+      <instance-cache>com.follett.fsc.jbosshelper.cache.DestinyPerTxEntityInstanceCache</instance-cache>
+      <persistence-manager>com.follett.fsc.jbosshelper.DestinyBMPPersistenceManager</persistence-manager>
+      <locking-policy>org.jboss.ejb.plugins.lock.NoLock</locking-policy>
+      <container-cache-conf/>
+      <container-pool-conf>
+        <MaximumSize>100</MaximumSize>
+      </container-pool-conf>
+      <commit-option>C</commit-option>
+    </container-configuration>
+
+<container-configuration extends="Standard BMP EntityBean" >
+         <container-name>Small Cache BMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${SMALL_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${SMALL_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>900</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+<container-configuration extends="Standard BMP EntityBean" >
+         <container-name>Medium Cache BMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${MEDIUM_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${MEDIUM_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>1800</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+
+      <container-configuration extends="Standard BMP EntityBean" >
+         <container-name>Large Cache BMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${LARGE_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${LARGE_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>3600</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>   
+      <container-configuration extends="Standard CMP 2.x EntityBean" >
+         <container-name>2_0 Small Cache CMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${SMALL_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${SMALL_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>900</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+
+      <container-configuration extends="Standard CMP EntityBean" >
+         <container-name>Small Cache CMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${SMALL_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${SMALL_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>900</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+
+      <container-configuration extends="Standard BMP EntityBean" >
+         <container-name>State Standards Cache BMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>1</min-capacity>
+               <max-capacity>100</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>3600</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+         <commit-option>D</commit-option>
+         <optiond-refresh-rate>43200</optiond-refresh-rate>
+      </container-configuration>
+      
+      <container-configuration extends="Standard BMP EntityBean" >
+         <container-name>Statistics Cache BMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>1</min-capacity>
+               <max-capacity>100</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>3600</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+         <commit-option>D</commit-option>
+         <optiond-refresh-rate>120</optiond-refresh-rate>
+      </container-configuration>
+
+      <container-configuration extends="Standard BMP EntityBean" >
+         <container-name>Statistics Long Term Cache BMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>1</min-capacity>
+               <max-capacity>100</max-capacity>
+
+               <overager-period>300</overager-period> <!-- 5 minutes -->
+               <max-bean-age>300</max-bean-age> <!-- Max 5 minute cache duration without being accessed-->
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+         <commit-option>D</commit-option>
+         <optiond-refresh-rate>600</optiond-refresh-rate> <!-- 10 minute max cache duration regardless of last access -->
+      </container-configuration>
+
+      <container-configuration extends="Standard CMP EntityBean" >
+         <container-name>Medium Cache CMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${MEDIUM_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${MEDIUM_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>1800</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+
+
+      <container-configuration extends="Standard CMP 2.x EntityBean" >
+         <container-name>2_0 Medium Cache CMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${MEDIUM_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${MEDIUM_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>1800</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+
+      <container-configuration extends="Standard CMP EntityBean" >
+         <container-name>Large Cache CMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${LARGE_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${LARGE_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>3600</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>
+
+      <container-configuration extends="Standard CMP 2.x EntityBean" >
+         <container-name>2_0 Large Cache CMP</container-name>
+         <container-cache-conf>
+            <cache-policy>com.follett.fsc.jbosshelper.cache.DestinyEnterpriseContextCachePolicy</cache-policy>
+            <cache-policy-conf>
+               <min-capacity>${LARGE_ENTITY_MIN_CAPACITY}</min-capacity>
+               <max-capacity>${LARGE_ENTITY_MAX_CAPACITY}</max-capacity>
+
+               <overager-period>900</overager-period>
+               <max-bean-age>3600</max-bean-age>
+
+               <resizer-period>900</resizer-period>
+               <max-cache-miss-period>60</max-cache-miss-period>
+               <min-cache-miss-period>1</min-cache-miss-period>
+               <cache-load-factor>0.75</cache-load-factor>
+            </cache-policy-conf>
+         </container-cache-conf>
+      </container-configuration>   
+  </container-configurations>
+  
+
+</jboss>

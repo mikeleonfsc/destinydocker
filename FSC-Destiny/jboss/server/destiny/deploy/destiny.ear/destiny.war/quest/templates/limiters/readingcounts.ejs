@@ -1,0 +1,54 @@
+/* readingcounts.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_RC)));
+                ___ViewO.push("\" class=\"sliderLimiter\">\n");
+                ___ViewO.push("\t<div id =\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_DIV_LIMITER_COUNT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t\t");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_quizzes", "<span>", "</span>", "<span id=\"" + LimiterController_DIV_TOTAL_COUNT + "\">" + totalCount + "</span>"))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("\t");
+                if (readingLevelRange) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("LimiterSliderTemplate", {sliderData:readingLevelRange, id:LimiterController_LIMITER_CONTROL_RC_READING_LEVEL, title:MessageHelper.format("questLimiters_rcLevel")}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("\t");
+                if (pointsRange) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t\t");
+                    ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("LimiterSliderTemplate", {sliderData:pointsRange, id:LimiterController_LIMITER_CONTROL_RC_POINTS, title:MessageHelper.format("questLimiters_points")}))));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("\t");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("<div>\n");
+                ___ViewO.push("\t<input type=\"button\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_BUTTON_APPLY_LIMITER)));
+                ___ViewO.push("\"\n");
+                ___ViewO.push("\t value=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("questLimiters_apply"))));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(LimiterController_CLASS_APPLY_LIMITER_BUTTON)));
+                ___ViewO.push("\"/>\n");
+                ___ViewO.push("</div> ");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

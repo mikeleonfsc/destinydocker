@@ -1,0 +1,57 @@
+/* onesearchdialog.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DBDETAIL_DIALOG)));
+                ___ViewO.push("\" class=\"genericModuleOuter\">\n");
+                ___ViewO.push("    <div class=\"genericModuleTR\">\n");
+                ___ViewO.push("        <h4 class=\"genericModuleTL\">\n");
+                ___ViewO.push("            <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_SPAN_ONESEARCH_DBDETAIL_TITLE)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("oneSearchController_oneSearchDatabaseDetails"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("        </h4>\n");
+                ___ViewO.push("        <a href=\"#\" onclick=\"return false;\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_BUTTON_ONESEARCH_DBDETAIL_CLOSE)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t        ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("oneSearchController_close"), styleClass:"moduleCloseButtonImage", id:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("        </a>\n");
+                ___ViewO.push("        <div class=\"genericModuleBL\">\n");
+                ___ViewO.push("            <div class=\"genericModuleBR\">\n");
+                ___ViewO.push("                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_ONESEARCH_DBDETAIL_CONTENT)));
+                ___ViewO.push("\" class=\"genericModuleContent\">\n");
+                ___ViewO.push("                \t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_DBDETAIL_LOADING)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t                \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {altText:MessageHelper.format("oneSearchController_loading"), styleClass:"loading", id:""}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t                </div>\n");
+                ___ViewO.push("\t                <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(OneSearchController_DIV_DBDETAIL_CONTENT_INNER)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            <!-- END .genericModuleBR -->\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        <!-- END .genericModuleBL -->\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    <!-- END .genericModuleTR -->\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("<!-- END .genericModuleOuter -->\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

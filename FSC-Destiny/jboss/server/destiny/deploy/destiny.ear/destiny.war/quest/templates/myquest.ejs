@@ -1,0 +1,28 @@
+/* myquest.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_MYQUEST_MAIN_CONTENT_WRAPPER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestController_DIV_MYQUEST_MAIN_CONTENT)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("\t    <div id=\"myQuestLoadingDiv\">\n");
+                ___ViewO.push("\t    \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"loading", styleClass:"loading", altText:MessageHelper.format("myQuestController_loading")}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("\t    </div>\n");
+                ___ViewO.push("\t</div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

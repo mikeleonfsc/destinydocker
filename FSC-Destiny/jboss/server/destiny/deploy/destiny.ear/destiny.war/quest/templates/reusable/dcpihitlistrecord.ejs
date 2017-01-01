@@ -1,0 +1,106 @@
+/* dcpihitlistrecord.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"dcpiShelfRecord_");
+                ___ViewO.push((EJS.Scanner.to_text(idx)));
+                ___ViewO.push("\" class=\"dcpiShelfRecord\">\n");
+                ___ViewO.push("    <div class=\"column1\">\n");
+                ___ViewO.push("        <div class=\"myQuestShelfCoverWrapper dcpiThumbnailWrapper\">\n");
+                ___ViewO.push("            <div class=\"resultCover\">\n");
+                ___ViewO.push("                <div>\n");
+                ___ViewO.push("                    ");
+                var extraClass = "";
+                if (data.recData.titlePeekImageURL && data.recData.titlePeekImageURL.endsWith("spacer.gif")) {
+                    extraClass = " defaultDCPIImage";
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("                        <img border=\"0\" src=\"");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.titlePeekImageURL)));
+                ___ViewO.push("\" class=\"resultCoverImage draggableBook coverImage75 ");
+                ___ViewO.push((EJS.Scanner.to_text(extraClass)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("    <div class=\"column2\">\n");
+                ___ViewO.push("        <p id=\"\" class=\"searchResultTitle\"><a id=\"searchResultsTitleLink\" class=\"searchResultsTitleLink\" href=\"#\">");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.title)));
+                ___ViewO.push("</a></p>\n");
+                ___ViewO.push("        <p id=\"\" class=\"searchResultPublisher\">\n");
+                ___ViewO.push("            <span id=\"\" class=\"dcpiProviderLogoWrapper\"><img class=\"\" id=\"\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.digitalMediaProviderName)));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.digitalMediaProviderName)));
+                ___ViewO.push("\" src=\"/imagestore/digitalProviders/");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.digitalMediaIconPathSmall)));
+                ___ViewO.push("\"></span><span id=\"\" class=\"dcpiMaterialTypeWrapper\"><img src=\"");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.miniBibTypeIconURL)));
+                ___ViewO.push("\" width=\"20\" height=\"16\" border=\"0\" alt=\"");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.bibTypeDescription)));
+                ___ViewO.push("\" title=\"");
+                ___ViewO.push((EJS.Scanner.to_text(data.recData.bibTypeDescription)));
+                ___ViewO.push("\"></span> \n");
+                ___ViewO.push("            ");
+                if (data.recData.publisher) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                ");
+                    ___ViewO.push((EJS.Scanner.to_text(data.recData.publisher)));
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("            ");
+                if (data.recData.pubyear) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("                (");
+                    ___ViewO.push((EJS.Scanner.to_text(data.recData.pubyear)));
+                    ___ViewO.push(")\n");
+                    ___ViewO.push("            ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        </p>\n");
+                ___ViewO.push("        \n");
+                ___ViewO.push("        ");
+                if (data.recData.interestGradeLevel) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <p id=\"\" class=\"searchResultGradeLevel \"><em class=\"label\">Grade Level: </em> ");
+                    ___ViewO.push((EJS.Scanner.to_text(data.recData.interestGradeLevel)));
+                    ___ViewO.push(" </p>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    \n");
+                ___ViewO.push("        ");
+                if (data.recData.extent) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <p id=\"\" class=\"searchResultRunTime \"><em class=\"label\">Run Time: </em> ");
+                    ___ViewO.push((EJS.Scanner.to_text(data.recData.extent)));
+                    ___ViewO.push(" </p>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("        \n");
+                ___ViewO.push("        ");
+                if (data.recData.summary) {
+                    ___ViewO.push("\n");
+                    ___ViewO.push("            <p id=\"\" class=\"searchResultSummary\">");
+                    ___ViewO.push((EJS.Scanner.to_text(data.recData.summary)));
+                    ___ViewO.push("</p>\n");
+                    ___ViewO.push("        ");
+                }
+                ___ViewO.push("\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

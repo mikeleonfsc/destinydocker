@@ -1,0 +1,75 @@
+/* myquest-updates.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<h2 id=\"myQuestUpdatesHeader\"><span><em>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_myQuestUpdates"))));
+                ___ViewO.push("</em></span></h2>\n");
+                ___ViewO.push("<div class=\"myQuestPatronGroup\">\n");
+                ___ViewO.push("    <div class=\"myQuestItem myQuestPatronItem\" id=\"myQuestMyPatronInfo\">\n");
+                ___ViewO.push("        <em class=\"myQuestPaperClip\"></em>\n");
+                ___ViewO.push("        <div class=\"column1\">\n");
+                ___ViewO.push("            <div class=\"myQuestAvatarWrapper\">\n");
+                ___ViewO.push("                <div class=\"myQuestAvatar\" id=\"\">\n");
+                ___ViewO.push("                    <div onmouseout=\"\" onmouseover=\"\" onmousedown=\"\" id=\"\">\n");
+                ___ViewO.push("                    ");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("MyQuestAvatarTemplate", {pictureURL:myPictureURL, avatarSize:100}))));
+                ___ViewO.push("\n");
+                ___ViewO.push("                    </div>\n");
+                ___ViewO.push("                </div>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <div class=\"column2\">\n");
+                ___ViewO.push("                <p class=\"myQuestFriendsFullName\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_STATS_MY_NAME)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(myName)));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("                <p class=\"myQuestStatTitlesReviewed\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_STATS_TITLES_REVIEWED)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_titlesReviewed", "<span id=\"\" class=\"myQuestCount\">" + titlesReviewed + "</span>"))));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("                <p class=\"myQuestStatFriendsMade\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_STATS_FRIENDS_MADE)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_friendsMade", "<span id=\"\" class=\"myQuestCount\">" + friendsMade + "</span>"))));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("                <p class=\"myQuestStatRecommendationsSent\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_STATS_RECOMMENDATIONS_SENT)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_recommendationsSent", "<span id=\"\" class=\"myQuestCount\">" + recommendationsSent + "</span>"))));
+                ___ViewO.push("</p>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_DIV_MYQUEST_UPDATES_RESULTS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_CLASS_MYQUEST_UPDATES_RESULTS)));
+                ___ViewO.push("\"></div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("<div id=\"myQuestFooter\">\n");
+                ___ViewO.push("    <img src=\"/images/icons/general/spacer.gif\" class=\"loading\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_UPDATES_LOADING)));
+                ___ViewO.push("\" style=\"display: none\">\n");
+                ___ViewO.push("    <p id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MYQUEST_OLDER_RESULTS_LINK)));
+                ___ViewO.push("\" class=\"myQuestEarlierPostControl\"><a href=\"#\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(MyQuestUpdatesController_ID_MY_QUEST_EARLIER_POST_CONTROL_LINK)));
+                ___ViewO.push("\" onclick=\"return false;\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("myQuestUpdatesController_seeOlderPosts"))));
+                ___ViewO.push("</a></p>\n");
+                ___ViewO.push("</div>                   \n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}

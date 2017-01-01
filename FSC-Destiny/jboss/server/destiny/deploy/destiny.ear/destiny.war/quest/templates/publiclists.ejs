@@ -1,0 +1,93 @@
+/* publiclists.ejs */
+function (_CONTEXT, _VIEW) {
+    try {
+        with (_VIEW) {
+            with (_CONTEXT) {
+                var ___ViewO = [];
+                ___ViewO.push("<div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_OUTER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("    <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_INNER)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_TAB_WIDGET)));
+                ___ViewO.push("\"> \n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_TAB_NAV)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            <ul class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_TAB_LIST)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_LI_PUBLIC_LISTS_TAB_MY_LISTS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_TAB)));
+                ___ViewO.push("\"><a href=\"#\" onclick=\"return false;\"><span>");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("publicListsController_myLists"))));
+                ___ViewO.push("</span></a></li>\n");
+                ___ViewO.push("                <li id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_LI_PUBLIC_LISTS_TAB_PUBLIC_LISTS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_TAB)));
+                ___ViewO.push("\"><a href=\"#\" onclick=\"return false;\"><span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_SPAN_LIST_COUNTS)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("publicListsController_publicLists"))));
+                ___ViewO.push("</span></a></li>\n");
+                ___ViewO.push("            </ul>\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_CONTENT_MY_LISTS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_TAB_CONTENT)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_PUBLIC_LISTS_CONTENT)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("            <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_CONTENT_PUBLIC_LISTS)));
+                ___ViewO.push("\" class=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_TAB_CONTENT)));
+                ___ViewO.push(" ");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_CLASS_PUBLIC_LISTS_CONTENT)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("            </div>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_CONTROLS)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("            <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_CONTROLS_BLURBAGE)));
+                ___ViewO.push("\">");
+                ___ViewO.push((EJS.Scanner.to_text(MessageHelper.format("publicListsController_find"))));
+                ___ViewO.push("</span>\n");
+                ___ViewO.push("            <span id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_CONTROLS_SEARCH_BOX)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("                <input type=\"text\" id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_INPUT_PUBLIC_LISTS_SEARCH)));
+                ___ViewO.push("\" name=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_INPUT_PUBLIC_LISTS_SEARCH)));
+                ___ViewO.push("\">\n");
+                ___ViewO.push("            </span>\n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("\n");
+                ___ViewO.push("        <div id=\"");
+                ___ViewO.push((EJS.Scanner.to_text(PublicListsController_DIV_PUBLIC_LISTS_LOADING)));
+                ___ViewO.push("\" style=\"display: none;\">\n");
+                ___ViewO.push("        \t");
+                ___ViewO.push((EJS.Scanner.to_text(ReusableTemplates.load("EmptyImageTemplate", {id:"loading", altText:MessageHelper.format("publicListsController_loading"), styleClass:"loading"}))));
+                ___ViewO.push("                    \n");
+                ___ViewO.push("        </div>\n");
+                ___ViewO.push("    </div>\n");
+                ___ViewO.push("</div>       \n");
+                return ___ViewO.join("");
+            }
+        }
+    }
+    catch (e) {
+        e.lineNumber = null;
+        throw e;
+    }
+}
