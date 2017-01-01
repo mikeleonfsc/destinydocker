@@ -1,0 +1,41 @@
+list of all containers ps -a
+  stop all
+  docker stop $(docker ps -a -q)
+  delete all
+docker rm $(docker ps -a -q)
+
+may need to rmi to remove
+docker rmi $(docker ps -a -q)
+  
+  
+  IIS
+  docker run -d -p 80:80 --name iis microsoft/iis
+need to use this IP, not loopback: docker inspect --format '{{ .NetworkSettings.Networks.nat.IPAddress }}' iis
+
+
+
+
+
+========================
+
+CONNECT TO CORE:
+need to be able to resolve name off the core server to administer
+
+ALLLOW ALL MACHINES TO BE ADMINISTERED:
+
+
+
+SECURITY:
+https://social.technet.microsoft.com/Forums/office/en-US/0141f7bd-caa4-4290-a2b4-54ff54b937d6/server-2012-server-manager-winrm-negotiate-authentication-error?forum=winserver8gen
+enable remote admin, run from the client trying to connect to core:
+Set-Item wsman:\localhost\Client\TrustedHosts <name> -Concatenate -Force
+not sure if this wildcard works
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value "*"
+
+FIREWALL:
+NetSh Advfirewall set allprofiles state off
+
+
+POWERSHELL/REMOTE nanoserver
+http://www.thomasmaurer.ch/2015/12/how-to-remote-manage-your-nano-server-using-powershell/
+REMOTE mstsc <ip>
