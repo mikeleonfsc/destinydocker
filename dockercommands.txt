@@ -39,3 +39,5 @@ NetSh Advfirewall set allprofiles state off
 POWERSHELL/REMOTE nanoserver
 http://www.thomasmaurer.ch/2015/12/how-to-remote-manage-your-nano-server-using-powershell/
 REMOTE mstsc <ip>
+
+docker exec -it <#> powershell
